@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1246d8eda84f44cbfbb23d2fca51ff, type: 3}
+  m_Name: KeySettingData
+  m_EditorClassIdentifier: 
+  keyBindDic:
+    keys: 010000000200000003000000040000000500000006000000070000000800000009000000
+    values:
+    - name: MoveFoward
+      type: 1
+      keyCode: 119
+    - name: MoveBack
+      type: 2
+      keyCode: 115
+    - name: MoveLeft
+      type: 3
+      keyCode: 97
+    - name: MoveRight
+      type: 4
+      keyCode: 100
+    - name: Jump
+      type: 5
+      keyCode: 32
+    - name: Dash
+      type: 6
+      keyCode: 304
+    - name: Attack
+      type: 7
+      keyCode: 323
+    - name: Interaction
+      type: 8
+      keyCode: 102
+    - name: Menu
+      type: 9
+      keyCode: 27

@@ -7,6 +7,14 @@ public enum KeyType
 {
     None,
     /// <summary>
+    /// 앞으로 이동
+    /// </summary>
+    MoveFoward,
+    /// <summary>
+    /// 뒤로 이동
+    /// </summary>
+    MoveBack,
+    /// <summary>
     /// 왼쪽 이동
     /// </summary>
     MoveLeft,
@@ -31,24 +39,7 @@ public enum KeyType
     /// 상호작용
     /// </summary>
     Interaction,
-    /// <summary>
-    /// 캐릭터 변경
-    /// </summary>
-    ChangeCharacter,
-
-    /// <summary>
-    /// 스킬 슬롯 1
-    /// </summary>
-    Skill1,
-    /// <summary>
-    /// 스킬 슬롯 2
-    /// </summary>
-    Skill2,
-
-    /// <summary>
-    /// 상태
-    /// </summary>
-    Status,
+   
     /// <summary>
     /// 메뉴(일시정지)
     /// </summary>
