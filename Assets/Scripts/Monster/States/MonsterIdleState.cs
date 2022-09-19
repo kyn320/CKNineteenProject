@@ -8,9 +8,6 @@ public class MonsterIdleState : StateBase
     private float idleCountTime = 0.0f;
 
     [SerializeField]
-    private float searchRadius = 0.0f;
-
-    [SerializeField]
     private Collider[] coll;
 
     public override void Action()
@@ -25,9 +22,9 @@ public class MonsterIdleState : StateBase
     {
         idleCountTime += Time.deltaTime;
 
-        coll = Physics.OverlapSphere(transform.localPosition, searchRadius);
+        coll = Physics.OverlapSphere(transform.localPosition, manager.monster.GetSearchRadius());
 
-        for(var i =0; i < coll.Length; i++)
+        for (var i = 0; i < coll.Length; i++)
         {
             if (coll[i].gameObject.name == "Player")
             {

@@ -8,7 +8,5 @@ public class MonsterDeathState : StateBase
     public override void Action()
     {
         base.Action();
-
-        Debug.Log("Death State");
     }
 }

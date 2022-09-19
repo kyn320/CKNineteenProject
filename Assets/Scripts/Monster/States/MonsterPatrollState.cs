@@ -4,23 +4,52 @@ using UnityEngine;
 
 public class MonsterPatrollState : StateBase
 {
-    // N 초 동안 추적하다가 Idle로 변경 
-    // Player를 발견했을 경우, Attack으로 전환
+    private Vector3 arrivalPos;
+
+    [SerializeField]
+    private Collider[] coll;
 
     public override void Action()
     {
         base.Action();
 
-        Debug.Log("Monster Patroll");
-    
+        arrivalPos = new Vector3(Random.Range(-10, 11), 0, Random.Range(-10, 11));
+
     }
 
     private void Update()
     {
-        // 반경을 불러와서 그 주위를 순찰한다.
-        // 순찰 시간을 정해서, 그 시간이 종료 되었을 때, idle로 전환한다.
-        // 단, 반경 안에 플레이어가 있을 경우, Tracking으로 전환한다.
+        coll = Physics.OverlapSphere(transform.localPosition, manager.monster.GetSearchRadius());
 
+        for (var i = 0; i < coll.Length; i++)
+        {
+            if (coll[i].gameObject.name == "Player")
+            {
+                manager.SetTarget(coll[i].gameObject);
+                manager.PlayAction(MonsterState.MONSTERSTATE_TRACKING);
+            }
+            else
+            {
+                var targetPos = arrivalPos - transform.localPosition;
+                targetPos.y = 0;
 
+                var rotation = Quaternion.LookRotation(targetPos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 3f);
+
+                var movePos = targetPos.normalized;
+                manager.rig.velocity = new Vector3(movePos.x * manager.monster.GetMoveSpeed(), movePos.y, movePos.z * manager.monster.GetMoveSpeed());
+
+                if (targetPos.sqrMagnitude < 1f)
+                {
+                    var randNum = Random.Range(0, 2);
+
+                    if (randNum == 0)
+                        manager.PlayAction(MonsterState.MONSTERSTATE_IDLE);
+                    else
+                        manager.PlayAction(MonsterState.MONSTERSTATE_PATROLL);
+                }
+            }
+
+        }
     }
 }

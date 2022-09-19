@@ -9,8 +9,6 @@ public class MonsterTrackingState : StateBase
     public override void Action()
     {
         base.Action();
-
-        Debug.Log("Monster State : Tracking");
     }
 
     private void FixedUpdate()
@@ -24,13 +22,10 @@ public class MonsterTrackingState : StateBase
 
         manager.rig.velocity = new Vector3(targetPos.x * manager.monster.GetMoveSpeed(), targetPos.y, targetPos.z * manager.monster.GetMoveSpeed());
 
-        Vector3 distance = targetPos;
-
-        if (distance.sqrMagnitude < 1f)
+        if (targetPos.sqrMagnitude < 1f)
         {
-            Debug.DrawRay(transform.localPosition, manager.GetTargetPosition(), Color.green);
             manager.PlayAction(MonsterState.MONSTERSTATE_ATTACK);
-        } else if(distance.sqrMagnitude > 15f)
+        } else if(targetPos.sqrMagnitude > manager.monster.GetSearchRadius() + 3f)
         {
             var randNum = Random.Range(0, 2);
 

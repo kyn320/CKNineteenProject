@@ -25,6 +25,8 @@ public class MonsterBase : MonoBehaviour
     private float moveSpeed = .0f;
     [SerializeField]
     private float attackSpeed = .0f;
+    [SerializeField]
+    private float searchRadius = .0f;
 
     [Space(10)]
     [SerializeField]
@@ -71,5 +73,10 @@ public class MonsterBase : MonoBehaviour
     public MonsterState GetState()
     {
         return states;
+    }
+
+    public float GetSearchRadius()
+    {
+        return searchRadius;
     }
 }

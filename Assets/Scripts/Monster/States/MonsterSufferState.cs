@@ -8,8 +8,5 @@ public class MonsterSufferState : StateBase
     public override void Action()
     {
         base.Action();
-
-        Debug.Log("Suffer  State");
-
     }
 }
