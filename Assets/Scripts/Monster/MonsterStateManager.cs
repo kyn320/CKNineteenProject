@@ -34,6 +34,8 @@ public class MonsterStateManager : MonoBehaviour
 
         rig = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
+        anim = GetComponentInChildren<Animator>();
+        
         InitializeStates();
     }
 
@@ -46,8 +48,8 @@ public class MonsterStateManager : MonoBehaviour
     {
         states.Add(MonsterState.MONSTERSTATE_IDLE, GetComponent<MonsterIdleState>());
         states.Add(MonsterState.MONSTERSTATE_PATROLL, GetComponent<MonsterPatrollState>());
-        states.Add(MonsterState.MONSTERSTATE_ATTACK, GetComponent<MonsterAttackState>());
         states.Add(MonsterState.MONSTERSTATE_TRACKING, GetComponent<MonsterTrackingState>());
+        states.Add(MonsterState.MONSTERSTATE_ATTACK, GetComponent<MonsterAttackState>());
         states.Add(MonsterState.MONSTERSTATE_SUFFER, GetComponent<MonsterSufferState>());
         states.Add(MonsterState.MONSTERSTATE_DEATH, GetComponent<MonsterDeathState>());
     }
@@ -64,6 +66,8 @@ public class MonsterStateManager : MonoBehaviour
 
         states[monster.GetState()].enabled = true;
         states[monster.GetState()].Action();
+        Debug.Log((int)monster.GetState());
+        anim.SetInteger("CurrentAnim", (int)monster.GetState());
         Debug.Log("Change Monster State : " + state.ToString());
     }
 
@@ -75,5 +79,13 @@ public class MonsterStateManager : MonoBehaviour
     public Vector3 GetTargetPosition()
     {
         return target.transform.localPosition;
+    }
+
+    private void Update()
+    {
+        if (!monster.GetLife())
+        {
+            PlayAction(MonsterState.MONSTERSTATE_DEATH);
+        }
     }
 }

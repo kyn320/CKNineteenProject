@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class MonsterDeathState : StateBase
 {
-    // 몬스터 사망 시, 아이템 드랍 구현
     public override void Action()
     {
         base.Action();
+        // 아이템 드랍 구현
+
+        //Destroy(this);
     }
 }

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SmallMonster : MonsterBase
 {
-    private void Awake()
+    private void Update()
     {
-        
+        if(GetHP() <= 0)
+        {
+            SetLife(false);
+        }
     }
-
 }

@@ -19,8 +19,8 @@ public class MonsterTrackingState : StateBase
         var rotation = Quaternion.LookRotation(targetPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 3f);
 
-
-        manager.rig.velocity = new Vector3(targetPos.x * manager.monster.GetMoveSpeed(), targetPos.y, targetPos.z * manager.monster.GetMoveSpeed());
+        var movePos = targetPos.normalized;
+        manager.rig.velocity = new Vector3(movePos.x * manager.monster.GetMoveSpeed(), movePos.y, movePos.z * manager.monster.GetMoveSpeed());
 
         if (targetPos.sqrMagnitude < 1f)
         {

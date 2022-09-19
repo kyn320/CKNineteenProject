@@ -8,8 +8,8 @@ public enum MonsterState
 {
     MONSTERSTATE_IDLE = 0,
     MONSTERSTATE_PATROLL,
-    MONSTERSTATE_ATTACK,
     MONSTERSTATE_TRACKING,
+    MONSTERSTATE_ATTACK,
     MONSTERSTATE_SUFFER,
     MONSTERSTATE_DEATH
 };
@@ -19,6 +19,10 @@ public class MonsterBase : MonoBehaviour
     [Space(10)]
     [SerializeField]
     private int monsterCode;
+
+    [Space(10)]
+    [SerializeField]
+    private int hp = 0;
 
     [Space(10)]
     [SerializeField]
@@ -79,4 +83,15 @@ public class MonsterBase : MonoBehaviour
     {
         return searchRadius;
     }
+
+    public void SetHP(int num)
+    {
+        hp = num;
+    }
+
+    public int GetHP()
+    {
+        return hp;
+    }
+
 }

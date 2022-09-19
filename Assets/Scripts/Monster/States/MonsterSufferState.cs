@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class MonsterSufferState : StateBase
 {
-    // 몬스터 넉백 시 애니메이션 변경 및 넉백 효과 적용
+    // 넉백 효과 적용
     public override void Action()
     {
         base.Action();
+
+        manager.rig.velocity = new Vector3(transform.localPosition.x - 1, transform.localPosition.y, transform.localPosition.z - 1);
+        manager.PlayAction(MonsterState.MONSTERSTATE_TRACKING);
     }
 }
