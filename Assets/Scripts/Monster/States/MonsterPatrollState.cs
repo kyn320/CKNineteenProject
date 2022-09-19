@@ -14,4 +14,13 @@ public class MonsterPatrollState : StateBase
         Debug.Log("Monster Patroll");
     
     }
+
+    private void Update()
+    {
+        // 반경을 불러와서 그 주위를 순찰한다.
+        // 순찰 시간을 정해서, 그 시간이 종료 되었을 때, idle로 전환한다.
+        // 단, 반경 안에 플레이어가 있을 경우, Tracking으로 전환한다.
+
+
+    }
 }

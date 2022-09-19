@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MonsterStateManager : MonoBehaviour
 {
     [SerializeField]
-    private MonsterBase monster;
+    public MonsterBase monster;
 
     public Rigidbody rig;
     public Collider coll;
@@ -33,7 +34,6 @@ public class MonsterStateManager : MonoBehaviour
 
         rig = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
-
         InitializeStates();
     }
 
@@ -56,8 +56,6 @@ public class MonsterStateManager : MonoBehaviour
     {
         foreach(StateBase temp in states.Values)
         {
-            Debug.Log(temp);
-
             temp.enabled = false;
         }
 
@@ -78,5 +76,4 @@ public class MonsterStateManager : MonoBehaviour
     {
         return target.transform.localPosition;
     }
-
 }

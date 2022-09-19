@@ -13,15 +13,32 @@ public class MonsterTrackingState : StateBase
         Debug.Log("Monster State : Tracking");
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        Vector3 targetPosition = manager.GetTargetPosition();
+        var targetPos = manager.GetTargetPosition() - transform.localPosition;
+        targetPos.y = 0;
 
-        // 몬스터의 회전 각을 플레이어를 바라볼 수 있도록 설정 후
-        // 몬스터를 Forward 시켜서 다가가게 설정한다.
+        var rotation = Quaternion.LookRotation(targetPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 3f);
 
-        // 그러다가, 플레이어가 일정 영역에 존재하지 않으면 Patroll 혹은 idle로 설정을 전환한다.
 
-        
+        manager.rig.velocity = new Vector3(targetPos.x * manager.monster.GetMoveSpeed(), targetPos.y, targetPos.z * manager.monster.GetMoveSpeed());
+
+        Vector3 distance = targetPos;
+
+        if (distance.sqrMagnitude < 1f)
+        {
+            Debug.DrawRay(transform.localPosition, manager.GetTargetPosition(), Color.green);
+            manager.PlayAction(MonsterState.MONSTERSTATE_ATTACK);
+        } else if(distance.sqrMagnitude > 15f)
+        {
+            var randNum = Random.Range(0, 2);
+
+            if (randNum == 0)
+                manager.PlayAction(MonsterState.MONSTERSTATE_IDLE);
+            else
+                manager.PlayAction(MonsterState.MONSTERSTATE_PATROLL);
+        }
+
     }
 }
