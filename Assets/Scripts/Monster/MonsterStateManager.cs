@@ -83,6 +83,10 @@ public class MonsterStateManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetMouseButtonDown(0))
+        {
+            PlayAction(MonsterState.MONSTERSTATE_DEATH);
+        }
         if (!monster.GetLife())
         {
             PlayAction(MonsterState.MONSTERSTATE_DEATH);

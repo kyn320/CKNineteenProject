@@ -40,6 +40,9 @@ public class MonsterBase : MonoBehaviour
     [SerializeField]
     private MonsterState states = 0;
 
+    [Space(10)]
+    public GameObject dropItem = null;
+
     public void SetMoveSpeed(float value)
     {
         moveSpeed = value;

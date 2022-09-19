@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SmallMonster : MonsterBase
 {
+
     private void Update()
     {
         if(GetHP() <= 0)
