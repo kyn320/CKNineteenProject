@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class MonsterSufferState : StateBase
 {
-    // Start is called before the first frame update
-    void Start()
+    // 몬스터 넉백 시 애니메이션 변경 및 넉백 효과 적용
+    public override void Action()
     {
-        
-    }
+        base.Action();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("Suffer  State");
+
     }
 }

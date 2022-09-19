@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class StateBase : MonoBehaviour
 {
-    public AnimationClip aniClip;
+    public MonsterStateManager manager;
 
-    public virtual void Action() { }
+    public virtual void Action() {
+    }
+
+    public void Awake()
+    {
+        manager = GetComponent<MonsterStateManager>();
+    }
 }

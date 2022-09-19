@@ -7,10 +7,16 @@ public class MonsterStateManager : MonoBehaviour
     [SerializeField]
     private MonsterBase monster;
 
-    private Rigidbody rig;
-    private Collider coll;
+    public Rigidbody rig;
+    public Collider coll;
 
-    public Dictionary<MonsterState, StateBase> states;
+    [SerializeField]
+    private Dictionary<MonsterState, StateBase> states = new Dictionary<MonsterState, StateBase>();
+
+    public Animator anim;
+
+    [SerializeField]
+    private GameObject target;
 
     private void Awake()
     {
@@ -20,15 +26,20 @@ public class MonsterStateManager : MonoBehaviour
 
             if (monster == null)
             {
-                Debug.LogError(gameObject.name + "is Not Found : GameObject");
+                Debug.LogError(gameObject.name + "is Not Found");
                 Debug.Break();
             }
         }
 
-        rig = monster.GetComponent<Rigidbody>();
-        coll = monster.GetComponent<Collider>();
+        rig = GetComponent<Rigidbody>();
+        coll = GetComponent<Collider>();
 
         InitializeStates();
+    }
+
+    private void Start()
+    {
+        PlayAction(monster.GetState());
     }
 
     private void InitializeStates()
@@ -36,22 +47,36 @@ public class MonsterStateManager : MonoBehaviour
         states.Add(MonsterState.MONSTERSTATE_IDLE, GetComponent<MonsterIdleState>());
         states.Add(MonsterState.MONSTERSTATE_PATROLL, GetComponent<MonsterPatrollState>());
         states.Add(MonsterState.MONSTERSTATE_ATTACK, GetComponent<MonsterAttackState>());
+        states.Add(MonsterState.MONSTERSTATE_TRACKING, GetComponent<MonsterTrackingState>());
         states.Add(MonsterState.MONSTERSTATE_SUFFER, GetComponent<MonsterSufferState>());
         states.Add(MonsterState.MONSTERSTATE_DEATH, GetComponent<MonsterDeathState>());
     }
 
-    private void PlayAction(MonsterState state)
+    public void PlayAction(MonsterState state)
     {
-        foreach(var temp in states.Values)
+        foreach(StateBase temp in states.Values)
         {
+            Debug.Log(temp);
+
             temp.enabled = false;
         }
 
-        monster.SetState(state);
+        if(monster.GetState().ToString() != state.ToString())
+            monster.SetState(state);
 
         states[monster.GetState()].enabled = true;
         states[monster.GetState()].Action();
+        Debug.Log("Change Monster State : " + state.ToString());
     }
 
+    public void SetTarget(GameObject obj)
+    {
+        target = obj;
+    }
+
+    public Vector3 GetTargetPosition()
+    {
+        return target.transform.localPosition;
+    }
 
 }

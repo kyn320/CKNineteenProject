@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class SmallMonster : MonsterBase
 {
-     
+    private void Awake()
+    {
+
+    }
+
 }

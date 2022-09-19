@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class MonsterPatrollState : StateBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // N 초 동안 추적하다가 Idle로 변경 
+    // Player를 발견했을 경우, Attack으로 전환
 
-    // Update is called once per frame
-    void Update()
+    public override void Action()
     {
-        
+        base.Action();
+
+        Debug.Log("Monster Patroll");
+    
     }
 }

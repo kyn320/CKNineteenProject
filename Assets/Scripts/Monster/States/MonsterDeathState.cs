@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class MonsterDeathState : StateBase
 {
-    // Start is called before the first frame update
-    void Start()
+    // 몬스터 사망 시, 아이템 드랍 구현
+    public override void Action()
     {
-        
-    }
+        base.Action();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("Death State");
     }
 }

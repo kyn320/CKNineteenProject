@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class MonsterAttackState : StateBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Action()
     {
-        
-    }
+        base.Action();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("Attack State");
     }
 }

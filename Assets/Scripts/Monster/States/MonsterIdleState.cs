@@ -4,15 +4,47 @@ using UnityEngine;
 
 public class MonsterIdleState : StateBase
 {
-    // Start is called before the first frame update
-    void Start()
+    private float idleTime = 0.0f;
+    private float idleCountTime = 0.0f;
+
+    [SerializeField]
+    private float searchRadius = 0.0f;
+
+    [SerializeField]
+    private Collider[] coll;
+
+    public override void Action()
     {
-        
+        base.Action();
+
+        idleCountTime = 0.0f;
+        idleTime = Random.Range(1f, 3f);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        idleCountTime += Time.deltaTime;
+
+        coll = Physics.OverlapSphere(transform.localPosition, searchRadius);
+
+        for(var i =0; i < coll.Length; i++)
+        {
+            if (coll[i].gameObject.name == "Player")
+            {
+                Debug.Log("Player Check");
+                manager.SetTarget(coll[i].gameObject);
+                manager.PlayAction(MonsterState.MONSTERSTATE_TRACKING);
+            }
+            else
+            {
+                if (idleCountTime > idleTime)
+                {
+                    Debug.Log("Idle Time Over");
+                    manager.PlayAction(MonsterState.MONSTERSTATE_PATROLL);
+                }
+            }
+
+        }
+
     }
 }

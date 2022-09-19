@@ -9,6 +9,7 @@ public enum MonsterState
     MONSTERSTATE_IDLE = 0,
     MONSTERSTATE_PATROLL,
     MONSTERSTATE_ATTACK,
+    MONSTERSTATE_TRACKING,
     MONSTERSTATE_SUFFER,
     MONSTERSTATE_DEATH
 };
@@ -31,7 +32,7 @@ public class MonsterBase : MonoBehaviour
 
     [Space(10)]
     [SerializeField]
-    private MonsterState states;
+    private MonsterState states = 0;
 
     public void SetMoveSpeed(float value)
     {
