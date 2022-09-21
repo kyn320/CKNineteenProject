@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMoveController : MonoBehaviour
 {
 
-    private GameObject mainCamera;
+    public GameObject mainCamera;
     private GameObject cameraAnchor;
     private Vector3 cameraDefaultVector;
     public float cameraAngle = 80;
@@ -13,7 +13,8 @@ public class CameraMoveController : MonoBehaviour
     //왜 안되는지 확인용
     public Vector3 rayPoint;
     public Vector3 rayVector;
-    public Vector3 AnchorVector;
+    public Vector3 anchorVector;
+    public float di;
 
 
     public Animator anim;
@@ -68,16 +69,15 @@ public class CameraMoveController : MonoBehaviour
 
         //RayCast를 사용해서 만약 카메라가 오브젝트를 뚫었다면 카메라를 오브젝트 바깥으로 가저옴
 
-        rayVector = mainCamera.transform.position;
-        AnchorVector = cameraAnchor.transform.position;
+        rayVector = mainCamera.transform.position - cameraAnchor.transform.position;
+        anchorVector = cameraAnchor.transform.position;
+        di = Vector3.Distance(cameraAnchor.transform.position, rayVector);
 
-        //엥커y값 변경시 따라서 바뀜
-        if (cameraAnchor.transform.localPosition.y > 0)
-            rayVector.y += cameraAnchor.transform.localPosition.y * -1;
 
         Debug.DrawRay(cameraAnchor.transform.position, rayVector, Color.red);
         RaycastHit ray;
-        Physics.Raycast(cameraAnchor.transform.position, rayVector, out ray, Vector3.Distance(transform.position, cameraDefaultVector));
+        Physics.Raycast(cameraAnchor.transform.position, rayVector, out ray, Vector3.Distance(cameraAnchor.transform.position, mainCamera.transform.position));
+
 
         //충돌한거 있으면 충돌한 위치로 카메라를 가져옴 충돌하지 않았다면 원레 카메라 위치로 돌려둠
         if (ray.point != Vector3.zero)
