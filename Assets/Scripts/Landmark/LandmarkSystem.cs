@@ -58,14 +58,11 @@ namespace Landmark
 
         [Space(10)]
         [Header("CallBox Option")]
-        [Space(10)]
-        [SerializeField]
-        private bool isOpenInteractionText = false;
-
         [SerializeField]
         private GameObject prefabsInteractionText = null;
-        [SerializeField]
+        
         private GameObject objInteractionText = null;
+        private RectTransform rectTransformInteractionText = null;
 
         [Space(10)]
         [SerializeField]
@@ -74,6 +71,30 @@ namespace Landmark
         private float interactionTextOffset = .0f;
         private Collider[] coll;
         private int collCount = 0;
+
+        [Space(10)]
+        [Header("HpBar Option")]
+        [SerializeField]
+        private GameObject prefabsHpBar = null;
+
+        private GameObject objHpBar = null;
+        private RectTransform rectTransformHpBar = null;
+        private Slider sliderHpBar = null;
+
+        [Space(10)]
+        private float hpBarVolume = .0f;
+        [SerializeField]
+        private float hpBarOffset = .0f;
+
+        [Space(10)]
+        [SerializeField]
+        private float addHpTimerMaxCount = .0f;
+        private float addHpTimerCount = .0f;
+
+        [SerializeField]
+        private float addHpVolume = .0f;
+
+
 
         #region LifeCycle
         private void Awake()
@@ -84,7 +105,6 @@ namespace Landmark
             }
 
             objPigure = transform.Find("Figure").gameObject;
-            objCallBox = transform.Find("CallBox").gameObject;
 
             canvasLandmark = GameObject.Find("Landmark_Canvas").GetComponent<Canvas>();
 
@@ -114,16 +134,19 @@ namespace Landmark
                     }
                     break;
                 case Landmark_State.LANDMARK_READY:
+                    if(objHpBar != null)
+                    {
+                        SetHpBarPos(CalcHpBarPos());
+                        CalcHpTimer();
+
+                        CalcHp();
+                    }
                     break;
                 case Landmark_State.LANDMARK_WORK:
                     break;
                 case Landmark_State.LANDMARK_DESTROY:
                     break;
             }
-
-            // Wait
-            // CallBox를 Center로 Radius만큼의 Circle을 생성해서 Player를 감지하고, 상호작용 안내문 띄우기
-            // 이때, Landmark는 Monster에게 들어오는 Damage는 없다.
 
             // Ready
             // Current HP를 MaxHP의 30% 가량으로 설정을 해준다.
@@ -190,13 +213,25 @@ namespace Landmark
 
         private void WaitInitialize()
         {
-            CreateInteractionText();
+            objCallBox = transform.Find("CallBox").gameObject;
+
+            if (objInteractionText == null)
+            {
+                CreateInteractionText();
+            }
         }
 
         private void ReadyInitialize()
         {
             objCallBox = null;
 
+            currentHp = (int)(maxHp * 0.3);
+            hpBarVolume = currentHp / maxHp;
+
+            if (objHpBar == null)
+            {
+                CreateHpBar();
+            }
         }
 
         private void WorkInitialize()
@@ -212,6 +247,10 @@ namespace Landmark
 
         // Landmark State의 변수에 영향을 끼치는 Method Region
         #region StateManager
+        private void SetDamage(float damage)
+        {
+            currentHp -= damage;
+        }
 
         #endregion
 
@@ -223,12 +262,13 @@ namespace Landmark
             objInteractionText = Instantiate(prefabsInteractionText);
             objInteractionText.gameObject.SetActive(false);
             
-            objInteractionText.transform.parent = canvasLandmark.transform;
+            objInteractionText.transform.SetParent(canvasLandmark.transform);
+            rectTransformInteractionText = objInteractionText.GetComponent<RectTransform>();
         }
 
         private void SetInteractionTextPos(Vector3 pos)
         {
-            objInteractionText.GetComponent<RectTransform>().position = pos;
+            rectTransformInteractionText.position = pos;
         }
 
         private Vector3 CalcInteractionTextPos()
@@ -264,7 +304,68 @@ namespace Landmark
         {
             objInteractionText.gameObject.SetActive(trigger);
         }
-        
+
+        #endregion
+
+        #region Ready
+        private void CreateHpBar()
+        {
+            objHpBar = Instantiate(prefabsHpBar);
+
+            objHpBar.gameObject.SetActive(false);
+            objHpBar.transform.SetParent(canvasLandmark.transform);
+
+            rectTransformHpBar = objHpBar.GetComponent<RectTransform>();
+            sliderHpBar = objHpBar.GetComponent<Slider>();
+
+            sliderHpBar.value = hpBarVolume;
+
+            objHpBar.gameObject.SetActive(true);
+        }
+
+        private void SetHpBarPos(Vector3 pos)
+        {
+            rectTransformHpBar.position = pos;
+        }
+
+        private Vector3 CalcHpBarPos()
+        {
+            var objPos = Camera.main.WorldToScreenPoint(transform.localPosition);
+            objPos.y += hpBarOffset;
+
+            return objPos;
+        }
+
+        private void CalcHpTimer()
+        {
+            if (currentHp < maxHp)
+            {
+                addHpTimerCount += Time.deltaTime;
+
+                if (addHpTimerCount > addHpTimerMaxCount)
+                {
+                    addHpTimerCount = .0f;
+
+                    AddHp(addHpVolume);
+                }
+            }
+            else if(currentHp >= maxHp)
+            {
+                // On Work
+            }
+        }
+
+        private void CalcHp()
+        {
+            hpBarVolume = Mathf.Lerp(hpBarVolume, (currentHp / maxHp), Time.deltaTime);
+            sliderHpBar.value = hpBarVolume;
+        }
+
+        private void AddHp(float volume)
+        {
+            currentHp += volume;
+        }
+
         #endregion
     }
 }

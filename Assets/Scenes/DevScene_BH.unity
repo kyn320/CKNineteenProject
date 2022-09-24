@@ -401,14 +401,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf5393e535051e4b921e42dbb493a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  shieldRadius: 0
-  healPercent: 0
-  healTime: 0
-  prefabShield: {fileID: 0}
-  callBoxRadius: 0
-  sliderHpBar: {fileID: 4570014720533826582, guid: c12d4689d8c1ad24f86c9a873a543c27,
+  currentState: 1
+  objPigure: {fileID: 0}
+  objCallBox: {fileID: 0}
+  maxHp: 100
+  prefabsInteractionText: {fileID: 2149025002750041875, guid: 88a29b54f18f46a47b998fa69efce4f5,
     type: 3}
+  callBoxRadius: 1
+  interactionTextOffset: 32
+  prefabsHpBar: {fileID: 2777258058693693750, guid: c12d4689d8c1ad24f86c9a873a543c27,
+    type: 3}
+  hpBarOffset: 32
+  addHpTimerMaxCount: 5
+  addHpVolume: 2
 --- !u!1 &322755089
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +808,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &545119170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,7 +849,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
