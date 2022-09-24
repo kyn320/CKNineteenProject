@@ -6,8 +6,7 @@ namespace Landmark
 {
     public enum Landmark_State
     {
-        NONE = 0,
-        LANDMARK_WAIT,
+        LANDMARK_WAIT = 0,
         LANDMARK_READY,
         LANDMARK_WORK,
         LANDMARK_DESTROY
