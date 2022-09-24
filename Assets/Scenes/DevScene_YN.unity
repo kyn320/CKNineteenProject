@@ -971,7 +971,7 @@ MonoBehaviour:
   cameraMode: 0
   cameraAngle: 80
   cameraFrontVector: {x: 0, y: 0, z: 0}
-  realVector: {x: 0, y: 0, z: 0}
+  bulletVector: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
 --- !u!4 &1418541305
 Transform:
@@ -1398,6 +1398,7 @@ MonoBehaviour:
   bulletPower: 25
   bulletStartVecotr: {x: 0, y: 2, z: 0}
   cameraActhor: {fileID: 1418541303}
+  mainCamera: {fileID: 0}
 --- !u!114 &1783701209
 MonoBehaviour:
   m_ObjectHideFlags: 0

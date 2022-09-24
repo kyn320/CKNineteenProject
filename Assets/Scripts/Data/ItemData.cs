@@ -9,8 +9,6 @@ public class ItemData : ScriptableObject
     private int id;
     public int ID { get { return id;} }
 
-    [SerializeField]
-    private string saveFileName = "SaveFile";
-    public string SaveFileName { get { return saveFileName; } }
+
 
 }

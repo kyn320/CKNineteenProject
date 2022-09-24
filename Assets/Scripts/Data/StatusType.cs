@@ -7,35 +7,64 @@ public enum StatusType
 {
     None,
     /// <summary>
-    /// 최소 이동속도
+    /// 체력
     /// </summary>
-    MinMoveSpeed,
+    HP,
     /// <summary>
-    /// 최대 이동 속도
+    /// 최대 체력
     /// </summary>
-    MaxMoveSpeed,
+    MaxHP,
     /// <summary>
-    /// 속도 증감량
+    /// 체력 회복량
     /// </summary>
-    IncreaseMoveSpeed,
+    RecoverHP,
     /// <summary>
-    /// 속도 감소량
+    /// 최소 공격력
     /// </summary>
-    DecreaseMoveSpeed,
+    MinAttackPower,
     /// <summary>
-    /// 회전 주기
+    /// 최대 공격력
     /// </summary>
-    RotationChangeTime,
+    MaxAttackPower,
     /// <summary>
-    /// 회전 속도
+    /// 방어력
     /// </summary>
-    RotateSpeed,
+    Defence,
     /// <summary>
-    /// 넉백 파워
+    /// 공격 속도
     /// </summary>
-    KnockBackPower,
+    AttackSpeed,
     /// <summary>
-    /// 넉백 저항
+    /// 공격 사거리
     /// </summary>
-    KnockBackDefence,
+    AttackDistance,
+    /// <summary>
+    /// 치명타 확률
+    /// </summary>
+    CriticalPercent,
+    /// <summary>
+    /// 치명타 공격력
+    /// </summary>
+    CriticalAttackPower,
+    /// <summary>
+    /// 이동 속도
+    /// </summary>
+    MoveSpeed,
+    /// <summary>
+    /// 점프력
+    /// </summary>
+    JumpPower,
+    /// <summary>
+    /// 인지 거리
+    /// </summary>
+    Perceive,
+    /// <summary>
+    /// 공격 선 딜레이
+    /// </summary>
+    BeforeAttackTime,
+    /// <summary>
+    /// 공격 후 딜레이
+    /// </summary>
+    AfterAttackTime,
+
 }
