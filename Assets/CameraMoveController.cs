@@ -7,6 +7,7 @@ public class CameraMoveController : MonoBehaviour
 
     private GameObject mainCamera;
     private GameObject cameraAnchor;
+    private GameObject directionObject;
     public Vector3[] cameraVector;
     public int cameraMode;
     public float cameraAngle = 80;
@@ -26,14 +27,25 @@ public class CameraMoveController : MonoBehaviour
             cameraAnchor = this.gameObject; 
         }
 
-        if(mainCamera == null)
+        if (mainCamera == null)
         {
-            mainCamera = GameObject.Find("Main Camera");
+            mainCamera = transform.Find("Main Camera").gameObject;
             if (mainCamera == null)
             {
                 Debug.LogError($"{this.gameObject.name} has no Camera...");
             }
         }
+
+        if (directionObject == null)
+        {
+            directionObject = transform.Find("DirectionObject").gameObject;
+            if (mainCamera == null)
+            {
+                Debug.LogError($"{this.gameObject.name} has no directionObject...");
+                directionObject = new GameObject();
+            }
+        }
+        directionObject.transform.localPosition = mainCamera.transform.localPosition ;
 
         cameraVector[0] = mainCamera.transform.localPosition;
     }
@@ -48,11 +60,7 @@ public class CameraMoveController : MonoBehaviour
     private void CameraMove()
     {
         if (cameraMode != 0)
-        { 
-            //변경된 x축 수정
-            cameraFrontVector = ((new Vector3(mainCamera.transform.position.x - cameraVector[cameraMode].x, mainCamera.transform.position.y, mainCamera.transform.position.z)
-                - cameraAnchor.transform.position)* -1).normalized;
-
+        {
             Debug.DrawRay(cameraAnchor.transform.position, cameraFrontVector, Color.red);
 
             if (mainCamera.transform.localPosition != cameraVector[cameraMode])
@@ -77,6 +85,9 @@ public class CameraMoveController : MonoBehaviour
 
         //카메라 위치값 적용
         cameraAnchor.transform.localEulerAngles = new Vector3(x, cameraRot.y + mousePos.x, cameraRot.z);
+        directionObject.transform.localEulerAngles = new Vector3(x, cameraRot.y + mousePos.x, cameraRot.z);
+
+        cameraFrontVector = cameraAnchor.transform.position - directionObject.transform.position;
 
         if (cameraMode == 0)
         {
@@ -85,9 +96,6 @@ public class CameraMoveController : MonoBehaviour
             Debug.DrawRay(cameraAnchor.transform.position, rayVector, Color.red);
             RaycastHit ray;
             Physics.Raycast(cameraAnchor.transform.position, rayVector, out ray, Vector3.Distance(cameraAnchor.transform.position, mainCamera.transform.position));
-
-            //다른 스크립트에 참고할때 사용될 카메라가 바라보는 방향
-            cameraFrontVector = (rayVector.normalized) * -1;
 
             //충돌한거 있으면 충돌한 위치로 카메라를 가져옴 충돌하지 않았다면 원레 카메라 위치로 돌려둠
             if (ray.point != Vector3.zero && ray.collider.gameObject.tag != "Player")

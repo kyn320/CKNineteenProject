@@ -32,12 +32,12 @@ public class BulletController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            //ÃÑ¾Ë Ãâ·Â À§Ä¡
             Vector3 bulletNewVecotr = new Vector3(bulletStartVecotr.x + transform.position.x, bulletStartVecotr.y + transform.position.y, bulletStartVecotr.z + transform.position.z);
+            GameObject goBullet = Instantiate(bullet, bulletNewVecotr, new Quaternion(0, 0, 0, 0));
 
+            //ÃÑ¾Ë ¹°¸® º¤ÅÍ
             Vector3 cameraFrontVector = cameraActhor.GetComponent<CameraMoveController>().cameraFrontVector;
-
-            GameObject goBullet = Instantiate(bullet, bulletNewVecotr, new Quaternion(0,0,0,0));
-
             goBullet.GetComponent<Rigidbody>().velocity = cameraFrontVector.normalized * bulletPower;
         }
     }
