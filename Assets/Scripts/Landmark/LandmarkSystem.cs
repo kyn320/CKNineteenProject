@@ -20,10 +20,18 @@ namespace Landmark
         [SerializeField]
         private float healTime = .0f;
 
+        #region LifeCycle
         private void Awake()
         {
             SetState(Landmark_State.LANDMARK_WAIT);
         }
+
+        private void Update()
+        {
+            CheckHP();
+        }
+
+        #endregion
 
 
         #region State
@@ -42,6 +50,7 @@ namespace Landmark
         }
 
         #endregion
+
 
         #region Initialize
 
@@ -87,6 +96,23 @@ namespace Landmark
         }
         #endregion
 
+        private void CheckHP()
+        {
+            if (states == Landmark_State.LANDMARK_READY ||
+                states == Landmark_State.LANDMARK_WORK)
+            {
+                if (hp <= 0)
+                {
+                    OnDestoryChanged();
+                }
+            }
+        }
+
+        private void SetDamage(int damage)
+        {
+            hp -= damage;
+        }
+
         #region Wait
         public void OnActive()
         {
@@ -95,16 +121,20 @@ namespace Landmark
 
         private void Active()
         {
-            SetState(Landmark_State.LANDMARK_READY);
+            if (states == Landmark_State.LANDMARK_WAIT)
+            {
+                SetState(Landmark_State.LANDMARK_READY);
+            }
         }
 
         #endregion
+
 
         #region Ready
 
         private void OnWorkChanged()
         {
-            if(states == Landmark_State.LANDMARK_WAIT)
+            if(states == Landmark_State.LANDMARK_WORK)
             {
                 
             }
