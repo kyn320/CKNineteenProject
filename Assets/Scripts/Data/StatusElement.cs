@@ -65,6 +65,26 @@ public class StatusElement
         updateAmountAction?.Invoke(this.amount);
     }
 
+    public void SubAmount(float amount)
+    {
+        this.amount -= amount;
+        this.amount = Mathf.Max(0, this.amount);
+        updateAmountAction?.Invoke(this.amount);
+    }
+
+    public void MultiplyAmount(float amount)
+    {
+        this.amount *= amount;
+        this.amount = Mathf.Max(0, this.amount);
+        updateAmountAction?.Invoke(this.amount);
+    }
+    public void DivideAmount(float amount)
+    {
+        this.amount /= amount;
+        this.amount = Mathf.Max(0, this.amount);
+        updateAmountAction?.Invoke(this.amount);
+    }
+
     public float GetAmount() { 
         return amount;
     }
@@ -74,9 +94,28 @@ public class StatusElement
         this.percent = percent;
         updatePercentAction?.Invoke(this.percent);
     }
+
     public void AddPercent(float percent)
     {
         this.percent += percent;
+        this.percent = Mathf.Max(0, this.percent);
+        updatePercentAction?.Invoke(this.percent);
+    }
+    public void SubPercent(float percent)
+    {
+        this.percent -= percent;
+        this.percent = Mathf.Max(0, this.percent);
+        updatePercentAction?.Invoke(this.percent);
+    }
+    public void MultiplyPercent(float percent)
+    {
+        this.percent *= percent;
+        this.percent = Mathf.Max(0, this.percent);
+        updatePercentAction?.Invoke(this.percent);
+    }
+    public void DividePercent(float percent)
+    {
+        this.percent /= percent;
         this.percent = Mathf.Max(0, this.percent);
         updatePercentAction?.Invoke(this.percent);
     }

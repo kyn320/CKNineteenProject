@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType
+[System.Serializable]
+public enum SpendItemType
 {
     None,
     /// <summary>
-    /// 무기
+    /// 폭탄
     /// </summary>
-    Weapon,
+    Bomb,
     /// <summary>
-    /// 소비
+    /// 포션
     /// </summary>
-    Spend,
+    Potion,
     /// <summary>
-    /// 기타
+    /// 마법 스크롤
     /// </summary>
-    Etc,
+    MagicScroll,
 
 }

@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType
+[System.Serializable]
+public enum WeaponType
 {
     None,
     /// <summary>
-    /// 무기
+    /// 검
     /// </summary>
-    Weapon,
+    Sword,
     /// <summary>
-    /// 소비
+    /// 방패
     /// </summary>
-    Spend,
+    Shield,
     /// <summary>
-    /// 기타
+    /// 도끼
     /// </summary>
-    Etc,
-
+    Axe,
+    /// <summary>
+    /// 차크람
+    /// </summary>
+    Chakram,
 }

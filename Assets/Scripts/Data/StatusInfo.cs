@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Sirenix.OdinInspector;
+using System;
 
 [System.Serializable]
 public class StatusInfo
@@ -24,5 +25,20 @@ public class StatusInfo
 
     public StatusElement GetElement(StatusType statusType) {
         return statusDic[statusType];
+    }
+
+    public void Clear() {
+        statusDic.Clear();
+
+        IEnumerable<StatusType> StatusTypeList =
+                Enum.GetValues(typeof(StatusType)).Cast<StatusType>();
+
+        foreach (StatusType statusType in StatusTypeList)
+        {
+            if (statusType == StatusType.None)
+                continue;
+
+            statusDic.Add(statusType, new StatusElement() { name = statusType.ToString(), type = statusType });
+        }
     }
 }
