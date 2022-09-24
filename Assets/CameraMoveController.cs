@@ -14,7 +14,7 @@ public class CameraMoveController : MonoBehaviour
     //다른 스크립트에 참고할때 사용될 카메라가 바라보는 방향
     public Vector3 cameraFrontVector;
     //실제 위치
-    public Vector3 realVector;
+    public Vector3 bulletVector;
 
 
     public Animator anim;
@@ -89,6 +89,8 @@ public class CameraMoveController : MonoBehaviour
 
         cameraFrontVector = cameraAnchor.transform.position - directionObject.transform.position;
 
+
+        //카메라 줌 혹은 대화 등의 시야 변경시 카메라가 이동하지 않도록 제어
         if (cameraMode == 0)
         {
             //RayCast를 사용해서 만약 카메라가 오브젝트를 뚫었다면 카메라를 오브젝트 바깥으로 가저옴
