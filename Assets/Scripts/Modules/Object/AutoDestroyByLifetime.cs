@@ -21,6 +21,4 @@ public class AutoDestroyByLifetime : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-
 }
