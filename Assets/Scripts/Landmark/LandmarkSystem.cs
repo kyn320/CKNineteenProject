@@ -101,19 +101,19 @@ namespace Landmark
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-                SetState((Landmark_State)0);
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-                SetState((Landmark_State)1);
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-                SetState((Landmark_State)2);
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-                SetState((Landmark_State)3);
+            //if (Input.GetKeyDown(KeyCode.Alpha1))
+            //    SetState((Landmark_State)0);
+            //if (Input.GetKeyDown(KeyCode.Alpha2))
+            //    SetState((Landmark_State)1);
+            //if (Input.GetKeyDown(KeyCode.Alpha3))
+            //    SetState((Landmark_State)2);
+            //if (Input.GetKeyDown(KeyCode.Alpha4))
+            //    SetState((Landmark_State)3);
 
-            if (Input.GetKeyDown(KeyCode.R))
-                SetLandmarkDamage(5f);
-            if (Input.GetKeyDown(KeyCode.T))
-                SetFieldDamage(2f);
+            //if (Input.GetKeyDown(KeyCode.R))
+            //    SetLandmarkDamage(5f);
+            //if (Input.GetKeyDown(KeyCode.T))
+            //    SetFieldDamage(2f);
 
 
             switch(currentState)
