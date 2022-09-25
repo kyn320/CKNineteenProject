@@ -146,16 +146,6 @@ namespace Landmark
                     break;
             }
 
-            // Work
-            // 똑같이 Monster에게 들어오는 Damage가 존재한다.
-            // 일정한 Radius만큼 원형 보호막이 생성된다.
-            // 보호막 체력은 임의로 설정한다.
-            // 보호막이 파괴되었을 경우, Landmark는 데미지를 입는다.
-            // 보호막이 생성될 경우, 보호막 Radius 안에 있는 Monster는 사망한다.
-
-            // Destroy
-            // Landmark가 사망했을 경우, Player 상호작용 및 아무 것 도 없다~
-
         }
 
         #endregion
@@ -232,7 +222,9 @@ namespace Landmark
 
         private void DestroyInitialize()
         {
-            Debug.Log("랜드마크 파괴");
+            Destroy(objHpBar);
+
+            // Destroy 애니메이션 추가해주면 됌.
         }
         #endregion
 
@@ -348,6 +340,19 @@ namespace Landmark
             objInteractionText.gameObject.SetActive(trigger);
         }
 
+       public void OnActive()
+        {
+            if(currentState == Landmark_State.LANDMARK_READY)
+            {
+                OnReadyState();
+            }
+        }
+
+        private void OnReadyState()
+        {
+            SetState(Landmark_State.LANDMARK_READY);
+        }
+
         #endregion
 
         #region Ready
@@ -382,7 +387,8 @@ namespace Landmark
             else if(currentHp >= maxHp)
             {
                 currentHp = maxHp;
-                // On Work
+
+                SetState(Landmark_State.LANDMARK_WORK);
             }
         }
 
@@ -437,7 +443,6 @@ namespace Landmark
         {
            if(fieldCurrentHp <= 0 && objField != null)
             {
-                Debug.Log("보호막 파괴!");
                 isOnField = false;
                 Destroy(objField);
             }
