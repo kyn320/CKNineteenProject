@@ -3,42 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 namespace Landmark
 {
     public class LandmarkSystem : MonoBehaviour
     {
-        //[SerializeField]
-        //private Landmark_State currentState;
-
-        //// 방어막 반지름
-        //[SerializeField]
-        //private float shieldRadius = .0f;
-        //// HP 힐 확률
-        //[SerializeField]
-        //private int healPercent = 0;
-        //// HP 힐 시간
-        //[SerializeField]
-        //private float healTime = .0f;
-        //// HP 힐 양
-        //[SerializeField]
-        //private int healVolume = 0;
-
-        //[SerializeField]
-        //private GameObject prefabShield = null;
-
-        //[Space(10)]
-
-        //[Header("Call Box Settings")]
-        //private GameObject callBox = null;
-
-        //[SerializeField]
-        //private float callBoxRadius = .0f;
-
-        //[Space(10)]
-
-        //[Header("Landmark Canvas")]
-        //private Canvas canvasLandmark = null;
-
         [SerializeField]
         private Landmark_State currentState;
 
@@ -47,6 +16,8 @@ namespace Landmark
         private GameObject objPigure = null;
         [SerializeField]
         private GameObject objCallBox = null;
+        [SerializeField]
+        private GameObject objField = null;
 
         private Canvas canvasLandmark = null;
 
@@ -94,6 +65,19 @@ namespace Landmark
         [SerializeField]
         private float addHpVolume = .0f;
 
+        [Space(10)]
+        [Header("Field Option")]
+        [SerializeField]
+        private bool isOnField = false;
+
+        [Space(10)]
+        [SerializeField]
+        private int fieldRadius = 0;
+
+        [SerializeField]
+        private float fieldMaxHp = .0f;
+        private float fieldCurrentHp = .0f;
+
 
 
         #region LifeCycle
@@ -108,7 +92,11 @@ namespace Landmark
 
             canvasLandmark = GameObject.Find("Landmark_Canvas").GetComponent<Canvas>();
 
+            objField = transform.Find("Field").gameObject;
+
             SetState(Landmark_State.LANDMARK_WAIT);
+
+            fieldCurrentHp = fieldMaxHp;
         }
 
         private void Update()
@@ -122,11 +110,16 @@ namespace Landmark
             if (Input.GetKeyDown(KeyCode.Alpha4))
                 SetState((Landmark_State)3);
 
+            if (Input.GetKeyDown(KeyCode.R))
+                SetLandmarkDamage(5f);
+            if (Input.GetKeyDown(KeyCode.T))
+                SetFieldDamage(2f);
+
+
             switch(currentState)
             {
                 case Landmark_State.LANDMARK_WAIT:
                     CreatePlayerSearchCircle(callBoxRadius);
-                    Debug.DrawLine(objCallBox.transform.localPosition, Vector3.forward * callBoxRadius, Color.red, callBoxRadius);
 
                     if (objInteractionText != null)
                     {
@@ -143,17 +136,15 @@ namespace Landmark
                     }
                     break;
                 case Landmark_State.LANDMARK_WORK:
+                    if(objHpBar != null)
+                    {
+                        SetHpBarPos(CalcHpBarPos());
+                        CalcHp();
+                    }
                     break;
                 case Landmark_State.LANDMARK_DESTROY:
                     break;
             }
-
-            // Ready
-            // Current HP를 MaxHP의 30% 가량으로 설정을 해준다.
-            // Monster에게 들어오는 Damage도 존재한다.
-            // Hp Bar를 띄워서 User에게 Interface를 제공한다.
-            // Current HP는 일정한 N초 마다 일정하게 M씩 상승한다.
-            // 그러다가 Current HP가 MaxHP와 같거나 더 높다면, Work로 변경해준다.
 
             // Work
             // 똑같이 Monster에게 들어오는 Damage가 존재한다.
@@ -236,20 +227,72 @@ namespace Landmark
 
         private void WorkInitialize()
         {
+            CreateField();
         }
 
         private void DestroyInitialize()
         {
-            // Destroy 
             Debug.Log("랜드마크 파괴");
         }
         #endregion
 
         // Landmark State의 변수에 영향을 끼치는 Method Region
         #region StateManager
-        private void SetDamage(float damage)
+
+        public void SetLandmarkDamage(float damage)
         {
-            currentHp -= damage;
+            if ( currentState == Landmark_State.LANDMARK_READY ||
+                currentState == Landmark_State.LANDMARK_WORK )
+            {
+                if (!isOnField)
+                {
+                    currentHp -= damage;
+
+                    Debug.Log("Current HP : " + currentHp);
+
+                    if(currentHp <= 0)
+                        SetState(Landmark_State.LANDMARK_DESTROY);
+                } else
+                {
+                    Debug.Log("보호막이 켜져 있습니다. 랜드마크 직접 타격 불가");
+                }
+            }
+        }
+
+        public void SetFieldDamage(float damage)
+        {
+            if (currentState == Landmark_State.LANDMARK_WORK)
+            {
+                if (isOnField)
+                {
+                    fieldCurrentHp -= damage;
+                    Debug.Log("Current Field Damaage : " + fieldCurrentHp);
+
+                    if (fieldCurrentHp <= 0)
+                    {
+                        DestroyField();
+                    }
+                }
+            }
+        }
+
+        private void SetHpBarPos(Vector3 pos)
+        {
+            rectTransformHpBar.position = pos;
+        }
+
+        private Vector3 CalcHpBarPos()
+        {
+            var objPos = Camera.main.WorldToScreenPoint(transform.localPosition);
+            objPos.y += hpBarOffset;
+
+            return objPos;
+        }
+
+        private void CalcHp()
+        {
+            hpBarVolume = Mathf.Lerp(hpBarVolume, (currentHp / maxHp), Time.deltaTime);
+            sliderHpBar.value = hpBarVolume;
         }
 
         #endregion
@@ -323,19 +366,6 @@ namespace Landmark
             objHpBar.gameObject.SetActive(true);
         }
 
-        private void SetHpBarPos(Vector3 pos)
-        {
-            rectTransformHpBar.position = pos;
-        }
-
-        private Vector3 CalcHpBarPos()
-        {
-            var objPos = Camera.main.WorldToScreenPoint(transform.localPosition);
-            objPos.y += hpBarOffset;
-
-            return objPos;
-        }
-
         private void CalcHpTimer()
         {
             if (currentHp < maxHp)
@@ -351,14 +381,9 @@ namespace Landmark
             }
             else if(currentHp >= maxHp)
             {
+                currentHp = maxHp;
                 // On Work
             }
-        }
-
-        private void CalcHp()
-        {
-            hpBarVolume = Mathf.Lerp(hpBarVolume, (currentHp / maxHp), Time.deltaTime);
-            sliderHpBar.value = hpBarVolume;
         }
 
         private void AddHp(float volume)
@@ -367,5 +392,57 @@ namespace Landmark
         }
 
         #endregion
+
+        #region Work
+        private void CreateField()
+        {
+            objField.SetActive(true);
+
+            StartCoroutine("ScaleField", fieldRadius);
+            PlayFieldEffect();
+
+            isOnField = true;
+        }
+
+        private IEnumerator ScaleField(float radius)
+        {
+            var fieldScale = objField.transform.localScale;
+            var diameter = radius * 2;
+
+            for(var i = 0; i< diameter; i++)
+            {
+                objField.transform.localScale = new Vector3(fieldScale.x + i, fieldScale.y + i, fieldScale.z + i);
+                PlayFieldEffect();
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            StopCoroutine("ScaleField");
+        }
+
+        private void PlayFieldEffect()
+        {
+            Collider[] fieldColl = Physics.OverlapSphere(objField.transform.localPosition, fieldRadius);
+
+            for (var i = 0; i < fieldColl.Length; i++)
+            {
+                if (fieldColl[i].name == "Field") continue;
+                Debug.Log(fieldColl[i].name);
+
+                // 필드가 생성되면서 존재하는 몬스터를 여기에서 처리한다.
+            }
+
+        }
+
+        private void DestroyField()
+        {
+           if(fieldCurrentHp <= 0 && objField != null)
+            {
+                Debug.Log("보호막 파괴!");
+                isOnField = false;
+                Destroy(objField);
+            }
+        }
+
+        #endregion 
     }
 }
