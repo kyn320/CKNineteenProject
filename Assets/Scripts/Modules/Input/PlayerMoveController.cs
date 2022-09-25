@@ -10,7 +10,10 @@ public class PlayerMoveController : MonoBehaviour
     public float speed = 1;
     public float jumpPower = 1;
     public bool groundFoot = true;
+
+    [SerializeField]
     Animator anim;
+
     Rigidbody rigid;
 
     // Start is called before the first frame update
@@ -37,7 +40,7 @@ public class PlayerMoveController : MonoBehaviour
         if (playerModel == null)
             Debug.LogError("player has no model");
 
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody>();
     }
 
