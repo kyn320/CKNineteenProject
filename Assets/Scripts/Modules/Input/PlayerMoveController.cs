@@ -10,7 +10,10 @@ public class PlayerMoveController : MonoBehaviour
     public float speed = 1;
     public float jumpPower = 1;
     public bool groundFoot = true;
+
+    [SerializeField]
     Animator anim;
+
     Rigidbody rigid;
 
     // Start is called before the first frame update
