@@ -54,12 +54,12 @@ public class BulletController : MonoBehaviour
 
             RaycastHit bulletBurstRay;
             Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out bulletBurstRay);
-            Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * 500, Color.blue);
+            Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * 50000, Color.blue);
 
 
             if (bulletBurstRay.point == Vector3.zero)
             {
-                bulletBurstVector = mainCamera.transform.position + mainCamera.transform.forward * 500;
+                bulletBurstVector = mainCamera.transform.position + mainCamera.transform.forward * 50000;
             }
             else
             {

@@ -91,8 +91,8 @@ public class PlayerMoveController : MonoBehaviour
     void Jump()
     {
         groundFoot = false;
+        anim.SetBool("Jump", true);
         anim.SetBool("GroundFoot", false);
-        anim.SetTrigger("Jump");
         rigid.velocity = new Vector3 (rigid.velocity.x, rigid.velocity.y + jumpPower, rigid.velocity.z);
     }
 
@@ -103,6 +103,7 @@ public class PlayerMoveController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             groundFoot = true;
+            anim.SetBool("Jump", false);
             anim.SetBool("GroundFoot", true);
         }
     }
