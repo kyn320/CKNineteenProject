@@ -39,6 +39,10 @@ public enum StatusType
     /// </summary>
     AttackDistance,
     /// <summary>
+    /// 공격 사거리
+    /// </summary>
+    ThrowSpeed,
+    /// <summary>
     /// 치명타 확률
     /// </summary>
     CriticalPercent,
@@ -55,9 +59,17 @@ public enum StatusType
     /// </summary>
     JumpPower,
     /// <summary>
-    /// 인지 거리
+    /// 시야 거리
     /// </summary>
-    Perceive,
+    SightDistance,
+    /// <summary>
+    /// 시야 각
+    /// </summary>
+    SightDegree,
+    /// <summary>
+    /// 시야 높이
+    /// </summary>
+    SightHeight,
     /// <summary>
     /// 공격 선 딜레이
     /// </summary>

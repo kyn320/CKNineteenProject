@@ -21,7 +21,7 @@ MonoBehaviour:
   worldObject: {fileID: 0}
   statusInfoData:
     statusDic:
-      keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+      keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000
       values:
       - type: 1
         name: HP
@@ -56,36 +56,48 @@ MonoBehaviour:
         amount: 0
         percent: 0
       - type: 9
-        name: CriticalPercent
+        name: ThrowSpeed
         amount: 0
         percent: 0
       - type: 10
-        name: CriticalAttackPower
+        name: CriticalPercent
         amount: 0
         percent: 0
       - type: 11
-        name: MoveSpeed
+        name: CriticalAttackPower
         amount: 0
         percent: 0
       - type: 12
-        name: JumpPower
+        name: MoveSpeed
         amount: 0
         percent: 0
       - type: 13
-        name: Perceive
+        name: JumpPower
         amount: 0
         percent: 0
       - type: 14
-        name: BeforeAttackTime
+        name: SightDistance
         amount: 0
         percent: 0
       - type: 15
+        name: SightDegree
+        amount: 0
+        percent: 0
+      - type: 16
+        name: SightHeight
+        amount: 0
+        percent: 0
+      - type: 17
+        name: BeforeAttackTime
+        amount: 0
+        percent: 0
+      - type: 18
         name: AfterAttackTime
         amount: 0
         percent: 0
   addStatusInfoData:
     statusDic:
-      keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+      keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000
       values:
       - type: 1
         name: HP
@@ -120,36 +132,48 @@ MonoBehaviour:
         amount: 0
         percent: 0
       - type: 9
-        name: CriticalPercent
+        name: ThrowSpeed
         amount: 0
         percent: 0
       - type: 10
-        name: CriticalAttackPower
+        name: CriticalPercent
         amount: 0
         percent: 0
       - type: 11
-        name: MoveSpeed
+        name: CriticalAttackPower
         amount: 0
         percent: 0
       - type: 12
-        name: JumpPower
+        name: MoveSpeed
         amount: 0
         percent: 0
       - type: 13
-        name: Perceive
+        name: JumpPower
         amount: 0
         percent: 0
       - type: 14
-        name: BeforeAttackTime
+        name: SightDistance
         amount: 0
         percent: 0
       - type: 15
+        name: SightDegree
+        amount: 0
+        percent: 0
+      - type: 16
+        name: SightHeight
+        amount: 0
+        percent: 0
+      - type: 17
+        name: BeforeAttackTime
+        amount: 0
+        percent: 0
+      - type: 18
         name: AfterAttackTime
         amount: 0
         percent: 0
   subStatusInfoData:
     statusDic:
-      keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+      keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000
       values:
       - type: 1
         name: HP
@@ -184,30 +208,42 @@ MonoBehaviour:
         amount: 0
         percent: 0
       - type: 9
-        name: CriticalPercent
+        name: ThrowSpeed
         amount: 0
         percent: 0
       - type: 10
-        name: CriticalAttackPower
+        name: CriticalPercent
         amount: 0
         percent: 0
       - type: 11
-        name: MoveSpeed
+        name: CriticalAttackPower
         amount: 0
         percent: 0
       - type: 12
-        name: JumpPower
+        name: MoveSpeed
         amount: 0
         percent: 0
       - type: 13
-        name: Perceive
+        name: JumpPower
         amount: 0
         percent: 0
       - type: 14
-        name: BeforeAttackTime
+        name: SightDistance
         amount: 0
         percent: 0
       - type: 15
+        name: SightDegree
+        amount: 0
+        percent: 0
+      - type: 16
+        name: SightHeight
+        amount: 0
+        percent: 0
+      - type: 17
+        name: BeforeAttackTime
+        amount: 0
+        percent: 0
+      - type: 18
         name: AfterAttackTime
         amount: 0
         percent: 0

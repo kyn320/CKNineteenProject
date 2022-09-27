@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3911896e8b2f684b88209acd7ec6605, type: 3}
-  m_Name: StatusCalculator
+  m_Name: AttackPowerCalculator
   m_EditorClassIdentifier: 
   formula: MaxHP-Defence+(MinAttackPower * MaxAttackPower)
