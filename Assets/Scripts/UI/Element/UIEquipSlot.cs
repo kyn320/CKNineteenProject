@@ -19,16 +19,24 @@ public class UIEquipSlot : MonoBehaviour, IPointerClickHandler
 
     public void UpdateItemSlot(ItemSlot itemSlot)
     {
-        visibleObject.SetActive(itemSlot != null);
 
         if (itemSlot == null)
+        {
+            visibleObject.SetActive(false);
+            return;
+        }
+
+        visibleObject.SetActive(itemSlot.IsEquiped);
+
+        if (!itemSlot.IsEquiped)
             return;
 
         this.itemSlot = itemSlot;
 
         var itemData = itemSlot.GetItemData();
 
-        if (itemData == null) {
+        if (itemData == null)
+        {
             return;
         }
 

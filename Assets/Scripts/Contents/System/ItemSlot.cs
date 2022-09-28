@@ -28,6 +28,7 @@ public class ItemSlot
     public int EquippedIndex { get { return equippedIndex; } }
 
     public UnityAction<int> useAction;
+    public UnityAction<bool> equipAction;
 
     public ItemSlot()
     {
@@ -82,12 +83,14 @@ public class ItemSlot
     {
         isEquiped = true;
         this.equippedIndex = equippedIndex;
+        equipAction?.Invoke(isEquiped);
     }
 
     public void UnEquip()
     {
         this.isEquiped = false;
         this.equippedIndex = -1;
+        equipAction?.Invoke(isEquiped);
     }
 
     public void UpdateEquippedIndex(int index)

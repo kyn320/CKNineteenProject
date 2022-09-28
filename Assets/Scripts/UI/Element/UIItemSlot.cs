@@ -30,6 +30,8 @@ public class UIItemSlot : MonoBehaviour, IPointerClickHandler
     {
         this.itemSlot = itemSlot;
 
+        itemSlot.equipAction += UpdateEquip;
+
         var itemData = itemSlot.GetItemData();
 
         itemTypeIcon.SetImage(slotImageData.ItemTypeSpriteDic[itemData.Type]);
@@ -47,6 +49,11 @@ public class UIItemSlot : MonoBehaviour, IPointerClickHandler
             return;
 
         EquipmentSystem.Instance.EquipItem(itemSlot);
+    }
+
+    public void UpdateEquip(bool isEquip)
+    {
+        equippedTagIcon.gameObject.SetActive(isEquip);
     }
 
     public void OnPointerClick(PointerEventData eventData)

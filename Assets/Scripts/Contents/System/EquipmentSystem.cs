@@ -38,7 +38,7 @@ public class EquipmentSystem : Singleton<EquipmentSystem>
     {
         for (var i = 0; i < equippedItems.Count; ++i)
         {
-            if (equippedItems[i].GetItemData() == null)
+            if (equippedItems[i] == null || !equippedItems[i].IsEquiped)
             {
                 itemSlot.Equip(i);
                 equippedItems[i] = itemSlot;
