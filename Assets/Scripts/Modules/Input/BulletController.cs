@@ -63,7 +63,6 @@ public class BulletController : MonoBehaviour
             }
             else
             {
-                Debug.Log($"bulletBurstRay.point : {bulletBurstRay.point}");
                 bulletBurstVector =  (bulletStratObject.transform.position - bulletBurstRay.point) * -1;
             }
 
