@@ -47,32 +47,39 @@ public class BulletController : MonoBehaviour
 
     void Update()
     {
-            /*
-            float x = Mathf.Abs(cameraActhor.transform.localPosition.x + cameraActhor.transform.localPosition.x);
-            float y = Mathf.Abs(cameraActhor.transform.localPosition.y + cameraActhor.transform.localPosition.y);
-            */
-
-            RaycastHit bulletBurstRay;
-            Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out bulletBurstRay);
-            Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * 50000, Color.blue);
-
-
-            if (bulletBurstRay.point == Vector3.zero)
-            {
-                bulletBurstVector = mainCamera.transform.position + mainCamera.transform.forward * 50000;
-            }
-            else
-            {
-                bulletBurstVector =  (bulletStratObject.transform.position - bulletBurstRay.point) * -1;
-            }
-
-        if (Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0))
         {
-            //ÃÑ¾Ë Ãâ·Â À§Ä¡
-            GameObject goBullet = Instantiate(bullet, bulletStratObject.transform.position, new Quaternion(0, 0, 0, 0));
-
-            //ÃÑ¾Ë ¹°¸® º¤ÅÍ
-            goBullet.GetComponent<Rigidbody>().velocity = bulletBurstVector.normalized * bulletPower;
+            bulletBurst();
         }
+                
+    }
+
+    void bulletBurst()
+    {
+        /*
+        float x = Mathf.Abs(cameraActhor.transform.localPosition.x + cameraActhor.transform.localPosition.x);
+        float y = Mathf.Abs(cameraActhor.transform.localPosition.y + cameraActhor.transform.localPosition.y);
+        */
+
+        RaycastHit bulletBurstRay;
+        Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out bulletBurstRay);
+        Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * 50000, Color.blue);
+
+
+        if (bulletBurstRay.point == Vector3.zero)
+        {
+            bulletBurstVector = mainCamera.transform.position + mainCamera.transform.forward * 50000;
+        }
+        else
+        {
+            bulletBurstVector = (bulletStratObject.transform.position - bulletBurstRay.point) * -1;
+        }
+
+
+        //ÃÑ¾Ë Ãâ·Â À§Ä¡
+        GameObject goBullet = Instantiate(bullet, bulletStratObject.transform.position, new Quaternion(0, 0, 0, 0));
+
+        //ÃÑ¾Ë ¹°¸® º¤ÅÍ
+        goBullet.GetComponent<Rigidbody>().velocity = bulletBurstVector.normalized * bulletPower;
     }
 }

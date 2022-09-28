@@ -109,7 +109,7 @@ public class CameraMoveController : MonoBehaviour
             mainCamera.transform.localPosition = cameraVector[cameraMode];
             cameraWallDown = false;
         }
-        else if (cameraLinkRay.point != Vector3.zero && cameraLinkRay.collider.gameObject.tag != "Player")
+        else if (cameraLinkRay.point != Vector3.zero && cameraLinkRay.collider.gameObject.tag == "Ground")
         {
             mainCamera.transform.position = cameraLinkRay.point;
             cameraWallDown = true;

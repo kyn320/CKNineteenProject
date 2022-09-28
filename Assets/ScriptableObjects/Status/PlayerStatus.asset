@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65d52c67487f94c41b666d412b7b76ca, type: 3}
-  m_Name: StatusInfoData
+  m_Name: PlayerStatus
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -66,7 +66,7 @@ MonoBehaviour:
       percent: 0
     - type: 11
       name: MoveSpeed
-      amount: 0
+      amount: 10
       percent: 0
     - type: 12
       name: JumpPower

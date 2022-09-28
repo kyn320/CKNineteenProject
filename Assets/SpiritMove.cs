@@ -28,7 +28,7 @@ public class SpiritMove : MonoBehaviour
         if (player == null)
         {
             player = GameObject.Find("Player");
-            Debug.LogError("Spirit Find the PlayerObject");
+            Debug.Log("Spirit Find the PlayerObject");
             if (player == null)
             {
                 Debug.LogError("Spirit has no PlayerObject");
@@ -37,7 +37,7 @@ public class SpiritMove : MonoBehaviour
         if (playerModel == null)
         {
             playerModel = GameObject.Find("Player Character");
-            Debug.LogError($"Spirit Find the {playerModel.name}");
+            Debug.Log($"Spirit Find the {playerModel.name}");
             if (playerModel == null)
             {
                 Debug.LogError("Spirit has no playerModel");
