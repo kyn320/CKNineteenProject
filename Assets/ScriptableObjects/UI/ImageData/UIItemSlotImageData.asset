@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7c742db0e97a947a96ca25337c1014, type: 3}
+  m_Name: UIItemSlotImageData
+  m_EditorClassIdentifier: 
+  itemTypeSpriteDic:
+    keys: 010000000200000003000000
+    values:
+    - {fileID: 21300000, guid: c06cfb1e7670b4c5aab444df933905b7, type: 3}
+    - {fileID: 21300000, guid: a386c089871964b388f23b5dc364c32b, type: 3}
+    - {fileID: 21300000, guid: e5bdc9d03fe1f4df29ac733d627032f8, type: 3}
+  equippedTagSprite: {fileID: 21300000, guid: f61a63332f51e4069ba74806131bc66f, type: 3}

@@ -9,15 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e9a3a5359bb7ef49b933b763eaa4f35, type: 3}
-  m_Name: WeaponItemData_A
+  m_Script: {fileID: 11500000, guid: d64fd42c596adec46912264f87d6341c, type: 3}
+  m_Name: SpendItemData 2
   m_EditorClassIdentifier: 
-  id: 0
-  type: 0
-  equipHandType: 0
-  itemName: 
+  id: 10002
+  type: 2
+  equipHandType: 1
+  itemName: "\uC18C\uBE44 2"
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 25b6b275757df4f589d23b542f236cb0, type: 3}
+  isUnique: 0
   worldObject: {fileID: 0}
   statusInfoData:
     statusDic:
@@ -31,4 +32,4 @@ MonoBehaviour:
     statusDic:
       keys: 
       values: []
-  weaponType: 0
+  spendItemType: 1

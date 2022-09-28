@@ -10,7 +10,7 @@ public class ItemData : ScriptableObject
 {
     [SerializeField]
     private int id;
-    public int ID { get { return id;} }
+    public int ID { get { return id; } }
 
     [SerializeField]
     private ItemType type;
@@ -22,7 +22,7 @@ public class ItemData : ScriptableObject
 
     [SerializeField]
     private string itemName;
-    public string Name { get { return itemName; } }  
+    public string Name { get { return itemName; } }
 
     [SerializeField]
     private string description;
@@ -31,6 +31,11 @@ public class ItemData : ScriptableObject
     [SerializeField]
     private Sprite icon;
     public Sprite Icon { get { return icon; } }
+
+    [SerializeField]
+    private bool isUnique;
+
+    public bool IsUnique { get { return isUnique; } }
 
     [SerializeField]
     private GameObject worldObject;
@@ -43,7 +48,7 @@ public class ItemData : ScriptableObject
     [SerializeField]
     private StatusInfo addStatusInfoData;
     public StatusInfo AddStatusInfoData { get { return addStatusInfoData; } }
-    
+
     [SerializeField]
     private StatusInfo subStatusInfoData;
     public StatusInfo SubStatusInfoData { get { return subStatusInfoData; } }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class BezierCurveFollowUGUI : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class BezierCurveFollowUGUI : MonoBehaviour
     public int currentIndex = 0;
     [SerializeField]
     private float currentTime;
+    [ReadOnly]
+    [ShowInInspector]
     private float timePerCount;
     [SerializeField]
     private float maxTime;
@@ -50,9 +53,6 @@ public class BezierCurveFollowUGUI : MonoBehaviour
     public void SetCurve(BezierCurveUGUI bezierCurve)
     {
         this.bezierCurve = bezierCurve;
-        currentIndex = 0;
-        currentTime = 0f;
-        currentProgress = 0f;
         timePerCount = maxTime / bezierCurve.lineList.Count;
     }
 

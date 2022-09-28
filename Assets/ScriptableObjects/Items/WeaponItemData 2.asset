@@ -9,17 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b28cb631d7e033f41ae939e2d7775979, type: 3}
-  m_Name: ItemData_A
+  m_Script: {fileID: 11500000, guid: 6e9a3a5359bb7ef49b933b763eaa4f35, type: 3}
+  m_Name: WeaponItemData 2
   m_EditorClassIdentifier: 
-  id: 0
-  itemName: 
+  id: 20002
+  type: 1
+  equipHandType: 1
+  itemName: "\uBB34\uAE30 2"
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
+  isUnique: 1
   worldObject: {fileID: 0}
   statusInfoData:
     statusDic:
-      keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+      keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000
       values:
       - type: 1
         name: HP
@@ -54,36 +57,48 @@ MonoBehaviour:
         amount: 0
         percent: 0
       - type: 9
-        name: CriticalPercent
+        name: ThrowSpeed
         amount: 0
         percent: 0
       - type: 10
-        name: CriticalAttackPower
+        name: CriticalPercent
         amount: 0
         percent: 0
       - type: 11
-        name: MoveSpeed
+        name: CriticalAttackPower
         amount: 0
         percent: 0
       - type: 12
-        name: JumpPower
+        name: MoveSpeed
         amount: 0
         percent: 0
       - type: 13
-        name: Perceive
+        name: JumpPower
         amount: 0
         percent: 0
       - type: 14
-        name: BeforeAttackTime
+        name: SightDistance
         amount: 0
         percent: 0
       - type: 15
+        name: SightDegree
+        amount: 0
+        percent: 0
+      - type: 16
+        name: SightHeight
+        amount: 0
+        percent: 0
+      - type: 17
+        name: BeforeAttackTime
+        amount: 0
+        percent: 0
+      - type: 18
         name: AfterAttackTime
         amount: 0
         percent: 0
   addStatusInfoData:
     statusDic:
-      keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+      keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000
       values:
       - type: 1
         name: HP
@@ -118,36 +133,48 @@ MonoBehaviour:
         amount: 0
         percent: 0
       - type: 9
-        name: CriticalPercent
+        name: ThrowSpeed
         amount: 0
         percent: 0
       - type: 10
-        name: CriticalAttackPower
+        name: CriticalPercent
         amount: 0
         percent: 0
       - type: 11
-        name: MoveSpeed
+        name: CriticalAttackPower
         amount: 0
         percent: 0
       - type: 12
-        name: JumpPower
+        name: MoveSpeed
         amount: 0
         percent: 0
       - type: 13
-        name: Perceive
+        name: JumpPower
         amount: 0
         percent: 0
       - type: 14
-        name: BeforeAttackTime
+        name: SightDistance
         amount: 0
         percent: 0
       - type: 15
+        name: SightDegree
+        amount: 0
+        percent: 0
+      - type: 16
+        name: SightHeight
+        amount: 0
+        percent: 0
+      - type: 17
+        name: BeforeAttackTime
+        amount: 0
+        percent: 0
+      - type: 18
         name: AfterAttackTime
         amount: 0
         percent: 0
   subStatusInfoData:
     statusDic:
-      keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+      keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000
       values:
       - type: 1
         name: HP
@@ -182,30 +209,43 @@ MonoBehaviour:
         amount: 0
         percent: 0
       - type: 9
-        name: CriticalPercent
+        name: ThrowSpeed
         amount: 0
         percent: 0
       - type: 10
-        name: CriticalAttackPower
+        name: CriticalPercent
         amount: 0
         percent: 0
       - type: 11
-        name: MoveSpeed
+        name: CriticalAttackPower
         amount: 0
         percent: 0
       - type: 12
-        name: JumpPower
+        name: MoveSpeed
         amount: 0
         percent: 0
       - type: 13
-        name: Perceive
+        name: JumpPower
         amount: 0
         percent: 0
       - type: 14
-        name: BeforeAttackTime
+        name: SightDistance
         amount: 0
         percent: 0
       - type: 15
+        name: SightDegree
+        amount: 0
+        percent: 0
+      - type: 16
+        name: SightHeight
+        amount: 0
+        percent: 0
+      - type: 17
+        name: BeforeAttackTime
+        amount: 0
+        percent: 0
+      - type: 18
         name: AfterAttackTime
         amount: 0
         percent: 0
+  weaponType: 1

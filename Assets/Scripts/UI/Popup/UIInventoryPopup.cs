@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class UIInventoryPopup : UIBasePopup
 {
+
+    [SerializeField]
+    private UIInventoryListView inventoryListView;
+
     public override void Init(UIData uiData)
     {
 
+    }
+
+    private void Start()
+    {
+        inventoryListView.UpdateSlots();
     }
 
 

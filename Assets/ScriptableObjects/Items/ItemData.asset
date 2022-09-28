@@ -9,15 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d64fd42c596adec46912264f87d6341c, type: 3}
-  m_Name: SpendItemData_A
+  m_Script: {fileID: 11500000, guid: b28cb631d7e033f41ae939e2d7775979, type: 3}
+  m_Name: ItemData
   m_EditorClassIdentifier: 
   id: 0
-  type: 0
-  equipHandType: 0
+  type: 1
+  equipHandType: 1
   itemName: 
   description: 
   icon: {fileID: 0}
+  isUnique: 0
   worldObject: {fileID: 0}
   statusInfoData:
     statusDic:
@@ -247,4 +248,3 @@ MonoBehaviour:
         name: AfterAttackTime
         amount: 0
         percent: 0
-  spendItemType: 0
