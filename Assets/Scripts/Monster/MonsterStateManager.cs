@@ -28,21 +28,18 @@ public class MonsterStateManager : MonoBehaviour
             if (monster == null)
             {
                 Debug.LogError(gameObject.name + "is Not Found");
-                Debug.Break();
             }
         }
 
         rig = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
         anim = GetComponentInChildren<Animator>();
-        
+
         InitializeStates();
+        PlayAction(monster.GetState());
+
     }
 
-    private void Start()
-    {
-        PlayAction(monster.GetState());
-    }
 
     private void InitializeStates()
     {
@@ -61,12 +58,11 @@ public class MonsterStateManager : MonoBehaviour
             temp.enabled = false;
         }
 
-        if(monster.GetState().ToString() != state.ToString())
+        if (monster.GetState().ToString() != state.ToString())
             monster.SetState(state);
 
         states[monster.GetState()].enabled = true;
         states[monster.GetState()].Action();
-        Debug.Log((int)monster.GetState());
         anim.SetInteger("CurrentAnim", (int)monster.GetState());
         Debug.Log("Change Monster State : " + state.ToString());
     }
@@ -76,20 +72,12 @@ public class MonsterStateManager : MonoBehaviour
         target = obj;
     }
 
+    public GameObject GetTarget()
+    {
+        return target;
+    }
     public Vector3 GetTargetPosition()
     {
         return target.transform.localPosition;
-    }
-
-    private void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-            PlayAction(MonsterState.MONSTERSTATE_DEATH);
-        }
-        if (!monster.GetLife())
-        {
-            PlayAction(MonsterState.MONSTERSTATE_DEATH);
-        }
     }
 }
