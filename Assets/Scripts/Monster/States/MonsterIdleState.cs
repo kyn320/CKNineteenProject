@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MonsterIdleState : StateBase
 {
+    private SerializableDictionary<StatusType, StatusElement> monsterStatus;
     private float idleTime = 0.0f;
     private float idleCountTime = 0.0f;
 
-    [SerializeField]
     private Collider[] coll;
+
+    public bool debugMode = false;
 
     public override void Action()
     {
@@ -16,32 +18,34 @@ public class MonsterIdleState : StateBase
 
         idleCountTime = 0.0f;
         idleTime = Random.Range(1f, 3f);
+        monsterStatus = manager.monster.monsterStatus.StausDic;
     }
 
     private void Update()
     {
         idleCountTime += Time.deltaTime;
 
-        coll = Physics.OverlapSphere(transform.localPosition, manager.monster.GetSearchRadius());
+        coll = Physics.OverlapSphere(transform.localPosition, monsterStatus[StatusType.SightDistance].GetAmount());
 
-        for (var i = 0; i < coll.Length; i++)
+        for (int i = 0; i < coll.Length; i++)
         {
-            if (coll[i].gameObject.name == "Player")
+            if (coll[i].CompareTag("Player"))
             {
-                Debug.Log("Player Check");
                 manager.SetTarget(coll[i].gameObject);
-                manager.PlayAction(MonsterState.MONSTERSTATE_TRACKING);
-            }
-            else
-            {
-                if (idleCountTime > idleTime)
+                var dirToTarget = (manager.GetTargetPosition() - transform.position).normalized;
+                
+                // 나중에 Object Check를 해주고, Object Y Pos와 Monster Sight... Check 해주면 Object Y Pos 제작 가능
+
+                if (Vector3.Angle(transform.forward, dirToTarget) < monsterStatus[StatusType.SightDegree].GetAmount() / 2)
                 {
-                    Debug.Log("Idle Time Over");
-                    manager.PlayAction(MonsterState.MONSTERSTATE_PATROLL);
+                    manager.PlayAction(MonsterState.MONSTERSTATE_TRACKING);
+                    return;
                 }
             }
-
         }
 
+        if (idleCountTime >= idleTime)
+            manager.PlayAction(MonsterState.MONSTERSTATE_PATROLL);
     }
 }
+

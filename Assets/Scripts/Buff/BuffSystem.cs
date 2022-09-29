@@ -2,34 +2,142 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct buffState
+{
+    public string type;
+    public float buffEffectTime;
+    public float buffCount;
+}
 
 [RequireComponent(typeof(BuffTestPlayer))]
-public class BuffSystem : BuffBuffer
+public class BuffSystem : MonoBehaviour
 {
-    private BuffTestPlayer buffPlayer;
+    BuffTestPlayer player;
+    List<buffState> buffList = new List<buffState>();
+
+    List<float> timePos = new List<float>();
+    private float timer = .0f;
 
     private void Awake()
     {
-        buffPlayer = GetComponent<BuffTestPlayer>();
+        player = GetComponent<BuffTestPlayer>();
 
-        if(buffPlayer == null)
+        //CreateBuff("attackSpeed", 120, 5);
+
+    }
+    public void CreateBuff(string type, float buffCount, float effectTime)
+    {
+        buffState buff;
+        buff.type = type;
+        buff.buffEffectTime = effectTime;
+        buff.buffCount = buffCount;
+
+        buffList.Add(buff);
+
+        switch(type)
         {
-            Debug.LogError(buffPlayer.GetType() + "is Not Found");
+            case "hp":
+                player.hp += buffCount;
+                break;
+            case "minAttackPower":
+                player.minAttackPower += buffCount;
+                break;
+            case "maxAttackPower":
+                player.maxAttackPower += buffCount;
+                break;
+            case "defence":
+                player.defence += buffCount;
+                break;
+            case "attackSpeed":
+                player.attackSpeed += buffCount;
+                break;
+            case "attackDistance":
+                player.attackDistance += buffCount;
+                break;
+            case "criticalPercent":
+                player.criticalPercent += buffCount;
+                break;
+            case "criticalAttackPower":
+                player.criticalAttackPower += buffCount;
+                break;
+            case "moveSpeed":
+                player.moveSpeed += buffCount;
+                break;
+            case "jumpPower":
+                player.jumpPower += buffCount;
+                break;
+            case "recoverHp":
+                player.recoverHp += buffCount;
+                break;
+            case "perceive":
+                player.perceive += buffCount;
+                break;
+            case "weaponTime":
+                player.weapon_time += buffCount;
+                break;
+            default:
+                break;
         }
     }
 
-    public void CreateBuff(BuffType type, float buffCount, float effectTime)
+    private void Update()
     {
-        AddBuffer(new BuffBase(type, buffCount, effectTime));
+        timer += Time.deltaTime;
+
+        if (buffList.Count <= 0)
+            return;
+        foreach (var time in buffList)
+        {
+            if (time.buffEffectTime <= timer)
+            {
+                switch (time.type)
+                {
+                    case "hp":
+                        player.hp -= time.buffCount;
+                        break;
+                    case "minAttackPower":
+                        player.minAttackPower -= time.buffCount;
+                        break;
+                    case "maxAttackPower":
+                        player.maxAttackPower -= time.buffCount;
+                        break;
+                    case "defence":
+                        player.defence -= time.buffCount;
+                        break;
+                    case "attackSpeed":
+                        player.attackSpeed -= time.buffCount;
+                        break;
+                    case "attackDistance":
+                        player.attackDistance -= time.buffCount;
+                        break;
+                    case "criticalPercent":
+                        player.criticalPercent -= time.buffCount;
+                        break;
+                    case "criticalAttackPower":
+                        player.criticalAttackPower -= time.buffCount;
+                        break;
+                    case "moveSpeed":
+                        player.moveSpeed -= time.buffCount;
+                        break;
+                    case "jumpPower":
+                        player.jumpPower -= time.buffCount;
+                        break;
+                    case "recoverHp":
+                        player.recoverHp -= time.buffCount;
+                        break;
+                    case "perceive":
+                        player.perceive -= time.buffCount;
+                        break;
+                    case "weaponTime":
+                        player.weapon_time -= time.buffCount;
+                        break;
+                    default:
+                        break;
+                }
+                buffList.Remove(time);
+                break;
+            }
+        }
     }
-
-    // CreateBuff ( buffType , buffCount, effectTime )
-    // 버프를 생성해주고, 버퍼에 저장한다.
-    // 저장된 버퍼에서는 버프를 관리하며, 버프의 effectTime이 종료되었을 경우, 삭제한다.
-
-    // CreateDeBuff ( buffType, buffCount, effectTime )
-
-    // DeleteBuff(buffType)
-    // buffType에 해당하는 buff를 버퍼에서 제거한다.
-    // DeleteDeBuff(buffType)
 }
+

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Landmark
 {
-    public enum Landmark_State
+    public enum LandmarkState
     {
         LANDMARK_WAIT = 0,
         LANDMARK_READY,

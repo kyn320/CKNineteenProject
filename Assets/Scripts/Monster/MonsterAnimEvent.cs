@@ -9,18 +9,23 @@ public class MonsterAnimEvent : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit(animator, stateInfo, layerIndex);
+        Debug.Log("EXIT");
+
         attackState.Attack();
+        Debug.Log("EXIT END");
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // 애니메이션이 없기 때문에 ENTER 부분에서 일단 처리를 해준다.
-
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        attackState.Attack();
-        attackState.SetTrackingAction();
 
-        Debug.Log("ENTER");
+        Debug.Log("ENTER START");
+
+        attackState.Attack();
+        Debug.Log("ENTER END");
+
+        //attackState.SetTrackingAction();
+
     }
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
