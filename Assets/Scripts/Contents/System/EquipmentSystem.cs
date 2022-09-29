@@ -9,7 +9,13 @@ public class EquipmentSystem : Singleton<EquipmentSystem>
     [SerializeField]
     private List<ItemSlot> equippedItems = new List<ItemSlot>();
 
+    [SerializeField]
+    private List<ItemSlot> attackOrderList = new List<ItemSlot>();
+
+
     public UnityEvent<List<ItemSlot>> updateEquippedItems;
+    public UnityEvent<List<ItemSlot>> updateAttackOrderList;
+
 
     [Button("아이템 사용")]
     public bool Use(int slotIndex)
@@ -30,8 +36,29 @@ public class EquipmentSystem : Singleton<EquipmentSystem>
         return equippedItems[slotIndex];
     }
 
-    public List<ItemSlot> GetEquipSlots() {
+    public List<ItemSlot> GetEquipSlots()
+    {
         return equippedItems;
+    }
+
+
+    public void UpdateAttackOrder()
+    {
+        attackOrderList.Clear();
+
+        for (var i = 0; i < equippedItems.Count; ++i)
+        {
+            var equipSlot = equippedItems[i];
+
+            if (equipSlot == null || !equippedItems[i].IsEquiped)
+            {
+                continue;
+            }
+
+            attackOrderList.Add(equipSlot);
+        }
+
+        updateAttackOrderList?.Invoke(attackOrderList);
     }
 
     public bool EquipItem(ItemSlot itemSlot)
@@ -43,6 +70,7 @@ public class EquipmentSystem : Singleton<EquipmentSystem>
                 itemSlot.Equip(i);
                 equippedItems[i] = itemSlot;
                 updateEquippedItems?.Invoke(equippedItems);
+                UpdateAttackOrder();
                 return true;
             }
         }
@@ -59,6 +87,7 @@ public class EquipmentSystem : Singleton<EquipmentSystem>
         equippedItems[slotIndex] = null;
 
         updateEquippedItems?.Invoke(equippedItems);
+        UpdateAttackOrder();
 
         return true;
     }

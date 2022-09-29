@@ -53,7 +53,7 @@ public class UIItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void UpdateEquip(bool isEquip)
     {
-        equippedTagIcon.gameObject.SetActive(isEquip);
+        equippedTagIcon?.gameObject.SetActive(isEquip);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -69,4 +69,10 @@ public class UIItemSlot : MonoBehaviour, IPointerClickHandler
                 break;
         }
     }
+
+    private void OnDestroy()
+    {
+        itemSlot.equipAction -= UpdateEquip;
+    }
+
 }
