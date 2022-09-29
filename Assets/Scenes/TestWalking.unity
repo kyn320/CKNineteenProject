@@ -374,6 +374,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 271535370830049821, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
+      propertyPath: attackAnimTime.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 271535370830049821, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
       propertyPath: bulletSpeed.Array.data[0]
       value: 25
       objectReference: {fileID: 0}
@@ -386,6 +391,11 @@ PrefabInstance:
         type: 3}
       propertyPath: bulletBurstTimes.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 271535370830049821, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: attackAnimTime.Array.data[0]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 271535370830049821, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
@@ -426,6 +436,11 @@ PrefabInstance:
         type: 3}
       propertyPath: bulletStratVector.Array.data[0].z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 271535370830049825, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 271535370830049826, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
@@ -3769,8 +3784,9 @@ MonoBehaviour:
   spiritMoveBool: 0
   player: {fileID: 765710771}
   playerModel: {fileID: 1285120492}
-  playerDistance: 0
-  defaultPlayerGravity: 25
+  playerDefauleDistance: 0
+  defaultPlayerGravity: 50
+  playerGravity: 50
 --- !u!135 &1428981084
 SphereCollider:
   m_ObjectHideFlags: 0

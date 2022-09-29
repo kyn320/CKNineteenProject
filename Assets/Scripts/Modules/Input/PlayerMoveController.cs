@@ -14,9 +14,11 @@ public class PlayerMoveController : MonoBehaviour
     private GameObject playerModel;
 
     public float speed = 1f;
+    public bool playerGroundFoot = true;
+    //무기에 따라서 달라지는 플레이어 움직임 타입 (type이 0이라면 움직이는것이 가능합니다.)
+    public int playerMoveType = 0;
 
 
-    public bool groundFoot = true;
     public Animator anim;
 
     Rigidbody rigid;
@@ -31,7 +33,7 @@ public class PlayerMoveController : MonoBehaviour
             if (cameraAnchor == null)
                 Debug.LogError($"{this.gameObject.name} has no {mainCamera.name}");
             else
-                Debug.Log($"{this.gameObject.name} is Find {mainCamera.name}");
+                Debug.LogWarning($"{this.gameObject.name} is Find {mainCamera.name}");
         }
 
         if (cameraAnchor == null)
@@ -41,22 +43,22 @@ public class PlayerMoveController : MonoBehaviour
             if (cameraAnchor == null)
                 Debug.LogError($"{this.gameObject.name} has no {cameraAnchor.name}");
             else
-                Debug.Log($"{this.gameObject.name} is Find {cameraAnchor.name}");
+                Debug.LogWarning($"{this.gameObject.name} is Find {cameraAnchor.name}");
         }
 
         if (playerModel == null)
-            Debug.LogError($"{this.gameObject.name} has no model");
+            Debug.LogWarning($"{this.gameObject.name} has no model");
 
         if (status.StausDic[StatusType.MoveSpeed].GetAmount() == 0)
         {
             status.StausDic[StatusType.MoveSpeed].SetAmount(10);
-            Debug.LogError($"{this.gameObject.name} moveSpeed set is 0");
+            Debug.LogWarning($"{this.gameObject.name} moveSpeed set is 0");
         }
 
         if (status.StausDic[StatusType.JumpPower].GetAmount() == 0)
         {
             status.StausDic[StatusType.JumpPower].SetAmount(10);
-            Debug.LogError($"{this.gameObject.name} JumpPower set is 0");
+            Debug.LogWarning($"{this.gameObject.name} JumpPower set is 0");
         }
 
         anim = GetComponent<Animator>();
@@ -66,9 +68,17 @@ public class PlayerMoveController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMove();
+        switch (playerMoveType)
+        {
+            case 0:
+                PlayerMove();
+                break;
+            default:
+                rigid.velocity = Vector3.zero;
+                break;
+        }
 
-        if(Input.GetKey(KeyCode.Space) && groundFoot == true)
+        if(Input.GetKey(KeyCode.Space) && playerGroundFoot == true && playerMoveType == 0)
         {
             Jump();
         }
@@ -99,16 +109,9 @@ public class PlayerMoveController : MonoBehaviour
             anim.SetInteger("Move", 1);
         }
 
-        if (groundFoot == false)
+        if (playerGroundFoot == false)
         {
             speed = status.StausDic[StatusType.MoveSpeed].GetAmount() * 0.001f;
-
-            /*
-            if(rigid.velocity.x + rigid.velocity.z > (moveVector.normalized * status.StausDic[StatusType.MoveSpeed].GetAmount() * 50 * Time.fixedDeltaTime).x + (moveVector.normalized * status.StausDic[StatusType.MoveSpeed].GetAmount() * 50 * Time.fixedDeltaTime).z)
-            {
-                speed = 0;
-            }
-            */
 
             Vector3 velocityVector = moveVector.normalized * speed * 50 * Time.fixedDeltaTime;
             velocityVector.y = 0f;
@@ -128,7 +131,7 @@ public class PlayerMoveController : MonoBehaviour
 
     void Jump()
     {
-        groundFoot = false;
+        playerGroundFoot = false;
         anim.SetBool("Jump", true);
         anim.SetBool("GroundFoot", false);
         rigid.velocity = new Vector3 (rigid.velocity.x, rigid.velocity.y + status.StausDic[StatusType.JumpPower].GetAmount(), rigid.velocity.z);
@@ -138,7 +141,7 @@ public class PlayerMoveController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            groundFoot = true;
+            playerGroundFoot = true;
             anim.SetBool("Jump", false);
             anim.SetBool("GroundFoot", true);
         }
@@ -148,14 +151,14 @@ public class PlayerMoveController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            groundFoot = false;
+            playerGroundFoot = false;
             anim.SetBool("GroundFoot", false);
         }
     }
     
     public void groundFootTrue()
     {
-        groundFoot = true;
+        playerGroundFoot = true;
         anim.SetBool("Jump", false);
         anim.SetBool("GroundFoot", true);
         Debug.Log($"{this.gameObject.name} groundFootTrue");
@@ -163,7 +166,7 @@ public class PlayerMoveController : MonoBehaviour
 
     public void groundFootFalse()
     {
-        groundFoot = false;
+        playerGroundFoot = false;
         anim.SetBool("GroundFoot", false);
         Debug.Log($"{this.gameObject.name} groundFootFalse 작동");
     }

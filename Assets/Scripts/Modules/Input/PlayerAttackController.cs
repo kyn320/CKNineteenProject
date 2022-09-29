@@ -4,29 +4,44 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
+    //오브젝트 할당
+    [Header("Objects")]
     [SerializeField]
     private GameObject cameraAnchor;
     [SerializeField]
     private GameObject mainCamera;
     [SerializeField]
+    private GameObject player;
+    [SerializeField]
     private GameObject playerModel;
     [SerializeField]
     private GameObject spirit;
+
+
+    //정령 설정
+    [Header("SpiritSetting")]
     [SerializeField]
     private float spiritGravity;
 
+    //총알 설정
+    [Header ("BulletSetting")]
     public int attackNum = 0;
+    [SerializeField]
+    private float[] attackCooldown = { 1, };
+    [SerializeField]
+    private float[] attackCooldownTimer = { 0, };
+    [SerializeField]
+    float[] attackAnimTime = { 1, };
     [SerializeField]
     private GameObject[] bullets;
     [SerializeField]
-    private float[] bulletBurstTimes;
+    private float[] bulletBurstTimes = { 1, };
     [SerializeField]
-    private float[] bulletSpeed;
+    private float[] bulletSpeed = { 1, };
     [SerializeField]
-    private Vector3[] bulletSetVector;
+    private Vector3[] bulletSetVector = { Vector3.zero, };
 
 
-    [SerializeField]
     private Animator anim;
 
 
@@ -40,9 +55,25 @@ public class PlayerAttackController : MonoBehaviour
 
     void Update()
     {
+        for(int i = 0; attackCooldown.Length > i; i++ )
+        {
+            if (attackCooldown[i] > attackCooldownTimer[i])
+            {
+                attackCooldownTimer[i] += Time.deltaTime;
+            }
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
-            attack();
+            if (attackPossible())
+            {
+                attack();
+            }
+        }
+
+        if(player.GetComponent<PlayerMoveController>().playerMoveType != 0)
+        {
+            playerModel.transform.forward = cameraAnchor.transform.forward * 0.001f;
         }
     }
 
@@ -51,7 +82,7 @@ public class PlayerAttackController : MonoBehaviour
         if(cameraAnchor == null)
         {
             cameraAnchor = GameObject.Find("Camera Anchor");
-            Debug.Log($"{this.gameObject.name} find is cameraAnchor");
+            Debug.LogWarning($"{this.gameObject.name} find is cameraAnchor");
 
             if (cameraAnchor == null)
                 Debug.LogError($"{this.gameObject.name} has not cameraAnchor");
@@ -59,15 +90,23 @@ public class PlayerAttackController : MonoBehaviour
         if (mainCamera == null)
         {
             mainCamera = GameObject.Find("Main Camera");
-            Debug.Log($"{this.gameObject.name} find is mainCamera");
+            Debug.LogWarning($"{this.gameObject.name} find is mainCamera");
 
             if (mainCamera == null)
                 Debug.LogError($"{this.gameObject.name} has not mainCamera");
         }
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+            Debug.LogWarning($"{this.gameObject.name} find is player");
+
+            if (player == null)
+                Debug.LogError($"{this.gameObject.name} has not player");
+        }
         if (playerModel == null)
         {
             playerModel = GameObject.Find("Player Character");
-            Debug.Log($"{this.gameObject.name} find is playerModel");
+            Debug.LogWarning($"{this.gameObject.name} find is playerModel");
 
             if (playerModel == null)
                 Debug.LogError($"{this.gameObject.name} has not playerModel");
@@ -75,7 +114,7 @@ public class PlayerAttackController : MonoBehaviour
         if (spirit == null)
         {
             spirit = GameObject.Find("Spirit");
-            Debug.Log($"{this.gameObject.name} find is Spirit");
+            Debug.LogWarning($"{this.gameObject.name} find is Spirit");
 
             if (spirit == null)
                 Debug.LogError($"{this.gameObject.name} has not Spirit");
@@ -103,7 +142,28 @@ public class PlayerAttackController : MonoBehaviour
         //spirit.GetComponent<SpiritMoveController>().transform.position = bulletburstVector;
 
         //공격중에 무기를 바꿀경우 다른 공격이 나갈 수 있음으로 여기에 매개변수를 넣어줘야함
-        StartCoroutine(bulletBurst(bullets[attackNum], attackNum, bulletBurstTimes[attackNum]));
+        //쿨다운 남았는지 + 공격중이 아닌지 + 발이 땅에 붙어있는가
+        
+            attackCooldownTimer[attackNum] = 0;
+            player.GetComponent<PlayerMoveController>().playerMoveType = 1;
+            StartCoroutine(attackDontMoveTimer(attackAnimTime[attackNum]));
+            StartCoroutine(bulletBurst(bullets[attackNum], attackNum, bulletBurstTimes[attackNum]));
+        
+    }
+
+    bool attackPossible()
+    {
+        if (attackCooldown[attackNum] < attackCooldownTimer[attackNum] &&
+        player.GetComponent<PlayerMoveController>().playerMoveType == 0 &&
+        player.GetComponent<PlayerMoveController>().playerGroundFoot == true)
+            return true;
+        return false;
+    }
+    IEnumerator attackDontMoveTimer(float endTime)
+    {
+        yield return new WaitForSeconds(endTime);
+        
+        player.GetComponent<PlayerMoveController>().playerMoveType = 0;
     }
 
     IEnumerator bulletBurst(GameObject bullet, int attackNum, float bulletBurstTime)

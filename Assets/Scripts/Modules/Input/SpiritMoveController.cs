@@ -11,16 +11,16 @@ public class SpiritMoveController : MonoBehaviour
     //플레이어가 공격시 움직여야 할 백터값
     public Vector3 spiritAttackVector;
     //정령이 움직일 것인가의 여부
-    public bool spiritMoveBool;
+    public bool spiritMoveBool = true;
 
     [SerializeField]
     GameObject player;
     [SerializeField]
     GameObject playerModel;
 
-    //플레이어와 정령간의 목표거리
+    //플레이어와 정령간의 디폴트 거리
     [SerializeField]
-    float playerDistance;
+    float playerDefauleDistance;
 
     //정령이 플레이어 따라가는 속도
     public float defaultPlayerGravity = 10;
@@ -34,6 +34,7 @@ public class SpiritMoveController : MonoBehaviour
     {
         transform.position = spiritDefaultVector;
         rigid = GetComponent<Rigidbody>();
+        spiritMoveBool = true;
 
 
         if (player == null)
@@ -62,56 +63,68 @@ public class SpiritMoveController : MonoBehaviour
         if (spiritMoveBool)
         {
             playerGravity = defaultPlayerGravity;
-            playerDistance = Vector3.Distance(Vector3.zero, spiritDefaultVector);
+            playerDefauleDistance = Vector3.Distance(Vector3.zero, spiritDefaultVector);
             SpriteMove(spiritDefaultVector);
         }
         else
         {
-            playerDistance = Vector3.Distance(Vector3.zero, spiritAttackVector);
-            SpriteMove(spiritAttackVector);
+            playerDefauleDistance = Vector3.Distance(Vector3.zero, spiritAttackVector);
+            SpriteAttackMove(spiritAttackVector);
         }
     }
 
+    //정령이 목표(spiritEndVector)를 향해 움직임
     void SpriteMove(Vector3 spiritEndVector)
     {
         //정령이 플레이어의 모델링이 보는 방향에 바뀌는 백터값
         Vector3 spiritSetVector = playerModel.transform.right * spiritEndVector.x + playerModel.transform.forward * spiritEndVector.z;
         spiritSetVector.y = spiritEndVector.y;
 
-        //정령 백터를 플레이어 포지션에 맞추어줌
+        //정령 백터가 가야하는 방향값
         Vector3 playerTowardDirection = player.transform.position + spiritSetVector
             - transform.position;
 
-        //만약 공격 시전중이라면 Spirit의 이동속도가 점점 빨라짐
-        if (spiritMoveBool)
-            playerGravity = defaultPlayerGravity + player.GetComponent<PlayerMoveController>().speed;
-        else
-            if (defaultPlayerGravity * 5 >= playerGravity)
-                playerGravity += playerGravity / 10;
+        //Spirit의 이동속도
+        playerGravity = defaultPlayerGravity + player.GetComponent<PlayerMoveController>().speed;
 
-        //만약 플레이어와 스피릿의 사이가 지정한 값 보다 멀리 떨어질 경우 플레이어 가까이로 이동 (이동시 0.01f만큼 차이를 두지 않으면 오브젝트가 목표로 가고자 계속해서 움직여 덜덜 떨리듯이 보임)
-        if (Vector3.Distance(player.transform.position, transform.position) > playerDistance && 
-            playerDistance + 0.1f/playerGravity < Vector3.Distance(player.transform.position, transform.position))
+        //만약 플레이어와 정령의 거리가 지정한 값 보다 멀리 떨어질 경우 플레이어 가까이로 이동 (이동시 0.01f만큼 차이를 두지 않으면 오브젝트가 목표로 가고자 계속해서 움직여 덜덜 떨리듯이 보임)
+        if (Vector3.Distance(player.transform.position, transform.position) > playerDefauleDistance &&
+            playerDefauleDistance + 0.1f / playerGravity < Vector3.Distance(player.transform.position, transform.position))
         {
-            Debug.Log(Vector3.Distance(player.transform.position, transform.position));
-            rigid.velocity = playerTowardDirection.normalized * (playerGravity * (Vector3.Distance(player.transform.position, transform.position) - playerDistance));
+            rigid.velocity = Time.deltaTime * playerTowardDirection.normalized * (playerGravity * (Vector3.Distance(player.transform.position, transform.position) - playerDefauleDistance));
         }
+    }
+
+    //공격시 정령이 공격 스타트 지점(spiritAttackVector)을 향해 움직임
+    void SpriteAttackMove(Vector3 spiritEndVector)
+    {
+        //정령이 플레이어의 모델링이 보는 방향에 바뀌는 로컬포지션 벡터값
+        Vector3 spiritSetVector = playerModel.transform.right * spiritEndVector.x + playerModel.transform.forward * spiritEndVector.z;
+        spiritSetVector.y = spiritEndVector.y;
+
+        //정령 백터가 가야하는 방향값
+        Vector3 playerTowardDirection = player.transform.position + spiritSetVector
+            - transform.position;
+
+        //Spirit의 이동속도가 평소보다 빠름
+        playerGravity = defaultPlayerGravity * 2 + player.GetComponent<PlayerMoveController>().speed;
+
+        //만약 플레이어와 스피릿의 사이가 지정한 값 보다 멀리 떨어질 경우 플레이어 가까이로 이동 (이동시 0.1f만큼 범위를 두지 않으면 오브젝트가 목표로 가고자 계속해서 움직여 덜덜 떨리듯이 보임)
+        if (Vector3.Distance(player.transform.position + spiritSetVector, rigid.transform.position) > 0.1f)
+        {
+            rigid.velocity = Time.deltaTime * playerTowardDirection.normalized * (playerGravity * Vector3.Distance(player.transform.position + spiritEndVector, rigid.transform.position));
+        }
+        //else의 주석을 풀면 transform으로 고정된다. (velocity값 때문에 Spirit가 튀는 현상을 잡아줌)
         else
         {
-            //주석을 풀면 transform으로 고정된다. (velocity값 때문에 Spirit가 튀는 현상을 잡아줌)
-            /*
-            if (spiritMoveBool)
-            {
-                playerGravity = defaultPlayerGravity;
-                rigid.transform.position = player.transform.position + spiritSetVector;
-                rigid.velocity = Vector3.zero;
-            }
-            else
-            {
-                rigid.transform.position = player.transform.position + spiritSetVector;
-                rigid.velocity = Vector3.zero;
-            }
-            */
+
+            //해당 주석을 풀면 물리값으로 이동한다.
+            //rigid.velocity = Time.deltaTime * playerTowardDirection.normalized * (playerGravity * Vector3.Distance(player.transform.position + spiritEndVector, rigid.transform.position));
+
+            //해당 주석을 풀면 고정값으로 이동한다.
+            rigid.transform.position = player.transform.position + spiritSetVector;
+            rigid.velocity = Vector3.zero;
+            
         }
     }
 }
