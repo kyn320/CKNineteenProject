@@ -12,8 +12,8 @@ public class PlayerMoveController : MonoBehaviour
     private GameObject cameraAnchor;
     [SerializeField]
     private GameObject playerModel;
-    [SerializeField]
-    private float speed = 1f;
+
+    public float speed = 1f;
 
 
     public bool groundFoot = true;
