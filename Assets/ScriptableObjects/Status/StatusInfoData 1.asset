@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65d52c67487f94c41b666d412b7b76ca, type: 3}
-  m_Name: StatusInfoData
+  m_Name: StatusInfoData 1
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -22,7 +22,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   statusDic:
-    keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000
+    keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
     values:
     - type: 1
       name: HP
@@ -57,42 +57,30 @@ MonoBehaviour:
       amount: 0
       percent: 0
     - type: 9
-      name: ThrowSpeed
-      amount: 0
-      percent: 0
-    - type: 10
       name: CriticalPercent
       amount: 0
       percent: 0
-    - type: 11
+    - type: 10
       name: CriticalAttackPower
       amount: 0
       percent: 0
-    - type: 12
+    - type: 11
       name: MoveSpeed
       amount: 0
       percent: 0
-    - type: 13
+    - type: 12
       name: JumpPower
       amount: 0
       percent: 0
+    - type: 13
+      name: Perceive
+      amount: 0
+      percent: 0
     - type: 14
-      name: SightDistance
-      amount: 0
-      percent: 0
-    - type: 15
-      name: SightDegree
-      amount: 0
-      percent: 0
-    - type: 16
-      name: SightHeight
-      amount: 0
-      percent: 0
-    - type: 17
       name: BeforeAttackTime
       amount: 0
       percent: 0
-    - type: 18
+    - type: 15
       name: AfterAttackTime
       amount: 0
       percent: 0

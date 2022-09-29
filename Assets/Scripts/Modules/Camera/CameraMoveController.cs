@@ -108,13 +108,11 @@ public class CameraMoveController : MonoBehaviour
         {
             mainCamera.transform.localPosition = cameraVector[cameraMode];
             cameraWallDown = false;
-            //Debug.Log($"cameraWallDown\nray.point : {cameraLinkRay.point} / tag : ¾øÀ½");
         }
-        else if (cameraLinkRay.point != Vector3.zero && cameraLinkRay.collider.gameObject.tag != "Player")
+        else if (cameraLinkRay.point != Vector3.zero && cameraLinkRay.collider.gameObject.tag == "Ground")
         {
             mainCamera.transform.position = cameraLinkRay.point;
             cameraWallDown = true;
-            //Debug.Log($"cameraWallUp \nray.point : {cameraLinkRay.point} / name : {cameraLinkRay.collider.gameObject.name}");
         }
     }
 
