@@ -30,6 +30,12 @@ public class BezierCurveUGUI : MonoBehaviour
 
     public List<Vector3> searchProgressTestList;
 
+
+    public void SetRootCanvas(Canvas rootCanvas)
+    {
+        this.rootCanvas = rootCanvas;
+    }
+
     public Vector3 GetPosition(int index, float progress)
     {
         return lineList[index].CalculatePoint(progress);
@@ -86,6 +92,10 @@ public class BezierCurveUGUI : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+
+        if (rootCanvas == null)
+            return;
+
         Gizmos.matrix = rootCanvas.GetCanvasMatrix();
 
         for (var i = 0; i < pointList.Count; ++i)

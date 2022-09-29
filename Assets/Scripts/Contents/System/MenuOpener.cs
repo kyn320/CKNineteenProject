@@ -4,25 +4,46 @@ using UnityEngine;
 
 public class MenuOpener : MonoBehaviour
 {
+    private UIPausePopupData pausePopupData;
+    private UIInventoryPopupData inventoryPopupData;
 
+    private void Awake()
+    {
 
+    }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) { 
-            
+        if (Input.GetKeyDown(KeyCode.Escape) && inventoryPopupData == null)
+        {
+            if (pausePopupData != null)
+            {
+                UIController.Instance.ClosePopup(pausePopupData);
+                pausePopupData = null;
+            }
+            else
+            {
+                pausePopupData = new UIPausePopupData();
+                UIController.Instance.OpenPopup(pausePopupData);
+            }
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && pausePopupData == null)
         {
-            //상태 체크
-
-            //인벤토리 오픈
-            UIController.Instance.OpenPopup(new UIInventoryPopupData()
+            if (inventoryPopupData != null)
             {
-
-            });
+                UIController.Instance.ClosePopup(inventoryPopupData);
+                inventoryPopupData = null;
+            }
+            else
+            {
+                inventoryPopupData = new UIInventoryPopupData();
+                var view =  UIController.Instance.OpenPopup(inventoryPopupData);
+                view.closeEvent.AddListener(() => { 
+                    inventoryPopupData = null;
+                });
+            }
         }
     }
 

@@ -58,7 +58,6 @@ public class UIItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"Click Events{eventData.button}");
         switch (eventData.button)
         {
             case PointerEventData.InputButton.Left:
