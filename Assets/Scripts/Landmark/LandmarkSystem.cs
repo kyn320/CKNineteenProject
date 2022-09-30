@@ -9,6 +9,9 @@ namespace Landmark
     public class LandmarkSystem : MonoBehaviour
     {
         [SerializeField]
+        private bool isDebugMode;
+
+        [SerializeField]
         private LandmarkState currentState;
         public Dictionary<LandmarkState, LandmarkStateBase> states = new Dictionary<LandmarkState, LandmarkStateBase>();
 
@@ -96,13 +99,16 @@ namespace Landmark
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.A))
+            if (isDebugMode)
             {
-                SetState(LandmarkState.LANDMARK_READY);
-            }
-            if(Input.GetKeyDown(KeyCode.D))
-            {
-                SetDamage(10f);
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    SetState(LandmarkState.LANDMARK_READY);
+                }
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    SetDamage(10f);
+                }
             }
         }
 

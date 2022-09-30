@@ -19,6 +19,9 @@ public class MonsterStateManager : MonoBehaviour
     [SerializeField]
     private GameObject target;
 
+    [SerializeField]
+    public NavMeshAgent agent;
+
     private void Awake()
     {
         if (monster == null)
@@ -34,10 +37,11 @@ public class MonsterStateManager : MonoBehaviour
         rig = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
         anim = GetComponentInChildren<Animator>();
+        agent = GetComponent<NavMeshAgent>();
 
         InitializeStates();
         PlayAction(monster.GetState());
-
+        agent.speed = monster.monsterStatus.StausDic[StatusType.MoveSpeed].GetAmount();
     }
 
 

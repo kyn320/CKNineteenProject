@@ -31,13 +31,8 @@ public class MonsterPatrollState : StateBase
             else
             {
                 var targetPos = arrivalPos - transform.localPosition;
-                targetPos.y = 0;
 
-                var rotation = Quaternion.LookRotation(targetPos);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 3f);
-
-                var movePos = targetPos.normalized;
-                manager.rig.velocity = new Vector3(movePos.x * manager.monster.monsterStatus.StausDic[StatusType.MoveSpeed].GetAmount(), movePos.y, movePos.z * manager.monster.monsterStatus.StausDic[StatusType.MoveSpeed].GetAmount());
+                manager.agent.SetDestination(arrivalPos);
 
                 if (targetPos.sqrMagnitude < 1f)
                 {
