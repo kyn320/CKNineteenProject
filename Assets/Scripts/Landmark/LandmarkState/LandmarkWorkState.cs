@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LandmarkWorkState : LandmarkStateBase
 {
+    public float getSpawnerRadius = .0f;
+    List<MonsterSpawner> spawner;
     public override void Action()
     {
         CreateField();
@@ -21,9 +23,22 @@ public class LandmarkWorkState : LandmarkStateBase
         manager.objField.SetActive(true);
 
         StartCoroutine("ScaleField", manager.fieldRadius);
-        PlayFieldEffect();
+        GetMonsterSpawner(getSpawnerRadius);
 
         manager.isOnField = true;
+    }
+
+    private void GetMonsterSpawner(float radius)
+    {
+        Collider[] fieldColl = Physics.OverlapSphere(manager.objField.transform.localPosition, radius);
+
+        for (var i = 0; i < fieldColl.Length; i++)
+        {
+            if (fieldColl[i].tag != "Spawner") continue;
+
+            var spawner = fieldColl[i].GetComponent<MonsterSpawner>();
+            spawner.SetSpawnTime(0.5f);
+        }
     }
 
     private IEnumerator ScaleField(float radius)
@@ -48,7 +63,11 @@ public class LandmarkWorkState : LandmarkStateBase
         for (var i = 0; i < fieldColl.Length; i++)
         {
             if (fieldColl[i].name == "Field") continue;
-            Debug.Log(fieldColl[i].name);
+
+            if(fieldColl[i].tag == "Monster")
+            {
+                Destroy(fieldColl[i].gameObject);
+            }
         }
 
     }

@@ -149,7 +149,7 @@ namespace Landmark
                 SetLandmarkDamage(damage);
         }
 
-        public void SetLandmarkDamage(float damage)
+        private void SetLandmarkDamage(float damage)
         {
             if (currentState == LandmarkState.LANDMARK_READY ||
                 currentState == LandmarkState.LANDMARK_WORK)
@@ -169,7 +169,7 @@ namespace Landmark
                 }
             }
         }
-        public void SetFieldDamage(float damage)
+        private void SetFieldDamage(float damage)
         {
             if (currentState == LandmarkState.LANDMARK_WORK)
             {

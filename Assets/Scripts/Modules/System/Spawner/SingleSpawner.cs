@@ -32,7 +32,7 @@ public class SingleSpawner : MonoBehaviour
             if (currentSpawnTime <= 0)
             {
                 currentSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
-
+                Spawn();
             }
         }
     }
