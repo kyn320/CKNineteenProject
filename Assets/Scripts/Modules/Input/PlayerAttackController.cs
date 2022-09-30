@@ -23,21 +23,28 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField]
     private float spiritGravity;
 
-    //총알 설정
+    //총알 설정 (우선 작성해보고 이후 스크립터블 오브젝트로 만들고자 생각중)
     [Header ("BulletSetting")]
     public int attackNum = 0;
+    //각각 아이템별 쿨타임
     [SerializeField]
     private float[] attackCooldown = { 1, };
+    //각각 아이템별 쿨타임 타이머
     [SerializeField]
     private float[] attackCooldownTimer = { 0, };
+    //각각 아이탬별 공격이 종료하는 시간 (본래 애니메이션 종료 값을 가져오고자 하였으나 선딜 및 후딜을 생각해 따로 지정해주는것이 좋을 듯 해서 가져옴)
     [SerializeField]
-    float[] attackAnimTime = { 1, };
+    float[] attackDelayTime = { 1, };
+    //날아가게될 오브젝트 프리팹
     [SerializeField]
     private GameObject[] bullets;
+    //공격키를 누른 후 날아갈 오브젝트를 출력하기까지의 시간
     [SerializeField]
-    private float[] bulletBurstTimes = { 1, };
+    private float[] bulletDelayTimes = { 1, };
+    //날아가는 오브젝트의 날아가는 속도
     [SerializeField]
     private float[] bulletSpeed = { 1, };
+    //오브젝트가 날아가기 시작할 벡터값 
     [SerializeField]
     private Vector3[] bulletSetVector = { Vector3.zero, };
 
@@ -131,6 +138,7 @@ public class PlayerAttackController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+
     void attack()
     {
         anim.SetInteger("AttackType", attackNum + 1);
@@ -146,8 +154,8 @@ public class PlayerAttackController : MonoBehaviour
         
             attackCooldownTimer[attackNum] = 0;
             player.GetComponent<PlayerMoveController>().playerMoveType = 1;
-            StartCoroutine(attackDontMoveTimer(attackAnimTime[attackNum]));
-            StartCoroutine(bulletBurst(bullets[attackNum], attackNum, bulletBurstTimes[attackNum]));
+            StartCoroutine(attackDontMoveTimer(attackDelayTime[attackNum]));
+            StartCoroutine(bulletBurst(bullets[attackNum], attackNum, bulletDelayTimes[attackNum]));
         
     }
 

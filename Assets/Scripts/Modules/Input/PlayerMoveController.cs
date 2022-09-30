@@ -26,6 +26,30 @@ public class PlayerMoveController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetVar();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        switch (playerMoveType)
+        {
+            case 0:
+                PlayerMove();
+                break;
+            default:
+                rigid.velocity = Vector3.zero;
+                break;
+        }
+
+        if(Input.GetKey(KeyCode.Space) && playerGroundFoot == true && playerMoveType == 0)
+        {
+            Jump();
+        }
+    }
+
+    void SetVar()
+    {
         if (mainCamera == null)
         {
             mainCamera = GameObject.Find("Main Camera");
@@ -39,7 +63,7 @@ public class PlayerMoveController : MonoBehaviour
         if (cameraAnchor == null)
         {
             cameraAnchor = GameObject.Find("Camera Anchor");
-            
+
             if (cameraAnchor == null)
                 Debug.LogError($"{this.gameObject.name} has no {cameraAnchor.name}");
             else
@@ -65,25 +89,6 @@ public class PlayerMoveController : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        switch (playerMoveType)
-        {
-            case 0:
-                PlayerMove();
-                break;
-            default:
-                rigid.velocity = Vector3.zero;
-                break;
-        }
-
-        if(Input.GetKey(KeyCode.Space) && playerGroundFoot == true && playerMoveType == 0)
-        {
-            Jump();
-        }
-    }
-
     private void PlayerMove()
     {
         //보는 정면 방향
@@ -99,7 +104,7 @@ public class PlayerMoveController : MonoBehaviour
         Vector3 moveVector = flontVector * inputVector.x + flontRight * inputVector.z;
 
 
-
+        // 이동값 들어오면 애니메이션 작동
         if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
         {
             anim.SetInteger("Move",0);
@@ -109,21 +114,22 @@ public class PlayerMoveController : MonoBehaviour
             anim.SetInteger("Move", 1);
         }
 
-        if (playerGroundFoot == false)
+        //땅 밟았을 경우에만 이동 가능 / 안 밟았을 경우 움직이긴 하되 매우 미미하다.
+        if (playerGroundFoot == true)
+        {
+            speed = status.StausDic[StatusType.MoveSpeed].GetAmount();
+
+            rigid.velocity = moveVector.normalized * speed * 50 * Time.fixedDeltaTime;
+            if (inputVector.x != 0 || inputVector.z != 0)
+                playerModel.transform.forward = moveVector;
+        }
+        else
         {
             speed = status.StausDic[StatusType.MoveSpeed].GetAmount() * 0.001f;
 
             Vector3 velocityVector = moveVector.normalized * speed * 50 * Time.fixedDeltaTime;
             velocityVector.y = 0f;
             rigid.velocity += velocityVector;
-            if (inputVector.x != 0 || inputVector.z != 0)
-                playerModel.transform.forward = moveVector;
-        }
-        else
-        {
-            speed = status.StausDic[StatusType.MoveSpeed].GetAmount();
-
-            rigid.velocity = moveVector.normalized * speed * 50 * Time.fixedDeltaTime;
             if (inputVector.x != 0 || inputVector.z != 0)
                 playerModel.transform.forward = moveVector;
         }
