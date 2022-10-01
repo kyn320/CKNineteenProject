@@ -30,17 +30,16 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField]
     private float[] attackCooldown = { 1, };
     //각각 아이템별 쿨타임 타이머
-    [SerializeField]
     private float[] attackCooldownTimer = { 0, };
+    //공격키를 누른 후 날아갈 오브젝트를 출력하기까지의 시간
+    [SerializeField]
+    private float[] bulletDelayTimes = { 0.5f, };
     //각각 아이탬별 공격이 종료하는 시간 (본래 애니메이션 종료 값을 가져오고자 하였으나 선딜 및 후딜을 생각해 따로 지정해주는것이 좋을 듯 해서 가져옴)
     [SerializeField]
     float[] attackDelayTime = { 1, };
     //날아가게될 오브젝트 프리팹
     [SerializeField]
     private GameObject[] bullets;
-    //공격키를 누른 후 날아갈 오브젝트를 출력하기까지의 시간
-    [SerializeField]
-    private float[] bulletDelayTimes = { 1, };
     //날아가는 오브젝트의 날아가는 속도
     [SerializeField]
     private float[] bulletSpeed = { 1, };
@@ -142,6 +141,7 @@ public class PlayerAttackController : MonoBehaviour
     void attack()
     {
         anim.SetInteger("AttackType", attackNum + 1);
+        anim.SetBool("Attacking", true);
         anim.SetTrigger("Attack");
 
         //spirit가 개별적으로 움직이지 못하도록 설정 + spirit의 목표백터 변경
@@ -170,7 +170,8 @@ public class PlayerAttackController : MonoBehaviour
     IEnumerator attackDontMoveTimer(float endTime)
     {
         yield return new WaitForSeconds(endTime);
-        
+
+        anim.SetBool("Attacking", false);
         player.GetComponent<PlayerMoveController>().playerMoveType = 0;
     }
 
