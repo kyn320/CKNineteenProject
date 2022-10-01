@@ -14,8 +14,9 @@ public class MonsterAttackState : StateBase
 
     public void Attack()
     {
-        manager.PlayAction(MonsterState.MONSTERSTATE_TRACKING);
         Debug.Log("Attack");
+
+        manager.PlayAction(MonsterState.MONSTERSTATE_TRACKING);
     }
 
     public void SetTrackingAction()

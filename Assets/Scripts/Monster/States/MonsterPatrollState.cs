@@ -17,34 +17,43 @@ public class MonsterPatrollState : StateBase
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         coll = Physics.OverlapSphere(transform.localPosition, manager.monster.monsterStatus.StausDic[StatusType.SightDistance].GetAmount());
         
         for (var i = 0; i < coll.Length; i++)
         {
-            if (coll[i].gameObject.name == "Player")
+            if (!manager.monster.isLandmarkOn)
             {
-                manager.SetTarget(coll[i].gameObject);
+                if (coll[i].gameObject.name == "Player")
+                {
+                    manager.SetTarget(coll[i].gameObject);
+                    manager.PlayAction(MonsterState.MONSTERSTATE_TRACKING);
+                }
+                else
+                {
+                    var targetPos = arrivalPos - transform.localPosition;
+                    manager.agent.SetDestination(arrivalPos);
+
+                    if (targetPos.sqrMagnitude < 1f)
+                    {
+                        SetRandState();
+                    }
+                }
+            } else
+            {
                 manager.PlayAction(MonsterState.MONSTERSTATE_TRACKING);
             }
-            else
-            {
-                var targetPos = arrivalPos - transform.localPosition;
-
-                manager.agent.SetDestination(arrivalPos);
-
-                if (targetPos.sqrMagnitude < 1f)
-                {
-                    var randNum = Random.Range(0, 2);
-
-                    if (randNum == 0)
-                        manager.PlayAction(MonsterState.MONSTERSTATE_IDLE);
-                    else
-                        manager.PlayAction(MonsterState.MONSTERSTATE_PATROLL);
-                }
-            }
-
         }
+    }
+
+    private void SetRandState()
+    {
+        var randNum = Random.Range(0, 2);
+
+        if (randNum == 0)
+            manager.PlayAction(MonsterState.MONSTERSTATE_IDLE);
+        else
+            manager.PlayAction(MonsterState.MONSTERSTATE_PATROLL);
     }
 }

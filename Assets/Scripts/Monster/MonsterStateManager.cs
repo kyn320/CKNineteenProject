@@ -17,9 +17,6 @@ public class MonsterStateManager : MonoBehaviour
     public Animator anim;
 
     [SerializeField]
-    private GameObject target;
-
-    [SerializeField]
     public NavMeshAgent agent;
 
     private void Awake()
@@ -68,20 +65,19 @@ public class MonsterStateManager : MonoBehaviour
         states[monster.GetState()].enabled = true;
         states[monster.GetState()].Action();
         anim.SetInteger("CurrentAnim", (int)monster.GetState());
-        Debug.Log("Change Monster State : " + state.ToString());
     }
 
     public void SetTarget(GameObject obj)
     {
-        target = obj;
+        monster.target = obj;
     }
 
     public GameObject GetTarget()
     {
-        return target;
+        return monster.target;
     }
     public Vector3 GetTargetPosition()
     {
-        return target.transform.localPosition;
+        return monster.target.transform.localPosition;
     }
 }
