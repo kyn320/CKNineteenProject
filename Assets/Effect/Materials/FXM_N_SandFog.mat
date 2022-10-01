@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FXM_N_SandFog
+  m_Shader: {fileID: 4800000, guid: 814632aab5e763349a15c5589aef66e1, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _FXT_N_Noise1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha: 0
+    - _AlphaCutoff: 0.5
+    - _Camera_Distance: 70
+    - _Distance: 2.22
+    - _Float0: 4.17
+    - _Float1: 0.08
+    - _Fresnel_Bias: 0
+    - _Fresnel_Power: 0.28
+    - _Fresnel_Scale: 0.4
+    - _Noise_Power: 0
+    - _Noise_Scale: 5
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Smoothness: 10
+    - _Speed: 0.089
+    - _Strength: 0.063
+    - _TessMax: 30
+    - _TessMin: 10
+    - _TessPhongStrength: 0.5
+    - _TessValue: 6
+    - _TransAmbient: 0.1
+    - _TransDirect: 0.9
+    - _TransNormal: 0.5
+    - _TransScattering: 2
+    - _TransShadow: 0.5
+    - _TransStrength: 1
+    - __dirty: 0
+    m_Colors:
+    - _Cloud_Color: {r: 0.5647059, g: 0.4410258, b: 0.30588236, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Fes_Color: {r: 0.745283, g: 0.6022298, b: 0.50271446, a: 1}
+    - _Speed: {r: 0.3, g: 0, b: 0, a: 0}
+    - _Vector0: {r: 0.5, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
