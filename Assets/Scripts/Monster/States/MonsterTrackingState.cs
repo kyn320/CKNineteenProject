@@ -12,13 +12,17 @@ public class MonsterTrackingState : StateBase
     private void FixedUpdate()
     {
         var targetPos = manager.GetTargetPosition() - transform.localPosition;
-        targetPos.y = 0;
+        manager.agent.SetDestination(manager.GetTargetPosition());
 
-        var rotation = Quaternion.LookRotation(targetPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 3f);
+        Collider[] coll = Physics.OverlapSphere(transform.localPosition, 1f);
 
-        var movePos = targetPos.normalized;
-        manager.rig.velocity = new Vector3(movePos.x * manager.monster.monsterStatus.StausDic[StatusType.MoveSpeed].GetAmount(), movePos.y, movePos.z * manager.monster.monsterStatus.StausDic[StatusType.MoveSpeed].GetAmount());
+        for (var i = 0; i < coll.Length; i++)
+        {
+            if (coll[i].CompareTag("Field"))
+            {
+                manager.PlayAction(MonsterState.MONSTERSTATE_ATTACK);
+            }
+        }
 
         if (targetPos.sqrMagnitude < 1f)
         {

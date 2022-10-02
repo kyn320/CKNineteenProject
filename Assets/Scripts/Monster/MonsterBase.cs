@@ -32,6 +32,10 @@ public class MonsterBase : MonoBehaviour
     [Space(10)]
     private bool isLife = false;
 
+    public bool isLandmarkOn = false;
+
+    public GameObject target = null;
+
     public void SetLife(bool trigger)
     {
         isLife = trigger;

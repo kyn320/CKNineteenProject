@@ -5,7 +5,8 @@ using UnityEngine;
 public class SmallMonster : MonsterBase
 {
     public GameObject objView = null;
-
+    public GameObject landmark;
+    
     private void Awake()
     {
         if(monsterStatus == null )
@@ -19,6 +20,15 @@ public class SmallMonster : MonsterBase
 
     private void Update()
     {
+        if(isLandmarkOn)
+        {
+            target = landmark;
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            isLandmarkOn = true;
+        }
+
         //if(GetHP() <= 0)
         //{
         //    SetLife(false);

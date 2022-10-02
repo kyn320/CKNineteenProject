@@ -21,6 +21,7 @@ public class PlayerMoveController : MonoBehaviour
 
     public Animator anim;
 
+    [SerializeField]
     Rigidbody rigid;
 
     // Start is called before the first frame update
@@ -98,12 +99,10 @@ public class PlayerMoveController : MonoBehaviour
         //움직일 방향
         Vector3 moveVector = flontVector * inputVector.x + flontRight * inputVector.z;
 
-
-
         if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
         {
-            anim.SetInteger("Move",0);
-        } 
+            anim.SetInteger("Move", 0);
+        }
         else if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
             anim.SetInteger("Move", 1);
