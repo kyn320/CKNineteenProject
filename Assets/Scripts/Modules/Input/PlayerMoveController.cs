@@ -21,49 +21,12 @@ public class PlayerMoveController : MonoBehaviour
 
     public Animator anim;
 
-    [SerializeField]
     Rigidbody rigid;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (mainCamera == null)
-        {
-            mainCamera = GameObject.Find("Main Camera");
-
-            if (cameraAnchor == null)
-                Debug.LogError($"{this.gameObject.name} has no {mainCamera.name}");
-            else
-                Debug.LogWarning($"{this.gameObject.name} is Find {mainCamera.name}");
-        }
-
-        if (cameraAnchor == null)
-        {
-            cameraAnchor = GameObject.Find("Camera Anchor");
-            
-            if (cameraAnchor == null)
-                Debug.LogError($"{this.gameObject.name} has no {cameraAnchor.name}");
-            else
-                Debug.LogWarning($"{this.gameObject.name} is Find {cameraAnchor.name}");
-        }
-
-        if (playerModel == null)
-            Debug.LogWarning($"{this.gameObject.name} has no model");
-
-        if (status.StausDic[StatusType.MoveSpeed].GetAmount() == 0)
-        {
-            status.StausDic[StatusType.MoveSpeed].SetAmount(10);
-            Debug.LogWarning($"{this.gameObject.name} moveSpeed set is 0");
-        }
-
-        if (status.StausDic[StatusType.JumpPower].GetAmount() == 0)
-        {
-            status.StausDic[StatusType.JumpPower].SetAmount(10);
-            Debug.LogWarning($"{this.gameObject.name} JumpPower set is 0");
-        }
-
-        //anim = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody>();
+        SetVar();
     }
 
     // Update is called once per frame
@@ -85,6 +48,47 @@ public class PlayerMoveController : MonoBehaviour
         }
     }
 
+    void SetVar()
+    {
+        if (mainCamera == null)
+        {
+            mainCamera = GameObject.Find("Main Camera");
+
+            if (cameraAnchor == null)
+                Debug.LogError($"{this.gameObject.name} has no {mainCamera.name}");
+            else
+                Debug.LogWarning($"{this.gameObject.name} is Find {mainCamera.name}");
+        }
+
+        if (cameraAnchor == null)
+        {
+            cameraAnchor = GameObject.Find("Camera Anchor");
+
+            if (cameraAnchor == null)
+                Debug.LogError($"{this.gameObject.name} has no {cameraAnchor.name}");
+            else
+                Debug.LogWarning($"{this.gameObject.name} is Find {cameraAnchor.name}");
+        }
+
+        if (playerModel == null)
+            Debug.LogWarning($"{this.gameObject.name} has no model");
+
+        if (status.StausDic[StatusType.MoveSpeed].GetAmount() == 0)
+        {
+            status.StausDic[StatusType.MoveSpeed].SetAmount(10);
+            Debug.LogWarning($"{this.gameObject.name} moveSpeed set is 0");
+        }
+
+        if (status.StausDic[StatusType.JumpPower].GetAmount() == 0)
+        {
+            status.StausDic[StatusType.JumpPower].SetAmount(10);
+            Debug.LogWarning($"{this.gameObject.name} JumpPower set is 0");
+        }
+
+        anim = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody>();
+    }
+
     private void PlayerMove()
     {
         //보는 정면 방향
@@ -99,30 +103,33 @@ public class PlayerMoveController : MonoBehaviour
         //움직일 방향
         Vector3 moveVector = flontVector * inputVector.x + flontRight * inputVector.z;
 
+
+        // 이동값 들어오면 애니메이션 작동
         if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
         {
-            anim.SetInteger("Move", 0);
-        }
+            anim.SetInteger("Move",0);
+        } 
         else if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
             anim.SetInteger("Move", 1);
         }
 
-        if (playerGroundFoot == false)
+        //땅 밟았을 경우에만 이동 가능 / 안 밟았을 경우 움직이긴 하되 매우 미미하다.
+        if (playerGroundFoot == true)
+        {
+            speed = status.StausDic[StatusType.MoveSpeed].GetAmount();
+
+            rigid.velocity = moveVector.normalized * speed * 50 * Time.fixedDeltaTime;
+            if (inputVector.x != 0 || inputVector.z != 0)
+                playerModel.transform.forward = moveVector;
+        }
+        else
         {
             speed = status.StausDic[StatusType.MoveSpeed].GetAmount() * 0.001f;
 
             Vector3 velocityVector = moveVector.normalized * speed * 50 * Time.fixedDeltaTime;
             velocityVector.y = 0f;
             rigid.velocity += velocityVector;
-            if (inputVector.x != 0 || inputVector.z != 0)
-                playerModel.transform.forward = moveVector;
-        }
-        else
-        {
-            speed = status.StausDic[StatusType.MoveSpeed].GetAmount();
-
-            rigid.velocity = moveVector.normalized * speed * 50 * Time.fixedDeltaTime;
             if (inputVector.x != 0 || inputVector.z != 0)
                 playerModel.transform.forward = moveVector;
         }

@@ -91,7 +91,7 @@ public class SpiritMoveController : MonoBehaviour
         if (Vector3.Distance(player.transform.position, transform.position) > playerDefauleDistance &&
             playerDefauleDistance + 0.1f / playerGravity < Vector3.Distance(player.transform.position, transform.position))
         {
-            rigid.velocity = Time.deltaTime * playerTowardDirection.normalized * (playerGravity * (Vector3.Distance(player.transform.position, transform.position) - playerDefauleDistance));
+            rigid.velocity = /*Time.deltaTime * */ playerTowardDirection.normalized * (playerGravity * (Vector3.Distance(player.transform.position, transform.position) - playerDefauleDistance));
         }
     }
 
@@ -106,18 +106,18 @@ public class SpiritMoveController : MonoBehaviour
         Vector3 playerTowardDirection = player.transform.position + spiritSetVector
             - transform.position;
 
-        //Spirit의 이동속도가 평소보다 빠름
-        playerGravity = defaultPlayerGravity * 2 + player.GetComponent<PlayerMoveController>().speed;
+        //Spirit의 이동속도가 점점 빨라짐 (안그러면 제자리에서 이동시 빠른 속도로 인하여 목표 위치를 벗어남)
+        if(playerGravity <= defaultPlayerGravity * 2f + player.GetComponent<PlayerMoveController>().speed)
+        playerGravity += Time.deltaTime * (playerGravity + player.GetComponent<PlayerMoveController>().speed) * 0.2f;
 
         //만약 플레이어와 스피릿의 사이가 지정한 값 보다 멀리 떨어질 경우 플레이어 가까이로 이동 (이동시 0.1f만큼 범위를 두지 않으면 오브젝트가 목표로 가고자 계속해서 움직여 덜덜 떨리듯이 보임)
-        if (Vector3.Distance(player.transform.position + spiritSetVector, rigid.transform.position) > 0.1f)
+        if (Vector3.Distance(player.transform.position + spiritSetVector, rigid.transform.position) > 0.15f)
         {
-            rigid.velocity = Time.deltaTime * playerTowardDirection.normalized * (playerGravity * Vector3.Distance(player.transform.position + spiritEndVector, rigid.transform.position));
+            rigid.velocity = /*Time.deltaTime * */ playerTowardDirection.normalized * (playerGravity * Vector3.Distance(player.transform.position + spiritEndVector, rigid.transform.position));
         }
         //else의 주석을 풀면 transform으로 고정된다. (velocity값 때문에 Spirit가 튀는 현상을 잡아줌)
         else
         {
-
             //해당 주석을 풀면 물리값으로 이동한다.
             //rigid.velocity = Time.deltaTime * playerTowardDirection.normalized * (playerGravity * Vector3.Distance(player.transform.position + spiritEndVector, rigid.transform.position));
 
