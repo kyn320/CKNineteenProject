@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 20001
   type: 1
-  equipHandType: 1
+  equipHandType: 2
   itemName: "\uBB34\uAE30 1"
   description: 
   icon: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
   isUnique: 1
-  worldObject: {fileID: 0}
+  worldObject: {fileID: 1550952870296005003, guid: eedb208b09a7a3245b5e4df668b592f6,
+    type: 3}
   statusInfoData:
     statusDic:
       keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000
@@ -54,11 +55,11 @@ MonoBehaviour:
         percent: 0
       - type: 8
         name: AttackDistance
-        amount: 0
+        amount: 1000
         percent: 0
       - type: 9
         name: ThrowSpeed
-        amount: 0
+        amount: 100
         percent: 0
       - type: 10
         name: CriticalPercent
@@ -248,4 +249,7 @@ MonoBehaviour:
         name: AfterAttackTime
         amount: 0
         percent: 0
-  weaponType: 1
+  weaponType: 3
+  projectileMoveType: 1
+  attackAnimationType: 2
+  spawnVector: {x: -0.5, y: 0.5, z: 1}

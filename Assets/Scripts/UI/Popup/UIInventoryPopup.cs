@@ -13,6 +13,7 @@ public class UIInventoryPopup : UIBasePopup
 
     public override void Init(UIData uiData)
     {
+        TPSMouseSetting.Instance.OpenUICursor();
         bezierCurveUGUI.SetRootCanvas(UIController.Instance.rootCanvas);
     }
 
@@ -21,6 +22,11 @@ public class UIInventoryPopup : UIBasePopup
         inventoryListView.UpdateSlots();
     }
 
+    public override void Close()
+    {
+        base.Close();
+        TPSMouseSetting.Instance.CloseUICursor();
+    }
 
 
 

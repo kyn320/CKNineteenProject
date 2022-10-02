@@ -19,7 +19,8 @@ MonoBehaviour:
   description: 
   icon: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
   isUnique: 1
-  worldObject: {fileID: 0}
+  worldObject: {fileID: 4797647947300948221, guid: 48821c4e2250b6b449ec28deff9ed2df,
+    type: 3}
   statusInfoData:
     statusDic:
       keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000
@@ -54,11 +55,11 @@ MonoBehaviour:
         percent: 0
       - type: 8
         name: AttackDistance
-        amount: 0
+        amount: 1000
         percent: 0
       - type: 9
         name: ThrowSpeed
-        amount: 0
+        amount: 100
         percent: 0
       - type: 10
         name: CriticalPercent
@@ -249,3 +250,6 @@ MonoBehaviour:
         amount: 0
         percent: 0
   weaponType: 1
+  projectileMoveType: 1
+  attackAnimationType: 1
+  spawnVector: {x: 0.5, y: 0.5, z: 0.5}

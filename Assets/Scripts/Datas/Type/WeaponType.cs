@@ -22,4 +22,16 @@ public enum WeaponType
     /// 瞒农恩
     /// </summary>
     Chakram,
+    /// <summary>
+    /// 气藕
+    /// </summary>
+    Bomb,
+    /// <summary>
+    /// 器记
+    /// </summary>
+    Potion,
+    /// <summary>
+    /// 付过 胶农费
+    /// </summary>
+    MagicScroll,
 }

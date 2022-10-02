@@ -12,8 +12,8 @@ public class UnitController : MonoBehaviour, IDamageable
         status = GetComponent<UnitStatus>();    
     }
 
-    public virtual bool OnDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
+    public virtual bool OnDamage(DamageInfo damageInfo, Vector3 hitPoint, Vector3 hitNormal)
     {
-        return status.OnDamage(damage);
+        return status.OnDamage(damageInfo.damage);
     }
 }
