@@ -5,15 +5,12 @@ using UnityEngine;
 public class PlayerAttackController : MonoBehaviour
 {
 
-    private const float MaxAimDistance = 50000f;
 
     //오브젝트 할당
     [SerializeField]
     private GameObject cameraAnchor;
     [SerializeField]
     private GameObject mainCamera;
-    [SerializeField]
-    private GameObject player;
     [SerializeField]
     private GameObject playerModel;
     [SerializeField]
@@ -32,6 +29,10 @@ public class PlayerAttackController : MonoBehaviour
     private GameObject projectileObject;
     private Vector3 projectileSpawnPoint;
     [SerializeField]
+    private Vector3 projectileDirection;
+    [SerializeField]
+    private Vector3 aimPoint;
+    [SerializeField]
     private Transform handBone;
 
     private void Awake()
@@ -48,15 +49,7 @@ public class PlayerAttackController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (CheckAttackPossible())
-            {
-                StartAttack();
-            }
-        }
-
-        if (playerMoveController.playerMoveType != 0)
+        if (playerMoveController.moveType != 0)
         {
             playerModel.transform.forward = cameraAnchor.transform.forward * 0.001f;
         }
@@ -71,7 +64,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (!isAttack
         && equipSlotDatas.Count > 0
-        && playerMoveController.playerMoveType == 0
+        && playerMoveController.moveType == 0
         && playerMoveController.isGrounded)
         {
             return true;
@@ -80,9 +73,17 @@ public class PlayerAttackController : MonoBehaviour
         return false;
     }
 
-    void StartAttack()
+    public void StartAttack(Vector3 aimPoint)
     {
+        if (!CheckAttackPossible())
+            return;
+
+        this.aimPoint = aimPoint;
+
         isAttack = true;
+
+        playerMoveController.ChangeMoveType(1);
+
         var weaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
 
         //TODO :: 공격속도 기반으로 애니메이션 속도
@@ -104,7 +105,7 @@ public class PlayerAttackController : MonoBehaviour
         var weaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
 
         //오브젝트가 출력될 벡터값 설정
-        projectileSpawnPoint = playerModel.transform.forward * weaponData.SpawnVector.x + playerModel.transform.right * weaponData.SpawnVector.z;
+        projectileSpawnPoint = playerModel.transform.forward * weaponData.SpawnVector.z + playerModel.transform.right * weaponData.SpawnVector.x;
         projectileSpawnPoint.y = weaponData.SpawnVector.y;
         projectileSpawnPoint += transform.position;
 
@@ -122,17 +123,8 @@ public class PlayerAttackController : MonoBehaviour
         //정령이 자유 이동하도록 변경
         spiritMoveController.isMoveable = true;
 
-        //오브젝트의 목표 백터값 구하는 레이
-        RaycastHit bulletBurstRay;
-        Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out bulletBurstRay);
-        Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * MaxAimDistance, Color.blue);
-
-        //오브젝트의 목표 백터값 설정
-        Vector3 bulletdirection;
-        if (bulletBurstRay.point == Vector3.zero)
-            bulletdirection = mainCamera.transform.position + mainCamera.transform.forward * MaxAimDistance;
-        else
-            bulletdirection = -(projectileSpawnPoint - bulletBurstRay.point);
+        //방향 계산
+        projectileDirection = aimPoint -  handBone.transform.position;
 
         var projectileController = projectileObject.GetComponent<ProjectileController>();
 
@@ -143,7 +135,7 @@ public class PlayerAttackController : MonoBehaviour
 
         projectileController.SetStatus(attackPower, isCritical);
         projectileController.Shot(handBone.position
-            , bulletdirection.normalized
+            , projectileDirection.normalized
             , weaponData.StatusInfoData.GetElement(StatusType.ThrowSpeed).GetAmount()
             , weaponData.StatusInfoData.GetElement(StatusType.AttackDistance).GetAmount());
 
@@ -163,6 +155,8 @@ public class PlayerAttackController : MonoBehaviour
         animator.speed = 1f;
 
         animator.SetInteger("AttackType", 0);
+
+        playerMoveController.ChangeMoveType(0);
     }
 
 }

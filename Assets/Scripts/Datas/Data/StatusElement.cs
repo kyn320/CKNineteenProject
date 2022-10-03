@@ -38,6 +38,15 @@ public class StatusElement
         this.percent = copyElement.percent;
     }
 
+    public virtual float CalculateTotalAmount() { 
+        return amount + (amount * percent);
+    }
+
+    public virtual float CalculateTotalAmount(float origin)
+    {
+        return origin + amount + (origin * percent);
+    }
+
     public virtual float CalculateAmount(float origin)
     {
         return origin + amount;

@@ -13,11 +13,13 @@ public class PlayerMoveController : MonoBehaviour
     [SerializeField]
     private GameObject playerModel;
 
+    private bool allowMove = true;
+    private Vector3 inputVector;
     public float jumpOppositeSpeed = 0.001f;
     public float moveSpeed = 1f;
     public bool isGrounded = true;
     //무기에 따라서 달라지는 플레이어 움직임 타입 (type이 0이라면 움직이는것이 가능합니다.)
-    public int playerMoveType = 0;
+    public int moveType = 0;
 
     private Animator animator;
     private Rigidbody rigid;
@@ -30,32 +32,37 @@ public class PlayerMoveController : MonoBehaviour
 
     void Update()
     {
-        switch (playerMoveType)
+        if (!allowMove)
+            return;
+
+        switch (moveType)
         {
             case 0:
-                PlayerMove();
+                Move();
                 break;
             default:
                 rigid.velocity = Vector3.zero;
                 break;
         }
-
-        if (Input.GetKey(KeyCode.Space) && isGrounded == true && playerMoveType == 0)
-        {
-            Jump();
-        }
     }
 
-    private void PlayerMove()
+    public void ChangeMoveType(int moveType)
+    {
+        this.moveType = moveType;
+    }
+
+    public void UpdateInputVector(Vector3 inputVector)
+    {
+        this.inputVector = inputVector;
+    }
+
+    private void Move()
     {
         //보는 정면 방향
         Vector3 forwardVector = new Vector3(cameraAnchor.transform.forward.x, 0f, cameraAnchor.transform.forward.z);
 
         //보는 오른쪽 방향
         Vector3 rightVector = new Vector3(cameraAnchor.transform.right.x, 0f, cameraAnchor.transform.right.z);
-
-        //플레이어 입력값
-        Vector3 inputVector = new Vector3(Input.GetAxis("Vertical"), 0f, Input.GetAxis("Horizontal"));
 
         //움직일 방향
         Vector3 moveVector = forwardVector * inputVector.x + rightVector * inputVector.z;
@@ -94,8 +101,11 @@ public class PlayerMoveController : MonoBehaviour
         }
     }
 
-    void Jump()
+    public void Jump()
     {
+        if (!isGrounded || moveType != 0)
+            return;
+
         isGrounded = false;
         animator.SetBool("Jump", true);
         animator.SetBool("IsGrounded", false);

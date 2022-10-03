@@ -59,7 +59,7 @@ MonoBehaviour:
         percent: 0
       - type: 9
         name: ThrowSpeed
-        amount: 100
+        amount: 10
         percent: 0
       - type: 10
         name: CriticalPercent
@@ -252,4 +252,4 @@ MonoBehaviour:
   weaponType: 3
   projectileMoveType: 1
   attackAnimationType: 2
-  spawnVector: {x: -0.5, y: 0.5, z: 1}
+  spawnVector: {x: -0.5, y: 0.5, z: 1.5}

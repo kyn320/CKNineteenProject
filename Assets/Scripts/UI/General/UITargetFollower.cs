@@ -5,7 +5,11 @@ using UnityEngine.UI;
 
 public class UITargetFollower : MonoBehaviour
 {
-    public Transform target;
+    [SerializeField]
+    private Transform target;
+
+    [SerializeField]
+    private Vector3 targetOffset;
 
     RectTransform rectTransform;
 
@@ -14,26 +18,22 @@ public class UITargetFollower : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
     }
 
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
+
     private void FixedUpdate()
     {
-        if (target != null) {
-
-            //Other Solution
-            /*            
-             
-            var point = Vector2.zero;
-
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(UIController.Instance.viewGroup, endPosition, UIController.Instance.uiCamera, out point);
-
-            holdGaugeRectTransfrom.anchoredPosition = point; 
-             
-             */
+        if (target != null)
+        {
 
             Camera cam = Camera.main;
-            var targetPos = RectTransformUtility.WorldToScreenPoint(Camera.main, target.position);
+            var targetPos = RectTransformUtility.WorldToScreenPoint(Camera.main, target.position + targetOffset);
 
-            rectTransform.anchoredPosition = targetPos; 
-        }   
+            rectTransform.anchoredPosition = targetPos;
+
+        }
     }
 
 

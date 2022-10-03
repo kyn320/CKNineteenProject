@@ -50,7 +50,6 @@ public class ProjectileMoveable : MonoBehaviour
     {
         if (GetCurrentDistance() >= maxDistance)
         {
-            Debug.Log($"{GetCurrentDistance()} / {maxDistance}");
             //TODO :: 최대 사거리를 넘어서면, 자동으로 삭제 해주세요.
             gameObject.SetActive(false);
         }
