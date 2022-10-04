@@ -9,6 +9,11 @@ public abstract class MonsterStateBase : MonoBehaviour
     [SerializeField]
     protected MonsterStateType stateType;
 
+    [SerializeField]
+    protected List<AnimatorTriggerData> enterAnimatorTriggerList;
+    [SerializeField]
+    protected List<AnimatorTriggerData> exitAnimatorTriggerList;
+
     protected virtual void Awake()
     {
         controller = GetComponent<MonsterController>();

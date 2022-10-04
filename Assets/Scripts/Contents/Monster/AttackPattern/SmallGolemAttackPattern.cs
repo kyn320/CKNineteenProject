@@ -21,12 +21,13 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         if (isAttacked)
             return;
 
+        this.target = target;   
         isAttacked = true;
 
         var status = controller.GetStatus();
 
         var attackSpeed = status.currentStatus.GetElement(StatusType.AttackSpeed).CalculateTotalAmount();
-        var attackDistance = status.currentStatus.GetElement(StatusType.AttackDistance).CalculateTotalAmount();
+        attackDistance = status.currentStatus.GetElement(StatusType.AttackDistance).CalculateTotalAmount();
 
         animator = controller.GetAnimator();
         for (var i = 0; i < startAttackTriggerDataList.Count; ++i)
@@ -36,9 +37,13 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
 
         var destination = transform.position + transform.forward * attackDistance;
 
+        Debug.Log(Vector3.Distance(destination , transform.position));
+
         //TODO :: 바라보고 있는 방향으로 직선 거리 n 만큼 이동.
+        navAgent.stoppingDistance = 0.01f;
         navAgent.speed = attackSpeed;
-        navAgent.SetDestination(destination);
+        var success = navAgent.SetDestination(destination);
+        Debug.Log(success);
 
         startAttackEvent?.Invoke();
     }
@@ -47,7 +52,7 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         if (!isAttacked)
             return;
 
-        if (navAgent.remainingDistance < 0.01f)
+        if (navAgent.remainingDistance <= navAgent.stoppingDistance)
         {
             EndAttack();
         }
@@ -56,6 +61,15 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
     public override void EndAttack()
     {
         isAttacked = false;
+
+        animator = controller.GetAnimator();
+        for (var i = 0; i < endAttackTriggerDataList.Count; ++i)
+        {
+            endAttackTriggerDataList[i].Invoke(animator);
+        }
+
+        controller.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
+
         endAttackEvent?.Invoke();
     }
 

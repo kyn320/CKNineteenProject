@@ -15,6 +15,10 @@ public class MonsterIdleState : MonsterStateBase
 
     public override void Enter()
     {
+        for(var i = 0 ; i < enterAnimatorTriggerList.Count; ++i) { 
+            enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
+        }
+
         fieldOfView.enabled = true;
         fieldOfView.visibleEvent.AddListener(EnterSight);
     }

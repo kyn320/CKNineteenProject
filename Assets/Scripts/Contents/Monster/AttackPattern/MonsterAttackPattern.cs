@@ -17,6 +17,7 @@ public abstract class MonsterAttackPattern : MonoBehaviour
     [SerializeField]
     protected List<AnimatorTriggerData> endAttackTriggerDataList;
 
+    [SerializeField]
     protected bool isAttacked = false;
 
     public UnityEvent startAttackEvent;

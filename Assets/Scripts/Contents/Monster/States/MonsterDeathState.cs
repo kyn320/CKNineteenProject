@@ -6,7 +6,10 @@ public class MonsterDeathState : MonsterStateBase
 {
     public override void Enter()
     {
-
+        for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
+        {
+            enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
+        }
     }
 
     public override void Exit()

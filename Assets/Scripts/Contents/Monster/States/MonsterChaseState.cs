@@ -14,6 +14,8 @@ public class MonsterChaseState : MonsterStateBase
     [SerializeField]
     private float stopDistance = 1f;
     [SerializeField]
+    private float attackStartDistance = 1f;
+    [SerializeField]
     private float currentDistanceSqr = 0f;
 
     [SerializeField]
@@ -27,6 +29,11 @@ public class MonsterChaseState : MonsterStateBase
 
     public override void Enter()
     {
+        for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
+        {
+            enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
+        }
+
         var status = controller.GetStatus();
         navAgent.speed = status.currentStatus.GetElement(StatusType.MoveSpeed).CalculateTotalAmount();
         navAgent.stoppingDistance = stopDistance;
@@ -37,7 +44,7 @@ public class MonsterChaseState : MonsterStateBase
 
     public override void Exit()
     {
-        navAgent.isStopped = true;
+
     }
 
     public override void Update()
@@ -54,7 +61,7 @@ public class MonsterChaseState : MonsterStateBase
 
         currentDistanceSqr = (transform.position - target.position).sqrMagnitude;
 
-        if (currentDistanceSqr * currentDistanceSqr <= stopDistance)
+        if (currentDistanceSqr * currentDistanceSqr <= attackStartDistance * attackStartDistance)
         {
             controller.ChangeState(MonsterStateType.MONSTERSTATE_ATTACK);
         }
