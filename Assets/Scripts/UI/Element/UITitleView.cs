@@ -29,7 +29,7 @@ public class UITitleView : UIBaseView
     public void EnterGame()
     {
         FadeController.Instance.FadeIn(() => {
-            SceneLoader.Instance.LoadScene("PlayScene");
+            SceneLoader.Instance.SwitchScene("PlayScene");
         });
     }
 

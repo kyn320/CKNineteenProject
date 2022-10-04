@@ -15,34 +15,43 @@ public class PlayerMoveController : MonoBehaviour
 
     private bool allowMove = true;
     private Vector3 inputVector;
-    public float jumpOppositeSpeed = 0.001f;
+    [SerializeField]
+    private Vector3 moveVector;
+
     public float moveSpeed = 1f;
-    public bool isGrounded = true;
+    public float gravity = 9.81f;
+
     //무기에 따라서 달라지는 플레이어 움직임 타입 (type이 0이라면 움직이는것이 가능합니다.)
     public int moveType = 0;
 
     private Animator animator;
-    private Rigidbody rigid;
+    private CharacterController characterController;
 
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody>();
         animator = playerModel.GetComponent<Animator>();
+        characterController = GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        if (!allowMove)
-            return;
-
-        switch (moveType)
+        if (allowMove)
         {
-            case 0:
-                Move();
-                break;
-            default:
-                rigid.velocity = Vector3.zero;
-                break;
+            switch (moveType)
+            {
+                case 0:
+                    Move();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        moveVector.y -= gravity * Time.deltaTime;
+        characterController.Move(moveVector * Time.deltaTime);
+
+        if(moveVector.y <= 0) {
+            animator.SetBool("IsGrounded", characterController.isGrounded);
         }
     }
 
@@ -65,7 +74,7 @@ public class PlayerMoveController : MonoBehaviour
         Vector3 rightVector = new Vector3(cameraAnchor.transform.right.x, 0f, cameraAnchor.transform.right.z);
 
         //움직일 방향
-        Vector3 moveVector = forwardVector * inputVector.x + rightVector * inputVector.z;
+        Vector3 viewVector = forwardVector * inputVector.x + rightVector * inputVector.z;
 
         if (Mathf.Abs(inputVector.x) > 0f || Mathf.Abs(inputVector.z) > 0f)
         {
@@ -77,58 +86,37 @@ public class PlayerMoveController : MonoBehaviour
         }
 
         //땅 밟았을 경우에만 이동 가능 / 안 밟았을 경우 움직이긴 하되 매우 미미하다.
-        if (isGrounded)
+        if (characterController.isGrounded)
         {
             moveSpeed = status.StausDic[StatusType.MoveSpeed].GetAmount();
 
-            rigid.velocity = moveVector.normalized * moveSpeed * Time.fixedDeltaTime;
-
             if (inputVector.x != 0 || inputVector.z != 0)
-                playerModel.transform.forward = moveVector;
+                playerModel.transform.forward = viewVector;
+
+            var viewNoramlVector = viewVector.normalized;
+            moveVector.x = viewNoramlVector.x * moveSpeed;
+            moveVector.z = viewNoramlVector.z * moveSpeed;
         }
-        else
-        {
-            moveSpeed = status.StausDic[StatusType.MoveSpeed].GetAmount() * jumpOppositeSpeed;
-
-            Vector3 velocityVector = moveVector.normalized * moveSpeed * Time.fixedDeltaTime;
-
-            velocityVector.y = 0f;
-
-            rigid.velocity += velocityVector;
-
-            if (inputVector.x != 0 || inputVector.z != 0)
-                playerModel.transform.forward = moveVector;
+        else { 
+            
         }
     }
 
     public void Jump()
     {
-        if (!isGrounded || moveType != 0)
+        if (!characterController.isGrounded || moveType != 0)
             return;
 
-        isGrounded = false;
-        animator.SetBool("Jump", true);
+        animator.SetTrigger("Jump");
         animator.SetBool("IsGrounded", false);
-        rigid.velocity = new Vector3(rigid.velocity.x, rigid.velocity.y + status.StausDic[StatusType.JumpPower].GetAmount(), rigid.velocity.z);
+        moveVector.y = status.StausDic[StatusType.JumpPower].GetAmount();
     }
 
-    public void EnterGround(Collider collider)
+    public bool GetIsGround()
     {
-        if (collider.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            animator.SetBool("Jump", false);
-            animator.SetBool("IsGrounded", true);
-        }
+        return characterController.isGrounded;
     }
 
-    public void ExitGround(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-            animator.SetBool("IsGrounded", false);
-        }
-    }
+
 
 }

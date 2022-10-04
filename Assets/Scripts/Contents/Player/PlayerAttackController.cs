@@ -65,7 +65,7 @@ public class PlayerAttackController : MonoBehaviour
         if (!isAttack
         && equipSlotDatas.Count > 0
         && playerMoveController.moveType == 0
-        && playerMoveController.isGrounded)
+        && playerMoveController.GetIsGround())
         {
             return true;
         }

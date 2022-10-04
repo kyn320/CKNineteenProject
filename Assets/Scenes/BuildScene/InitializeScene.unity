@@ -234,7 +234,11 @@ MonoBehaviour:
     amount: 0
     isEquiped: 0
     equippedIndex: -1
+  attackOrderList: []
   updateEquippedItems:
+    m_PersistentCalls:
+      m_Calls: []
+  updateAttackOrderList:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &134233427
@@ -283,97 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsDontDestroy: 1
   itemDataContainer: {fileID: 11400000, guid: d0d7dfe8b6b873c4b8b4f3a27f3f4aa7, type: 2}
-  haveItems:
-  - index: 0
-    itemData: {fileID: 11400000, guid: 2fd9cb3c6af24764baf239b2fb503227, type: 2}
-    amount: 2
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 1
-    itemData: {fileID: 11400000, guid: 83cba6e6001be0b42a3dcf12868023ae, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 2
-    itemData: {fileID: 11400000, guid: 3ab1e519c4d68af49acbd85afc8e9ef3, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 3
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 4
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 5
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 6
-    itemData: {fileID: 11400000, guid: 0f7b928a385f3094ba9d952de97d3dac, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 7
-    itemData: {fileID: 11400000, guid: 5fa724c5f26b2d04bb786d8e4a10dad9, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 8
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 9
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 10
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 11
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 12
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 13
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 14
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 15
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 16
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
-  - index: 17
-    itemData: {fileID: 11400000, guid: b338930038af86d4688cae1640faa6fa, type: 2}
-    amount: 1
-    isEquiped: 0
-    equippedIndex: -1
+  haveItems: []
 --- !u!4 &1228522554
 Transform:
   m_ObjectHideFlags: 0
