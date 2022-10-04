@@ -47,10 +47,13 @@ public class PlayerMoveController : MonoBehaviour
             }
         }
 
-        moveVector.y -= gravity * Time.deltaTime;
+        if (!characterController.isGrounded)
+            moveVector.y -= gravity * Time.deltaTime;
+
         characterController.Move(moveVector * Time.deltaTime);
 
-        if(moveVector.y <= 0) {
+        if (moveVector.y <= 0)
+        {
             animator.SetBool("IsGrounded", characterController.isGrounded);
         }
     }
@@ -96,9 +99,6 @@ public class PlayerMoveController : MonoBehaviour
             var viewNoramlVector = viewVector.normalized;
             moveVector.x = viewNoramlVector.x * moveSpeed;
             moveVector.z = viewNoramlVector.z * moveSpeed;
-        }
-        else { 
-            
         }
     }
 

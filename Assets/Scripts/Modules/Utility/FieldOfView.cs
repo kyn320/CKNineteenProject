@@ -7,9 +7,6 @@ using UnityEngine.Events;
 public class FieldOfView : MonoBehaviour
 {
     [SerializeField]
-    private bool DebugMode = false;
-
-    [SerializeField]
     private bool useUpdate = false;
 
     [SerializeField]
@@ -60,10 +57,7 @@ public class FieldOfView : MonoBehaviour
                 {
                     visibleTargetList.Add(enterColliders[i]);
 
-                    if (DebugMode)
-                    {
-                        Debug.DrawRay(transform.position, dirToTarget * viewRadius, Color.red);
-                    }
+                    Debug.DrawRay(transform.position, dirToTarget * viewRadius, Color.red);
                 }
             }
         }
@@ -74,9 +68,6 @@ public class FieldOfView : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (!DebugMode)
-            return;
-
         Vector3 myPos = transform.position;
         Gizmos.DrawWireSphere(myPos, viewRadius);
 
