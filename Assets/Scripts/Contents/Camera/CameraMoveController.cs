@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CameraMoveController : MonoBehaviour
 {
+    [SerializeField]
+    private Transform target;
+    [SerializeField]
+    private Vector3 targetOffset;
+
     [SerializeField]
     private GameObject mainCamera;
     [SerializeField]
@@ -15,8 +21,11 @@ public class CameraMoveController : MonoBehaviour
     public bool isZoom;
     public float cameraAngle = 80;
 
+    public float dampingSpeed = 10f;
+
     //다른 스크립트에 참고할때 사용될 카메라가 바라보는 방향
     public Vector3 playerObjectForwardVector;
+    public UnityEvent<Vector3> updateForwardVector;
 
     private void Awake()
     {
@@ -30,14 +39,12 @@ public class CameraMoveController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CameraMove();
         CameraMode();
+        transform.position = Vector3.Lerp(transform.position, target.position + targetOffset, Time.deltaTime * dampingSpeed);
     }
 
-    private void CameraMove()
+    public void CameraMove(Vector2 mousePos)
     {
-        //마우스 포인트 위치
-        Vector2 mousePos = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         //카메라 회전값
         Vector3 cameraRot = cameraAnchor.transform.localEulerAngles;
 
@@ -56,6 +63,8 @@ public class CameraMoveController : MonoBehaviour
 
         //플레이어 오브젝트가 보고있는 앞쪽 백터
         playerObjectForwardVector = cameraAnchor.transform.position - directionObject.transform.position;
+
+        updateForwardVector?.Invoke(playerObjectForwardVector);
 
         //줌 되지 않은 기본 상태의 카메라라면 카메라가 벽을 넘지 않도록 카메라 가더를 사용한다.
         if (!isZoom)

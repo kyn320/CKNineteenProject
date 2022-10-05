@@ -68,6 +68,11 @@ public class PlayerMoveController : MonoBehaviour
         this.inputVector = inputVector;
     }
 
+    public void UpdateForwardView(Vector3 forwardView) {
+        forwardView.y = 0;
+        transform.forward = forwardView;
+    }
+
     private void Move()
     {
         //보는 정면 방향

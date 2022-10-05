@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
-public class PlayerInputController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
+    [SerializeField]
+    private UnitStatus status;
+
     private const float MaxAimDistance = 50000f;
     [SerializeField]
     private GameObject mainCamera;
@@ -17,9 +20,13 @@ public class PlayerInputController : MonoBehaviour
 
     public UnityEvent jumpInputEvent;
 
+    public UnityEvent<Vector2> mouseMoveEvent;
+
     public UnityEvent<GameObject> interactiveInputEvnet;
 
     public UnityEvent<Vector3> attackinputEvent;
+
+    public UnityEvent damageEvent;
 
     [ReadOnly]
     [ShowInInspector]
@@ -36,6 +43,9 @@ public class PlayerInputController : MonoBehaviour
             return;
         }
 
+        var mousePos = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        mouseMoveEvent?.Invoke(mousePos);
+
         Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out aimRayCastHit);
         Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * MaxAimDistance, Color.blue);
 
@@ -46,9 +56,11 @@ public class PlayerInputController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(aimRayCastHit.collider != null) { 
+            if (aimRayCastHit.collider != null)
+            {
                 var interactive = aimRayCastHit.collider.gameObject.GetComponent<IInteractable>();
-                if(interactive != null) {
+                if (interactive != null)
+                {
                     //Success Interactive
                     interactive.Interactive();
                     Debug.Log(aimRayCastHit.collider.gameObject.name);
@@ -77,5 +89,10 @@ public class PlayerInputController : MonoBehaviour
         }
     }
 
-
+    public bool OnDamage(DamageInfo damageInfo, Vector3 hitPoint, Vector3 hitNormal)
+    {
+        status.OnDamage(damageInfo.damage);
+        damageEvent?.Invoke();
+        return true;
+    }
 }
