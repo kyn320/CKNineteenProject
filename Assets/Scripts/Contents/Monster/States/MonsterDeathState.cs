@@ -10,6 +10,8 @@ public class MonsterDeathState : MonsterStateBase
         {
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
         }
+
+        enterEvent?.Invoke();
     }
 
     public override void Exit()

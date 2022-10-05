@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class MonsterStateBase : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public abstract class MonsterStateBase : MonoBehaviour
     protected List<AnimatorTriggerData> enterAnimatorTriggerList;
     [SerializeField]
     protected List<AnimatorTriggerData> exitAnimatorTriggerList;
+
+    public UnityEvent enterEvent;
+    public UnityEvent exitEvent;
 
     protected virtual void Awake()
     {

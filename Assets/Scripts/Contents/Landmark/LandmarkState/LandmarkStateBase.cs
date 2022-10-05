@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Landmark
 {
@@ -9,6 +10,9 @@ namespace Landmark
         protected LandmarkController controller;
         [SerializeField]
         protected LandmarkStateType stateType;
+
+        public UnityEvent enterEvent;
+        public UnityEvent exitEvent;
 
         protected virtual void Awake()
         {

@@ -44,11 +44,13 @@ public class MonsterAttackState : MonsterStateBase
         var pattern = patternGroup.AttackPattern;
 
         pattern.StartAttack(target);
+
+        enterEvent?.Invoke();
     }
 
     public override void Exit()
     {
-
+        exitEvent?.Invoke();
     }
 
     public override void Update()

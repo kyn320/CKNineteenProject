@@ -1401,6 +1401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2c12a5800b6004098fbfdacd4f93bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  status: {fileID: 0}
   mainCamera: {fileID: 3827645978078450283}
   allowInput: 1
   moveInputEvent:
@@ -1433,6 +1434,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  mouseMoveEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CameraMoveController, Assembly-CSharp
+        m_MethodName: CameraMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   interactiveInputEvnet:
     m_PersistentCalls:
       m_Calls: []
@@ -1451,6 +1467,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  damageEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3827645977972770103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1467,6 +1486,7 @@ MonoBehaviour:
   mainCamera: {fileID: 3827645978078450283}
   cameraAnchor: {fileID: 3827645979037440189}
   playerModel: {fileID: 3827645978500746636}
+  moveVector: {x: 0, y: 0, z: 0}
   moveSpeed: 10
   gravity: 9.81
   moveType: 0
@@ -2848,7 +2868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3827645979037440190
 Transform:
   m_ObjectHideFlags: 0
@@ -2878,6 +2898,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7ac32630907964f8ce4b116426993a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  targetOffset: {x: 0, y: 0, z: 0}
   mainCamera: {fileID: 3827645978078450283}
   cameraAnchor: {fileID: 3827645979037440189}
   directionObject: {fileID: 3827645977924609196}
@@ -2887,7 +2909,23 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   isZoom: 0
   cameraAngle: 80
+  dampingSpeed: 10
   playerObjectForwardVector: {x: 0, y: 0, z: 0}
+  updateForwardVector:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3827645977972770103}
+        m_TargetAssemblyTypeName: PlayerMoveController, Assembly-CSharp
+        m_MethodName: UpdateForwardView
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3827645979051720506
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,11 +40,13 @@ public class MonsterChaseState : MonsterStateBase
 
         RefreshPathTime();
         navAgent.SetDestination(controller.GetTarget().position);
+
+        enterEvent?.Invoke();
     }
 
     public override void Exit()
     {
-
+        exitEvent?.Invoke();
     }
 
     public override void Update()

@@ -9,7 +9,7 @@ public class MonsterHitState : MonsterStateBase
     protected override void Awake()
     {
         base.Awake();
-        rigid = GetComponent<Rigidbody>();  
+        rigid = GetComponent<Rigidbody>();
     }
 
     // 넉백 효과 적용
@@ -17,11 +17,13 @@ public class MonsterHitState : MonsterStateBase
     {
         rigid.velocity = new Vector3(transform.localPosition.x - 1, transform.localPosition.y, transform.localPosition.z - 1);
         controller.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
+
+        enterEvent?.Invoke();
     }
 
     public override void Exit()
     {
-
+        exitEvent?.Invoke();
     }
 
     public override void Update()
