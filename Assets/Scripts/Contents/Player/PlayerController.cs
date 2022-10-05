@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public bool allowInput = true;
 
+    [ReadOnly]
+    [ShowInInspector]
     private Vector3 inputVector;
     public UnityEvent<Vector3> moveInputEvent;
 
@@ -83,8 +85,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         else
         {
             //플레이어 입력값
-            inputVector.x = Input.GetAxis("Vertical");
-            inputVector.z = Input.GetAxis("Horizontal");
+            inputVector.x = Input.GetAxis("Horizontal");
+            inputVector.z = Input.GetAxis("Vertical");
             moveInputEvent?.Invoke(inputVector);
         }
     }

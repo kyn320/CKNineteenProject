@@ -18,6 +18,9 @@ public class CameraMoveController : MonoBehaviour
     private GameObject directionObject;
 
     public Vector3[] cameraVector;
+
+
+
     public bool isZoom;
     public float cameraAngle = 80;
 
@@ -101,6 +104,18 @@ public class CameraMoveController : MonoBehaviour
         {
             isZoom = false;
             mainCamera.transform.localPosition = cameraVector[0];
+        }
+    }
+
+    public void SetBackMoveCamera(bool isBack)
+    {
+        if (isBack)
+        {
+
+        }
+        else
+        {
+
         }
     }
 }

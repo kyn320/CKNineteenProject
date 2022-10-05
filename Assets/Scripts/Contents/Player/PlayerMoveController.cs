@@ -16,9 +16,12 @@ public class PlayerMoveController : MonoBehaviour
     private bool allowMove = true;
     private Vector3 inputVector;
     [SerializeField]
+    private Vector3 viewNoramlVector;
+    [SerializeField]
     private Vector3 moveVector;
 
     public float moveSpeed = 1f;
+    public float backMoveSpeed = 0.5f;
     public float gravity = 9.81f;
 
     //무기에 따라서 달라지는 플레이어 움직임 타입 (type이 0이라면 움직이는것이 가능합니다.)
@@ -52,6 +55,9 @@ public class PlayerMoveController : MonoBehaviour
 
         characterController.Move(moveVector * Time.deltaTime);
 
+        animator.SetFloat("MoveX", inputVector.x);
+        animator.SetFloat("MoveZ", inputVector.z);
+
         if (moveVector.y <= 0)
         {
             animator.SetBool("IsGrounded", characterController.isGrounded);
@@ -68,7 +74,8 @@ public class PlayerMoveController : MonoBehaviour
         this.inputVector = inputVector;
     }
 
-    public void UpdateForwardView(Vector3 forwardView) {
+    public void UpdateForwardView(Vector3 forwardView)
+    {
         forwardView.y = 0;
         transform.forward = forwardView;
     }
@@ -82,15 +89,15 @@ public class PlayerMoveController : MonoBehaviour
         Vector3 rightVector = new Vector3(cameraAnchor.transform.right.x, 0f, cameraAnchor.transform.right.z);
 
         //움직일 방향
-        Vector3 viewVector = forwardVector * inputVector.x + rightVector * inputVector.z;
+        Vector3 viewVector = forwardVector * Mathf.Abs(inputVector.z) + rightVector * inputVector.x;
 
         if (Mathf.Abs(inputVector.x) > 0f || Mathf.Abs(inputVector.z) > 0f)
         {
-            animator.SetInteger("Move", 1);
+            animator.SetInteger("MoveSpeed", 1);
         }
         else
         {
-            animator.SetInteger("Move", 0);
+            animator.SetInteger("MoveSpeed", 0);
         }
 
         //땅 밟았을 경우에만 이동 가능 / 안 밟았을 경우 움직이긴 하되 매우 미미하다.
@@ -99,11 +106,22 @@ public class PlayerMoveController : MonoBehaviour
             moveSpeed = status.StausDic[StatusType.MoveSpeed].GetAmount();
 
             if (inputVector.x != 0 || inputVector.z != 0)
+            {
                 playerModel.transform.forward = viewVector;
+            }
 
-            var viewNoramlVector = viewVector.normalized;
-            moveVector.x = viewNoramlVector.x * moveSpeed;
-            moveVector.z = viewNoramlVector.z * moveSpeed;
+            viewNoramlVector = viewVector.normalized;
+
+            if (inputVector.z < 0f)
+            {
+                moveVector.x = viewNoramlVector.x * -backMoveSpeed;
+                moveVector.z = viewNoramlVector.z * -backMoveSpeed;
+            }
+            else
+            {
+                moveVector.x = viewNoramlVector.x * moveSpeed;
+                moveVector.z = viewNoramlVector.z * moveSpeed;
+            }
         }
     }
 

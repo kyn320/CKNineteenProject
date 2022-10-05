@@ -610,7 +610,7 @@ MonoBehaviour:
   cameraVector:
   - {x: 1, y: 0, z: -2.5}
   - {x: 1, y: 0.25, z: -1}
-  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: -1.5}
   isZoom: 0
   cameraAngle: 80
   dampingSpeed: 10
@@ -4007,6 +4007,11 @@ PrefabInstance:
       propertyPath: spiritObject
       value: 
       objectReference: {fileID: 1281426005}
+    - target: {fileID: 3827645977972770103, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: backMoveSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3827645977972770106, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: m_RootOrder
@@ -4062,81 +4067,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3827645979037440189, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3827645979037440191, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3827645979037440191, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3827645979037440191, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1294546394}
-    - target: {fileID: 3827645979037440191, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3827645979037440191, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateForwardView
-      objectReference: {fileID: 0}
-    - target: {fileID: 3827645979037440191, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerMoveController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3827645979037440191, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: mouseMoveEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: mouseMoveEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: mouseMoveEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 466735737}
-    - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: mouseMoveEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: mouseMoveEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CameraMove
-      objectReference: {fileID: 0}
-    - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: mouseMoveEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CameraMoveController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: mouseMoveEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
 --- !u!1001 &4868864439659111466
