@@ -8,11 +8,6 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
     [SerializeField]
     private float attackDistance = 0f;
 
-    [SerializeField]
-    private StatusCalculator damageCalculator;
-    [SerializeField]
-    private StatusCalculator criticalDamageCalculator;
-
     private NavMeshAgent navAgent;
 
     protected override void Awake()

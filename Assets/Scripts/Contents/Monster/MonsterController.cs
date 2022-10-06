@@ -26,7 +26,7 @@ public class MonsterController : MonoBehaviour, IDamageable
     [SerializeField]
     private Animator animator;
 
-    public UnityEvent damageEvent;
+    public UnityEvent<DamageInfo> damageEvent;
 
     private void Awake()
     {
@@ -98,9 +98,22 @@ public class MonsterController : MonoBehaviour, IDamageable
     public virtual bool OnDamage(DamageInfo damageInfo)
     {
         Debug.Log($"{gameObject.name} :: Damage = {damageInfo.damage}");
-        status.OnDamage(damageInfo.damage);
-        ChangeState(MonsterStateType.MONSTERSTATE_HIT);
-
-        return false;
+        var isDeath = status.OnDamage(damageInfo.damage);
+        if (isDeath)
+        {
+            ChangeState(MonsterStateType.MONSTERSTATE_DEATH);
+        }
+        else
+        {
+            if(damageInfo.isCritical)
+            {
+                ChangeState(MonsterStateType.MONSTERSTATE_CRITICALHIT);
+            }
+            else {
+                ChangeState(MonsterStateType.MONSTERSTATE_HIT);
+            }
+        }
+        damageEvent?.Invoke(damageInfo);
+        return isDeath;
     }
 }
