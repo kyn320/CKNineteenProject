@@ -259,31 +259,6 @@ PrefabInstance:
       objectReference: {fileID: 1294546393}
     - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
         type: 3}
-      propertyPath: cameraVector.Array.data[2].x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: cameraVector.Array.data[2].z
-      value: -1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
       propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1294546400}
@@ -292,41 +267,6 @@ PrefabInstance:
       propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1294546399}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateForwardView
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateForwardView
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerIdleState, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: PlayerMoveState, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7970744291048967397, guid: 0e8fcbe29b888db42b4c6e8e459451db,
         type: 3}
       propertyPath: m_RootOrder
@@ -1827,11 +1767,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 533067233303176848, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
         type: 3}
-    - target: {fileID: 4703875881879617307, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5101803549609384164, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
         type: 3}
       propertyPath: m_RootOrder
@@ -1892,18 +1827,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallMonster
       objectReference: {fileID: 0}
-    - target: {fileID: 8692637212155343993, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
-        type: 3}
-      propertyPath: damageCalculator
-      value: 
-      objectReference: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963,
-        type: 2}
-    - target: {fileID: 8692637212155343993, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
-        type: 3}
-      propertyPath: criticalDamageCalculator
-      value: 
-      objectReference: {fileID: 11400000, guid: abf026fdca9ff9646b383fc39cfc0800,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cc246526e42bb44cb7e3596bc6cbdaf, type: 3}
 --- !u!1 &1098228832
