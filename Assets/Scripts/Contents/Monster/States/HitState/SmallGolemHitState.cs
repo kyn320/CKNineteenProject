@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SmallGolemHitState : MonsterHitState
 {
-
     public override void DamageHit(DamageInfo damageInfo)
     {
         if(!isStay)
