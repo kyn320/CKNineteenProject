@@ -43,7 +43,10 @@ public class ProjectileController : MonoBehaviour
         if (damageable != null)
         {
             var contact = collision.contacts[0];
-            damageable.OnDamage(damageInfo, contact.point, contact.normal);
+            damageInfo.hitPoint = contact.point;
+            damageInfo.hitNormal = contact.normal;
+
+            damageable.OnDamage(damageInfo);
         }
 
         gameObject.SetActive(false);

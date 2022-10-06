@@ -19,9 +19,8 @@ public class CameraMoveController : MonoBehaviour
 
     public Vector3[] cameraVector;
 
-
-
     public bool isZoom;
+    public bool isBack;
     public float cameraAngle = 80;
 
     public float dampingSpeed = 10f;
@@ -98,24 +97,30 @@ public class CameraMoveController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             isZoom = true;
-            mainCamera.transform.localPosition = cameraVector[1];
         }
         else if (Input.GetKeyUp(KeyCode.R))
         {
             isZoom = false;
+        }
+
+        UpdateCameraPosition();
+    }
+
+    private void UpdateCameraPosition() {
+        if (isZoom) {
+            mainCamera.transform.localPosition = cameraVector[1];
+        }
+        else if (isBack) {
+            mainCamera.transform.localPosition = cameraVector[2];
+        }
+        else
+        {
             mainCamera.transform.localPosition = cameraVector[0];
         }
     }
 
     public void SetBackMoveCamera(bool isBack)
     {
-        if (isBack)
-        {
-
-        }
-        else
-        {
-
-        }
+        this.isBack = isBack;   
     }
 }

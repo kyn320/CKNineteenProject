@@ -283,7 +283,7 @@ MonoBehaviour:
   triggerEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3827645977972770103}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMoveController, Assembly-CSharp
         m_MethodName: EnterGround
         m_Mode: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   triggerExitEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3827645977972770103}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMoveController, Assembly-CSharp
         m_MethodName: ExitGround
         m_Mode: 0
@@ -1278,8 +1278,15 @@ GameObject:
   - component: {fileID: 327168962232424904}
   - component: {fileID: 3827645977972770101}
   - component: {fileID: 6507632351326195042}
-  - component: {fileID: 3827645977972770103}
-  - component: {fileID: 3827645977972770102}
+  - component: {fileID: 4134729834005925682}
+  - component: {fileID: 1294546400}
+  - component: {fileID: 1294546399}
+  - component: {fileID: 1294546402}
+  - component: {fileID: 1294546401}
+  - component: {fileID: 1294546403}
+  - component: {fileID: 1294546405}
+  - component: {fileID: 1294546406}
+  - component: {fileID: 1294546404}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1369,14 +1376,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2c12a5800b6004098fbfdacd4f93bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 0}
+  battleStateType: 0
+  currentStateType: 0
+  allowParllexStateTypeList: 04000000
+  statesDic:
+    keys: 
+    values: []
+  animator: {fileID: 3827645978500746638}
+  damageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &4134729834005925682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645977972770100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02ba2ccb4b88df4fb6a9aff552fb4f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   allowInput: 1
   moveInputEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3827645977972770103}
-        m_TargetAssemblyTypeName: PlayerMoveController, Assembly-CSharp
+      - m_Target: {fileID: 1294546400}
+        m_TargetAssemblyTypeName: PlayerIdleState, Assembly-CSharp
+        m_MethodName: UpdateMoveInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1294546399}
+        m_TargetAssemblyTypeName: PlayerMoveState, Assembly-CSharp
         m_MethodName: UpdateInputVector
         m_Mode: 0
         m_Arguments:
@@ -1390,8 +1430,8 @@ MonoBehaviour:
   jumpInputEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3827645977972770103}
-        m_TargetAssemblyTypeName: PlayerMoveController, Assembly-CSharp
+      - m_Target: {fileID: 6507632351326195042}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 1
         m_Arguments:
@@ -1423,8 +1463,8 @@ MonoBehaviour:
   attackinputEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3827645977972770102}
-        m_TargetAssemblyTypeName: PlayerAttackController, Assembly-CSharp
+      - m_Target: {fileID: 1294546403}
+        m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
         m_MethodName: StartAttack
         m_Mode: 0
         m_Arguments:
@@ -1435,10 +1475,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  damageEvent:
+--- !u!114 &1294546400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645977972770100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2483f3340547414ab3226bb6e47eaeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateType: 0
+  enterAnimatorTriggerList: []
+  exitAnimatorTriggerList: []
+  enterEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3827645977972770103
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1294546399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1447,20 +1505,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 3827645977972770100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c9d802b9cedff641be2d17f617e3ba0, type: 3}
+  m_Script: {fileID: 11500000, guid: e774682542991764fbd0c205536bad4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 11400000, guid: 69c3da707944549488e1d7454e81f8a9, type: 2}
-  mainCamera: {fileID: 0}
-  cameraAnchor: {fileID: 0}
+  stateType: 1
+  enterAnimatorTriggerList: []
+  exitAnimatorTriggerList: []
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
   playerModel: {fileID: 3827645978500746636}
-  viewNoramlVector: {x: 0, y: 0, z: 0}
-  moveVector: {x: 0, y: 0, z: 0}
-  moveSpeed: 10
-  backMoveSpeed: 0.5
+  backMoveSpeedMutiplyer: 0.7
   gravity: 9.81
-  moveType: 0
---- !u!114 &3827645977972770102
+  allowMove: 1
+  cameraMoveController: {fileID: 0}
+--- !u!114 &1294546402
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1469,19 +1531,157 @@ MonoBehaviour:
   m_GameObject: {fileID: 3827645977972770100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fae9e3f530e89eb438d629baf39ea2f0, type: 3}
+  m_Script: {fileID: 11500000, guid: b30e0fa5dc1348441bd939ceddccb83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraAnchor: {fileID: 0}
-  mainCamera: {fileID: 0}
+  stateType: 2
+  enterAnimatorTriggerList: []
+  exitAnimatorTriggerList: []
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1294546401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645977972770100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd46aa9cff01ea64282be24bc993e6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateType: 3
+  enterAnimatorTriggerList: []
+  exitAnimatorTriggerList: []
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  gravity: 9.81
+--- !u!114 &1294546403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645977972770100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd28f69a463fca34db55b47a9ce2c021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateType: 4
+  enterAnimatorTriggerList: []
+  exitAnimatorTriggerList: []
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
   playerModel: {fileID: 3827645978500746636}
   spiritObject: {fileID: 0}
-  isAttack: 0
-  currentWeaponIndex: 0
-  equipSlotDatas: []
-  projectileDirection: {x: 0, y: 0, z: 0}
-  aimPoint: {x: 0, y: 0, z: 0}
   handBone: {fileID: 3827645979109079498}
+--- !u!114 &1294546405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645977972770100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2502b9c47403ae846a99998fb3d96877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateType: 5
+  enterAnimatorTriggerList:
+  - triggerType: 2
+    parameterName: HitType
+    valueInt: 1
+    valueFloat: 0
+    valueBool: 0
+  - triggerType: 4
+    parameterName: Hit
+    valueInt: 0
+    valueFloat: 0
+    valueBool: 0
+  exitAnimatorTriggerList:
+  - triggerType: 2
+    parameterName: HitType
+    valueInt: 0
+    valueFloat: 0
+    valueBool: 0
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1294546406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645977972770100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6a0a8cee812ea4d83a5cb283e14b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateType: 6
+  enterAnimatorTriggerList:
+  - triggerType: 2
+    parameterName: HitType
+    valueInt: 2
+    valueFloat: 0
+    valueBool: 0
+  - triggerType: 4
+    parameterName: Hit
+    valueInt: 0
+    valueFloat: 0
+    valueBool: 0
+  exitAnimatorTriggerList:
+  - triggerType: 2
+    parameterName: HitType
+    valueInt: 0
+    valueFloat: 0
+    valueBool: 0
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1294546404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645977972770100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117d227c6705a6643a209bbdeebb6114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateType: 7
+  enterAnimatorTriggerList: []
+  exitAnimatorTriggerList: []
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3827645977980244061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,11 +2039,12 @@ MonoBehaviour:
     - SpawnWeapon
     - Shot
     - EndAttack
+    - EndHit
     values:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3827645977972770102}
-          m_TargetAssemblyTypeName: PlayerAttackController, Assembly-CSharp
+        - m_Target: {fileID: 1294546403}
+          m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
           m_MethodName: SpawnWeapon
           m_Mode: 1
           m_Arguments:
@@ -1856,8 +2057,8 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3827645977972770102}
-          m_TargetAssemblyTypeName: PlayerAttackController, Assembly-CSharp
+        - m_Target: {fileID: 1294546403}
+          m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
           m_MethodName: Shot
           m_Mode: 1
           m_Arguments:
@@ -1870,9 +2071,35 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3827645977972770102}
-          m_TargetAssemblyTypeName: PlayerAttackController, Assembly-CSharp
+        - m_Target: {fileID: 1294546403}
+          m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
           m_MethodName: EndAttack
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1294546405}
+          m_TargetAssemblyTypeName: PlayerHitState, Assembly-CSharp
+          m_MethodName: EndHit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1294546406}
+          m_TargetAssemblyTypeName: PlayerCriticalHitState, Assembly-CSharp
+          m_MethodName: EndHit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

@@ -8,6 +8,11 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
     [SerializeField]
     private float attackDistance = 0f;
 
+    [SerializeField]
+    private StatusCalculator damageCalculator;
+    [SerializeField]
+    private StatusCalculator criticalDamageCalculator;
+
     private NavMeshAgent navAgent;
 
     protected override void Awake()
@@ -76,6 +81,34 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
     private void OnCollisionEnter(Collision collision)
     {
         if (isAttacked)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                var damageable = collision.gameObject.GetComponent<IDamageable>();
+
+                var isCritical = controller.GetStatus().GetCriticalSuccess();
+                var damageAmount = 0f;
+
+                if (isCritical)
+                {
+                    damageAmount = damageCalculator.Calculate(controller.GetStatus().currentStatus);
+                }
+                else
+                {
+                    damageAmount = criticalDamageCalculator.Calculate(controller.GetStatus().currentStatus);
+                }
+
+                damageable?.OnDamage(new DamageInfo()
+                {
+                    damage = damageAmount,
+                    isCritical = isCritical,
+                    isKnockBack = true,
+                    hitPoint = collision.contacts[0].point,
+                    hitNormal = collision.contacts[0].normal
+                });
+
+            }
             EndAttack();
+        }
     }
 }
