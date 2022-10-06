@@ -20,6 +20,11 @@ public abstract class MonsterAttackPattern : MonoBehaviour
     [SerializeField]
     protected bool isAttacked = false;
 
+    [SerializeField]
+    protected StatusCalculator damageCalculator;
+    [SerializeField]
+    protected StatusCalculator criticalDamageCalculator;
+
     public UnityEvent startAttackEvent;
     public UnityEvent endAttackEvent;
 

@@ -11,6 +11,8 @@ public enum UIAnimationType {
     Scale,
     Color,
     Alpha,
+    ShakePosition,
+    ShakeRotation,
 }
 
 [CreateAssetMenu(fileName = "UIAnimationData", menuName = "UI/AnimationData", order = 0)]
@@ -59,6 +61,18 @@ public class UIAnimationData : ScriptableObject
     [SerializeField]
     private Color destinationColor;
     public Color DestinationColor { get { return destinationColor; } }
+
+    [SerializeField]
+    private float strength;
+    public float Strength { get { return strength; } }
+
+    [SerializeField]
+    private int vibrato;
+    public int Vibrato { get { return vibrato; } }
+
+    [SerializeField]
+    private float randomness;
+    public float Randomness { get { return randomness; } }
 
     [SerializeField]
     private bool isRelative;

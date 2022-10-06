@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66d0af70ae514764381c64edaaf23e1d, type: 3}
-  m_Name: UIAnimationData
+  m_Name: UIComboShakeAnimation
   m_EditorClassIdentifier: 
-  animationName: 
-  duration: 0
+  animationName: ComboTextShake
+  duration: 0.15
   delay: 0
-  animationType: 0
-  easeType: 0
+  animationType: 1
+  easeType: 22
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -41,9 +41,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  loopCount: 0
-  loopType: 0
+  loopCount: 2
+  loopType: 1
   destinationFloat: 0
-  destinationVector: {x: 0, y: 0, z: 0}
+  destinationVector: {x: 0, y: 30, z: 0}
   destinationColor: {r: 0, g: 0, b: 0, a: 0}
-  isRelative: 0
+  strength: 0
+  vibrato: 0
+  randomness: 0
+  isRelative: 1

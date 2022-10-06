@@ -21,7 +21,6 @@ public class ObjectTweenAnimator : MonoBehaviour
     public List<ObjectTweenAnimationData> animationList;
 
     private List<Tween> playTweenList = new List<Tween>();
-    private Coroutine animationCoroutine;
 
     public StopActionType stopActionType;
 
@@ -51,14 +50,17 @@ public class ObjectTweenAnimator : MonoBehaviour
 
     public virtual void PlayAnimation(List<ObjectTweenAnimationData> animations, UnityAction completeEvent = null)
     {
+        if (playTweenList.Count > 0)
+        {
+            Stop();
+        }
+
         if (resetOriginTransformByStop)
         {
             originPosition = transform.position;
             originRotation = transform.localRotation;
             originScale = transform.localScale;
         }
-
-        playTweenList.Clear();
 
         if (autoActiveByPlay)
             gameObject.SetActive(true);
@@ -78,11 +80,11 @@ public class ObjectTweenAnimator : MonoBehaviour
                 case ObjectTweenAnimationType.Scale:
                     tween = transform.DOScale(animationData.DestinationVector, animationData.Duration);
                     break;
-                case ObjectTweenAnimationType.CameraShakePosition:
-                    tween = Camera.main.DOShakePosition(animationData.Duration, animationData.Strength, animationData.Vibrato, animationData.Randomness);
+                case ObjectTweenAnimationType.ShakePosition:
+                    tween = transform.DOShakePosition(animationData.Duration, animationData.Strength, animationData.Vibrato, animationData.Randomness);
                     break;
-                case ObjectTweenAnimationType.CameraShakeRotation:
-                    tween = Camera.main.DOShakeRotation(animationData.Duration, animationData.Strength, animationData.Vibrato, animationData.Randomness);
+                case ObjectTweenAnimationType.ShakeRotation:
+                    tween = transform.DOShakeRotation(animationData.Duration, animationData.Strength, animationData.Vibrato, animationData.Randomness);
                     break;
                 case ObjectTweenAnimationType.CameraFov:
                     tween = Camera.main.DOFieldOfView(animationData.DestinationFloat, animationData.Duration);
@@ -97,17 +99,18 @@ public class ObjectTweenAnimator : MonoBehaviour
             playTweenList.Add(tween);
             tween.SetDelay(animationData.Delay);
             tween.SetEase(animationData.EaseType);
-            tween.OnComplete(() => { playTweenList.Remove(tween); });
+            tween.OnComplete(() =>
+            {
+                playTweenList.Remove(tween);
+                if (playTweenList.Count <= 0)
+                {
+                    completeEvent?.Invoke();
+                    AutoHide();
+                }
+            });
             tween.SetRelative(animationData.IsRelative);
             tween.Play();
         }
-
-        if (animationCoroutine != null)
-        {
-            StopCoroutine(animationCoroutine);
-        }
-
-        animationCoroutine = StartCoroutine(CoWaitCompleteAnimation(completeEvent));
     }
 
     public void Stop()
@@ -130,18 +133,6 @@ public class ObjectTweenAnimator : MonoBehaviour
         transform.position = originPosition;
         transform.localRotation = originRotation;
         transform.localScale = originScale;
-    }
-
-    private IEnumerator CoWaitCompleteAnimation(UnityAction completeEvent)
-    {
-        while (playTweenList.Count > 0)
-        {
-            yield return null;
-        }
-
-        completeEvent?.Invoke();
-        AutoHide();
-        animationCoroutine = null;
     }
 
     public void AutoHide()

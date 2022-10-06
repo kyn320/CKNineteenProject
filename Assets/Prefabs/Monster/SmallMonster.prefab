@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 8692637212155343993}
   - component: {fileID: 5413399869023604584}
   - component: {fileID: 177108442034520367}
+  - component: {fileID: 1786684583}
   m_Layer: 0
   m_Name: SmallMonster
   m_TagString: Untagged
@@ -182,7 +183,31 @@ MonoBehaviour:
   animator: {fileID: 8116190715543337243}
   damageEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 177108442034520367}
+        m_TargetAssemblyTypeName: SmallGolemHitState, Assembly-CSharp
+        m_MethodName: DamageHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1786684583}
+        m_TargetAssemblyTypeName: SmallGolemCriticalHitState, Assembly-CSharp
+        m_MethodName: DamageHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4703875881879617301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c0251097c3bfb04f9af3181f5dd0c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateType: 4
+  stateType: 5
   enterAnimatorTriggerList: []
   exitAnimatorTriggerList: []
   enterEvent:
@@ -320,6 +345,9 @@ MonoBehaviour:
     valueFloat: 0
     valueBool: 0
   isAttacked: 0
+  damageCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
+  criticalDamageCalculator: {fileID: 11400000, guid: abf026fdca9ff9646b383fc39cfc0800,
+    type: 2}
   startAttackEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -327,9 +355,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   attackDistance: 20
-  damageCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
-  criticalDamageCalculator: {fileID: 11400000, guid: abf026fdca9ff9646b383fc39cfc0800,
-    type: 2}
 --- !u!114 &5413399869023604584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +418,36 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
+  knockBackVector: {x: 0, y: 1, z: -1}
+  vfxPrefabData: {fileID: 11400000, guid: 9802a65df7d6df84f911e2c9cb65db2a, type: 2}
+--- !u!114 &1786684583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586416136825274974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f1c8f2a36999c40bee8b079c0199a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateType: 4
+  enterAnimatorTriggerList:
+  - triggerType: 4
+    parameterName: Hit
+    valueInt: 0
+    valueFloat: 0
+    valueBool: 0
+  exitAnimatorTriggerList: []
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  knockBackVector: {x: 0, y: 1, z: -1}
+  vfxPrefabData: {fileID: 11400000, guid: 9802a65df7d6df84f911e2c9cb65db2a, type: 2}
 --- !u!1001 &2434219640386749578
 PrefabInstance:
   m_ObjectHideFlags: 0

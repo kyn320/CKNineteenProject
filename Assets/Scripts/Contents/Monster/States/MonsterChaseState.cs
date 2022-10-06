@@ -30,6 +30,14 @@ public class MonsterChaseState : MonsterStateBase
 
     public override void Enter()
     {
+        var target = controller.GetTarget();
+
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+            controller.SetTarget(target);
+        }
+
         for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
         {
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());

@@ -11,8 +11,8 @@ public enum ObjectTweenAnimationType
     Rotate,
     Scale,
     Color,
-    CameraShakePosition,
-    CameraShakeRotation,
+    ShakePosition,
+    ShakeRotation,
     CameraFov,
 }
 

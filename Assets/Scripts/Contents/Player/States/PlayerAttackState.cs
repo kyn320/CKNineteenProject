@@ -23,7 +23,6 @@ public class PlayerAttackState : PlayerStateBase
     [ShowInInspector]
     private List<ItemSlot> equipSlotDatas = new List<ItemSlot>();
 
-
     private GameObject projectileObject;
     private Vector3 projectileSpawnPoint;
     [ReadOnly]
@@ -36,6 +35,11 @@ public class PlayerAttackState : PlayerStateBase
     private Transform handBone;
 
     private Animator animator;
+
+    [SerializeField]
+    protected StatusCalculator damageCalculator;
+    [SerializeField]
+    protected StatusCalculator criticalDamageCalculator;
 
     protected override void Awake()
     {
@@ -133,12 +137,20 @@ public class PlayerAttackState : PlayerStateBase
 
         var projectileController = projectileObject.GetComponent<ProjectileController>();
 
-        //능력치 계산해서 여기로 넣어주세요.
-        var attackPower = 1;
-        //능력치 계산해서 여기로 넣어주세요.
-        var isCritical = false;
+        var isCritical = controller.GetStatus().GetCriticalSuccess();
+        var damageAmount = 0f;
 
-        projectileController.SetStatus(attackPower, isCritical);
+        if (isCritical)
+        {
+            damageAmount = damageCalculator.Calculate(controller.GetStatus().currentStatus);
+        }
+        else
+        {
+            damageAmount = criticalDamageCalculator.Calculate(controller.GetStatus().currentStatus);
+        }
+
+        projectileController.hitEvnet.AddListener(SuccessHit);
+        projectileController.SetStatus(damageAmount, isCritical);
         projectileController.Shot(handBone.position
             , projectileDirection.normalized
             , weaponData.StatusInfoData.GetElement(StatusType.ThrowSpeed).GetAmount()
@@ -162,8 +174,17 @@ public class PlayerAttackState : PlayerStateBase
         animator.SetInteger("AttackType", 0);
     }
 
+    public void SuccessHit(bool isKill)
+    {
+        ComboSystem.Instance.AddHitCombo(1);
+
+        if (isKill)
+            ComboSystem.Instance.AddKillCombo(1);
+    }
+
     public override void Exit()
     {
+        EndAttack();
         exitEvent?.Invoke();
     }
 }

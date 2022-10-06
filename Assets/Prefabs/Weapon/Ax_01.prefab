@@ -133,7 +133,15 @@ MonoBehaviour:
   moveable: {fileID: 2350194444645077308}
   damageInfo:
     isCritical: 0
+    isKnockBack: 0
     damage: 0
+    hitPoint: {x: 0, y: 0, z: 0}
+    hitNormal: {x: 0, y: 0, z: 0}
+  hitEvnet:
+    m_PersistentCalls:
+      m_Calls: []
+  isMove: 0
+  vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
 --- !u!114 &2350194444645077308
 MonoBehaviour:
   m_ObjectHideFlags: 0

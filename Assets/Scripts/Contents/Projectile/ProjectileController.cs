@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ProjectileController : MonoBehaviour
 {
@@ -10,10 +11,16 @@ public class ProjectileController : MonoBehaviour
     [SerializeField]
     private ProjectileMoveable moveable;
 
-    public DamageInfo damageInfo;
+    [SerializeField]
+    private DamageInfo damageInfo;
+
+    public UnityEvent<bool> hitEvnet;
 
     [SerializeField]
     protected bool isMove = false;
+
+    [SerializeField]
+    protected VFXPrefabData vfxPrefabData;
 
     public void SetStatus(float attackPower, bool isCritical)
     {
@@ -46,7 +53,16 @@ public class ProjectileController : MonoBehaviour
             damageInfo.hitPoint = contact.point;
             damageInfo.hitNormal = contact.normal;
 
-            damageable.OnDamage(damageInfo);
+            var isKill = damageable.OnDamage(damageInfo);
+            if (damageInfo.isCritical)
+            {
+                Instantiate(vfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(vfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
+            }
+            hitEvnet?.Invoke(isKill);
         }
 
         gameObject.SetActive(false);
