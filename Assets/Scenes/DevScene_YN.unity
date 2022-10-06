@@ -4061,6 +4061,72 @@ PrefabInstance:
       objectReference: {fileID: 123838324}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+--- !u!1 &3827645978518966161 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3827645978500746636, guid: 8b1e51a882d72f64aa743313b6184c33,
+    type: 3}
+  m_PrefabInstance: {fileID: 3827645978518966160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3827645978518966162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645978518966161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61ffc90c595409944adec0f2c8a9e5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ikInfoDic:
+    keys: 0300000004000000
+    values:
+    - name: LeftFoot
+      ikTarget: 3
+      weight: 1
+      useTargetTransform: 0
+      targetTransform: {fileID: 3827645978518966164}
+      useRayCast: 1
+      rayStartOffset: {x: 0, y: 1, z: 0}
+      rayDirection: {x: 0, y: -1, z: 0}
+      rayDistance: 1.2
+      rayMask:
+        serializedVersion: 2
+        m_Bits: 1
+      offsetPosition: {x: 0, y: 0.2, z: 0}
+      offsetRotation: {x: 0, y: 0, z: 0, w: 0}
+      usePosition: 1
+      useRotation: 1
+    - name: RightFoot
+      ikTarget: 4
+      weight: 1
+      useTargetTransform: 0
+      targetTransform: {fileID: 3827645978518966163}
+      useRayCast: 1
+      rayStartOffset: {x: 0, y: 1, z: 0}
+      rayDirection: {x: 0, y: -1, z: 0}
+      rayDistance: 1.2
+      rayMask:
+        serializedVersion: 2
+        m_Bits: 1
+      offsetPosition: {x: 0, y: 0.2, z: 0}
+      offsetRotation: {x: 0, y: 0, z: 0, w: 0}
+      usePosition: 1
+      useRotation: 1
+  isActiveIK: 1
+--- !u!4 &3827645978518966163 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3827645977924954259, guid: 8b1e51a882d72f64aa743313b6184c33,
+    type: 3}
+  m_PrefabInstance: {fileID: 3827645978518966160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3827645978518966164 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3827645977328918867, guid: 8b1e51a882d72f64aa743313b6184c33,
+    type: 3}
+  m_PrefabInstance: {fileID: 3827645978518966160}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4868864439659111466
 PrefabInstance:
   m_ObjectHideFlags: 0
