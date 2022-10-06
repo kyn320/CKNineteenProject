@@ -172,14 +172,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616d22bbfd7451449badd711aabd16b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 533067233303176848}
   monsterType: 1
   currentStateType: 0
+  allowParllexStateTypeList: 
   statesDic:
     keys: 
     values: []
   target: {fileID: 0}
   animator: {fileID: 8116190715543337243}
+  damageEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4703875881879617301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +327,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   attackDistance: 20
+  damageCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
+  criticalDamageCalculator: {fileID: 11400000, guid: abf026fdca9ff9646b383fc39cfc0800,
+    type: 2}
 --- !u!114 &5413399869023604584
 MonoBehaviour:
   m_ObjectHideFlags: 0

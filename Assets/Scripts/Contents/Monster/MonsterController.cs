@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
+using Sirenix.OdinInspector;
 
 public class MonsterController : MonoBehaviour, IDamageable
 {
-    [SerializeField]
-    UnitStatus status;
+    private UnitStatus status;
 
     [SerializeField]
     private MonsterType monsterType;
     [SerializeField]
     private MonsterStateType currentStateType;
+    [SerializeField]
+    public List<MonsterStateType> allowParllexStateTypeList;
 
     [SerializeField]
     private SerializableDictionary<MonsterStateType, MonsterStateBase> statesDic
@@ -22,6 +25,13 @@ public class MonsterController : MonoBehaviour, IDamageable
 
     [SerializeField]
     private Animator animator;
+
+    public UnityEvent damageEvent;
+
+    private void Awake()
+    {
+        status = GetComponent<UnitStatus>();
+    }
 
     private void Start()
     {
@@ -50,7 +60,7 @@ public class MonsterController : MonoBehaviour, IDamageable
         foreach (var key in statesDic.Keys)
         {
 
-            if (key == MonsterStateType.MONSTERSTATE_HIT)
+            if (allowParllexStateTypeList.Contains(key))
                 continue;
 
             statesDic[key].enabled = false;
@@ -85,10 +95,11 @@ public class MonsterController : MonoBehaviour, IDamageable
         gameObject.SetActive(false);
     }
 
-    public bool OnDamage(DamageInfo damageInfo, Vector3 hitPoint, Vector3 hitNormal)
+    public virtual bool OnDamage(DamageInfo damageInfo)
     {
         Debug.Log($"{gameObject.name} :: Damage = {damageInfo.damage}");
         status.OnDamage(damageInfo.damage);
+        ChangeState(MonsterStateType.MONSTERSTATE_HIT);
 
         return false;
     }

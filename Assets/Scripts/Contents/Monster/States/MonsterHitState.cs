@@ -20,6 +20,10 @@ public class MonsterHitState : MonsterStateBase
     public override void Enter()
     {
         navAgent.enabled = false;
+        for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
+        {
+            enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
+        }
         enterEvent?.Invoke();
     }
 

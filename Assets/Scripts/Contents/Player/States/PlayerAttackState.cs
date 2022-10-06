@@ -1,75 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
-public class PlayerAttackController : MonoBehaviour
+public class PlayerAttackState : PlayerStateBase
 {
-
-    //오브젝트 할당
-    [SerializeField]
-    private GameObject cameraAnchor;
-    [SerializeField]
-    private GameObject mainCamera;
     [SerializeField]
     private GameObject playerModel;
+
     [SerializeField]
     private GameObject spiritObject;
-
-    public bool isAttack = false;
-
-    public int currentWeaponIndex = 0;
-    public List<ItemSlot> equipSlotDatas;
-
-    private Animator animator;
-
-    private PlayerMoveController playerMoveController;
     private SpiritMoveController spiritMoveController;
+
+    [ReadOnly]
+    [ShowInInspector]
+    private bool isAttack = false;
+
+    [ReadOnly]
+    [ShowInInspector]
+    private int currentWeaponIndex = 0;
+    [ReadOnly]
+    [ShowInInspector]
+    private List<ItemSlot> equipSlotDatas = new List<ItemSlot>();
+
 
     private GameObject projectileObject;
     private Vector3 projectileSpawnPoint;
-    [SerializeField]
+    [ReadOnly]
+    [ShowInInspector]
     private Vector3 projectileDirection;
-    [SerializeField]
+    [ReadOnly]
+    [ShowInInspector]
     private Vector3 aimPoint;
     [SerializeField]
     private Transform handBone;
 
-    private void Awake()
+    private Animator animator;
+
+    protected override void Awake()
     {
-        animator = playerModel.GetComponent<Animator>();
-        playerMoveController = gameObject.GetComponent<PlayerMoveController>();
+        base.Awake();
         spiritMoveController = spiritObject.GetComponent<SpiritMoveController>();
     }
 
     private void Start()
     {
+        animator = controller.GetAnimator();
         EquipmentSystem.Instance.updateAttackOrderList.AddListener(UpdateEquipList);
     }
 
-    void Update()
+    public override void Enter()
     {
-        if (playerMoveController.moveType != 0)
+        for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
         {
-            playerModel.transform.forward = cameraAnchor.transform.forward * 0.001f;
+            enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
         }
+
+        enterEvent?.Invoke();
     }
 
-    public void UpdateEquipList(List<ItemSlot> equipItems)
-    {
-        equipSlotDatas = equipItems;
-    }
-
-    bool CheckAttackPossible()
+    public bool CheckAttackPossible()
     {
         if (!isAttack
         && equipSlotDatas.Count > 0
-        && playerMoveController.moveType == 0
-        && playerMoveController.GetIsGround())
+        && (controller.GetState() == PlayerStateType.Idle || controller.GetState() == PlayerStateType.Move))
         {
             return true;
         }
 
         return false;
+    }
+    public void UpdateEquipList(List<ItemSlot> equipItems)
+    {
+        equipSlotDatas = equipItems;
+    }
+
+    public override void Update()
+    {
+        return;
     }
 
     public void StartAttack(Vector3 aimPoint)
@@ -80,8 +88,6 @@ public class PlayerAttackController : MonoBehaviour
         this.aimPoint = aimPoint;
 
         isAttack = true;
-
-        playerMoveController.ChangeMoveType(1);
 
         var weaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
 
@@ -123,7 +129,7 @@ public class PlayerAttackController : MonoBehaviour
         spiritMoveController.isMoveable = true;
 
         //방향 계산
-        projectileDirection = aimPoint -  handBone.transform.position;
+        projectileDirection = aimPoint - handBone.transform.position;
 
         var projectileController = projectileObject.GetComponent<ProjectileController>();
 
@@ -154,8 +160,10 @@ public class PlayerAttackController : MonoBehaviour
         animator.speed = 1f;
 
         animator.SetInteger("AttackType", 0);
-
-        playerMoveController.ChangeMoveType(0);
     }
 
+    public override void Exit()
+    {
+        exitEvent?.Invoke();
+    }
 }

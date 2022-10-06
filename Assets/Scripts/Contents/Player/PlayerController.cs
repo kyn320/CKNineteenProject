@@ -6,95 +6,136 @@ using Sirenix.OdinInspector;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
-    [SerializeField]
+    private PlayerInputController inputController;
+
     private UnitStatus status;
 
-    private const float MaxAimDistance = 500f;
     [SerializeField]
-    private GameObject mainCamera;
+    private PlayerBattleStateType battleStateType;
 
-    public bool allowInput = true;
+    [SerializeField]
+    private PlayerStateType currentStateType;
+    [SerializeField]
+    public List<PlayerStateType> allowParllexStateTypeList;
 
-    [ReadOnly]
-    [ShowInInspector]
-    private Vector3 inputVector;
-    public UnityEvent<Vector3> moveInputEvent;
+    [SerializeField]
+    private SerializableDictionary<PlayerStateType, PlayerStateBase> statesDic
+        = new SerializableDictionary<PlayerStateType, PlayerStateBase>();
 
-    public UnityEvent jumpInputEvent;
+    [SerializeField]
+    private Animator animator;
+    private CharacterController characterController;
 
-    public UnityEvent<Vector2> mouseMoveEvent;
-
-    public UnityEvent<GameObject> interactiveInputEvnet;
-
-    public UnityEvent<Vector3> attackinputEvent;
-
-    public UnityEvent damageEvent;
+    public UnityEvent<DamageInfo> damageEvent;
 
     [ReadOnly]
     [ShowInInspector]
-    private Vector3 aimWorldPoint;
+    private Vector3 moveVector;
 
-    private RaycastHit aimRayCastHit;
+    private void Awake()
+    {
+        status = GetComponent<UnitStatus>();
+        inputController = GetComponent<PlayerInputController>();
+        characterController = GetComponent<CharacterController>();
+    }
+
+    private void Start()
+    {
+        ChangeState(PlayerStateType.Idle);
+    }
 
     private void Update()
     {
-        if (!allowInput)
-        {
-            inputVector = Vector3.zero;
-            moveInputEvent?.Invoke(inputVector);
-            return;
-        }
-
-        var mousePos = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        mouseMoveEvent?.Invoke(mousePos);
-
-        Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out aimRayCastHit);
-        Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * MaxAimDistance, Color.blue);
-
-        if (aimRayCastHit.point == Vector3.zero)
-            aimWorldPoint = mainCamera.transform.position + mainCamera.transform.forward * MaxAimDistance;
-        else
-            aimWorldPoint = aimRayCastHit.point;
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (aimRayCastHit.collider != null)
-            {
-                var interactive = aimRayCastHit.collider.gameObject.GetComponent<IInteractable>();
-                if (interactive != null)
-                {
-                    //Success Interactive
-                    interactive.Interactive();
-                    Debug.Log(aimRayCastHit.collider.gameObject.name);
-                    interactiveInputEvnet?.Invoke(aimRayCastHit.collider.gameObject);
-                }
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            //TODO :: 여기서 공격이랑 연결해서 쓰기
-            attackinputEvent?.Invoke(aimWorldPoint);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //Jump Input
-            jumpInputEvent?.Invoke();
-        }
-        else
-        {
-            //플레이어 입력값
-            inputVector.x = Input.GetAxis("Horizontal");
-            inputVector.z = Input.GetAxis("Vertical");
-            moveInputEvent?.Invoke(inputVector);
-        }
+        //TODO :: If None Battle in Time(5 sec), Update Battle State => Normal
+        //UpdateBattleState(PlayerBattleStateType.Normal);
     }
 
-    public bool OnDamage(DamageInfo damageInfo, Vector3 hitPoint, Vector3 hitNormal)
+    public void AddState(PlayerStateType stateType, PlayerStateBase state)
+    {
+        statesDic.Add(stateType, state);
+    }
+    public void ChangeState(PlayerStateType state)
+    {
+        statesDic[currentStateType].Exit();
+
+        foreach (var key in statesDic.Keys)
+        {
+
+            if (allowParllexStateTypeList.Contains(key))
+                continue;
+
+            statesDic[key].enabled = false;
+        }
+
+        currentStateType = state;
+        Debug.Log($"Player :: ChangeState >> { currentStateType }");
+
+        statesDic[currentStateType].enabled = true;
+        statesDic[currentStateType].Enter();
+    }
+
+    public PlayerStateType GetState()
+    {
+        return currentStateType;
+    }
+
+    public UnitStatus GetStatus()
+    {
+        return status;
+    }
+
+    public Animator GetAnimator()
+    {
+        return animator;
+    }
+
+    public PlayerInputController GetInputController()
+    {
+        return inputController;
+    }
+
+    public void Jump()
+    {
+        if (!characterController.isGrounded
+            && currentStateType != PlayerStateType.Idle
+            && currentStateType != PlayerStateType.Move)
+            return;
+
+        ChangeState(PlayerStateType.Jump);
+    }
+
+    public bool OnDamage(DamageInfo damageInfo)
     {
         status.OnDamage(damageInfo.damage);
-        damageEvent?.Invoke();
+        damageEvent?.Invoke(damageInfo);
+        if (damageInfo.isCritical)
+        {
+            ChangeState(PlayerStateType.CriticalHit);
+        }
+        else
+        {
+            ChangeState(PlayerStateType.Hit);
+        }
         return true;
+    }
+
+    public void UpdateBattleState(PlayerBattleStateType battleStateType)
+    {
+        this.battleStateType = battleStateType;
+    }
+
+    public Vector3 GetMoveVector()
+    {
+        return moveVector;
+    }
+
+    public void SetMoveVector(Vector3 moveVector)
+    {
+        this.moveVector = moveVector;
+    }
+
+    public bool GetIsGround()
+    {
+        return characterController.isGrounded;
     }
 }
