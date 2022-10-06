@@ -43,7 +43,6 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         navAgent.stoppingDistance = 0.01f;
         navAgent.speed = attackSpeed;
         var success = navAgent.SetDestination(destination);
-        Debug.Log(success);
 
         startAttackEvent?.Invoke();
     }
