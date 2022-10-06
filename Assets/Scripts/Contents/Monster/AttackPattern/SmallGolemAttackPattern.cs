@@ -21,7 +21,7 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         if (isAttacked)
             return;
 
-        this.target = target;   
+        this.target = target;
         isAttacked = true;
 
         var status = controller.GetStatus();
@@ -37,7 +37,7 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
 
         var destination = transform.position + transform.forward * attackDistance;
 
-        Debug.Log(Vector3.Distance(destination , transform.position));
+        Debug.Log(Vector3.Distance(destination, transform.position));
 
         //TODO :: 바라보고 있는 방향으로 직선 거리 n 만큼 이동.
         navAgent.stoppingDistance = 0.01f;
@@ -73,5 +73,9 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         endAttackEvent?.Invoke();
     }
 
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isAttacked)
+            EndAttack();
+    }
 }

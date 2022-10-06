@@ -28,11 +28,13 @@ public class MonsterController : MonoBehaviour, IDamageable
         ChangeState(MonsterStateType.MONSTERSTATE_IDLE);
     }
 
-    public void SetTarget(Transform target) { 
+    public void SetTarget(Transform target)
+    {
         this.target = target;
     }
 
-    public Transform GetTarget() { 
+    public Transform GetTarget()
+    {
         return target;
     }
 
@@ -45,9 +47,13 @@ public class MonsterController : MonoBehaviour, IDamageable
     {
         statesDic[currentStateType].Exit();
 
-        foreach (var stateBehaviour in statesDic.Values)
+        foreach (var key in statesDic.Keys)
         {
-            stateBehaviour.enabled = false;
+
+            if (key == MonsterStateType.MONSTERSTATE_HIT)
+                continue;
+
+            statesDic[key].enabled = false;
         }
 
         currentStateType = state;
@@ -67,7 +73,8 @@ public class MonsterController : MonoBehaviour, IDamageable
         return status;
     }
 
-    public Animator GetAnimator() { 
+    public Animator GetAnimator()
+    {
         return animator;
     }
 
@@ -82,6 +89,7 @@ public class MonsterController : MonoBehaviour, IDamageable
     {
         Debug.Log($"{gameObject.name} :: Damage = {damageInfo.damage}");
         status.OnDamage(damageInfo.damage);
+
         return false;
     }
 }

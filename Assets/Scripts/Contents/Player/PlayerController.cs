@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField]
     private UnitStatus status;
 
-    private const float MaxAimDistance = 50000f;
+    private const float MaxAimDistance = 500f;
     [SerializeField]
     private GameObject mainCamera;
 

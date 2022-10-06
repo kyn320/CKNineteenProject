@@ -1268,7 +1268,7 @@ PrefabInstance:
     - target: {fileID: 4703875881879617307, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101803549609384164, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
         type: 3}
@@ -1768,7 +1768,7 @@ PrefabInstance:
     - target: {fileID: 4703875881879617307, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101803549609384164, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
         type: 3}
@@ -2230,7 +2230,7 @@ PrefabInstance:
     - target: {fileID: 4703875881879617307, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101803549609384164, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
         type: 3}
@@ -2310,7 +2310,7 @@ PrefabInstance:
     - target: {fileID: 4703875881879617307, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101803549609384164, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
         type: 3}
@@ -2993,7 +2993,7 @@ PrefabInstance:
     - target: {fileID: 4703875881879617307, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101803549609384164, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
         type: 3}
@@ -4004,9 +4004,29 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 3827645977972770102, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1474778088}
+    - target: {fileID: 3827645977972770102, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: cameraAnchor
+      value: 
+      objectReference: {fileID: 466735736}
+    - target: {fileID: 3827645977972770102, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
       propertyPath: spiritObject
       value: 
       objectReference: {fileID: 1281426005}
+    - target: {fileID: 3827645977972770103, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1474778088}
+    - target: {fileID: 3827645977972770103, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: cameraAnchor
+      value: 
+      objectReference: {fileID: 466735736}
     - target: {fileID: 3827645977972770103, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: backMoveSpeed
@@ -4067,6 +4087,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1474778088}
+    - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: cameraAnchor
+      value: 
+      objectReference: {fileID: 466735736}
     - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: mouseMoveEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target

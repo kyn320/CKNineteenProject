@@ -24,6 +24,7 @@ public class MonsterChaseState : MonsterStateBase
     protected override void Awake()
     {
         base.Awake();
+        refreshPathTime = refreshPathTimeRange.GetRandomAmount();
         navAgent = GetComponent<NavMeshAgent>();
     }
 

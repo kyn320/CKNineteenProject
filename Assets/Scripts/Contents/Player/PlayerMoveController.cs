@@ -89,7 +89,8 @@ public class PlayerMoveController : MonoBehaviour
         Vector3 rightVector = new Vector3(cameraAnchor.transform.right.x, 0f, cameraAnchor.transform.right.z);
 
         //움직일 방향
-        Vector3 viewVector = forwardVector * Mathf.Abs(inputVector.z) + rightVector * inputVector.x;
+        Vector3 viewVector = forwardVector * Mathf.Abs(inputVector.z) + rightVector
+            * (inputVector.z < 0f ? -inputVector.x : inputVector.x);
 
         if (Mathf.Abs(inputVector.x) > 0f || Mathf.Abs(inputVector.z) > 0f)
         {

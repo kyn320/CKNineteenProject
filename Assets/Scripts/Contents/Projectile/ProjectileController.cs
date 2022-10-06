@@ -45,6 +45,8 @@ public class ProjectileController : MonoBehaviour
             var contact = collision.contacts[0];
             damageable.OnDamage(damageInfo, contact.point, contact.normal);
         }
+
+        gameObject.SetActive(false);
     }
 
 }
