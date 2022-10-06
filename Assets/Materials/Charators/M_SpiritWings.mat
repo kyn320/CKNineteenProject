@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_SpiritWings
+  m_Shader: {fileID: 4800000, guid: d96f0c8a470c27b4cae50a3f4575bf9a, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _FXT_N_Glow02:
+        m_Texture: {fileID: 2800000, guid: cac067924325069479a9e9a04f354f5b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Main_Texture:
+        m_Texture: {fileID: 2800000, guid: 146a6404c8545b241921b7fb69856d17, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Position_Texture:
+        m_Texture: {fileID: 2800000, guid: cac067924325069479a9e9a04f354f5b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Wings:
+        m_Texture: {fileID: 2800000, guid: 146a6404c8545b241921b7fb69856d17, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Wings01:
+        m_Texture: {fileID: 2800000, guid: 8fa1dc6090f47df45853381fff7feb2a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Wings02:
+        m_Texture: {fileID: 2800000, guid: d2afb4af2ae60d24bb712d9c45f5008e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Wings03:
+        m_Texture: {fileID: 2800000, guid: 515645ad118fbe34899a1b818cfaa859, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaCutoff: 0.5
+    - _Body: 0.02
+    - _Float0: 0.5
+    - _Float1: 0.15
+    - _Float2: 0.03
+    - _Intensity01: 1
+    - _Intesnsity02: 2
+    - _M: 0.36
+    - _Opacity: 0.5
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Speed: 10
+    - _Time2: 0
+    - _Wings_Intensity01: 1
+    - _Wings_Intesnsity02: 3
+    - _Wings_Power: 0.34
+    - _Wings_Speed: 0
+    - _XZ_Speed: 2.5
+    - _X_Position: 0.1
+    - _X_Speed: 4
+    - _Z_Position: 0.05
+    - _Z_Speed: 8
+    - _a: 0.3
+    - _flapping_Power: 0.2
+    - _m: 0.26
+    - _static: 0
+    m_Colors:
+    - _Color01: {r: 1, g: 1, b: 1, a: 0}
+    - _Color02: {r: 0, g: 1, b: 0.9874477, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Speed02: {r: -2.56, g: 0, b: 0, a: 0}
+    - _Speed2: {r: 0.33, g: 0, b: 0, a: 0}
+    - _TargetWorldPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _Wings_Color01: {r: 1, g: 1, b: 1, a: 0}
+    - _Wings_Color02: {r: 0.16509414, g: 0.8659558, b: 1, a: 1}
+    - _Wings_Speed: {r: -2.3, g: 0, b: 0, a: 0}
+    - _Wings_Speed02: {r: -2.19, g: 0, b: 0, a: 0}
+    - _flapping_Speed: {r: -2.5, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
