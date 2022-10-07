@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
 public class PlayerMoveState : PlayerStateBase
@@ -33,6 +34,8 @@ public class PlayerMoveState : PlayerStateBase
 
     [SerializeField]
     private CameraMoveController cameraMoveController;
+
+    public UnityEvent<float> updateMoveSpeedEvent;
 
     protected override void Awake()
     {
@@ -74,6 +77,8 @@ public class PlayerMoveState : PlayerStateBase
 
         animator.SetFloat("MoveX", inputVector.x);
         animator.SetFloat("MoveZ", inputVector.z);
+
+        updateMoveSpeedEvent?.Invoke(inputVector.magnitude);
 
         if (!characterController.isGrounded)
         {
@@ -153,6 +158,7 @@ public class PlayerMoveState : PlayerStateBase
     public override void Exit()
     {
         isStay = false;
+        updateMoveSpeedEvent?.Invoke(0f);
         exitEvent?.Invoke();
     }
 

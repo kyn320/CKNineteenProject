@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 824191903858696561}
   - component: {fileID: 3408799114697622279}
   - component: {fileID: 9189804358482846369}
+  - component: {fileID: 1625621333921881820}
   m_Layer: 0
   m_Name: Dagger_01
   m_TagString: Untagged
@@ -30,14 +31,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4797647947300948221}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &9110958355735518690
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -207,3 +208,21 @@ MonoBehaviour:
   triggerExitEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1625621333921881820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4797647947300948221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 380e1a398b4fda942a91fb512f26e419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationList:
+  - {fileID: 11400000, guid: fdb162b5754f3a941b591b0de3bb8c0c, type: 2}
+  stopActionType: 0
+  autoActiveByPlay: 0
+  autoStartPlay: 1
+  resetOriginTransformByStop: 0

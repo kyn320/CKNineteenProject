@@ -32,7 +32,7 @@ public class SpiritMoveController : MonoBehaviour
     void Move()
     {
         transform.position = Vector3.Lerp(transform.position, targetTransform.position, dampingSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation, dampingSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetTransform.rotation, dampingSpeed * Time.deltaTime);
     }
 
     public void SetPosition(Vector3 position)
