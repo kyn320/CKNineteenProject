@@ -10,6 +10,9 @@ public class MonsterDeathState : MonsterStateBase
         {
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
         }
+
+        enterEvent?.Invoke();
+        gameObject.SetActive(false);
     }
 
     public override void Exit()
@@ -19,6 +22,6 @@ public class MonsterDeathState : MonsterStateBase
 
     public override void Update()
     {
-
+        return;
     }
 }

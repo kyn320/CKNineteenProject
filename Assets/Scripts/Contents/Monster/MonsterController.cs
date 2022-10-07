@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
+using Sirenix.OdinInspector;
 
 public class MonsterController : MonoBehaviour, IDamageable
 {
-    [SerializeField]
-    UnitStatus status;
+    private UnitStatus status;
 
     [SerializeField]
     private MonsterType monsterType;
     [SerializeField]
     private MonsterStateType currentStateType;
+    [SerializeField]
+    public List<MonsterStateType> allowParllexStateTypeList;
 
     [SerializeField]
     private SerializableDictionary<MonsterStateType, MonsterStateBase> statesDic
@@ -23,16 +26,25 @@ public class MonsterController : MonoBehaviour, IDamageable
     [SerializeField]
     private Animator animator;
 
+    public UnityEvent<DamageInfo> damageEvent;
+
+    private void Awake()
+    {
+        status = GetComponent<UnitStatus>();
+    }
+
     private void Start()
     {
         ChangeState(MonsterStateType.MONSTERSTATE_IDLE);
     }
 
-    public void SetTarget(Transform target) { 
+    public void SetTarget(Transform target)
+    {
         this.target = target;
     }
 
-    public Transform GetTarget() { 
+    public Transform GetTarget()
+    {
         return target;
     }
 
@@ -45,9 +57,13 @@ public class MonsterController : MonoBehaviour, IDamageable
     {
         statesDic[currentStateType].Exit();
 
-        foreach (var stateBehaviour in statesDic.Values)
+        foreach (var key in statesDic.Keys)
         {
-            stateBehaviour.enabled = false;
+
+            if (allowParllexStateTypeList.Contains(key))
+                continue;
+
+            statesDic[key].enabled = false;
         }
 
         currentStateType = state;
@@ -67,7 +83,8 @@ public class MonsterController : MonoBehaviour, IDamageable
         return status;
     }
 
-    public Animator GetAnimator() { 
+    public Animator GetAnimator()
+    {
         return animator;
     }
 
@@ -78,10 +95,25 @@ public class MonsterController : MonoBehaviour, IDamageable
         gameObject.SetActive(false);
     }
 
-    public bool OnDamage(DamageInfo damageInfo, Vector3 hitPoint, Vector3 hitNormal)
+    public virtual bool OnDamage(DamageInfo damageInfo)
     {
         Debug.Log($"{gameObject.name} :: Damage = {damageInfo.damage}");
-        status.OnDamage(damageInfo.damage);
-        return false;
+        var isDeath = status.OnDamage(damageInfo.damage);
+        if (isDeath)
+        {
+            ChangeState(MonsterStateType.MONSTERSTATE_DEATH);
+        }
+        else
+        {
+            if(damageInfo.isCritical)
+            {
+                ChangeState(MonsterStateType.MONSTERSTATE_CRITICALHIT);
+            }
+            else {
+                ChangeState(MonsterStateType.MONSTERSTATE_HIT);
+            }
+        }
+        damageEvent?.Invoke(damageInfo);
+        return isDeath;
     }
 }

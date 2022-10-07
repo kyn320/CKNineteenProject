@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using Sirenix.OdinInspector;
 
 namespace Landmark
 {
@@ -9,6 +11,13 @@ namespace Landmark
         protected LandmarkController controller;
         [SerializeField]
         protected LandmarkStateType stateType;
+
+        [ReadOnly]
+        [ShowInInspector]
+        protected bool isStay = false;
+
+        public UnityEvent enterEvent;
+        public UnityEvent exitEvent;
 
         protected virtual void Awake()
         {

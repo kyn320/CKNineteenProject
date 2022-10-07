@@ -6,26 +6,32 @@ using Sirenix.OdinInspector;
 
 public class PlayerInputController : MonoBehaviour
 {
-    private const float MaxAimDistance = 50000f;
+    private const float MaxAimDistance = 500f;
     [SerializeField]
     private GameObject mainCamera;
 
     public bool allowInput = true;
 
+    [ReadOnly]
+    [ShowInInspector]
     private Vector3 inputVector;
     public UnityEvent<Vector3> moveInputEvent;
 
     public UnityEvent jumpInputEvent;
 
+    public UnityEvent<Vector2> mouseMoveEvent;
+
     public UnityEvent<GameObject> interactiveInputEvnet;
 
     public UnityEvent<Vector3> attackinputEvent;
+
 
     [ReadOnly]
     [ShowInInspector]
     private Vector3 aimWorldPoint;
 
     private RaycastHit aimRayCastHit;
+
 
     private void Update()
     {
@@ -35,6 +41,9 @@ public class PlayerInputController : MonoBehaviour
             moveInputEvent?.Invoke(inputVector);
             return;
         }
+
+        var mousePos = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        mouseMoveEvent?.Invoke(mousePos);
 
         Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out aimRayCastHit);
         Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * MaxAimDistance, Color.blue);
@@ -46,9 +55,11 @@ public class PlayerInputController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(aimRayCastHit.collider != null) { 
+            if (aimRayCastHit.collider != null)
+            {
                 var interactive = aimRayCastHit.collider.gameObject.GetComponent<IInteractable>();
-                if(interactive != null) {
+                if (interactive != null)
+                {
                     //Success Interactive
                     interactive.Interactive();
                     Debug.Log(aimRayCastHit.collider.gameObject.name);
@@ -71,11 +82,10 @@ public class PlayerInputController : MonoBehaviour
         else
         {
             //플레이어 입력값
-            inputVector.x = Input.GetAxis("Vertical");
-            inputVector.z = Input.GetAxis("Horizontal");
+            inputVector.x = Input.GetAxisRaw("Horizontal");
+            inputVector.z = Input.GetAxisRaw("Vertical");
             moveInputEvent?.Invoke(inputVector);
         }
     }
-
 
 }

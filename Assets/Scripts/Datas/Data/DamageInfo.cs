@@ -7,5 +7,9 @@ using Sirenix.OdinInspector;
 public struct DamageInfo
 {
     public bool isCritical;
+    public bool isKnockBack;
     public float damage;
+
+    public Vector3 hitPoint;
+    public Vector3 hitNormal;
 }

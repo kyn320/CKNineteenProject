@@ -21,6 +21,8 @@ public class MonsterIdleState : MonsterStateBase
 
         fieldOfView.enabled = true;
         fieldOfView.visibleEvent.AddListener(EnterSight);
+
+        enterEvent?.Invoke();
     }
 
     public override void Update()
@@ -32,6 +34,8 @@ public class MonsterIdleState : MonsterStateBase
     {
         fieldOfView.visibleEvent.RemoveListener(EnterSight);
         fieldOfView.enabled = false;
+
+        exitEvent?.Invoke();
     }
 
     public void EnterSight(List<Collider> enterSightList)

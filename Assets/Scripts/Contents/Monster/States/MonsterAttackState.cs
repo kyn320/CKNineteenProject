@@ -25,7 +25,8 @@ public class MonsterAttackState : MonsterStateBase
         {
             Debug.LogError($"Monster Attack Pattern 검증 결과 :: 총합이 {totalPercent}% / 100% 입니다.");
         }
-        else { 
+        else
+        {
             Debug.Log($"Monster Attack Pattern 검증 결과 :: 정상");
         }
     }
@@ -44,11 +45,13 @@ public class MonsterAttackState : MonsterStateBase
         var pattern = patternGroup.AttackPattern;
 
         pattern.StartAttack(target);
+
+        enterEvent?.Invoke();
     }
 
     public override void Exit()
     {
-
+        exitEvent?.Invoke();
     }
 
     public override void Update()
@@ -60,16 +63,23 @@ public class MonsterAttackState : MonsterStateBase
     {
         var rand = Random.Range(0f, 100f);
 
+        var currentPercent = 0f;
+
         for (var i = 0; i < patternGroupList.Count; ++i)
         {
-            if (rand < patternGroupList[i].Percent)
+            var checkPercent = patternGroupList[i].Percent;
+
+            if (rand < currentPercent + checkPercent)
             {
                 return patternGroupList[i];
+            }
+            else
+            {
+                currentPercent += checkPercent;
             }
         }
 
         return null;
     }
-
 
 }

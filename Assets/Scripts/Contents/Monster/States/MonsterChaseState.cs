@@ -24,11 +24,20 @@ public class MonsterChaseState : MonsterStateBase
     protected override void Awake()
     {
         base.Awake();
+        refreshPathTime = refreshPathTimeRange.GetRandomAmount();
         navAgent = GetComponent<NavMeshAgent>();
     }
 
     public override void Enter()
     {
+        var target = controller.GetTarget();
+
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+            controller.SetTarget(target);
+        }
+
         for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
         {
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
@@ -40,11 +49,13 @@ public class MonsterChaseState : MonsterStateBase
 
         RefreshPathTime();
         navAgent.SetDestination(controller.GetTarget().position);
+
+        enterEvent?.Invoke();
     }
 
     public override void Exit()
     {
-
+        exitEvent?.Invoke();
     }
 
     public override void Update()

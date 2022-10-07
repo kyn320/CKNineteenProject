@@ -21,7 +21,7 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         if (isAttacked)
             return;
 
-        this.target = target;   
+        this.target = target;
         isAttacked = true;
 
         var status = controller.GetStatus();
@@ -37,13 +37,12 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
 
         var destination = transform.position + transform.forward * attackDistance;
 
-        Debug.Log(Vector3.Distance(destination , transform.position));
+        Debug.Log(Vector3.Distance(destination, transform.position));
 
         //TODO :: 바라보고 있는 방향으로 직선 거리 n 만큼 이동.
         navAgent.stoppingDistance = 0.01f;
         navAgent.speed = attackSpeed;
         var success = navAgent.SetDestination(destination);
-        Debug.Log(success);
 
         startAttackEvent?.Invoke();
     }
@@ -73,5 +72,37 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         endAttackEvent?.Invoke();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isAttacked)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                var damageable = collision.gameObject.GetComponent<IDamageable>();
 
+                var isCritical = controller.GetStatus().GetCriticalSuccess();
+                var damageAmount = 0f;
+
+                if (isCritical)
+                {
+                    damageAmount = damageCalculator.Calculate(controller.GetStatus().currentStatus);
+                }
+                else
+                {
+                    damageAmount = criticalDamageCalculator.Calculate(controller.GetStatus().currentStatus);
+                }
+
+                damageable?.OnDamage(new DamageInfo()
+                {
+                    damage = damageAmount,
+                    isCritical = isCritical,
+                    isKnockBack = true,
+                    hitPoint = collision.contacts[0].point,
+                    hitNormal = collision.contacts[0].normal
+                });
+
+            }
+            EndAttack();
+        }
+    }
 }

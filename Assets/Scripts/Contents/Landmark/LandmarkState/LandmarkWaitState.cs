@@ -28,6 +28,8 @@ namespace Landmark
             //TODO :: 미리 상호작용 가이드UI 생성하기
             interactionUIObject = UIController.Instance.CreateWorldUI(interactionUIPrefab);
             interactionUIObject.GetComponent<UITargetFollower>().SetTarget(interactionTargetObject);
+
+            enterEvent?.Invoke();
         }
 
         public override void Exit()
@@ -37,6 +39,8 @@ namespace Landmark
             {
                 Destroy(interactionUIObject);
             }
+
+            exitEvent?.Invoke();
         }
 
         public override void Update()

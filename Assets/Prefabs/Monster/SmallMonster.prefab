@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4703875881876313817
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4703875881876313816}
-  m_Layer: 0
-  m_Name: View
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4703875881876313816
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4703875881876313817}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5101803549609384164}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5586416136825274974
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,17 +10,18 @@ GameObject:
   m_Component:
   - component: {fileID: 5101803549609384164}
   - component: {fileID: 4703875881879617307}
-  - component: {fileID: 4703875881879617304}
+  - component: {fileID: 1481588661408033508}
   - component: {fileID: 4703875880860071132}
   - component: {fileID: 533067233303176848}
   - component: {fileID: 4703875881879617297}
   - component: {fileID: 4703875881879617301}
   - component: {fileID: 4703875881879617306}
-  - component: {fileID: 4703875881879617299}
   - component: {fileID: 4703875881879617303}
   - component: {fileID: 4703875881879617300}
   - component: {fileID: 8692637212155343993}
   - component: {fileID: 5413399869023604584}
+  - component: {fileID: 177108442034520367}
+  - component: {fileID: 1786684583}
   m_Layer: 0
   m_Name: SmallMonster
   m_TagString: Untagged
@@ -72,7 +42,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2756955728659178337}
-  - {fileID: 4703875881876313816}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -92,8 +61,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!136 &4703875881879617304
-CapsuleCollider:
+--- !u!135 &1481588661408033508
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,10 +71,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 0
-  m_Center: {x: 0, y: 0.5, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!195 &4703875880860071132
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -115,7 +83,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5586416136825274974}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Speed: 3.5
   m_Acceleration: 4
   avoidancePriority: 50
@@ -173,14 +141,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616d22bbfd7451449badd711aabd16b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 533067233303176848}
   monsterType: 1
   currentStateType: 0
+  allowParllexStateTypeList: 
   statesDic:
     keys: 
     values: []
   target: {fileID: 0}
   animator: {fileID: 8116190715543337243}
+  damageEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 177108442034520367}
+        m_TargetAssemblyTypeName: SmallGolemHitState, Assembly-CSharp
+        m_MethodName: DamageHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1786684583}
+        m_TargetAssemblyTypeName: SmallGolemCriticalHitState, Assembly-CSharp
+        m_MethodName: DamageHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4703875881879617301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +196,12 @@ MonoBehaviour:
     valueFloat: 0
     valueBool: 0
   exitAnimatorTriggerList: []
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
   fieldOfView: {fileID: 0}
 --- !u!114 &4703875881879617306
 MonoBehaviour:
@@ -222,34 +223,20 @@ MonoBehaviour:
     valueFloat: 0
     valueBool: 0
   exitAnimatorTriggerList: []
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
   refreshPathTimeRange:
     min: 0.5
     max: 1
   refreshPathTime: 0
   stopDistance: 1
-  attackStartDistance: 5
+  attackStartDistance: 10
   currentDistanceSqr: 0
   navAgent: {fileID: 4703875880860071132}
---- !u!114 &4703875881879617299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5586416136825274974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa4c80b63119a7d44bf3f0712ff32ea2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateType: 3
-  enterAnimatorTriggerList:
-  - triggerType: 4
-    parameterName: Hit
-    valueInt: 0
-    valueFloat: 0
-    valueBool: 0
-  exitAnimatorTriggerList: []
 --- !u!114 &4703875881879617303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +252,12 @@ MonoBehaviour:
   stateType: 2
   enterAnimatorTriggerList: []
   exitAnimatorTriggerList: []
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
   patternGroupList:
   - percent: 100
     attackPattern: {fileID: 8692637212155343993}
@@ -280,9 +273,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c0251097c3bfb04f9af3181f5dd0c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateType: 4
+  stateType: 5
   enterAnimatorTriggerList: []
   exitAnimatorTriggerList: []
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8692637212155343993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,13 +313,16 @@ MonoBehaviour:
     valueFloat: 0
     valueBool: 0
   isAttacked: 0
+  damageCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
+  criticalDamageCalculator: {fileID: 11400000, guid: abf026fdca9ff9646b383fc39cfc0800,
+    type: 2}
   startAttackEvent:
     m_PersistentCalls:
       m_Calls: []
   endAttackEvent:
     m_PersistentCalls:
       m_Calls: []
-  attackDistance: 12
+  attackDistance: 20
 --- !u!114 &5413399869023604584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +348,74 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   visibleTargetList: []
+--- !u!114 &177108442034520367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586416136825274974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a683e774b8ec9544b5efc489d068ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateType: 3
+  enterAnimatorTriggerList:
+  - triggerType: 4
+    parameterName: Hit
+    valueInt: 0
+    valueFloat: 0
+    valueBool: 0
+  exitAnimatorTriggerList: []
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 177108442034520367}
+        m_TargetAssemblyTypeName: MonsterHitState, Assembly-CSharp
+        m_MethodName: KnockBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  knockBackVector: {x: 0, y: 1, z: -1}
+  vfxPrefabData: {fileID: 11400000, guid: 9802a65df7d6df84f911e2c9cb65db2a, type: 2}
+--- !u!114 &1786684583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586416136825274974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f1c8f2a36999c40bee8b079c0199a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateType: 4
+  enterAnimatorTriggerList:
+  - triggerType: 4
+    parameterName: Hit
+    valueInt: 0
+    valueFloat: 0
+    valueBool: 0
+  exitAnimatorTriggerList: []
+  enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  knockBackVector: {x: 0, y: 1, z: -1}
+  vfxPrefabData: {fileID: 11400000, guid: 9802a65df7d6df84f911e2c9cb65db2a, type: 2}
 --- !u!1001 &2434219640386749578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -426,6 +496,42 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2434219640386749578}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3245261398795958747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2c494d0a3adc5d74aa2a469e433a7651,
+    type: 3}
+  m_PrefabInstance: {fileID: 2434219640386749578}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3856512871359474622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3245261398795958747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventDic:
+    keys:
+    - EndHit
+    values:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 177108442034520367}
+          m_TargetAssemblyTypeName: MonsterHitState, Assembly-CSharp
+          m_MethodName: EndHit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!95 &8116190715543337243 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 2c494d0a3adc5d74aa2a469e433a7651,

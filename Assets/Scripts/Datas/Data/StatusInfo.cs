@@ -23,6 +23,10 @@ public class StatusInfo
         }
     }
 
+    public bool ContainsElement(StatusType statusType) { 
+        return statusDic.ContainsKey(statusType);
+    }
+
     public StatusElement GetElement(StatusType statusType) {
         return statusDic[statusType];
     }

@@ -22,11 +22,15 @@ namespace Landmark
             currentRecoverTime = autoRecoverTime;
             status = controller.GetStatus();
             status.updateHpEvent.AddListener(UpdateHP);
+
+            enterEvent?.Invoke();
         }
 
         public override void Exit()
         {
             status.updateHpEvent.RemoveListener(UpdateHP);
+
+            exitEvent?.Invoke();
         }
 
         public override void Update()
