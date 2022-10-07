@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3827645977113965184}
   - component: {fileID: 3827645977113965215}
   - component: {fileID: 3827645977113965214}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3827645977174835327}
   - component: {fileID: 3827645977174835296}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerWallGaurder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,6 +425,21 @@ MonoBehaviour:
   gravity: 9.81
   allowMove: 1
   cameraMoveController: {fileID: 0}
+  updateMoveSpeedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6946762501825792518}
+        m_TargetAssemblyTypeName: IKController, Assembly-CSharp
+        m_MethodName: UpdateDynamicRayDistance
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1294546402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,40 +858,65 @@ MonoBehaviour:
     values:
     - name: LeftFoot
       ikTarget: 3
-      weight: 1
+      weight: 0.7
       useTargetTransform: 0
-      targetTransform: {fileID: 0}
+      targetTransform: {fileID: 6606818176887665265}
       useRayCast: 1
-      rayStartOffset: {x: 0, y: 1, z: 0}
+      rayStartOffset: {x: 0, y: 0.07, z: 0}
       rayDirection: {x: 0, y: -1, z: 0}
-      rayDistance: 1.2
+      rayDistance: 0.5
+      useDynamicRayDistance: 1
+      dynamicRayDistanceRange:
+        min: 0.5
+        max: 0.23
       rayMask:
         serializedVersion: 2
         m_Bits: 1
-      offsetPosition: {x: 0, y: 0.2, z: 0}
+      offsetPosition: {x: 0, y: 0.1, z: 0}
       offsetRotation: {x: 0, y: 0, z: 0, w: 0}
       usePosition: 1
       useRotation: 1
+      rayHitPoint: {x: 0, y: 0, z: 0}
+      rayHitNormal: {x: 0, y: 0, z: 0}
     - name: RightFoot
       ikTarget: 4
-      weight: 1
+      weight: 0.7
       useTargetTransform: 0
-      targetTransform: {fileID: 0}
+      targetTransform: {fileID: 6054684730393562502}
       useRayCast: 1
-      rayStartOffset: {x: 0, y: 1, z: 0}
+      rayStartOffset: {x: 0, y: 0.07, z: 0}
       rayDirection: {x: 0, y: -1, z: 0}
-      rayDistance: 1.2
+      rayDistance: 0.5
+      useDynamicRayDistance: 1
+      dynamicRayDistanceRange:
+        min: 0.5
+        max: 0.23
       rayMask:
         serializedVersion: 2
         m_Bits: 1
-      offsetPosition: {x: 0, y: 0.2, z: 0}
+      offsetPosition: {x: 0, y: 0.1, z: 0}
       offsetRotation: {x: 0, y: 0, z: 0, w: 0}
       usePosition: 1
       useRotation: 1
+      rayHitPoint: {x: 0, y: 0, z: 0}
+      rayHitNormal: {x: 0, y: 0, z: 0}
   isActiveIK: 1
+  gizmoSize: 0.125
 --- !u!4 &4077412145646173735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0877daf60f4a8d74e897543d21fd9b03,
+    type: 3}
+  m_PrefabInstance: {fileID: 4548452843503688140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6054684730393562502 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1505936833371958198, guid: 0877daf60f4a8d74e897543d21fd9b03,
+    type: 3}
+  m_PrefabInstance: {fileID: 4548452843503688140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6606818176887665265 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1968218294861386819, guid: 0877daf60f4a8d74e897543d21fd9b03,
     type: 3}
   m_PrefabInstance: {fileID: 4548452843503688140}
   m_PrefabAsset: {fileID: 0}

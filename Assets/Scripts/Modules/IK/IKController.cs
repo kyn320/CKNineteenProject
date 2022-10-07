@@ -12,6 +12,9 @@ public class IKController : MonoBehaviour
 
     public bool isActiveIK = true;
 
+    [SerializeField]
+    private float gizmoSize = 0.25f;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -19,12 +22,32 @@ public class IKController : MonoBehaviour
 
     void OnAnimatorIK()
     {
-        if (animator != null)
+        if (animator == null)
             return;
 
         foreach (var ikInfo in ikInfoDic.Values)
         {
             ikInfo.UpdateIK(animator, isActiveIK);
+        }
+    }
+
+    public void UpdateDynamicRayDistance(float progress)
+    {
+        foreach (var ikInfo in ikInfoDic.Values)
+        {
+            ikInfo.UpdateDynamicRayDistance(progress);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (animator == null)
+            return;
+
+        foreach (var ikInfo in ikInfoDic.Values)
+        {
+            Gizmos.DrawSphere(ikInfo.rayHitPoint, gizmoSize);
+            Gizmos.DrawLine(ikInfo.rayHitPoint, ikInfo.rayHitPoint + ikInfo.rayHitNormal);
         }
     }
 
