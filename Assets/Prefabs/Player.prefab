@@ -1948,6 +1948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3827645978462288804}
+  - component: {fileID: 660589262}
   m_Layer: 0
   m_Name: SpiritPivot
   m_TagString: Untagged
@@ -1970,6 +1971,20 @@ Transform:
   m_Father: {fileID: 3827645977972770106}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &660589262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645978462288803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2d5ba88e5eb383459d1b9e8d804e5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originAxis: {fileID: 3827645978500746637}
+  offset: {x: -0.5, y: 1, z: 0}
 --- !u!1 &3827645978500746636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,6 +1996,7 @@ GameObject:
   - component: {fileID: 3827645978500746637}
   - component: {fileID: 3827645978500746638}
   - component: {fileID: 3827645978500746639}
+  - component: {fileID: 3827645978518966162}
   m_Layer: 0
   m_Name: Renderer
   m_TagString: Untagged
@@ -2021,7 +2037,16 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Bip001 Head'\n\tTransform 'Bip001 Spine1'\n\tTransform
+    'Bip001 Spine'\n\tTransform 'Bip001'\n\tTransform 'Bip001 Neck'\n\tTransform
+    'Bip001 Head'\n\tTransform 'Bip001 Spine1'\n\tTransform 'Bip001 Spine'\n\tTransform
+    'Bip001'\n\tTransform 'Bip001 Neck'\n\tand more ...\n\tFrom animation clip 'Jump01'\n\tFrom
+    animation clip 'Jump02'\n\tFrom animation clip 'Jump03'\n\tFrom animation clip
+    'Twohand'\n\tFrom animation clip 'Hit01'\n\tFrom animation clip 'Hit02'\n\tFrom
+    animation clip 'Chakram'\n\tFrom animation clip 'Throw'\n\tFrom animation clip
+    'Hit01'\n\tFrom animation clip 'Scroll'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -2112,6 +2137,54 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &3827645978518966162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645978500746636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61ffc90c595409944adec0f2c8a9e5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ikInfoDic:
+    keys: 0300000004000000
+    values:
+    - name: LeftFoot
+      ikTarget: 3
+      weight: 1
+      useTargetTransform: 0
+      targetTransform: {fileID: 3827645977328918867}
+      useRayCast: 1
+      rayStartOffset: {x: 0, y: 1, z: 0}
+      rayDirection: {x: 0, y: -1, z: 0}
+      rayDistance: 1.2
+      rayMask:
+        serializedVersion: 2
+        m_Bits: 1
+      offsetPosition: {x: 0, y: 0.2, z: 0}
+      offsetRotation: {x: 0, y: 0, z: 0, w: 0}
+      usePosition: 1
+      useRotation: 1
+    - name: RightFoot
+      ikTarget: 4
+      weight: 1
+      useTargetTransform: 0
+      targetTransform: {fileID: 3827645977924954259}
+      useRayCast: 1
+      rayStartOffset: {x: 0, y: 1, z: 0}
+      rayDirection: {x: 0, y: -1, z: 0}
+      rayDistance: 1.2
+      rayMask:
+        serializedVersion: 2
+        m_Bits: 1
+      offsetPosition: {x: 0, y: 0.2, z: 0}
+      offsetRotation: {x: 0, y: 0, z: 0, w: 0}
+      usePosition: 1
+      useRotation: 1
+  isActiveIK: 1
 --- !u!1 &3827645978505554451
 GameObject:
   m_ObjectHideFlags: 0

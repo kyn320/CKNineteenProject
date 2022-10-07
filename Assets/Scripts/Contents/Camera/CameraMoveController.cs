@@ -106,21 +106,26 @@ public class CameraMoveController : MonoBehaviour
         UpdateCameraPosition();
     }
 
-    private void UpdateCameraPosition() {
-        if (isZoom) {
-            mainCamera.transform.localPosition = cameraVector[1];
+    private void UpdateCameraPosition()
+    {
+        Vector3 targetPosition;
+        if (isZoom)
+        {
+            targetPosition = cameraVector[1];
         }
-        else if (isBack) {
-            mainCamera.transform.localPosition = cameraVector[2];
+        else if (isBack)
+        {
+            targetPosition = cameraVector[2];
         }
         else
         {
-            mainCamera.transform.localPosition = cameraVector[0];
+            targetPosition = cameraVector[0];
         }
+        mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, targetPosition, Time.deltaTime * dampingSpeed);
     }
 
     public void SetBackMoveCamera(bool isBack)
     {
-        this.isBack = isBack;   
+        this.isBack = isBack;
     }
 }

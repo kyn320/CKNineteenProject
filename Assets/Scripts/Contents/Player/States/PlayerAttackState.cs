@@ -121,7 +121,8 @@ public class PlayerAttackState : PlayerStateBase
         spiritMoveController.SetPosition(projectileSpawnPoint);
 
         //무기 소환
-        projectileObject = Instantiate(weaponData.WorldObject, handBone.position, Quaternion.identity);
+        projectileObject = Instantiate(weaponData.WorldObject);
+        projectileObject.transform.position = handBone.position;
     }
 
     public void Shot()

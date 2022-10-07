@@ -1056,6 +1056,26 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!1 &660589261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3827645978462288803, guid: 8b1e51a882d72f64aa743313b6184c33,
+    type: 3}
+  m_PrefabInstance: {fileID: 3827645978518966160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &660589262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660589261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2d5ba88e5eb383459d1b9e8d804e5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originAxis: {fileID: 3827645978518966167}
+  offset: {x: -0.5, y: 1, z: 0}
 --- !u!224 &663087697 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3582030805986803373, guid: b3e1a533bfbce574bb67d7896fc067e1,
@@ -4124,6 +4144,12 @@ Transform:
 --- !u!4 &3827645978518966164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3827645977328918867, guid: 8b1e51a882d72f64aa743313b6184c33,
+    type: 3}
+  m_PrefabInstance: {fileID: 3827645978518966160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3827645978518966167 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3827645978500746637, guid: 8b1e51a882d72f64aa743313b6184c33,
     type: 3}
   m_PrefabInstance: {fileID: 3827645978518966160}
   m_PrefabAsset: {fileID: 0}
