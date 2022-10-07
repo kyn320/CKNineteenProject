@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e9a3a5359bb7ef49b933b763eaa4f35, type: 3}
-  m_Name: WeaponItemData 4
+  m_Name: WeaponItemData_Axe
   m_EditorClassIdentifier: 
-  id: 20002
+  id: 20001
   type: 1
-  equipHandType: 1
-  itemName: "\uBB34\uAE30 2"
+  equipHandType: 2
+  itemName: "\uBB34\uAE30 1"
   description: 
-  icon: {fileID: 21300000, guid: db427fab3e94daf4caa704d9314a77a1, type: 3}
+  icon: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
   isUnique: 1
-  worldObject: {fileID: 4797647947300948221, guid: 48821c4e2250b6b449ec28deff9ed2df,
+  worldObject: {fileID: 1550952870296005003, guid: eedb208b09a7a3245b5e4df668b592f6,
     type: 3}
   statusInfoData:
     statusDic:
@@ -249,7 +249,7 @@ MonoBehaviour:
         name: AfterAttackTime
         amount: 0
         percent: 0
-  weaponType: 7
+  weaponType: 3
   projectileMoveType: 1
-  attackAnimationType: 5
-  spawnVector: {x: 0.5, y: 1, z: 1.5}
+  attackAnimationType: 2
+  spawnVector: {x: -0.5, y: 0.5, z: 1.5}
