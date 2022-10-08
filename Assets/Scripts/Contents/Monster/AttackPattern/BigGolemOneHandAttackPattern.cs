@@ -37,6 +37,11 @@ public class BigGolemOneHandAttackPattern : MonsterAttackPattern
     {
 
     }
+
+    public void HitAttack() { 
+        
+    }
+
     public override void EndAttack()
     {
         if(!isAttacked)

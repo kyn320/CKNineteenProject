@@ -11,7 +11,7 @@ public class PlayerJumpState : PlayerStateBase
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
         }
         isStay = true;
-
+        controller.updateMoveSpeedEvent?.Invoke(1f);
         enterEvent?.Invoke();
         Jump();
     }

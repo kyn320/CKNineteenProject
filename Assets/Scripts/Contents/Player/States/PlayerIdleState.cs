@@ -16,6 +16,7 @@ public class PlayerIdleState : PlayerStateBase
         animator.SetBool("IsGrounded", true);
 
         isStay = true;
+        controller.updateMoveSpeedEvent?.Invoke(0f);
 
         enterEvent?.Invoke();
     }
@@ -47,6 +48,7 @@ public class PlayerIdleState : PlayerStateBase
     public override void Exit()
     {
         isStay = false;
+        controller.updateMoveSpeedEvent?.Invoke(1f);
         exitEvent?.Invoke();
     }
 }

@@ -8,9 +8,6 @@ public class PlayerMoveState : PlayerStateBase
 {
     private UnitStatus status;
 
-    [SerializeField]
-    private GameObject playerModel;
-
     [ReadOnly]
     [ShowInInspector]
     private float moveSpeed = 1f;
@@ -35,8 +32,6 @@ public class PlayerMoveState : PlayerStateBase
     [SerializeField]
     private CameraMoveController cameraMoveController;
 
-    public UnityEvent<float> updateMoveSpeedEvent;
-
     protected override void Awake()
     {
         base.Awake();
@@ -57,6 +52,7 @@ public class PlayerMoveState : PlayerStateBase
         }
 
         isStay = true;
+        controller.updateMoveSpeedEvent?.Invoke(1f);
 
         enterEvent?.Invoke();
     }
@@ -77,8 +73,6 @@ public class PlayerMoveState : PlayerStateBase
 
         animator.SetFloat("MoveX", inputVector.x);
         animator.SetFloat("MoveZ", inputVector.z);
-
-        updateMoveSpeedEvent?.Invoke(inputVector.magnitude);
 
         if (!characterController.isGrounded)
         {
@@ -112,7 +106,7 @@ public class PlayerMoveState : PlayerStateBase
 
             if (inputVector.x != 0 || inputVector.z != 0)
             {
-                playerModel.transform.forward = viewVector;
+                transform.forward = viewVector;
             }
 
             var viewNoramlVector = viewVector.normalized;
@@ -158,7 +152,7 @@ public class PlayerMoveState : PlayerStateBase
     public override void Exit()
     {
         isStay = false;
-        updateMoveSpeedEvent?.Invoke(0f);
+        controller.updateMoveSpeedEvent?.Invoke(0f);
         exitEvent?.Invoke();
     }
 

@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     [ShowInInspector]
     private Vector3 moveVector;
 
+    public UnityEvent<float> updateMoveSpeedEvent;
+
     [SerializeField]
     private bool isDeath = false;
 
@@ -109,7 +111,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public bool OnDamage(DamageInfo damageInfo)
     {
-        if(status.isDeath)
+        if(status.isDeath || currentStateType == PlayerStateType.Hit || currentStateType == PlayerStateType.CriticalHit)
             return false;
 
         var isDeath = status.OnDamage(damageInfo.damage);

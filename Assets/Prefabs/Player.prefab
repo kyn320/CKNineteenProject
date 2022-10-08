@@ -289,6 +289,10 @@ MonoBehaviour:
   damageEvent:
     m_PersistentCalls:
       m_Calls: []
+  updateMoveSpeedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  isDeath: 0
 --- !u!114 &4134729834005925682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,26 +424,10 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  playerModel: {fileID: 3737477598031783069}
   backMoveSpeedMutiplyer: 0.7
   gravity: 9.81
   allowMove: 1
   cameraMoveController: {fileID: 0}
-  updateMoveSpeedEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6946762501825792518}
-        m_TargetAssemblyTypeName: IKController, Assembly-CSharp
-        m_MethodName: UpdateDynamicRayDistance
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1294546402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,7 +492,6 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  playerModel: {fileID: 3737477598031783069}
   spiritObject: {fileID: 0}
   handBone: {fileID: 2435394239288226256}
   damageCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
@@ -546,6 +533,9 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
+  gravity: 1
+  decreseMoveSpeed: 1
+  knockBackVector: {x: 0, y: 0, z: 0}
 --- !u!114 &1294546406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,6 +572,9 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
+  gravity: 1
+  decreseMoveSpeed: 1
+  knockBackVector: {x: 0, y: 0, z: 0}
 --- !u!114 &1294546404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,14 +719,11 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
         already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'Bip001 Head'\n\tTransform 'Bip001 Spine1'\n\tTransform
-        'Bip001 Spine'\n\tTransform 'Bip001'\n\tTransform 'Bip001 Neck'\n\tTransform
-        'Bip001 Head'\n\tTransform 'Bip001 Spine1'\n\tTransform 'Bip001 Spine'\n\tTransform
-        'Bip001'\n\tTransform 'Bip001 Neck'\n\tand more ...\n\tFrom animation clip
-        'Twohand'\n\tFrom animation clip 'Hit01'\n\tFrom animation clip 'Hit02'\n\tFrom
-        animation clip 'Chakram'\n\tFrom animation clip 'Throw'\n\tFrom animation
-        clip 'Hit01'\n\tFrom animation clip 'Scroll'\n\tFrom animation clip 'Hit02'\n\tFrom
-        animation clip 'OneHand01'"
+        by Humanoid clips.\n\tTransform 'Bip001 Spine1'\n\tTransform 'Bip001 Spine'\n\tTransform
+        'Bip001'\n\tTransform 'Bip001 Neck'\n\tTransform 'Bip001 Head'\n\tTransform
+        'Bip001 Spine1'\n\tTransform 'Bip001'\n\tTransform 'Bip001 Head'\n\tTransform
+        'Bip001 Pelvis'\n\tTransform 'Bip001 Spine'\n\tand more ...\n\tFrom animation
+        clip 'Scroll'"
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
