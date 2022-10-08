@@ -24,6 +24,10 @@ public class BuffController : MonoBehaviour
     {
         status = GetComponent<UnitStatus>();
 
+    }
+
+    private void Start()
+    {
         InitializeBuff();
     }
 
