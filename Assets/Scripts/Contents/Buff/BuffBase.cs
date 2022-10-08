@@ -1,8 +1,11 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffBase
+[CreateAssetMenu(fileName = "BuffData", menuName = "Buff/BuffBase", order = 0)]
+
+public class BuffBase : SerializedScriptableObject
 {
     public StatusType statusType;
     public float effectTime;
