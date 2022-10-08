@@ -2455,6 +2455,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022740349}
   m_CullTransparentMesh: 1
+--- !u!114 &1022972269 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3582030805986803374, guid: b3e1a533bfbce574bb67d7896fc067e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 3582030805408191740}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16bbe6817a1c0a641b8f3193da1bd45a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1039389870 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4868864439846858884, guid: 97e6a83060e9ca5438f299fedeb77d4e,
@@ -5374,7 +5386,7 @@ PrefabInstance:
     - target: {fileID: 1487739244764698189, guid: 4d46fd763ed7bba41bf691be8acd4d9c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1487739244764698189, guid: 4d46fd763ed7bba41bf691be8acd4d9c,
         type: 3}
@@ -5666,6 +5678,46 @@ PrefabInstance:
       propertyPath: spiritObject
       value: 
       objectReference: {fileID: 1281426005}
+    - target: {fileID: 1294546404, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: enterAnimatorTriggerList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294546404, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: enterAnimatorTriggerList.Array.data[0].valueInt
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294546404, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: enterAnimatorTriggerList.Array.data[0].triggerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294546404, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: enterAnimatorTriggerList.Array.data[1].triggerType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294546404, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: enterAnimatorTriggerList.Array.data[0].parameterName
+      value: HitType
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294546404, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: enterAnimatorTriggerList.Array.data[1].parameterName
+      value: Hit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294546405, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: exitAnimatorTriggerList.Array.data[0].triggerType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294546405, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: enterAnimatorTriggerList.Array.data[0].triggerType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294546406, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: exitAnimatorTriggerList.Array.data[0].triggerType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294546406, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: enterAnimatorTriggerList.Array.data[0].triggerType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3827645977972770100, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: m_Name
@@ -5677,6 +5729,56 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3827645977972770101, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
+    - target: {fileID: 3827645977972770101, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: updateHpEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827645977972770101, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: updateDeathEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827645977972770101, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: updateHpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827645977972770101, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: updateHpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1022972269}
+    - target: {fileID: 3827645977972770101, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: updateDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827645977972770101, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: updateHpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827645977972770101, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: updateHpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateHP
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827645977972770101, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: updateDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827645977972770101, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: updateHpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIProfilePanel, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827645977972770101, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: updateHpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3827645977972770106, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: m_RootOrder
@@ -5742,6 +5844,17 @@ PrefabInstance:
       propertyPath: mouseMoveEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 123838324}
+    - target: {fileID: 7959492675666158685, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Bip001 Spine1'\n\tTransform 'Bip001 Spine'\n\tTransform
+        'Bip001'\n\tTransform 'Bip001 Neck'\n\tTransform 'Bip001 Head'\n\tTransform
+        'Bip001 Spine1'\n\tTransform 'Bip001'\n\tTransform 'Bip001 Head'\n\tTransform
+        'Bip001 Pelvis'\n\tTransform 'Bip001 Spine'\n\tand more ...\n\tFrom animation
+        clip 'Scroll'"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
 --- !u!1001 &4868864439659111466

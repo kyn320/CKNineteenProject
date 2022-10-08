@@ -20,6 +20,14 @@ public class UnitStatus : SerializedMonoBehaviour
         SetOriginStatus();
     }
 
+    private void Start()
+    {
+        var hpElement = currentStatus.GetElement(StatusType.HP);
+        var maxHPElement = currentStatus.GetElement(StatusType.MaxHP);
+
+        updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
+    }
+
     public void SetOriginStatus()
     {
         if (originStatusData != null)
@@ -50,9 +58,9 @@ public class UnitStatus : SerializedMonoBehaviour
 
         hpElement.SubAmount(damage);
 
-        updateHpEvent?.Invoke(hpElement.GetAmount(), maxHPElement.GetAmount());
+        updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
 
-        if (hpElement.GetAmount() <= 0)
+        if (hpElement.CalculateTotalAmount() <= 0)
         {
             isDeath = true;
             updateDeathEvent?.Invoke(isDeath, this);
