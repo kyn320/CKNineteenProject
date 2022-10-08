@@ -45,6 +45,9 @@ public class ProjectileController : MonoBehaviour
 
     public void Hit(Collision collision)
     {
+        if(collision.gameObject.CompareTag("Player"))
+            return;
+
         var damageable = collision.gameObject.GetComponent<IDamageable>();
 
         if (damageable != null)
