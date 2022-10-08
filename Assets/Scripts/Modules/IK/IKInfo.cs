@@ -37,6 +37,12 @@ public class IKInfo
     private Vector3 rayDirection;
     [SerializeField]
     private float rayDistance;
+
+    [SerializeField]
+    private bool useDynamicRayDistance;
+    [SerializeField]
+    private AmountRangeFloat dynamicRayDistanceRange;
+
     private RaycastHit raycastHit;
     [SerializeField]
     private LayerMask rayMask;
@@ -50,9 +56,24 @@ public class IKInfo
     [SerializeField]
     private bool useRotation = true;
 
+    public Vector3 rayHitPoint;
+    public Vector3 rayHitNormal;
+
+    public void UpdateDynamicRayDistance(float progress)
+    {
+        if (useDynamicRayDistance)
+            rayDistance = Mathf.Lerp(dynamicRayDistanceRange.min, dynamicRayDistanceRange.max, progress);
+    }
+
     private bool CheckRayCast()
     {
         return Physics.Raycast(targetTransform.position + rayStartOffset, rayDirection, out raycastHit, rayDistance, rayMask);
+    }
+
+    private bool CheckRayCast(Vector3 startRayPosition)
+    {
+        Debug.DrawRay(startRayPosition + rayStartOffset, rayDirection * rayDistance);
+        return Physics.Raycast(startRayPosition + rayStartOffset, rayDirection, out raycastHit, rayDistance, rayMask);
     }
 
     public void UpdateIK(Animator animator, bool isActiveIK)
@@ -71,6 +92,7 @@ public class IKInfo
                     }
                     else if (useRayCast && CheckRayCast())
                     {
+                        rayHitPoint = raycastHit.point;
                         animator.SetLookAtPosition(raycastHit.point + offsetPosition);
                     }
                 }
@@ -95,30 +117,81 @@ public class IKInfo
 
         if (isActiveIK)
         {
-            if (usePosition)
+            if (useTargetTransform)
             {
-                animator.SetIKPositionWeight(avatarIKGoal, weight);
-
-                if (useTargetTransform)
+                if (usePosition)
                 {
+                    animator.SetIKPositionWeight(avatarIKGoal, weight);
                     animator.SetIKPosition(avatarIKGoal, targetTransform.position);
                 }
-                else if (useRayCast && CheckRayCast())
+                else
                 {
-                    animator.SetIKPosition(avatarIKGoal, raycastHit.point + offsetPosition);
+                    animator.SetIKPositionWeight(avatarIKGoal, 0);
                 }
-            }
-            if (useRotation)
-            {
-                animator.SetIKRotationWeight(avatarIKGoal, weight);
-                if (useTargetTransform)
+
+                if (useRotation)
                 {
+                    animator.SetIKRotationWeight(avatarIKGoal, weight);
                     animator.SetIKRotation(avatarIKGoal, targetTransform.rotation);
                 }
-                else if (useRayCast && CheckRayCast())
+                else
                 {
-                    var rayRotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(targetTransform.forward, raycastHit.normal), raycastHit.normal);
-                    animator.SetIKRotation(avatarIKGoal, rayRotation * offsetRotation);
+                    animator.SetIKRotationWeight(avatarIKGoal, 0);
+                }
+            }
+            else if (useRayCast)
+            {
+                //var ikPosition = animator.GetIKPosition(avatarIKGoal);
+                if (CheckRayCast(targetTransform.position))
+                {
+                    if (usePosition)
+                    {
+                        rayHitPoint = raycastHit.point;
+                        animator.SetIKPositionWeight(avatarIKGoal, weight);
+                        animator.SetIKPosition(avatarIKGoal, raycastHit.point + offsetPosition);
+                    }
+                    else
+                    {
+                        animator.SetIKPositionWeight(avatarIKGoal, 0);
+                    }
+
+                    if (useRotation)
+                    {
+                        rayHitNormal = Vector3.ProjectOnPlane(animator.transform.forward, raycastHit.normal);
+                        animator.SetIKRotationWeight(avatarIKGoal, weight);
+
+                        var lookAtRotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(animator.transform.forward, raycastHit.normal), raycastHit.normal);
+                        animator.SetIKRotation(avatarIKGoal
+                            , lookAtRotation);
+                    }
+                    else
+                    {
+                        animator.SetIKRotationWeight(avatarIKGoal, 0);
+                    }
+                }
+                else
+                {
+                    if (usePosition)
+                    {
+                        animator.SetIKPositionWeight(avatarIKGoal, 0);
+                    }
+
+                    if (useRotation)
+                    {
+                        animator.SetIKRotationWeight(avatarIKGoal, 0);
+                    }
+                }
+            }
+            else
+            {
+                if (usePosition)
+                {
+                    animator.SetIKPositionWeight(avatarIKGoal, 0);
+                }
+
+                if (useRotation)
+                {
+                    animator.SetIKRotationWeight(avatarIKGoal, 0);
                 }
             }
         }
@@ -134,7 +207,6 @@ public class IKInfo
                 animator.SetIKRotationWeight(avatarIKGoal, 0);
             }
         }
-
     }
 
 }

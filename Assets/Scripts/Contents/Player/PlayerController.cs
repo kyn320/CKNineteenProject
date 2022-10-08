@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     [ShowInInspector]
     private Vector3 moveVector;
 
+    [SerializeField]
+    private bool isDeath = false;
+
     private void Awake()
     {
         status = GetComponent<UnitStatus>();
@@ -106,9 +109,17 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public bool OnDamage(DamageInfo damageInfo)
     {
-        status.OnDamage(damageInfo.damage);
+        if(status.isDeath)
+            return false;
+
+        var isDeath = status.OnDamage(damageInfo.damage);
         damageEvent?.Invoke(damageInfo);
-        if (damageInfo.isCritical)
+
+        if (isDeath)
+        {
+            ChangeState(PlayerStateType.Death);
+        }
+        else if (damageInfo.isCritical)
         {
             ChangeState(PlayerStateType.CriticalHit);
         }
@@ -116,7 +127,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             ChangeState(PlayerStateType.Hit);
         }
-        return true;
+
+        return isDeath;
     }
 
     public void UpdateBattleState(PlayerBattleStateType battleStateType)
