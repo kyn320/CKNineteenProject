@@ -20,6 +20,7 @@ public class BuffController : MonoBehaviour
     public UnityEvent startDeBuff;
     public UnityEvent endDeBuff;
 
+    private int buffCount = 0;
     private void Awake()
     {
         status = GetComponent<UnitStatus>();
@@ -57,7 +58,33 @@ public class BuffController : MonoBehaviour
             timer = .0f;
     }
 
-    public void AddBuff(BuffBase buffBase)
+    public void CreateBuff(StatusType type, float time, float count)
+    {
+        BuffBase buff = ScriptableObject.CreateInstance<BuffBase>();
+
+        buff.statusType = type;
+        buff.effectTime = time;
+        buff.abilityCount = count;
+
+        AssetDatabase.CreateAsset(buff, "Assets/ScriptableObjects/Buff/" + gameObject.name + buffCount);
+
+        AddBuff(buff);
+    }
+
+    public void CreateDeBuff(StatusType type, float time, float count)
+    {
+        BuffBase buff = ScriptableObject.CreateInstance<BuffBase>();
+
+        buff.statusType = type;
+        buff.effectTime = time;
+        buff.abilityCount = count;
+
+        AssetDatabase.CreateAsset(buff, "Assets/ScriptableObjects/Buff/" + gameObject.name + buffCount);
+
+        AddDeBuff(buff);
+    }
+
+    private void AddBuff(BuffBase buffBase)
     {
         foreach (var buff in buffList)
         {
@@ -76,7 +103,7 @@ public class BuffController : MonoBehaviour
         startBuff?.Invoke();
         buffList.Add(buffBase);
     }
-    public void AddDeBuff(BuffBase buffBase)
+    private void AddDeBuff(BuffBase buffBase)
     {
         foreach (var buff in deBuffList)
         {
