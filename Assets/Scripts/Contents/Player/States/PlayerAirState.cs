@@ -8,12 +8,11 @@ public class PlayerAirState : PlayerStateBase
     private float gravity = 9.81f;
 
     private Animator animator;
-    private CharacterController characterController;
+    private Vector3 inputVector;
 
     protected override void Awake()
     {
         base.Awake();
-        characterController = GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -23,6 +22,7 @@ public class PlayerAirState : PlayerStateBase
 
     public override void Enter()
     {
+        controller.GetRigidbody().useGravity = true;
         for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
         {
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
@@ -35,19 +35,29 @@ public class PlayerAirState : PlayerStateBase
 
     public override void Update()
     {
-        var moveVector = controller.GetMoveVector();
+        return;
+    }
 
-        animator.SetBool("IsGrounded", characterController.isGrounded);
-        moveVector.y -= gravity * Time.deltaTime;
-
-        if (moveVector.y <= 0 && characterController.isGrounded)
+    private void FixedUpdate()
+    {
+        var velocity = controller.GetRigidbody().velocity;
+        var isGround = controller.IsGround();
+        animator.SetBool("IsGrounded", isGround);
+        if (velocity.y < 0 && isGround)
         {
-            controller.ChangeState(PlayerStateType.Idle);
+            if (inputVector.magnitude > 0)
+                controller.ChangeState(PlayerStateType.Move);
+            else
+                controller.ChangeState(PlayerStateType.Idle);
         }
+    }
 
-        controller.SetMoveVector(moveVector);
-        characterController.Move(moveVector * Time.deltaTime);
+    public void UpdateMoveInput(Vector3 inputVector)
+    {
+        if (!isStay)
+            return;
 
+        this.inputVector = inputVector;
     }
 
     public override void Exit()

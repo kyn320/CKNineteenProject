@@ -26,13 +26,12 @@ public class PlayerJumpState : PlayerStateBase
         var animator = controller.GetAnimator();
         var status = controller.GetStatus();
 
-        animator.SetTrigger("Jump");
         animator.SetBool("IsGrounded", false);
 
-        var moveVector = controller.GetMoveVector();
-        moveVector.y = status.currentStatus.GetElement(StatusType.JumpPower).CalculateTotalAmount();
-
-        controller.SetMoveVector(moveVector);
+        var jumpPower = status.currentStatus.GetElement(StatusType.JumpPower).CalculateTotalAmount();
+        var velocity = controller.GetRigidbody().velocity;
+        velocity.y = jumpPower;
+        controller.GetRigidbody().velocity = velocity;
         controller.ChangeState(PlayerStateType.Air);
     }
 

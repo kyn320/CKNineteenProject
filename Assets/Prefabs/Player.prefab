@@ -9,11 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3827645977113965213}
-  - component: {fileID: 3827645977113965184}
-  - component: {fileID: 3827645977113965215}
-  - component: {fileID: 3827645977113965214}
-  m_Layer: 3
-  m_Name: Foot
+  m_Layer: 7
+  m_Name: FootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,95 +31,6 @@ Transform:
   m_Father: {fileID: 3827645977972770106}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &3827645977113965184
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827645977113965212}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!135 &3827645977113965215
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827645977113965212}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3827645977113965214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827645977113965212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffdaa12f9c4a9ee49bf079647569d7ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  disableEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  collisionEnterEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  collisionStayEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  collisionExitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerEnterEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerMoveController, Assembly-CSharp
-        m_MethodName: EnterGround
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  triggerStayEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerExitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerMoveController, Assembly-CSharp
-        m_MethodName: ExitGround
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &3827645977174835326
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3827645977174835327}
   - component: {fileID: 3827645977174835296}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: PlayerWallGaurder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,13 +70,13 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3827645977174835326}
-  m_Material: {fileID: 13400000, guid: 62ef720cf6c540a4387880d3a8338651, type: 2}
+  m_Material: {fileID: 13400000, guid: 137f94b9a7d87ac40b6278329b85c0f0, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1.1
+  m_Height: 1.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0.6, z: 0}
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!1 &3827645977972770100
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +86,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3827645977972770106}
-  - component: {fileID: 327168962232424904}
+  - component: {fileID: 7373758687256742895}
+  - component: {fileID: 8919515042360197891}
   - component: {fileID: 3827645977972770101}
   - component: {fileID: 6507632351326195042}
   - component: {fileID: 4134729834005925682}
@@ -216,24 +125,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &327168962232424904
-CharacterController:
+--- !u!54 &7373758687256742895
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3827645977972770100}
-  m_Material: {fileID: 0}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &8919515042360197891
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645977972770100}
+  m_Material: {fileID: 13400000, guid: 137f94b9a7d87ac40b6278329b85c0f0, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1
   m_Radius: 0.25
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.55, z: 0}
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!114 &3827645977972770101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +184,19 @@ MonoBehaviour:
   isDeath: 0
   updateHpEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIProfilePanel, Assembly-CSharp
+        m_MethodName: UpdateHP
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   updateDeathEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -286,12 +219,32 @@ MonoBehaviour:
     keys: 
     values: []
   animator: {fileID: 7959492675666158685}
+  slopeLimit: 45
+  footPointTransform: {fileID: 3827645977113965213}
+  groundCheckRadius: 0.25
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 1
+  slopeRayOffset: 0.5
+  slopeRayDistance: 1
   damageEvent:
     m_PersistentCalls:
       m_Calls: []
   updateMoveSpeedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6946762501825792518}
+        m_TargetAssemblyTypeName: IKController, Assembly-CSharp
+        m_MethodName: UpdateDynamicRayDistance
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   isDeath: 0
 --- !u!114 &4134729834005925682
 MonoBehaviour:
@@ -325,6 +278,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1294546399}
         m_TargetAssemblyTypeName: PlayerMoveState, Assembly-CSharp
         m_MethodName: UpdateInputVector
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1294546401}
+        m_TargetAssemblyTypeName: PlayerAirState, Assembly-CSharp
+        m_MethodName: UpdateMoveInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -425,7 +390,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   backMoveSpeedMutiplyer: 0.7
-  gravity: 9.81
   allowMove: 1
   cameraMoveController: {fileID: 0}
 --- !u!114 &1294546402
@@ -533,9 +497,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  gravity: 1
-  decreseMoveSpeed: 1
-  knockBackVector: {x: 0, y: 0, z: 0}
+  knockBackVector: {x: 0, y: 0, z: -3}
 --- !u!114 &1294546406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,9 +534,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  gravity: 1
-  decreseMoveSpeed: 1
-  knockBackVector: {x: 0, y: 0, z: 0}
+  knockBackVector: {x: 0, y: 5, z: -3}
 --- !u!114 &1294546404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,7 +548,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateType: 7
-  enterAnimatorTriggerList: []
+  enterAnimatorTriggerList:
+  - triggerType: 1
+    parameterName: HitType
+    valueInt: 2
+    valueFloat: 0
+    valueBool: 0
+  - triggerType: 2
+    parameterName: Hit
+    valueInt: 0
+    valueFloat: 0
+    valueBool: 0
   exitAnimatorTriggerList: []
   enterEvent:
     m_PersistentCalls:

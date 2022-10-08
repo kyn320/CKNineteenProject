@@ -24,13 +24,23 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [SerializeField]
     private Animator animator;
-    private CharacterController characterController;
+    private new Rigidbody rigidbody;
+
+    [SerializeField]
+    private float slopeLimit;
+    [SerializeField]
+    private Transform footPointTransform;
+    [SerializeField]
+    private float groundCheckRadius;
+    [SerializeField]
+    private LayerMask groundMask;
+    [SerializeField]
+    private float slopeRayOffset;
+    [SerializeField]
+    private float slopeRayDistance;
+    private RaycastHit slopeHit;
 
     public UnityEvent<DamageInfo> damageEvent;
-
-    [ReadOnly]
-    [ShowInInspector]
-    private Vector3 moveVector;
 
     public UnityEvent<float> updateMoveSpeedEvent;
 
@@ -41,7 +51,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         status = GetComponent<UnitStatus>();
         inputController = GetComponent<PlayerInputController>();
-        characterController = GetComponent<CharacterController>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -101,7 +111,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void Jump()
     {
-        if (!characterController.isGrounded
+        if (!IsGround()
             && currentStateType != PlayerStateType.Idle
             && currentStateType != PlayerStateType.Move)
             return;
@@ -111,7 +121,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public bool OnDamage(DamageInfo damageInfo)
     {
-        if(status.isDeath || currentStateType == PlayerStateType.Hit || currentStateType == PlayerStateType.CriticalHit)
+        if (status.isDeath || currentStateType == PlayerStateType.Hit || currentStateType == PlayerStateType.CriticalHit)
             return false;
 
         var isDeath = status.OnDamage(damageInfo.damage);
@@ -138,18 +148,48 @@ public class PlayerController : MonoBehaviour, IDamageable
         this.battleStateType = battleStateType;
     }
 
-    public Vector3 GetMoveVector()
+    public Rigidbody GetRigidbody()
     {
-        return moveVector;
+        return rigidbody;
     }
 
-    public void SetMoveVector(Vector3 moveVector)
+    public bool IsGround()
     {
-        this.moveVector = moveVector;
+        var collisions = Physics.OverlapSphere(footPointTransform.position, groundCheckRadius, groundMask);
+        return collisions.Length > 0;
     }
 
-    public bool GetIsGround()
+    public bool CheckSlope()
     {
-        return characterController.isGrounded;
+        if (Physics.Raycast(footPointTransform.position + Vector3.up * slopeRayOffset
+            , Vector3.down
+            ,out slopeHit
+            ,slopeRayDistance
+            ,groundMask
+            ))
+        {
+            var collider = slopeHit.collider;
+            var angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+
+            return angle < slopeLimit && angle != 0f;
+        }
+
+        return false;
     }
+
+    public Vector3 GetSlopeDirection(Vector3 moveDirection)
+    {
+        Debug.Log(Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized);
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(footPointTransform.position + Vector3.up * slopeRayOffset, Vector3.down * slopeRayDistance, Color.red);
+        Gizmos.DrawWireSphere(footPointTransform.position, groundCheckRadius);
+
+        if (slopeHit.collider != null)
+            Gizmos.DrawSphere(slopeHit.point, groundCheckRadius);
+    }
+
 }

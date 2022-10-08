@@ -45,6 +45,11 @@ public class PlayerIdleState : PlayerStateBase
 
     }
 
+    private void FixedUpdate()
+    {
+        controller.GetRigidbody().velocity = Vector3.zero;
+    }
+
     public override void Exit()
     {
         isStay = false;

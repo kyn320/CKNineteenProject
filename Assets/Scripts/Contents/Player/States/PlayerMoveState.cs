@@ -13,8 +13,6 @@ public class PlayerMoveState : PlayerStateBase
     private float moveSpeed = 1f;
     [SerializeField]
     private float backMoveSpeedMutiplyer = 0.5f;
-    [SerializeField]
-    private float gravity = 1f;
 
     [SerializeField]
     private bool allowMove = true;
@@ -27,15 +25,14 @@ public class PlayerMoveState : PlayerStateBase
     private Vector3 cameraForwardVector;
 
     private Animator animator;
-    private CharacterController characterController;
 
     [SerializeField]
     private CameraMoveController cameraMoveController;
 
+
     protected override void Awake()
     {
         base.Awake();
-        characterController = GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -64,17 +61,10 @@ public class PlayerMoveState : PlayerStateBase
             Move();
         }
 
-        var moveVector = controller.GetMoveVector();
-
-        moveVector.y = -gravity;
-
-        controller.SetMoveVector(moveVector);
-        characterController.Move(moveVector * Time.deltaTime);
-
         animator.SetFloat("MoveX", inputVector.x);
         animator.SetFloat("MoveZ", inputVector.z);
 
-        if (!characterController.isGrounded)
+        if (!controller.IsGround())
         {
             controller.ChangeState(PlayerStateType.Air);
         }
@@ -100,7 +90,7 @@ public class PlayerMoveState : PlayerStateBase
         }
 
         //땅 밟았을 경우에만 이동 가능 / 안 밟았을 경우 움직이긴 하되 매우 미미하다.
-        if (characterController.isGrounded)
+        if (controller.IsGround())
         {
             moveSpeed = status.currentStatus.GetElement(StatusType.MoveSpeed).CalculateTotalAmount();
 
@@ -110,24 +100,28 @@ public class PlayerMoveState : PlayerStateBase
             }
 
             var viewNoramlVector = viewVector.normalized;
-            var moveVector = controller.GetMoveVector();
+            var moveDirection = viewNoramlVector;
+            var velocity = Vector3.zero;
+
+            var isSlope = controller.CheckSlope();
+            if (isSlope)
+            {
+                moveDirection = controller.GetSlopeDirection(moveDirection);
+            }
 
             if (inputVector.z < 0f)
             {
                 cameraMoveController.SetBackMoveCamera(true);
-
-                moveVector.x = viewNoramlVector.x * -backMoveSpeedMutiplyer * moveSpeed;
-                moveVector.z = viewNoramlVector.z * -backMoveSpeedMutiplyer * moveSpeed;
+                velocity = moveDirection * - backMoveSpeedMutiplyer * moveSpeed;
             }
             else
             {
                 cameraMoveController.SetBackMoveCamera(false);
-
-                moveVector.x = viewNoramlVector.x * moveSpeed;
-                moveVector.z = viewNoramlVector.z * moveSpeed;
+                velocity = moveDirection * moveSpeed;
             }
 
-            controller.SetMoveVector(moveVector);
+            controller.GetRigidbody().velocity = velocity;
+            controller.GetRigidbody().useGravity = !isSlope;
         }
     }
 
@@ -148,6 +142,7 @@ public class PlayerMoveState : PlayerStateBase
         cameraForwardVector.y = 0;
         transform.forward = cameraForwardVector;
     }
+
 
     public override void Exit()
     {
