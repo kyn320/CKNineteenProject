@@ -6,9 +6,6 @@ using Sirenix.OdinInspector;
 public class PlayerAttackState : PlayerStateBase
 {
     [SerializeField]
-    private GameObject playerModel;
-
-    [SerializeField]
     private GameObject spiritObject;
     private SpiritMoveController spiritMoveController;
 
@@ -114,7 +111,7 @@ public class PlayerAttackState : PlayerStateBase
         var weaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
 
         //오브젝트가 출력될 벡터값 설정
-        projectileSpawnPoint = playerModel.transform.forward * weaponData.SpawnVector.z + playerModel.transform.right * weaponData.SpawnVector.x;
+        projectileSpawnPoint = transform.forward * weaponData.SpawnVector.z + transform.right * weaponData.SpawnVector.x;
         projectileSpawnPoint.y = weaponData.SpawnVector.y;
         projectileSpawnPoint += transform.position;
 

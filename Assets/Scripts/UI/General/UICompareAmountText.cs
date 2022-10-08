@@ -45,7 +45,7 @@ public class UICompareAmountText : UIAmountText
 
         if (usePercentDisplay)
         {
-            var percent = (current / (float)requireAmount);
+            var percent = (current / (float)requireAmount) * 100f;
             displayText = string.IsNullOrEmpty(viewFormat) ? percent.ToString() : string.Format("{0:" + viewFormat + "}", percent);
         }
         else if (useRequireAmountDisplay)
@@ -85,12 +85,17 @@ public class UICompareAmountText : UIAmountText
 
         if (usePercentDisplay)
         {
-            var percent = (current / (float)requireAmount);
-            displayText = string.IsNullOrEmpty(viewFormat) ? percent.ToString() : string.Format(viewFormat, percent);
+            var percent = (current / (float)requireAmount) * 100f;
+            displayText = string.IsNullOrEmpty(viewFormat) ? percent.ToString() : string.Format("{0:" + viewFormat + "}", percent);
+        }
+        else if (useRequireAmountDisplay)
+        {
+            displayText = string.IsNullOrEmpty(viewFormat) ? string.Format("{0}/{1}", current, requireAmount)
+                : string.Format("{0:" + viewFormat + "}/{1:" + viewFormat + "}", current);
         }
         else
         {
-            displayText = string.IsNullOrEmpty(viewFormat) ? current.ToString() : string.Format(viewFormat, current);
+            displayText = string.IsNullOrEmpty(viewFormat) ? current.ToString() : string.Format("{0:" + viewFormat + "}", current);
         }
 
         text.text = $"{frontAdditionalText}<color=#{ColorUtility.ToHtmlStringRGBA(color)}>{displayText}</color>{backAdditionalText}";

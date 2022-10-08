@@ -48,6 +48,7 @@ public class MonsterChaseState : MonsterStateBase
         navAgent.stoppingDistance = stopDistance;
 
         RefreshPathTime();
+        navAgent.isStopped = false;
         navAgent.SetDestination(controller.GetTarget().position);
 
         enterEvent?.Invoke();
