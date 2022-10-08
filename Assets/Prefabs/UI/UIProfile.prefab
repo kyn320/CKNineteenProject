@@ -362,11 +362,14 @@ MonoBehaviour:
   frontAdditionalText: 
   backAdditionalText: 
   viewFormat: 
+  updateAmountEvent:
+    m_PersistentCalls:
+      m_Calls: []
   colorData: {fileID: 11400000, guid: 16346e1d89480b74687ea2d06b3c8089, type: 2}
   normalColorKey: Normal
   usePercentDisplay: 0
   useDynamicColor: 0
-  useRequireAmountDisplay: 0
+  useRequireAmountDisplay: 1
   lackColorKey: Lack
   equalColorKey: Equal
   overColorKey: Over

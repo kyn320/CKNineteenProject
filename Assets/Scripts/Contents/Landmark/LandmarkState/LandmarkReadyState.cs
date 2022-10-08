@@ -22,6 +22,12 @@ namespace Landmark
             currentRecoverTime = autoRecoverTime;
             status = controller.GetStatus();
             status.updateHpEvent.AddListener(UpdateHP);
+            isStay = true;
+
+            var view = UIController.Instance.OpenView(controller.uiLandmarkViewData);
+            controller.uiLandmarkView = view.GetComponent<UILandmarkView>();
+            controller.GetStatus().updateHpEvent.AddListener(controller.uiLandmarkView.UpdateShieldAmount);
+            controller.GetStatus().ForceUpdateHPEvent();
 
             enterEvent?.Invoke();
         }
@@ -30,6 +36,7 @@ namespace Landmark
         {
             status.updateHpEvent.RemoveListener(UpdateHP);
 
+            isStay = false;
             exitEvent?.Invoke();
         }
 

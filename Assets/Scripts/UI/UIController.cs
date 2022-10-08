@@ -38,6 +38,53 @@ public class UIController : Singleton<UIController>
         return view;
     }
 
+    public UIBaseView OpenView(UIData uiData)
+    {
+        var viewPrefab = Resources.Load<GameObject>(uiData.prefabPath);
+        var viewObject = Instantiate(viewPrefab, viewGroup);
+        var view = viewObject.GetComponent<UIBaseView>();
+        viewList.Add(view);
+
+        view.Init(uiData);
+        view.Open();
+
+        return view;
+    }
+
+    public UIBaseView OpenView(string viewName)
+    {
+        var viewPrefab = Resources.Load<GameObject>($"UI/UI{viewName}");
+        var viewObject = Instantiate(viewPrefab, viewGroup);
+        var view = viewObject.GetComponent<UIBaseView>();
+        viewList.Add(view);
+
+        view.Init(null);
+        view.Open();
+
+        return view;
+    }
+
+    public void CloseView(UIBaseView view)
+    {
+        view.Close();
+        viewList.Remove(view);
+    }
+
+    public void CloseView(string viewName)
+    {
+        var view = viewList.Find(item => item.viewName.Equals(viewName));
+
+        viewList.Remove(view);
+        view.Close();
+    }
+    public void CloseView(UIData uiData)
+    {
+        var view = viewList.Find(item => item.viewName.Equals(uiData.viewName));
+
+        viewList.Remove(view);
+        view.Close();
+    }
+
     public UIBaseView OpenPopup(string popupName)
     {
         var popupPrefab = Resources.Load<GameObject>($"UI/UI{popupName}Popup");
@@ -78,12 +125,6 @@ public class UIController : Singleton<UIController>
         view.Open();
 
         return view;
-    }
-
-    public void CloseView(UIBaseView view)
-    {
-        view.Close();
-        viewList.Remove(view);
     }
 
     public void ClosePopup(UIBasePopup popup)

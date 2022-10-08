@@ -22,6 +22,11 @@ namespace Landmark
         private SerializableDictionary<LandmarkStateType, LandmarkStateBase> statesDic
             = new SerializableDictionary<LandmarkStateType, LandmarkStateBase>();
 
+        [HideInInspector]
+        public UILandmarkViewData uiLandmarkViewData = new UILandmarkViewData();
+        [HideInInspector]
+        public UILandmarkView uiLandmarkView;
+
         private void Start()
         {
             ChangeState(LandmarkStateType.LANDMARK_WAIT);

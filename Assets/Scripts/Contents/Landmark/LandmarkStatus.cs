@@ -6,6 +6,13 @@ namespace Landmark
 {
     public class LandmarkStatus : UnitStatus
     {
+        public void ForceUpdateHPEvent()
+        {
+            var hpElement = currentStatus.GetElement(StatusType.HP);
+            var maxHPElement = currentStatus.GetElement(StatusType.MaxHP);
+            updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
+        }
+
         public void SetHP(float amount, bool isPercent = false)
         {
             var hpElement = currentStatus.GetElement(StatusType.HP);
@@ -13,12 +20,12 @@ namespace Landmark
 
             if (isPercent)
             {
-                hpElement.SetAmount(maxHPElement.GetAmount() * amount * 0.01f);
+                hpElement.SetAmount(maxHPElement.CalculateTotalAmount() * amount * 0.01f);
             }
             else
                 hpElement.SetAmount(amount);
 
-            updateHpEvent?.Invoke(hpElement.GetAmount(), maxHPElement.GetAmount());
+            updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
         }
 
         public void AddHP(float amount, bool isPercent = false)
@@ -28,12 +35,12 @@ namespace Landmark
 
             if (isPercent)
             {
-                hpElement.AddAmount(maxHPElement.GetAmount() * amount * 0.01f);
+                hpElement.AddAmount(maxHPElement.CalculateTotalAmount() * amount * 0.01f);
             }
             else
                 hpElement.AddAmount(amount);
 
-            updateHpEvent?.Invoke(hpElement.GetAmount(), maxHPElement.GetAmount());
+            updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
         }
 
         public void AutoRecover()
