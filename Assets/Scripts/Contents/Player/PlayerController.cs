@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 {
     private PlayerInputController inputController;
 
-    private UnitStatus status;
+    private PlayerStatus status;
 
     [SerializeField]
     private PlayerBattleStateType battleStateType;
@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     private float slopeRayDistance;
     private RaycastHit slopeHit;
 
+    public UnityEvent<PlayerBattleStateType> updateBattleStateEvent;
+
     public UnityEvent<DamageInfo> damageEvent;
 
     public UnityEvent<float> updateMoveSpeedEvent;
@@ -49,7 +51,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        status = GetComponent<UnitStatus>();
+        status = GetComponent<PlayerStatus>();
         inputController = GetComponent<PlayerInputController>();
         rigidbody = GetComponent<Rigidbody>();
     }
@@ -94,7 +96,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         return currentStateType;
     }
 
-    public UnitStatus GetStatus()
+    public PlayerStatus GetStatus()
     {
         return status;
     }
@@ -124,9 +126,10 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (status.isDeath || currentStateType == PlayerStateType.Hit || currentStateType == PlayerStateType.CriticalHit)
             return false;
 
+        UpdateBattleState(PlayerBattleStateType.Battle);
+
         var isDeath = status.OnDamage(damageInfo.damage);
         damageEvent?.Invoke(damageInfo);
-
         if (isDeath)
         {
             ChangeState(PlayerStateType.Death);
@@ -143,9 +146,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         return isDeath;
     }
 
+    public PlayerBattleStateType GetBattleState()
+    {
+        return battleStateType;
+    }
+
     public void UpdateBattleState(PlayerBattleStateType battleStateType)
     {
         this.battleStateType = battleStateType;
+        updateBattleStateEvent?.Invoke(battleStateType);
     }
 
     public Rigidbody GetRigidbody()
@@ -163,9 +172,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (Physics.Raycast(footPointTransform.position + Vector3.up * slopeRayOffset
             , Vector3.down
-            ,out slopeHit
-            ,slopeRayDistance
-            ,groundMask
+            , out slopeHit
+            , slopeRayDistance
+            , groundMask
             ))
         {
             var collider = slopeHit.collider;

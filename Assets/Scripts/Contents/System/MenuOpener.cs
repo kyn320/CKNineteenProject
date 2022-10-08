@@ -7,9 +7,11 @@ public class MenuOpener : MonoBehaviour
     private UIPausePopupData pausePopupData;
     private UIInventoryPopupData inventoryPopupData;
 
-    private void Awake()
-    {
+    private PlayerBattleStateType battleStateType;
 
+    public void UpdateBattleType(PlayerBattleStateType battleStateType)
+    {
+        this.battleStateType = battleStateType;
     }
 
     public void Update()
@@ -28,7 +30,6 @@ public class MenuOpener : MonoBehaviour
             }
         }
 
-
         if (Input.GetKeyDown(KeyCode.Tab) && pausePopupData == null)
         {
             if (inventoryPopupData != null)
@@ -36,11 +37,12 @@ public class MenuOpener : MonoBehaviour
                 UIController.Instance.ClosePopup(inventoryPopupData);
                 inventoryPopupData = null;
             }
-            else
+            else if(battleStateType == PlayerBattleStateType.Normal)
             {
                 inventoryPopupData = new UIInventoryPopupData();
-                var view =  UIController.Instance.OpenPopup(inventoryPopupData);
-                view.closeEvent.AddListener(() => { 
+                var view = UIController.Instance.OpenPopup(inventoryPopupData);
+                view.closeEvent.AddListener(() =>
+                {
                     inventoryPopupData = null;
                 });
             }

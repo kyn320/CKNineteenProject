@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 3827645977972770106}
   - component: {fileID: 7373758687256742895}
   - component: {fileID: 8919515042360197891}
-  - component: {fileID: 3827645977972770101}
+  - component: {fileID: 1383080239591342266}
   - component: {fileID: 6507632351326195042}
   - component: {fileID: 4134729834005925682}
   - component: {fileID: 1294546400}
@@ -155,7 +155,7 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0}
---- !u!114 &3827645977972770101
+--- !u!114 &1383080239591342266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3827645977972770100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f050dd3c56a50164c9827ae10a611f75, type: 3}
+  m_Script: {fileID: 11500000, guid: 59fa032abca51f14cbc301ac5f8b65ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
@@ -184,19 +184,7 @@ MonoBehaviour:
   isDeath: 0
   updateHpEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIProfilePanel, Assembly-CSharp
-        m_MethodName: UpdateHP
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   updateDeathEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -227,6 +215,9 @@ MonoBehaviour:
     m_Bits: 1
   slopeRayOffset: 0.5
   slopeRayDistance: 1
+  updateBattleStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
   damageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -368,6 +359,8 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
+  recoverTickTime: 0
+  changeNormalBattleTime: 5
 --- !u!114 &1294546399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,13 +680,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'Bip001 Spine1'\n\tTransform 'Bip001 Spine'\n\tTransform
-        'Bip001'\n\tTransform 'Bip001 Neck'\n\tTransform 'Bip001 Head'\n\tTransform
-        'Bip001 Spine1'\n\tTransform 'Bip001'\n\tTransform 'Bip001 Head'\n\tTransform
-        'Bip001 Pelvis'\n\tTransform 'Bip001 Spine'\n\tand more ...\n\tFrom animation
-        clip 'Scroll'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}

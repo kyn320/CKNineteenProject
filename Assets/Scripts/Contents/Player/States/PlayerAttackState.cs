@@ -57,6 +57,8 @@ public class PlayerAttackState : PlayerStateBase
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
         }
 
+        controller.UpdateBattleState(PlayerBattleStateType.Battle);
+
         enterEvent?.Invoke();
     }
 
