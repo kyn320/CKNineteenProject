@@ -45,7 +45,8 @@ public class MonsterHitState : MonsterStateBase
 
     public void KnockBack()
     {
-        rigid.velocity = knockBackVector;
+        var knockBackDirection = transform.forward * knockBackVector.z + transform.up * knockBackVector.y;
+        rigid.velocity = knockBackDirection;
     }
 
     public void EndHit()

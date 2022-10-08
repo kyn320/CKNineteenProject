@@ -22,8 +22,8 @@ public class PlayerHitState : PlayerStateBase
 
         isStay = true;
         var knockBackDirection = transform.forward * knockBackVector.z + transform.up * knockBackVector.y;
-
-        controller.GetRigidbody().AddForce(knockBackDirection, ForceMode.VelocityChange);
+        controller.GetRigidbody().velocity = Vector3.zero;
+        controller.GetRigidbody().AddForce(knockBackDirection, ForceMode.Force);
         enterEvent?.Invoke();
     }
 

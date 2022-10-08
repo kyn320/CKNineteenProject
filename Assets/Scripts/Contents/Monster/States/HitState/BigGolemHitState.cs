@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BigGolemHitState : MonsterHitState
 {
+    public override void Enter()
+    {
+        base.Enter();
+    }
+
     public override void DamageHit(DamageInfo damageInfo)
     {
         if (!isStay)
@@ -11,5 +16,6 @@ public class BigGolemHitState : MonsterHitState
 
         base.DamageHit(damageInfo);
         Instantiate(vfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
+        EndHit();
     }
 }

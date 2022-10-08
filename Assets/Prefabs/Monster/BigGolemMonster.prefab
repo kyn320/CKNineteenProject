@@ -273,7 +273,6 @@ GameObject:
   - component: {fileID: 1442392890374124687}
   - component: {fileID: 1442392890374124674}
   - component: {fileID: 1442392890374124673}
-  - component: {fileID: 3306097311559860204}
   - component: {fileID: 2189784059141817597}
   - component: {fileID: 5919483988528196888}
   - component: {fileID: 5919483988528196889}
@@ -316,7 +315,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!195 &1442392890848018249
 NavMeshAgent:
@@ -528,48 +527,6 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3306097311559860204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784834343265454539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75b336d6a14fd104890a10334c04ecfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  startAttackTriggerDataList:
-  - triggerType: 2
-    parameterName: AttackType
-    valueInt: 1
-    valueFloat: 0
-    valueBool: 0
-  - triggerType: 4
-    parameterName: Attack
-    valueInt: 0
-    valueFloat: 0
-    valueBool: 0
-  endAttackTriggerDataList:
-  - triggerType: 2
-    parameterName: AttackType
-    valueInt: 0
-    valueFloat: 0
-    valueBool: 0
-  isAttacked: 0
-  damageCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
-  criticalDamageCalculator: {fileID: 11400000, guid: abf026fdca9ff9646b383fc39cfc0800,
-    type: 2}
-  startAttackEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  endAttackEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  attackDistance: 20
-  attackAfterTime: 0
 --- !u!114 &2189784059141817597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,12 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateType: 3
-  enterAnimatorTriggerList:
-  - triggerType: 4
-    parameterName: Hit
-    valueInt: 0
-    valueFloat: 0
-    valueBool: 0
+  enterAnimatorTriggerList: []
   exitAnimatorTriggerList: []
   enterEvent:
     m_PersistentCalls:
@@ -729,7 +681,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  knockBackVector: {x: 0, y: 0, z: 0}
+  knockBackVector: {x: 0, y: 0, z: -10}
   vfxPrefabData: {fileID: 11400000, guid: 9802a65df7d6df84f911e2c9cb65db2a, type: 2}
 --- !u!1 &2491627658696753167
 GameObject:

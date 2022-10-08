@@ -59,7 +59,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &1481588661408033508
 SphereCollider:
@@ -387,7 +387,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  knockBackVector: {x: 0, y: 1, z: -1}
+  knockBackVector: {x: 0, y: 0, z: -3}
   vfxPrefabData: {fileID: 11400000, guid: 9802a65df7d6df84f911e2c9cb65db2a, type: 2}
 --- !u!114 &1786684583
 MonoBehaviour:
@@ -415,7 +415,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  knockBackVector: {x: 0, y: 1, z: -1}
+  knockBackVector: {x: 0, y: 0, z: -6}
   vfxPrefabData: {fileID: 11400000, guid: 9802a65df7d6df84f911e2c9cb65db2a, type: 2}
 --- !u!1001 &2434219640386749578
 PrefabInstance:
