@@ -10,7 +10,12 @@ namespace Landmark
         {
             //TODO :: 랜드마크 파괴 된 모습으로 변경
             //테스트 빌드 기간에는 Active만 끄기
+            controller.GetStatus().updateHpEvent.RemoveListener(controller.uiLandmarkView.UpdateShieldAmount);
+            UIController.Instance.CloseView(controller.uiLandmarkView);
+
             controller.Destroy();
+
+            isStay = true;
             enterEvent?.Invoke();
         }
 

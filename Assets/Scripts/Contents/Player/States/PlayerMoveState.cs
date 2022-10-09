@@ -8,16 +8,11 @@ public class PlayerMoveState : PlayerStateBase
 {
     private UnitStatus status;
 
-    [SerializeField]
-    private GameObject playerModel;
-
     [ReadOnly]
     [ShowInInspector]
     private float moveSpeed = 1f;
     [SerializeField]
     private float backMoveSpeedMutiplyer = 0.5f;
-    [SerializeField]
-    private float gravity = 1f;
 
     [SerializeField]
     private bool allowMove = true;
@@ -30,17 +25,14 @@ public class PlayerMoveState : PlayerStateBase
     private Vector3 cameraForwardVector;
 
     private Animator animator;
-    private CharacterController characterController;
 
     [SerializeField]
     private CameraMoveController cameraMoveController;
 
-    public UnityEvent<float> updateMoveSpeedEvent;
 
     protected override void Awake()
     {
         base.Awake();
-        characterController = GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -57,6 +49,7 @@ public class PlayerMoveState : PlayerStateBase
         }
 
         isStay = true;
+        controller.updateMoveSpeedEvent?.Invoke(1f);
 
         enterEvent?.Invoke();
     }
@@ -68,19 +61,10 @@ public class PlayerMoveState : PlayerStateBase
             Move();
         }
 
-        var moveVector = controller.GetMoveVector();
-
-        moveVector.y = -gravity;
-
-        controller.SetMoveVector(moveVector);
-        characterController.Move(moveVector * Time.deltaTime);
-
         animator.SetFloat("MoveX", inputVector.x);
         animator.SetFloat("MoveZ", inputVector.z);
 
-        updateMoveSpeedEvent?.Invoke(inputVector.magnitude);
-
-        if (!characterController.isGrounded)
+        if (!controller.IsGround())
         {
             controller.ChangeState(PlayerStateType.Air);
         }
@@ -106,34 +90,38 @@ public class PlayerMoveState : PlayerStateBase
         }
 
         //땅 밟았을 경우에만 이동 가능 / 안 밟았을 경우 움직이긴 하되 매우 미미하다.
-        if (characterController.isGrounded)
+        if (controller.IsGround())
         {
             moveSpeed = status.currentStatus.GetElement(StatusType.MoveSpeed).CalculateTotalAmount();
 
             if (inputVector.x != 0 || inputVector.z != 0)
             {
-                playerModel.transform.forward = viewVector;
+                transform.forward = viewVector;
             }
 
             var viewNoramlVector = viewVector.normalized;
-            var moveVector = controller.GetMoveVector();
+            var moveDirection = viewNoramlVector;
+            var velocity = Vector3.zero;
+
+            var isSlope = controller.CheckSlope();
+            if (isSlope)
+            {
+                moveDirection = controller.GetSlopeDirection(moveDirection);
+            }
 
             if (inputVector.z < 0f)
             {
                 cameraMoveController.SetBackMoveCamera(true);
-
-                moveVector.x = viewNoramlVector.x * -backMoveSpeedMutiplyer * moveSpeed;
-                moveVector.z = viewNoramlVector.z * -backMoveSpeedMutiplyer * moveSpeed;
+                velocity = moveDirection * - backMoveSpeedMutiplyer * moveSpeed;
             }
             else
             {
                 cameraMoveController.SetBackMoveCamera(false);
-
-                moveVector.x = viewNoramlVector.x * moveSpeed;
-                moveVector.z = viewNoramlVector.z * moveSpeed;
+                velocity = moveDirection * moveSpeed;
             }
 
-            controller.SetMoveVector(moveVector);
+            controller.GetRigidbody().velocity = velocity;
+            controller.GetRigidbody().useGravity = !isSlope;
         }
     }
 
@@ -155,10 +143,11 @@ public class PlayerMoveState : PlayerStateBase
         transform.forward = cameraForwardVector;
     }
 
+
     public override void Exit()
     {
         isStay = false;
-        updateMoveSpeedEvent?.Invoke(0f);
+        controller.updateMoveSpeedEvent?.Invoke(0f);
         exitEvent?.Invoke();
     }
 

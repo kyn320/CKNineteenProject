@@ -1,9 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class PlayerIdleState : PlayerStateBase
 {
+    [SerializeField]
+    private float recoverTickTime;
+
+    [ReadOnly]
+    [ShowInInspector]
+    private float currentRecoverTickTime;
+
+    [SerializeField]
+    private float changeNormalBattleTime = 5f;
+
+    [ReadOnly]
+    [ShowInInspector]
+    private float currentChangeBattleTime;
+
     public override void Enter()
     {
         for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
@@ -16,13 +31,15 @@ public class PlayerIdleState : PlayerStateBase
         animator.SetBool("IsGrounded", true);
 
         isStay = true;
-
+        controller.updateMoveSpeedEvent?.Invoke(0f);
+        currentChangeBattleTime = changeNormalBattleTime;
+        currentRecoverTickTime = recoverTickTime;
         enterEvent?.Invoke();
     }
 
     public void UpdateMoveInput(Vector3 inputVector)
     {
-        if(!isStay)
+        if (!isStay)
             return;
 
         if (inputVector.magnitude > 0)
@@ -40,13 +57,35 @@ public class PlayerIdleState : PlayerStateBase
 
     public override void Update()
     {
-        //TODO :: Auto Recover HP per Time(1 sec)
+        switch (controller.GetBattleState())
+        {
+            case PlayerBattleStateType.Normal:
+                currentRecoverTickTime -= Time.deltaTime;
+                if (currentRecoverTickTime <= 0f)
+                {
+                    currentRecoverTickTime = recoverTickTime;
+                    controller.GetStatus().AutoRecover();
+                }
+                break;
+            case PlayerBattleStateType.Battle:
+                currentChangeBattleTime -= Time.deltaTime;
+                if (currentChangeBattleTime <= 0f)
+                {
+                    controller.UpdateBattleState(PlayerBattleStateType.Normal);
+                }
+                break;
+        }
+    }
 
+    private void FixedUpdate()
+    {
+        controller.GetRigidbody().velocity = Vector3.zero;
     }
 
     public override void Exit()
     {
         isStay = false;
+        controller.updateMoveSpeedEvent?.Invoke(1f);
         exitEvent?.Invoke();
     }
 }

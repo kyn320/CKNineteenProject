@@ -10,6 +10,7 @@ public class BigGolemCriticalHitState : MonsterHitState
             return;
 
         base.DamageHit(damageInfo);
+        KnockBack();
         Instantiate(vfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
     }
 }

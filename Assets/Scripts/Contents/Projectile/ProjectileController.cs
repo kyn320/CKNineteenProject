@@ -14,6 +14,7 @@ public class ProjectileController : MonoBehaviour
     [SerializeField]
     private DamageInfo damageInfo;
 
+    public UnityEvent shotEvnet;
     public UnityEvent<bool> hitEvnet;
 
     [SerializeField]
@@ -35,6 +36,7 @@ public class ProjectileController : MonoBehaviour
         moveable.SetMoveSpeed(moveSpeed);
         moveable.SetMaxDistance(maxDistance);
         isMove = true;
+        shotEvnet?.Invoke();
     }
 
     public void FixedUpdate()
@@ -45,6 +47,9 @@ public class ProjectileController : MonoBehaviour
 
     public void Hit(Collision collision)
     {
+        if(collision.gameObject.CompareTag("Player"))
+            return;
+
         var damageable = collision.gameObject.GetComponent<IDamageable>();
 
         if (damageable != null)

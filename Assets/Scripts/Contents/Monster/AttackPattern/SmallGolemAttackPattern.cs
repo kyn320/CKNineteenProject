@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Cysharp.Threading.Tasks;
 
 public class SmallGolemAttackPattern : MonsterAttackPattern
 {
     [SerializeField]
     private float attackDistance = 0f;
+    
+    [SerializeField]
+    private float attackAfterTime;
 
     private NavMeshAgent navAgent;
 
@@ -57,9 +61,14 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         }
     }
 
-    public override void EndAttack()
+    public async override void EndAttack()
     {
+        if(!isAttacked)
+            return;
+
         isAttacked = false;
+
+        navAgent.isStopped = true;
 
         animator = controller.GetAnimator();
         for (var i = 0; i < endAttackTriggerDataList.Count; ++i)
@@ -67,9 +76,12 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
             endAttackTriggerDataList[i].Invoke(animator);
         }
 
+        endAttackEvent?.Invoke();
+
+        await UniTask.Delay((int)(attackAfterTime * 1000));
+
         controller.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
 
-        endAttackEvent?.Invoke();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -102,6 +114,8 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
                 });
 
             }
+
+            Debug.Log("End Attack");
             EndAttack();
         }
     }

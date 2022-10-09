@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 5323109413613015623}
   - component: {fileID: 9110958355735518690}
   - component: {fileID: 6454879907979651368}
-  - component: {fileID: 4387945871503118073}
+  - component: {fileID: -8364764510278057046}
   - component: {fileID: 3932475639819790983}
   - component: {fileID: 824191903858696561}
   - component: {fileID: 3408799114697622279}
   - component: {fileID: 9189804358482846369}
   - component: {fileID: 1625621333921881820}
+  - component: {fileID: 2955632680063868362}
   m_Layer: 0
   m_Name: Dagger_01
   m_TagString: Untagged
@@ -89,7 +90,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &4387945871503118073
+--- !u!54 &-8364764510278057046
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,7 +104,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &3932475639819790983
 BoxCollider:
@@ -138,6 +139,9 @@ MonoBehaviour:
     damage: 0
     hitPoint: {x: 0, y: 0, z: 0}
     hitNormal: {x: 0, y: 0, z: 0}
+  shotEvnet:
+    m_PersistentCalls:
+      m_Calls: []
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
@@ -226,3 +230,19 @@ MonoBehaviour:
   autoActiveByPlay: 0
   autoStartPlay: 1
   resetOriginTransformByStop: 0
+--- !u!114 &2955632680063868362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4797647947300948221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78101d8fe17a5546a02bb8ff936e519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 1
+  destinationEvent:
+    m_PersistentCalls:
+      m_Calls: []

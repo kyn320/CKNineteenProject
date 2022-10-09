@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 5413399869023604584}
   - component: {fileID: 177108442034520367}
   - component: {fileID: 1786684583}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmallMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &1481588661408033508
 SphereCollider:
@@ -323,6 +323,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   attackDistance: 20
+  attackAfterTime: 3
 --- !u!114 &5413399869023604584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,7 +387,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  knockBackVector: {x: 0, y: 1, z: -1}
+  knockBackVector: {x: 0, y: 0, z: -3}
   vfxPrefabData: {fileID: 11400000, guid: 9802a65df7d6df84f911e2c9cb65db2a, type: 2}
 --- !u!114 &1786684583
 MonoBehaviour:
@@ -414,7 +415,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  knockBackVector: {x: 0, y: 1, z: -1}
+  knockBackVector: {x: 0, y: 0, z: -6}
   vfxPrefabData: {fileID: 11400000, guid: 9802a65df7d6df84f911e2c9cb65db2a, type: 2}
 --- !u!1001 &2434219640386749578
 PrefabInstance:
@@ -527,6 +528,18 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 5586416136825274974}
+          m_TargetAssemblyTypeName: MonsterHitState, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 

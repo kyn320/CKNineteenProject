@@ -10,6 +10,7 @@ public class SmallGolemHitState : MonsterHitState
             return;
 
         base.DamageHit(damageInfo);
+        KnockBack();
         Instantiate(vfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
     }
 

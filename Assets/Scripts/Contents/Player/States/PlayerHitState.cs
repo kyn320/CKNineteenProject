@@ -1,9 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class PlayerHitState : PlayerStateBase
 {
+    [SerializeField]
+    private Vector3 knockBackVector;
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     public override void Enter()
     {
         for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
@@ -12,7 +21,9 @@ public class PlayerHitState : PlayerStateBase
         }
 
         isStay = true;
-
+        var knockBackDirection = transform.forward * knockBackVector.z + transform.up * knockBackVector.y;
+        controller.GetRigidbody().velocity = Vector3.zero;
+        controller.GetRigidbody().AddForce(knockBackDirection, ForceMode.Force);
         enterEvent?.Invoke();
     }
 
