@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2350194444645077308}
   - component: {fileID: 1740590976339227146}
   - component: {fileID: 1581184855479158079}
+  - component: {fileID: 7678938247025157260}
   m_Layer: 0
   m_Name: Ax_01
   m_TagString: Untagged
@@ -103,7 +104,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &50659274093923547
 BoxCollider:
@@ -138,6 +139,21 @@ MonoBehaviour:
     damage: 0
     hitPoint: {x: 0, y: 0, z: 0}
     hitNormal: {x: 0, y: 0, z: 0}
+  shotEvnet:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1581184855479158079}
+        m_TargetAssemblyTypeName: ObjectTweenAnimator, Assembly-CSharp
+        m_MethodName: PlayAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
@@ -224,5 +240,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fdb162b5754f3a941b591b0de3bb8c0c, type: 2}
   stopActionType: 0
   autoActiveByPlay: 0
-  autoStartPlay: 1
+  autoStartPlay: 0
   resetOriginTransformByStop: 0
+--- !u!114 &7678938247025157260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550952870296005003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78101d8fe17a5546a02bb8ff936e519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 0
+  destinationEvent:
+    m_PersistentCalls:
+      m_Calls: []

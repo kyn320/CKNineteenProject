@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private PlayerStatus status;
 
     [SerializeField]
-    private PlayerBattleStateType battleStateType;
+    private PlayerBattleStateType battleStateType = PlayerBattleStateType.Normal;
 
     [SerializeField]
     private PlayerStateType currentStateType;
@@ -58,13 +58,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        updateBattleStateEvent?.Invoke(battleStateType);
         ChangeState(PlayerStateType.Idle);
-    }
-
-    private void Update()
-    {
-        //TODO :: If None Battle in Time(5 sec), Update Battle State => Normal
-        //UpdateBattleState(PlayerBattleStateType.Normal);
     }
 
     public void AddState(PlayerStateType stateType, PlayerStateBase state)

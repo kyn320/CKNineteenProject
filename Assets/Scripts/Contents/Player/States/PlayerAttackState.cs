@@ -5,13 +5,27 @@ using Sirenix.OdinInspector;
 
 public class PlayerAttackState : PlayerStateBase
 {
+    private enum AttackStateType
+    {
+        Wait,
+        Start,
+        Spawn,
+        Shot
+    }
+
     [SerializeField]
     private GameObject spiritObject;
+    [SerializeField]
+    private SpiritPivot spiritPivot;
     private SpiritMoveController spiritMoveController;
 
     [ReadOnly]
     [ShowInInspector]
     private bool isAttack = false;
+
+    [ReadOnly]
+    [ShowInInspector]
+    private AttackStateType attackStateType;
 
     [ReadOnly]
     [ShowInInspector]
@@ -48,6 +62,7 @@ public class PlayerAttackState : PlayerStateBase
     {
         animator = controller.GetAnimator();
         EquipmentSystem.Instance.updateAttackOrderList.AddListener(UpdateEquipList);
+        attackStateType = AttackStateType.Wait;
     }
 
     public override void Enter()
@@ -58,7 +73,7 @@ public class PlayerAttackState : PlayerStateBase
         }
 
         controller.UpdateBattleState(PlayerBattleStateType.Battle);
-
+        attackStateType = AttackStateType.Wait;
         enterEvent?.Invoke();
     }
 
@@ -78,6 +93,11 @@ public class PlayerAttackState : PlayerStateBase
         equipSlotDatas = equipItems;
     }
 
+    public void UpdateDamage(DamageInfo damageInfo)
+    {
+        ForceStopAttack();
+    }
+
     public override void Update()
     {
         return;
@@ -91,6 +111,8 @@ public class PlayerAttackState : PlayerStateBase
         this.aimPoint = aimPoint;
 
         isAttack = true;
+        controller.UpdateBattleState(PlayerBattleStateType.Battle);
+        attackStateType = AttackStateType.Start;
 
         var weaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
 
@@ -102,30 +124,32 @@ public class PlayerAttackState : PlayerStateBase
         animator.SetInteger("AttackType", weaponData.AttackAnimationType);
         animator.SetTrigger("Attack");
         animator.speed = attackSpeed;
-
-        //spirit가 개별적으로 움직이지 못하도록 설정 + spirit의 목표백터 변경
-        spiritMoveController.isMoveable = false;
     }
 
     public void SpawnWeapon()
     {
+        if (!isAttack)
+            return;
+
+        attackStateType = AttackStateType.Spawn;
+
         //무기 소환 및 선 딜레이 시작
         var weaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
 
-        //오브젝트가 출력될 벡터값 설정
-        projectileSpawnPoint = transform.forward * weaponData.SpawnVector.z + transform.right * weaponData.SpawnVector.x;
-        projectileSpawnPoint.y = weaponData.SpawnVector.y;
-        projectileSpawnPoint += transform.position;
-
-        spiritMoveController.SetPosition(projectileSpawnPoint);
+        spiritPivot.SetOffset(weaponData.SpawnVector);
 
         //무기 소환
         projectileObject = Instantiate(weaponData.WorldObject);
         projectileObject.transform.position = handBone.position;
+        projectileObject.GetComponent<MagicWeaponSpawner>().SetMovePoints(spiritPivot.transform, handBone, weaponData.SpawnTime);
     }
 
     public void Shot()
     {
+        if (!isAttack)
+            return;
+
+        attackStateType = AttackStateType.Shot;
         //선 딜레이 종료 및 공격 성공 판정
         var weaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
 
@@ -149,6 +173,8 @@ public class PlayerAttackState : PlayerStateBase
             damageAmount = criticalDamageCalculator.Calculate(controller.GetStatus().currentStatus);
         }
 
+        spiritPivot.SetOriginOffset();
+
         projectileController.hitEvnet.AddListener(SuccessHit);
         projectileController.SetStatus(damageAmount, isCritical);
         projectileController.Shot(handBone.position
@@ -164,6 +190,7 @@ public class PlayerAttackState : PlayerStateBase
 
     public void EndAttack()
     {
+        attackStateType = AttackStateType.Wait;
         //공격 종료
         //다음 콤보에 대한 입력을 받을 수 있습니다.
         isAttack = false;
@@ -180,6 +207,18 @@ public class PlayerAttackState : PlayerStateBase
 
         if (isKill)
             ComboSystem.Instance.AddKillCombo(1);
+    }
+
+    public void ForceStopAttack()
+    {
+        if (projectileObject != null)
+        {
+            Destroy(projectileObject);
+        }
+
+        projectileObject = null;
+        projectileSpawnPoint = Vector3.zero;
+        EndAttack();
     }
 
     public override void Exit()

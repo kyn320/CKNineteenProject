@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class MenuOpener : MonoBehaviour
 {
     private UIPausePopupData pausePopupData;
     private UIInventoryPopupData inventoryPopupData;
 
+    [ShowInInspector]
+    [ReadOnly]
     private PlayerBattleStateType battleStateType;
 
     public void UpdateBattleType(PlayerBattleStateType battleStateType)
