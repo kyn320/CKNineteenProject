@@ -86,7 +86,6 @@ public class PlayerIdleState : PlayerStateBase
     {
         isStay = false;
         controller.updateMoveSpeedEvent?.Invoke(1f);
-        controller.UpdateBattleState(PlayerBattleStateType.Battle);
         exitEvent?.Invoke();
     }
 }

@@ -8,6 +8,6 @@ public class ProjectileStraightMove : ProjectileMoveable
     {
         base.Move();
         //직선 이동 로직 구현
-        rigid.transform.position += moveDirection * moveSpeed * Time.fixedDeltaTime;
+        transform.position += moveDirection * moveSpeed * Time.fixedDeltaTime;
     }
 }

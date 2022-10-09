@@ -19,8 +19,12 @@ public class WeaponData : ItemData
     private int attackAnimationType;
     public int AttackAnimationType { get { return attackAnimationType; } }
 
-   [SerializeField]
-   private Vector3 spawnVector;
+    [SerializeField]
+    private Vector3 spawnVector;
     public Vector3 SpawnVector { get { return spawnVector; } }
+
+    [SerializeField]
+    private float spawnTime;
+    public float SpawnTime { get { return spawnTime; } }
 
 }
