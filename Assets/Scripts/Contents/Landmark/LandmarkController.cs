@@ -27,6 +27,10 @@ namespace Landmark
         [HideInInspector]
         public UILandmarkView uiLandmarkView;
 
+        public float shieldRadius = 20f;
+
+        public Transform TESTDEBUGMONSTER;
+
         private void Start()
         {
             ChangeState(LandmarkStateType.LANDMARK_WAIT);
@@ -73,7 +77,8 @@ namespace Landmark
             return currentStateType;
         }
 
-        public LandmarkStatus GetStatus() { 
+        public LandmarkStatus GetStatus()
+        {
             return status;
         }
 
@@ -98,5 +103,19 @@ namespace Landmark
             //TODO :: Ready 상태로 변경하기
             ChangeState(LandmarkStateType.LANDMARK_READY);
         }
+
+        private void OnDrawGizmos()
+        {
+            if (TESTDEBUGMONSTER == null)
+                return;
+
+            Gizmos.color = Color.red;
+
+            var targetPoint = transform.position + (TESTDEBUGMONSTER.position - transform.position).normalized * shieldRadius;
+            targetPoint.y = transform.position.y;
+
+            Gizmos.DrawSphere(targetPoint, 0.5f);
+        }
+
     }
 }

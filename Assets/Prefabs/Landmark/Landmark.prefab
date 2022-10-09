@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 4122622861079446185}
   - component: {fileID: 1538893088313350858}
   - component: {fileID: 4098195054451717467}
+  - component: {fileID: 989554376}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -167,6 +168,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &989554376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701723113268627571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad7916b3e6de844ea312a726fd648ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: {fileID: 8099621406637484990}
 --- !u!1 &8099621405327670915
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,13 +194,14 @@ GameObject:
   - component: {fileID: 8099621405327670912}
   - component: {fileID: 8099621405327670913}
   - component: {fileID: 8099621405327670974}
+  - component: {fileID: 917451588}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8099621405327670914
 Transform:
   m_ObjectHideFlags: 0
@@ -283,6 +298,19 @@ MonoBehaviour:
   autoActiveByPlay: 0
   autoStartPlay: 1
   resetOriginTransformByStop: 0
+--- !u!114 &917451588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8099621405327670915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad7916b3e6de844ea312a726fd648ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: {fileID: 8099621406637484990}
 --- !u!1 &8099621406637484933
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,19 +382,7 @@ MonoBehaviour:
   isDeath: 0
   updateHpEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIBaseGauge, Assembly-CSharp
-        m_MethodName: UpdateGauge
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   updateDeathEvent:
     m_PersistentCalls:
       m_Calls: []
