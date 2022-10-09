@@ -6,8 +6,6 @@ using Sirenix.OdinInspector;
 
 public class MagicWeaponSpawner : MonoBehaviour
 {
-    private Collider hitBox;
-
     [ShowInInspector]
     [ReadOnly]
     private Transform startPoint;
@@ -29,14 +27,11 @@ public class MagicWeaponSpawner : MonoBehaviour
 
     public void SetMovePoints(Transform startPoint, Transform endPoint, float moveTime)
     {
-        hitBox = GetComponent<Collider>();
-
         currentMoveTime = 0f;
         this.moveTime = moveTime;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         isMove = true;
-        hitBox.isTrigger = true;
     }
 
     private void Update()
@@ -54,7 +49,6 @@ public class MagicWeaponSpawner : MonoBehaviour
         if (lerpTime >= 1f)
         {
             isMove = false;
-            hitBox.isTrigger = false;
             destinationEvent?.Invoke();
         }
     }

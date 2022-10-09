@@ -12,10 +12,8 @@ public class EquipmentSystem : Singleton<EquipmentSystem>
     [SerializeField]
     private List<ItemSlot> attackOrderList = new List<ItemSlot>();
 
-
     public UnityEvent<List<ItemSlot>> updateEquippedItems;
     public UnityEvent<List<ItemSlot>> updateAttackOrderList;
-
 
     [Button("아이템 사용")]
     public bool Use(int slotIndex)
@@ -24,7 +22,6 @@ public class EquipmentSystem : Singleton<EquipmentSystem>
 
         if (equipSlot == null)
             return false;
-
 
         var itemData = InventorySystem.Instance.Use(equipSlot.Index);
 
@@ -40,7 +37,6 @@ public class EquipmentSystem : Singleton<EquipmentSystem>
     {
         return equippedItems;
     }
-
 
     public void UpdateAttackOrder()
     {
@@ -91,7 +87,5 @@ public class EquipmentSystem : Singleton<EquipmentSystem>
 
         return true;
     }
-
-
 
 }
