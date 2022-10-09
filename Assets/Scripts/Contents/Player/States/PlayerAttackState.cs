@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
 public class PlayerAttackState : PlayerStateBase
@@ -52,6 +53,8 @@ public class PlayerAttackState : PlayerStateBase
     [SerializeField]
     protected StatusCalculator criticalDamageCalculator;
 
+    public UnityEvent<int> updateWeaponIndexEvent;
+
     protected override void Awake()
     {
         base.Awake();
@@ -63,6 +66,7 @@ public class PlayerAttackState : PlayerStateBase
         animator = controller.GetAnimator();
         EquipmentSystem.Instance.updateAttackOrderList.AddListener(UpdateEquipList);
         attackStateType = AttackStateType.Wait;
+        updateWeaponIndexEvent?.Invoke(currentWeaponIndex);
     }
 
     public override void Enter()
@@ -91,6 +95,8 @@ public class PlayerAttackState : PlayerStateBase
     public void UpdateEquipList(List<ItemSlot> equipItems)
     {
         equipSlotDatas = equipItems;
+        currentWeaponIndex = 0;
+        updateWeaponIndexEvent?.Invoke(currentWeaponIndex);
     }
 
     public void UpdateDamage(DamageInfo damageInfo)
@@ -186,6 +192,7 @@ public class PlayerAttackState : PlayerStateBase
         projectileObject = null;
         projectileSpawnPoint = Vector3.zero;
         currentWeaponIndex = (int)Mathf.Repeat(currentWeaponIndex + 1, equipSlotDatas.Count);
+        updateWeaponIndexEvent?.Invoke(currentWeaponIndex);
     }
 
     public void EndAttack()
@@ -216,6 +223,7 @@ public class PlayerAttackState : PlayerStateBase
             Destroy(projectileObject);
         }
 
+        spiritPivot.SetOriginOffset();
         projectileObject = null;
         projectileSpawnPoint = Vector3.zero;
         EndAttack();
