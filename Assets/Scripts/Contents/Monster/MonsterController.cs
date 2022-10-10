@@ -35,6 +35,7 @@ public class MonsterController : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        WorldController.Instance.AddMonster(this);
         ChangeState(MonsterStateType.MONSTERSTATE_IDLE);
     }
 
@@ -95,25 +96,27 @@ public class MonsterController : MonoBehaviour, IDamageable
         gameObject.SetActive(false);
     }
 
-    public virtual bool OnDamage(DamageInfo damageInfo)
+    public virtual DamageInfo OnDamage(DamageInfo damageInfo)
     {
         Debug.Log($"{gameObject.name} :: Damage = {damageInfo.damage}");
-        var isDeath = status.OnDamage(damageInfo.damage);
-        if (isDeath)
+        var resultDamageInfo = status.OnDamage(damageInfo);
+        if (resultDamageInfo.isKill)
         {
             ChangeState(MonsterStateType.MONSTERSTATE_DEATH);
         }
         else
         {
-            if(damageInfo.isCritical)
+            if (damageInfo.isCritical)
             {
                 ChangeState(MonsterStateType.MONSTERSTATE_CRITICALHIT);
             }
-            else {
+            else
+            {
                 ChangeState(MonsterStateType.MONSTERSTATE_HIT);
             }
         }
+
         damageEvent?.Invoke(damageInfo);
-        return isDeath;
+        return resultDamageInfo;
     }
 }

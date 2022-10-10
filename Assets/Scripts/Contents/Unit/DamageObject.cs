@@ -7,8 +7,19 @@ public class DamageObject : MonoBehaviour, IDamageable
     [SerializeField]
     private UnitStatus status;
 
-    public bool OnDamage(DamageInfo damageInfo)
+    public List<string> allowDamageTags;
+
+    public DamageInfo OnDamage(DamageInfo damageInfo)
     {
-        return status.OnDamage(damageInfo.damage);
+        if(allowDamageTags.Count > 0) {
+            if (!string.IsNullOrEmpty(damageInfo.ownerTag) && !allowDamageTags.Contains(damageInfo.ownerTag))
+            {
+                damageInfo.isHit = false;
+                damageInfo.isKill = false;
+                return damageInfo;
+            }
+        }
+
+        return status.OnDamage(damageInfo);
     }
 }

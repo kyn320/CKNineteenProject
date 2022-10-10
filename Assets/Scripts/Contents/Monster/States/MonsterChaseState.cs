@@ -75,6 +75,7 @@ public class MonsterChaseState : MonsterStateBase
 
         if (currentDistanceSqr * currentDistanceSqr <= attackStartDistance * attackStartDistance)
         {
+            Debug.Log(currentDistanceSqr * currentDistanceSqr + " / " + attackStartDistance * attackStartDistance);
             controller.ChangeState(MonsterStateType.MONSTERSTATE_ATTACK);
         }
     }

@@ -48,25 +48,32 @@ public class UnitStatus : SerializedMonoBehaviour
 
 
     [Button("µ¥¹ÌÁö")]
-    public virtual bool OnDamage(float damage)
+    public virtual DamageInfo OnDamage(DamageInfo damageInfo)
     {
         if (isDeath)
-            return false;
+        {
+            damageInfo.isHit = false;
+            damageInfo.isKill = false;
+            return damageInfo;
+        }
+
+        damageInfo.isHit = true;
 
         var hpElement = currentStatus.GetElement(StatusType.HP);
         var maxHPElement = currentStatus.GetElement(StatusType.MaxHP);
 
-        hpElement.SubAmount(damage);
+        hpElement.SubAmount(damageInfo.damage);
 
         updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
 
         if (hpElement.CalculateTotalAmount() <= 0)
         {
             isDeath = true;
+            damageInfo.isKill = true;
             updateDeathEvent?.Invoke(isDeath, this);
         }
 
-        return isDeath;
+        return damageInfo;
     }
 
 }
