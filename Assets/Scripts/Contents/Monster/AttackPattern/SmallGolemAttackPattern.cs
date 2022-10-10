@@ -8,7 +8,7 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
 {
     [SerializeField]
     private float attackDistance = 0f;
-    
+
     [SerializeField]
     private float attackAfterTime;
 
@@ -41,8 +41,6 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
 
         var destination = transform.position + transform.forward * attackDistance;
 
-        Debug.Log(Vector3.Distance(destination, transform.position));
-
         //TODO :: 바라보고 있는 방향으로 직선 거리 n 만큼 이동.
         navAgent.stoppingDistance = 0.01f;
         navAgent.speed = attackSpeed;
@@ -55,7 +53,7 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         if (!isAttacked)
             return;
 
-        if (navAgent.remainingDistance <= navAgent.stoppingDistance)
+        if (navAgent.remainingDistance <= 0.1f && navAgent.velocity.sqrMagnitude > 0.1f)
         {
             EndAttack();
         }
@@ -63,7 +61,7 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
 
     public async override void EndAttack()
     {
-        if(!isAttacked)
+        if (!isAttacked)
             return;
 
         isAttacked = false;
@@ -77,19 +75,21 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         }
 
         endAttackEvent?.Invoke();
-
         await UniTask.Delay((int)(attackAfterTime * 1000));
-
         controller.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
-
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Ground"))
+            return;
+
         if (isAttacked)
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (!collision.gameObject.CompareTag("Monster"))
             {
+                Debug.Log("SmallGolemAttack :: " + collision.gameObject + " / " + collision.gameObject.tag);
+
                 var damageable = collision.gameObject.GetComponent<IDamageable>();
 
                 var isCritical = controller.GetStatus().GetCriticalSuccess();
@@ -114,8 +114,6 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
                 });
 
             }
-
-            Debug.Log("End Attack");
             EndAttack();
         }
     }
