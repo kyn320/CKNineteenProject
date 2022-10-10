@@ -16399,6 +16399,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 5586416136825274974, guid: 8cc246526e42bb44cb7e3596bc6cbdaf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cc246526e42bb44cb7e3596bc6cbdaf, type: 3}
 --- !u!1 &1098228832
@@ -21617,6 +21622,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Landmark
       objectReference: {fileID: 0}
+    - target: {fileID: 8099621406637484933, guid: 13fec370de54f5445aa1bb81da5e7ba0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8099621406637484990, guid: 13fec370de54f5445aa1bb81da5e7ba0,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -23879,7 +23889,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6d304ea6b4ab0b947825c666583cae6e, type: 2}
+  - {fileID: 2100000, guid: 8bf9f1f1d128f4e44851330bcea10bae, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35572,6 +35582,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigGolemMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 1784834343265454539, guid: bd567ce8d2c456646a69ca0989369da3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5919483988528196869, guid: bd567ce8d2c456646a69ca0989369da3,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -36233,11 +36248,6 @@ PrefabInstance:
       propertyPath: mouseMoveEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 123838324}
-    - target: {fileID: 6112353785902175115, guid: 8b1e51a882d72f64aa743313b6184c33,
-        type: 3}
-      propertyPath: moveWithTransform
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: updateBattleStateEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
