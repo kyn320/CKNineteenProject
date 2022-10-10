@@ -5,22 +5,19 @@ using UnityEngine.Events;
 
 public class AttackHitBox : MonoBehaviour
 {
-    public string targetTag;
+    [SerializeField]
+    private List<string> ignoreTags;
 
     public UnityEvent<GameObject> enableEvent;
     public UnityEvent<GameObject> disableEvent;
 
-    public UnityEvent<Collision, Vector3> collisionEnterEvent;
-    public UnityEvent<Collision, Vector3> collisionStayEvent;
-    public UnityEvent<Collision, Vector3> collisionExitEvent;
+    public UnityEvent<Collision> collisionEnterEvent;
+    public UnityEvent<Collision> collisionStayEvent;
+    public UnityEvent<Collision> collisionExitEvent;
 
-    public UnityEvent<Collider, Vector3> triggerEnterEvent;
-    public UnityEvent<Collider, Vector3> triggerStayEvent;
-    public UnityEvent<Collider, Vector3> triggerExitEvent;
-
-    public void ChangeTargetTag(string tagName) { 
-        targetTag = tagName;
-    }
+    public UnityEvent<Collider> triggerEnterEvent;
+    public UnityEvent<Collider> triggerStayEvent;
+    public UnityEvent<Collider> triggerExitEvent;
 
     private void OnEnable()
     {
@@ -29,50 +26,50 @@ public class AttackHitBox : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
-        if(!collision.gameObject.CompareTag(targetTag))
+        if(ignoreTags.Count > 0 && ignoreTags.Contains(collision.gameObject.tag))
             return;
 
-        collisionEnterEvent?.Invoke(collision, collision.GetContact(0).point);
+        collisionEnterEvent?.Invoke(collision);
     }
 
     protected virtual void OnCollisionStay(Collision collision)
     {
-        if (!collision.gameObject.CompareTag(targetTag))
+        if (ignoreTags.Count > 0 && ignoreTags.Contains(collision.gameObject.tag))
             return;
 
-        collisionStayEvent?.Invoke(collision, collision.GetContact(0).point);
+        collisionStayEvent?.Invoke(collision);
     }
 
     protected virtual void OnCollisionExit(Collision collision)
     {
-        if (!collision.gameObject.CompareTag(targetTag))
+        if (ignoreTags.Count > 0 && ignoreTags.Contains(collision.gameObject.tag))
             return;
 
-        collisionExitEvent?.Invoke(collision, collision.GetContact(0).point);
+        collisionExitEvent?.Invoke(collision);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag(targetTag))
+        if (ignoreTags.Count > 0 && ignoreTags.Contains(other.gameObject.tag))
             return;
 
-        triggerEnterEvent?.Invoke(other, other.ClosestPoint(transform.position));
+        triggerEnterEvent?.Invoke(other);
     }
 
     protected virtual void OnTriggerStay(Collider other)
     {
-        if (!other.gameObject.CompareTag(targetTag))
+        if (ignoreTags.Count > 0 && ignoreTags.Contains(other.gameObject.tag))
             return;
 
-        triggerStayEvent?.Invoke(other, other.ClosestPoint(transform.position));
+        triggerStayEvent?.Invoke(other);
     }
 
     protected virtual void OnTriggerExit(Collider other)
     {
-        if (!other.gameObject.CompareTag(targetTag))
+        if (ignoreTags.Count > 0 && ignoreTags.Contains(other.gameObject.tag))
             return;
 
-        triggerExitEvent?.Invoke(other, other.ClosestPoint(transform.position));
+        triggerExitEvent?.Invoke(other);
     }
     private void OnDisable()
     {

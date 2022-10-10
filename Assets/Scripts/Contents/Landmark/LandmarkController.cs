@@ -73,17 +73,10 @@ namespace Landmark
             return status;
         }
 
-        public void OnDamage(DamageInfo damageInfo)
-        {
-            //TODO :: WAIT 인 경우 지형에 충돌 시 데미지 피해
-            //TODO :: WORK 인 경우 쉴드 충돌 시 데미지 피해
-            status.OnDamage(damageInfo);
-        }
-
         public void Destroy()
         {
             //TODO :: 랜드마크 파괴 처리
-            gameObject.SetActive(false);
+            ChangeState(LandmarkStateType.LANDMARK_DESTROY);
         }
 
         public void Interactive()
