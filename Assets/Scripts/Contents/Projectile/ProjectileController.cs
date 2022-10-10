@@ -47,7 +47,7 @@ public class ProjectileController : MonoBehaviour
 
     public void Hit(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
             return;
 
         var damageable = collision.gameObject.GetComponent<IDamageable>();
@@ -58,16 +58,21 @@ public class ProjectileController : MonoBehaviour
             damageInfo.hitPoint = contact.point;
             damageInfo.hitNormal = contact.normal;
 
-            var isKill = damageable.OnDamage(damageInfo);
-            if (damageInfo.isCritical)
+            var resultDamageInfo = damageable.OnDamage(damageInfo);
+
+            if (resultDamageInfo.isHit)
             {
-                Instantiate(vfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
+                if (resultDamageInfo.isCritical)
+                {
+                    Instantiate(vfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(vfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
+                }
+
+                hitEvnet?.Invoke(resultDamageInfo.isKill);
             }
-            else
-            {
-                Instantiate(vfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
-            }
-            hitEvnet?.Invoke(isKill);
         }
 
         gameObject.SetActive(false);
