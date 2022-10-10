@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
 
 public interface IDamageable {
-    bool OnDamage(DamageInfo damageInfo);
+    DamageInfo OnDamage(DamageInfo damageInfo);
 }
