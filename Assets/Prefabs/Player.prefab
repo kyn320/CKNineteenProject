@@ -184,7 +184,19 @@ MonoBehaviour:
   isDeath: 0
   updateHpEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIProfilePanel, Assembly-CSharp
+        m_MethodName: UpdateHP
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   updateDeathEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -217,10 +229,34 @@ MonoBehaviour:
   slopeRayDistance: 1
   updateBattleStateEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MenuOpener, Assembly-CSharp
+        m_MethodName: UpdateBattleType
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   damageEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1294546403}
+        m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
+        m_MethodName: UpdateDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   updateMoveSpeedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -359,7 +395,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  recoverTickTime: 0
+  recoverTickTime: 1
   changeNormalBattleTime: 5
 --- !u!114 &1294546399
 MonoBehaviour:
@@ -450,10 +486,26 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   spiritObject: {fileID: 0}
+  spiritPivot: {fileID: 660589262}
   handBone: {fileID: 2435394239288226256}
   damageCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
   criticalDamageCalculator: {fileID: 11400000, guid: abf026fdca9ff9646b383fc39cfc0800,
     type: 2}
+  updateWeaponIndexEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIProjectileSlot, Assembly-CSharp
+        m_MethodName: UpdateViewIndex
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1294546405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,7 +542,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  knockBackVector: {x: 0, y: 0, z: -3}
+  knockBackVector: {x: 0, y: 0, z: -1.5}
 --- !u!114 &1294546406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,7 +579,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  knockBackVector: {x: 0, y: 5, z: -3}
+  knockBackVector: {x: 0, y: 5, z: -2}
 --- !u!114 &1294546404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,6 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originAxis: {fileID: 4077412145646173735}
+  originOffset: {x: -0.5, y: 1, z: 0}
   offset: {x: -0.5, y: 1, z: 0}
 --- !u!1001 &4548452843503688140
 PrefabInstance:

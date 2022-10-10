@@ -8,6 +8,9 @@ using UnityEngine.Events;
 public class WorldController : Singleton<WorldController>
 {
     [SerializeField]
+    private PlayerController player;
+
+    [SerializeField]
     private List<MonsterController> monsters;
 
     [ShowInInspector]
@@ -36,12 +39,19 @@ public class WorldController : Singleton<WorldController>
         for (var i = 0; i < monsters.Count; ++i)
         {
             var monster = monsters[i];
-            if (currentActiveLandmark.CheckInAlertArea(monster.transform))
+            if (currentActiveLandmark == null)
+            {
+                monster.SetTarget(player.transform);
+                monster.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
+            }
+            else if (currentActiveLandmark.CheckInAlertArea(monster.transform))
             {
                 ChangeMonsterTargetToLandmark(monster);
             }
         }
     }
+
+
 
     public void ChangeMonsterTargetToLandmark(MonsterController monster)
     {
