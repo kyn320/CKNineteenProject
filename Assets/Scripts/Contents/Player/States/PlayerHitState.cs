@@ -15,6 +15,9 @@ public class PlayerHitState : PlayerStateBase
 
     public override void Enter()
     {
+        if (isStay)
+            return;
+
         for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
         {
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
@@ -23,7 +26,7 @@ public class PlayerHitState : PlayerStateBase
         isStay = true;
         var knockBackDirection = transform.forward * knockBackVector.z + transform.up * knockBackVector.y;
         controller.GetRigidbody().velocity = Vector3.zero;
-        controller.GetRigidbody().AddForce(knockBackDirection, ForceMode.Force);
+        controller.GetRigidbody().AddForce(knockBackDirection, ForceMode.Impulse);
         enterEvent?.Invoke();
     }
 
@@ -35,6 +38,8 @@ public class PlayerHitState : PlayerStateBase
     public override void Exit()
     {
         isStay = false;
+        controller.GetRigidbody().velocity = Vector3.zero;
+
         for (var i = 0; i < exitAnimatorTriggerList.Count; ++i)
         {
             exitAnimatorTriggerList[i].Invoke(controller.GetAnimator());
