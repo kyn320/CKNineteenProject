@@ -53,6 +53,9 @@ public class PlayerAttackState : PlayerStateBase
     [SerializeField]
     protected StatusCalculator criticalDamageCalculator;
 
+    [SerializeField]
+    private GameObject sonicBoomVFX;
+
     public UnityEvent<int> updateWeaponIndexEvent;
 
     protected override void Awake()
@@ -180,7 +183,7 @@ public class PlayerAttackState : PlayerStateBase
         }
 
         spiritPivot.SetOriginOffset();
-
+        sonicBoomVFX.SetActive(true);
         projectileController.hitEvnet.AddListener(SuccessHit);
         projectileController.SetStatus(damageAmount, isCritical);
         projectileController.Shot(handBone.position
