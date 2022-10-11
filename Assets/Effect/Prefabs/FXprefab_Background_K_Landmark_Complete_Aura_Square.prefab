@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1826791111234349783}
   - component: {fileID: 1826791111234349782}
   - component: {fileID: 1826791111234349778}
+  - component: {fileID: 1733355043789865065}
   m_Layer: 0
   m_Name: FXprefab_Background_K_Landmark_Complete_Aura_Square
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826791111234349781}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.8900002, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4891,3 +4892,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1733355043789865065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826791111234349781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30b57ad29cef2d4b8a3c0570d0069fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatorTriggerList:
+  - triggerType: 2
+    parameterName: Alive
+    valueInt: 1
+    valueFloat: 0
+    valueBool: 0

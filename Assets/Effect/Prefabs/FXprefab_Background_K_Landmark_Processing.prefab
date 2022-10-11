@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3006813097399558320}
   - component: {fileID: 3006813097399558321}
   - component: {fileID: 3006813097399558322}
+  - component: {fileID: 3224680111142003767}
   m_Layer: 0
   m_Name: FXprefab_Background_K_Landmark_Processing
   m_TagString: Untagged
@@ -4836,6 +4837,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3224680111142003767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006813097399558334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30b57ad29cef2d4b8a3c0570d0069fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatorTriggerList:
+  - triggerType: 2
+    parameterName: Process
+    valueInt: 1
+    valueFloat: 0
+    valueBool: 0
 --- !u!1 &3262832888030572847
 GameObject:
   m_ObjectHideFlags: 0
