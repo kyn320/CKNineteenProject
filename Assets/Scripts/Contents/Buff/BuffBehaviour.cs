@@ -47,6 +47,15 @@ public class BuffBehaviour : MonoBehaviour
         this.buffData = buffData;
     }
 
+    public BuffData GetBuffData()
+    {
+        return buffData;
+    }
+
+    public float GetLifeTime() {
+        return currentLifeTime;
+    }
+
     public virtual void Initialized()
     {
         if (buffData == null)
