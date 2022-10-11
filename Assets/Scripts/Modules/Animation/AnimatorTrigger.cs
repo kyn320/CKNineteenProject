@@ -17,6 +17,9 @@ public class AnimatorTrigger : MonoBehaviour
 
     public void PlayAnimation(int index)
     {
+        if(animator == null)
+            animator = GetComponent<Animator>();
+
         if (animatorTriggerList.Count < 1 && index > animatorTriggerList.Count - 1)
             return;
 
