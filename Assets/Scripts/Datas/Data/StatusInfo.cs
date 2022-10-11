@@ -31,6 +31,37 @@ public class StatusInfo
         return statusDic[statusType];
     }
 
+    public void AddStatusInfo(StatusInfo statusInfo) {
+        foreach (StatusType statusType in statusDic.Keys)
+        {
+            if (statusType == StatusType.None || !statusInfo.ContainsElement(statusType))
+                continue;
+
+            var targetElement = GetElement(statusType);
+            var addElement = statusInfo.GetElement(statusType);
+
+
+            targetElement.AddAmount(addElement.GetAmount());
+            targetElement.AddPercent(addElement.GetPercent());
+        }
+    }
+
+    public void SubStatusInfo(StatusInfo statusInfo)
+    {
+        foreach (StatusType statusType in statusDic.Keys)
+        {
+            if (statusType == StatusType.None || !statusInfo.ContainsElement(statusType))
+                continue;
+
+            var targetElement = GetElement(statusType);
+            var subElement = statusInfo.GetElement(statusType);
+
+
+            targetElement.SubAmount(subElement.GetAmount());
+            targetElement.SubPercent(subElement.GetPercent());
+        }
+    }
+
     public void Clear() {
         statusDic.Clear();
 
