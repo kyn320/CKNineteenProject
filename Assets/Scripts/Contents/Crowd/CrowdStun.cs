@@ -4,5 +4,18 @@ using UnityEngine;
 
 public class CrowdStun : CrowdBehaviour
 {
+    public override void Active()
+    {
 
+    }
+
+    public override void UnActive()
+    {
+
+    }
+
+    protected override void ApplyCrowd()
+    {
+
+    }
 }
