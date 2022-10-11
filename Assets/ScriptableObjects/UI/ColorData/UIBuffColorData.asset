@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74766f31b7aac349a0e659178fdba4e, type: 3}
-  m_Name: UIColorData
+  m_Name: UIBuffColorData
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -23,12 +23,8 @@ MonoBehaviour:
     SerializationNodes: []
   colorDic:
     keys:
-    - Normal
-    - Lack
-    - Over
-    - Equal
+    - Buff
+    - DeBuff
     values:
-    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 0.15686274, g: 1, b: 0, a: 1}
     - {r: 1, g: 0, b: 0, a: 1}
-    - {r: 0, g: 0.17953062, b: 1, a: 1}
-    - {r: 0.3844273, g: 1, b: 0, a: 1}

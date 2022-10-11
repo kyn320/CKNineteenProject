@@ -26,7 +26,7 @@ public class BuffData : ScriptableObject
 
     [SerializeField]
     private Sprite buffIcon;
-    public Sprite BuffIcon { get { return buffIcon; } }
+    public Sprite Icon { get { return buffIcon; } }
 
     [SerializeField]
     private float lifeTime;
