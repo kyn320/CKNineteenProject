@@ -27,6 +27,10 @@ public class BuffController : MonoBehaviour
 
         buffBehaviour.SetBuffData(buffData);
         buffBehaviour.SetBuffController(this);
+
+        var buffView = UIController.Instance.GetView<UIBuffView>("Buff");
+        buffView.CreateBuffSlot(buffBehaviour);
+
         buffBehaviour.StartBuff();
     }
 
