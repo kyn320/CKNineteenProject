@@ -19,6 +19,8 @@ public class PlayerIdleState : PlayerStateBase
     [ShowInInspector]
     private float currentChangeBattleTime;
 
+    private bool isAttack = false;
+
     public override void Enter()
     {
         for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
@@ -39,7 +41,7 @@ public class PlayerIdleState : PlayerStateBase
 
     public void UpdateMoveInput(Vector3 inputVector)
     {
-        if (!isStay)
+        if (!isStay || isAttack)
             return;
 
         if (inputVector.magnitude > 0)
@@ -48,11 +50,16 @@ public class PlayerIdleState : PlayerStateBase
 
     public void UpdateForwardView(Vector3 forwardView)
     {
-        if (!isStay)
+        if (!isStay || isAttack)
             return;
 
         forwardView.y = 0;
         transform.forward = forwardView;
+    }
+
+    public void SetIsAttack(bool isAttack)
+    {
+        this.isAttack = isAttack;
     }
 
     public override void Update()

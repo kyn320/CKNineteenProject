@@ -16,6 +16,10 @@ public class WeaponData : ItemData
     public ProjectileMoveType ProjectileMoveType { get { return projectileMoveType; } }
 
     [SerializeField]
+    private bool isMoveable = false;
+    public bool IsMoveable { get { return isMoveable; } }
+
+    [SerializeField]
     private int attackAnimationType;
     public int AttackAnimationType { get { return attackAnimationType; } }
 

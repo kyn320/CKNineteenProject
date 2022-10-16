@@ -57,6 +57,12 @@ public class PlayerAttackState : PlayerStateBase
     private GameObject sonicBoomVFX;
 
     public UnityEvent<int> updateWeaponIndexEvent;
+    public UnityEvent<bool> updateIsAttackEvent;
+
+    [SerializeField]
+    private Vector3 forwardDirection;
+    [SerializeField]
+    private bool isMoveable = false;
 
     protected override void Awake()
     {
@@ -117,13 +123,22 @@ public class PlayerAttackState : PlayerStateBase
         if (!CheckAttackPossible())
             return;
 
+        transform.forward = forwardDirection;
+
         this.aimPoint = aimPoint;
 
         isAttack = true;
+
         controller.UpdateBattleState(PlayerBattleStateType.Battle);
         attackStateType = AttackStateType.Start;
 
         var weaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
+
+
+        isMoveable = weaponData.IsMoveable;
+
+        if (!isMoveable)
+            updateIsAttackEvent?.Invoke(isAttack);
 
         //TODO :: 공격속도 기반으로 애니메이션 속도
         //능력치 계산해서 여기에 넣어주세요.
@@ -205,6 +220,10 @@ public class PlayerAttackState : PlayerStateBase
         //다음 콤보에 대한 입력을 받을 수 있습니다.
         isAttack = false;
 
+        if (!isMoveable)
+            updateIsAttackEvent?.Invoke(isAttack);
+
+        isMoveable = false;
         //원본 속도로 변경합니다.
         animator.speed = 1f;
 
@@ -236,5 +255,11 @@ public class PlayerAttackState : PlayerStateBase
     {
         EndAttack();
         exitEvent?.Invoke();
+    }
+
+    public void UpdateForwardView(Vector3 forwardView)
+    {
+        forwardView.y = 0;
+        forwardDirection = forwardView;
     }
 }
