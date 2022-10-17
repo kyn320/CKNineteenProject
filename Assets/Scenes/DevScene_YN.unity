@@ -351,36 +351,6 @@ PrefabInstance:
       objectReference: {fileID: 1294546393}
     - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
         type: 3}
-      propertyPath: dampingSpeed
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: cameraVector.Array.data[0].x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: cameraVector.Array.data[0].z
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: cameraVector.Array.data[2].z
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
       propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1294546400}
@@ -394,26 +364,6 @@ PrefabInstance:
       propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1294546413}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: UpdateForwardView
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: PlayerAttackState, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
-        type: 3}
-      propertyPath: updateForwardVector.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7970744291048967397, guid: 0e8fcbe29b888db42b4c6e8e459451db,
         type: 3}
       propertyPath: m_RootOrder
@@ -7288,7 +7238,7 @@ PrefabInstance:
     - target: {fileID: 1487739244764698189, guid: 4d46fd763ed7bba41bf691be8acd4d9c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1487739244764698189, guid: 4d46fd763ed7bba41bf691be8acd4d9c,
         type: 3}
@@ -7550,61 +7500,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1281426005}
     - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1294546400}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1294546399}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
       propertyPath: updateWeaponIndexEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1909883685}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetIsAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetIsAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerIdleState, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: PlayerMoveState, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
-      propertyPath: updateIsAttackEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 1383080239591342266, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: serializationData.Prefab

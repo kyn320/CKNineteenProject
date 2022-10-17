@@ -12,6 +12,11 @@ public class WeaponData : ItemData
     public WeaponType WeaponType { get { return weaponType; } }
 
     [SerializeField]
+    private WeaponAttackType attackType;
+    public WeaponAttackType AttackType { get { return attackType; } }
+
+
+    [SerializeField]
     private ProjectileMoveType projectileMoveType;
     public ProjectileMoveType ProjectileMoveType { get { return projectileMoveType; } }
 

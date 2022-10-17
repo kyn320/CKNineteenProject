@@ -11,7 +11,7 @@ public class PlayerAttackState : PlayerStateBase
         Wait,
         Start,
         Spawn,
-        Shot
+        Attack
     }
 
     [SerializeField]
@@ -30,13 +30,17 @@ public class PlayerAttackState : PlayerStateBase
 
     [ReadOnly]
     [ShowInInspector]
+    private WeaponData currentAttackWeaponData;
+
+    [ReadOnly]
+    [ShowInInspector]
     private int currentWeaponIndex = 0;
     [ReadOnly]
     [ShowInInspector]
     private List<ItemSlot> equipSlotDatas = new List<ItemSlot>();
 
-    private GameObject projectileObject;
-    private Vector3 projectileSpawnPoint;
+    private GameObject weaponObject;
+    private Vector3 weaponSpawnPoint;
     [ReadOnly]
     [ShowInInspector]
     private Vector3 projectileDirection;
@@ -132,10 +136,10 @@ public class PlayerAttackState : PlayerStateBase
         controller.UpdateBattleState(PlayerBattleStateType.Battle);
         attackStateType = AttackStateType.Start;
 
-        var weaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
+        currentAttackWeaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
 
 
-        isMoveable = weaponData.IsMoveable;
+        isMoveable = currentAttackWeaponData.IsMoveable;
 
         if (!isMoveable)
             updateIsAttackEvent?.Invoke(isAttack);
@@ -145,7 +149,7 @@ public class PlayerAttackState : PlayerStateBase
         var attackSpeed = 1f;
 
         //TODO :: 공격 무기 타입 별로 INDEX 대입.
-        animator.SetInteger("AttackType", weaponData.AttackAnimationType);
+        animator.SetInteger("AttackType", currentAttackWeaponData.AttackAnimationType);
         animator.SetTrigger("Attack");
         animator.speed = attackSpeed;
     }
@@ -158,14 +162,23 @@ public class PlayerAttackState : PlayerStateBase
         attackStateType = AttackStateType.Spawn;
 
         //무기 소환 및 선 딜레이 시작
-        var weaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
 
-        spiritPivot.SetOffset(weaponData.SpawnVector);
+        spiritPivot.SetOffset(currentAttackWeaponData.SpawnVector);
 
         //무기 소환
-        projectileObject = Instantiate(weaponData.WorldObject);
-        projectileObject.transform.position = handBone.position;
-        projectileObject.GetComponent<MagicWeaponSpawner>().SetMovePoints(spiritPivot.transform, handBone, weaponData.SpawnTime);
+        weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
+        switch (currentAttackWeaponData.AttackType)
+        {
+            case WeaponAttackType.None:
+                break;
+            case WeaponAttackType.Melee:
+                weaponObject.transform.position = handBone.position;
+                break;
+            case WeaponAttackType.Projectile:
+                weaponObject.transform.position = spiritPivot.transform.position;
+                weaponObject.GetComponent<MagicWeaponSpawner>().SetMovePoints(spiritPivot.transform, handBone, currentAttackWeaponData.SpawnTime);
+                break;
+        }
     }
 
     public void Shot()
@@ -173,18 +186,12 @@ public class PlayerAttackState : PlayerStateBase
         if (!isAttack)
             return;
 
-        attackStateType = AttackStateType.Shot;
-        //선 딜레이 종료 및 공격 성공 판정
-        var weaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
+        attackStateType = AttackStateType.Attack;
 
         //정령이 자유 이동하도록 변경
         spiritMoveController.isMoveable = true;
 
-        //방향 계산
-        projectileDirection = aimPoint - handBone.transform.position;
-
-        var projectileController = projectileObject.GetComponent<ProjectileController>();
-
+        //피해량 계산
         var isCritical = controller.GetStatus().GetCriticalSuccess();
         var damageAmount = 0f;
 
@@ -197,18 +204,32 @@ public class PlayerAttackState : PlayerStateBase
             damageAmount = criticalDamageCalculator.Calculate(controller.GetStatus().currentStatus);
         }
 
-        spiritPivot.SetOriginOffset();
-        sonicBoomVFX.SetActive(true);
-        projectileController.hitEvnet.AddListener(SuccessHit);
-        projectileController.SetStatus(damageAmount, isCritical);
-        projectileController.Shot(handBone.position
-            , projectileDirection.normalized
-            , weaponData.StatusInfoData.GetElement(StatusType.ThrowSpeed).GetAmount()
-            , weaponData.StatusInfoData.GetElement(StatusType.AttackDistance).GetAmount());
+        switch (currentAttackWeaponData.AttackType)
+        {
+            case WeaponAttackType.None:
+                break;
+            case WeaponAttackType.Melee:
+
+                break;
+            case WeaponAttackType.Projectile:
+                spiritPivot.SetOriginOffset();
+                sonicBoomVFX.SetActive(true);
+                //방향 계산     
+                projectileDirection = aimPoint - handBone.transform.position;
+                var projectileController = weaponObject.GetComponent<ProjectileController>();
+                projectileController.hitEvnet.AddListener(SuccessHit);
+                projectileController.SetStatus(damageAmount, isCritical);
+                projectileController.Shot(handBone.position
+                    , aimPoint
+                    , projectileDirection.normalized
+                    , currentAttackWeaponData.StatusInfoData.GetElement(StatusType.ThrowSpeed).GetAmount()
+                    , currentAttackWeaponData.StatusInfoData.GetElement(StatusType.AttackDistance).GetAmount());
+                break;
+        }
 
         //공격 초기화
-        projectileObject = null;
-        projectileSpawnPoint = Vector3.zero;
+        weaponObject = null;
+        weaponSpawnPoint = Vector3.zero;
         currentWeaponIndex = (int)Mathf.Repeat(currentWeaponIndex + 1, equipSlotDatas.Count);
         updateWeaponIndexEvent?.Invoke(currentWeaponIndex);
     }
@@ -240,14 +261,14 @@ public class PlayerAttackState : PlayerStateBase
 
     public void ForceStopAttack()
     {
-        if (projectileObject != null)
+        if (weaponObject != null)
         {
-            Destroy(projectileObject);
+            Destroy(weaponObject);
         }
 
         spiritPivot.SetOriginOffset();
-        projectileObject = null;
-        projectileSpawnPoint = Vector3.zero;
+        weaponObject = null;
+        weaponSpawnPoint = Vector3.zero;
         EndAttack();
     }
 
