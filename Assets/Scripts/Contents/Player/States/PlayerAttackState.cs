@@ -56,6 +56,9 @@ public class PlayerAttackState : PlayerStateBase
     protected StatusCalculator damageCalculator;
     [SerializeField]
     protected StatusCalculator criticalDamageCalculator;
+    [ShowInInspector]
+    [ReadOnly]
+    private DamageInfo damageInfo;
 
     [SerializeField]
     private GameObject sonicBoomVFX;
@@ -162,24 +165,12 @@ public class PlayerAttackState : PlayerStateBase
         attackStateType = AttackStateType.Spawn;
 
         //무기 소환 및 선 딜레이 시작
-
-        spiritPivot.SetOffset(currentAttackWeaponData.SpawnVector);
+        //spiritPivot.SetOffset(handBone.position);
 
         //무기 소환
         weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
-        switch (currentAttackWeaponData.AttackType)
-        {
-            case WeaponAttackType.None:
-                break;
-            case WeaponAttackType.Melee:
-                weaponObject.transform.SetParent(handBone);
-                weaponObject.transform.localPosition = Vector3.zero;
-                break;
-            case WeaponAttackType.Projectile:
-                weaponObject.transform.position = spiritPivot.transform.position;
-                weaponObject.GetComponent<MagicWeaponSpawner>().SetMovePoints(spiritPivot.transform, handBone, currentAttackWeaponData.SpawnTime);
-                break;
-        }
+        weaponObject.transform.SetParent(handBone);
+        weaponObject.transform.localPosition = Vector3.zero;
     }
 
     public void Shot()
@@ -210,10 +201,17 @@ public class PlayerAttackState : PlayerStateBase
             case WeaponAttackType.None:
                 break;
             case WeaponAttackType.Melee:
-
+                var weaponController = weaponObject.GetComponent<WeaponController>();
+                weaponController.SetOwnerObject(this.gameObject);
+                weaponController.SetWeaponData(currentAttackWeaponData);
+                weaponController.hitEvnet.AddListener(SuccessHit);
+                weaponController.SetStatus(damageAmount, isCritical);
+                weaponController.CreateAttackHitBox(0);
                 break;
             case WeaponAttackType.Projectile:
-                spiritPivot.SetOriginOffset();
+
+                weaponObject.transform.SetParent(null);
+                //spiritPivot.SetOriginOffset();
                 sonicBoomVFX.SetActive(true);
                 //방향 계산     
                 projectileDirection = aimPoint - handBone.transform.position;

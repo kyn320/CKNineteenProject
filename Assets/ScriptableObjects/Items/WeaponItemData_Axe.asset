@@ -254,5 +254,5 @@ MonoBehaviour:
   projectileMoveType: 1
   isMoveable: 0
   attackAnimationType: 2
-  spawnVector: {x: -1, y: 1, z: 1}
-  spawnTime: 0.3
+  hitBoxDataList:
+  - {fileID: 11400000, guid: fd160bf9952415d4eb2fb1ebdd3e89aa, type: 2}

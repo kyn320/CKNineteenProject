@@ -29,11 +29,7 @@ public class WeaponData : ItemData
     public int AttackAnimationType { get { return attackAnimationType; } }
 
     [SerializeField]
-    private Vector3 spawnVector;
-    public Vector3 SpawnVector { get { return spawnVector; } }
-
-    [SerializeField]
-    private float spawnTime;
-    public float SpawnTime { get { return spawnTime; } }
+    private List<AttackHitBoxData> hitBoxDataList;
+    public List<AttackHitBoxData> HitBoxDataList { get {return hitBoxDataList; } }
 
 }
