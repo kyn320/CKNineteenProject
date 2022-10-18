@@ -12,7 +12,7 @@ public class CurvePoint : MonoBehaviour
         Aligned,
     }
 
-    public Mode mode = Mode.Free;
+    public Mode mode = Mode.Aligned;
 
     [SerializeField]
     protected Transform anchor;
