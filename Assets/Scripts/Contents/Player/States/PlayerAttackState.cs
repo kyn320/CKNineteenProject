@@ -172,7 +172,8 @@ public class PlayerAttackState : PlayerStateBase
             case WeaponAttackType.None:
                 break;
             case WeaponAttackType.Melee:
-                weaponObject.transform.position = handBone.position;
+                weaponObject.transform.SetParent(handBone);
+                weaponObject.transform.localPosition = Vector3.zero;
                 break;
             case WeaponAttackType.Projectile:
                 weaponObject.transform.position = spiritPivot.transform.position;
@@ -228,8 +229,6 @@ public class PlayerAttackState : PlayerStateBase
         }
 
         //공격 초기화
-        weaponObject = null;
-        weaponSpawnPoint = Vector3.zero;
         currentWeaponIndex = (int)Mathf.Repeat(currentWeaponIndex + 1, equipSlotDatas.Count);
         updateWeaponIndexEvent?.Invoke(currentWeaponIndex);
     }
@@ -249,6 +248,23 @@ public class PlayerAttackState : PlayerStateBase
         animator.speed = 1f;
 
         animator.SetInteger("AttackType", 0);
+
+        switch (currentAttackWeaponData.AttackType)
+        {
+            case WeaponAttackType.None:
+                break;
+            case WeaponAttackType.Melee:
+                if (weaponObject != null)
+                {
+                    Destroy(weaponObject);
+                }
+                break;
+            case WeaponAttackType.Projectile:
+                break;
+        }
+
+        weaponObject = null;
+        weaponSpawnPoint = Vector3.zero;
     }
 
     public void SuccessHit(bool isKill)
@@ -267,8 +283,6 @@ public class PlayerAttackState : PlayerStateBase
         }
 
         spiritPivot.SetOriginOffset();
-        weaponObject = null;
-        weaponSpawnPoint = Vector3.zero;
         EndAttack();
     }
 
