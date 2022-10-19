@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class ProjectileCurveMove : ProjectileMoveable
 {
+    new Rigidbody rigidbody;
     public float height = 5f;
 
     public override void Shot()
     {
         base.Shot();
+        rigid.useGravity = true;
+        rigid.isKinematic = false;
         rigid.velocity = CalculateTrajectoryVelocity();
     }
 

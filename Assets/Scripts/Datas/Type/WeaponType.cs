@@ -34,4 +34,8 @@ public enum WeaponType
     /// 마법 스크롤
     /// </summary>
     MagicScroll,
+    /// <summary>
+    /// 대 검
+    /// </summary>
+    GreatSword,
 }
