@@ -2324,7 +2324,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &847814573
 MonoBehaviour:
@@ -5267,7 +5267,7 @@ PrefabInstance:
     - target: {fileID: 8099621406637484932, guid: 13fec370de54f5445aa1bb81da5e7ba0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 47
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 8099621406637484932, guid: 13fec370de54f5445aa1bb81da5e7ba0,
         type: 3}
@@ -5703,7 +5703,7 @@ Transform:
   m_Children:
   - {fileID: 2137497392}
   m_Father: {fileID: 0}
-  m_RootOrder: 46
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1794592288
 MonoBehaviour:
@@ -7323,10 +7323,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1859247312767164495, guid: c42ac7c4ff3c35149a2e0cccd3921b3c,
+        type: 3}
+      propertyPath: haveItems.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859247312767164495, guid: c42ac7c4ff3c35149a2e0cccd3921b3c,
+        type: 3}
+      propertyPath: haveItems.Array.data[6].index
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859247312767164495, guid: c42ac7c4ff3c35149a2e0cccd3921b3c,
+        type: 3}
+      propertyPath: haveItems.Array.data[6].amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859247312767164495, guid: c42ac7c4ff3c35149a2e0cccd3921b3c,
+        type: 3}
+      propertyPath: haveItems.Array.data[6].itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: aa3b4f061af7d5b43907e19175a5ed89,
+        type: 2}
+    - target: {fileID: 1859247312767164495, guid: c42ac7c4ff3c35149a2e0cccd3921b3c,
+        type: 3}
+      propertyPath: haveItems.Array.data[6].equippedIndex
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 1859247312767164528, guid: c42ac7c4ff3c35149a2e0cccd3921b3c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1859247312767164528, guid: c42ac7c4ff3c35149a2e0cccd3921b3c,
         type: 3}
