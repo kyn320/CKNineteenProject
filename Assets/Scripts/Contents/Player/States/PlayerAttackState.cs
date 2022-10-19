@@ -155,6 +155,18 @@ public class PlayerAttackState : PlayerStateBase
         animator.SetInteger("AttackType", currentAttackWeaponData.AttackAnimationType);
         animator.SetTrigger("Attack");
         animator.speed = attackSpeed;
+
+        switch (currentAttackWeaponData.AttackType)
+        {
+            case WeaponAttackType.None:
+                break;
+            case WeaponAttackType.Melee:
+                controller.GetRigidbody().velocity = Vector3.zero;
+                break;
+            case WeaponAttackType.Projectile:
+                break;
+        }
+
     }
 
     public void SpawnWeapon()
