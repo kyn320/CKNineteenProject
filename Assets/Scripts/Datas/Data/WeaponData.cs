@@ -30,6 +30,10 @@ public class WeaponData : ItemData
 
     [SerializeField]
     private List<AttackHitBoxData> hitBoxDataList;
-    public List<AttackHitBoxData> HitBoxDataList { get {return hitBoxDataList; } }
+    public List<AttackHitBoxData> HitBoxDataList { get { return hitBoxDataList; } }
+
+    [SerializeField]
+    private List<PivotOffsetData> pivotOffsetList;
+    public List<PivotOffsetData> PivotOffsetDataList { get { return pivotOffsetList; } }
 
 }

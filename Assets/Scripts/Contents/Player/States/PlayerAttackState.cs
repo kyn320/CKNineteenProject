@@ -166,7 +166,6 @@ public class PlayerAttackState : PlayerStateBase
             case WeaponAttackType.Projectile:
                 break;
         }
-
     }
 
     public void SpawnWeapon()
@@ -182,7 +181,8 @@ public class PlayerAttackState : PlayerStateBase
         //무기 소환
         weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
         weaponObject.transform.SetParent(handBone);
-        weaponObject.transform.localPosition = Vector3.zero;
+        weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[0].rotatation;
+        weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[0].position;
     }
 
     public void Shot()
@@ -287,6 +287,9 @@ public class PlayerAttackState : PlayerStateBase
 
     public void ForceStopAttack()
     {
+        if (!isAttack)
+            return;
+
         if (weaponObject != null)
         {
             Destroy(weaponObject);

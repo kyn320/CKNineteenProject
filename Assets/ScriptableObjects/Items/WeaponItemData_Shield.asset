@@ -254,5 +254,7 @@ MonoBehaviour:
   projectileMoveType: 1
   isMoveable: 0
   attackAnimationType: 3
-  spawnVector: {x: 1, y: 0.5, z: 4}
-  spawnTime: 1
+  hitBoxDataList: []
+  pivotOffsetList:
+  - position: {x: 0, y: 0, z: 0}
+    rotatation: {x: 0, y: 0, z: 0, w: 0}
