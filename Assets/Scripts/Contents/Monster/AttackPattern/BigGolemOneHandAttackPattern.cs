@@ -10,7 +10,7 @@ public class BigGolemOneHandAttackPattern : MonsterAttackPattern
     protected override void Awake()
     {
         base.Awake();
-        navAgent = GetComponent<NavMeshAgent>();    
+        navAgent = GetComponent<NavMeshAgent>();
     }
 
     public override void StartAttack(Transform target)
@@ -38,13 +38,46 @@ public class BigGolemOneHandAttackPattern : MonsterAttackPattern
 
     }
 
-    public void HitAttack() { 
-        
+    public void HitAttack(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+            return;
+
+        if (isAttacked)
+        {
+            if (!collision.gameObject.CompareTag("Monster"))
+            {
+                Debug.Log("BigGolemOneHandAttack :: " + collision.gameObject + " / " + collision.gameObject.tag);
+
+                var damageable = collision.gameObject.GetComponent<IDamageable>();
+
+                var isCritical = controller.GetStatus().GetCriticalSuccess();
+                var damageAmount = 0f;
+
+                if (isCritical)
+                {
+                    damageAmount = damageCalculator.Calculate(controller.GetStatus().currentStatus);
+                }
+                else
+                {
+                    damageAmount = criticalDamageCalculator.Calculate(controller.GetStatus().currentStatus);
+                }
+
+                damageable?.OnDamage(new DamageInfo()
+                {
+                    damage = damageAmount,
+                    isCritical = isCritical,
+                    isKnockBack = true,
+                    hitPoint = collision.contacts[0].point,
+                    hitNormal = collision.contacts[0].normal
+                });
+            }
+        }
     }
 
     public override void EndAttack()
     {
-        if(!isAttacked)
+        if (!isAttacked)
             return;
 
         isAttacked = false;

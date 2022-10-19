@@ -8,6 +8,11 @@ public abstract class UIBasePopup : UIBaseView
 
     public bool useBackground = true;
 
+    protected override void Start()
+    {
+        
+    }
+
     [Button("Open")]
     public virtual new void Open()
     {

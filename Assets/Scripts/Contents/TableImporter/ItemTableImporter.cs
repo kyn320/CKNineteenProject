@@ -1,3 +1,4 @@
+#if UNIRT_EDITOR 
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -91,3 +92,4 @@ public class ItemTableImporter : ExcelImporter
     }
 
 }
+#endif

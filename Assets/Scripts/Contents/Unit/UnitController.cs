@@ -12,8 +12,8 @@ public class UnitController : MonoBehaviour, IDamageable
         status = GetComponent<UnitStatus>();    
     }
 
-    public virtual bool OnDamage(DamageInfo damageInfo)
+    public virtual DamageInfo OnDamage(DamageInfo damageInfo)
     {
-        return status.OnDamage(damageInfo.damage);
+        return status.OnDamage(damageInfo);
     }
 }

@@ -29,12 +29,14 @@ public class ProjectileController : MonoBehaviour
         damageInfo.isCritical = isCritical;
     }
 
-    public void Shot(Vector3 startPoint, Vector3 moveDirection, float moveSpeed, float maxDistance)
+    public void Shot(Vector3 startPoint,Vector3 endPoint,  Vector3 moveDirection, float moveSpeed, float maxDistance)
     {
         moveable.SetStartPoint(startPoint);
+        moveable.SetEndPoint(endPoint);
         moveable.SetDirection(moveDirection);
         moveable.SetMoveSpeed(moveSpeed);
         moveable.SetMaxDistance(maxDistance);
+        moveable.Shot();
         isMove = true;
         shotEvnet?.Invoke();
     }
@@ -47,7 +49,7 @@ public class ProjectileController : MonoBehaviour
 
     public void Hit(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
             return;
 
         var damageable = collision.gameObject.GetComponent<IDamageable>();
@@ -58,16 +60,21 @@ public class ProjectileController : MonoBehaviour
             damageInfo.hitPoint = contact.point;
             damageInfo.hitNormal = contact.normal;
 
-            var isKill = damageable.OnDamage(damageInfo);
-            if (damageInfo.isCritical)
+            var resultDamageInfo = damageable.OnDamage(damageInfo);
+
+            if (resultDamageInfo.isHit)
             {
-                Instantiate(vfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
+                if (resultDamageInfo.isCritical)
+                {
+                    Instantiate(vfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(vfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
+                }
+
+                hitEvnet?.Invoke(resultDamageInfo.isKill);
             }
-            else
-            {
-                Instantiate(vfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
-            }
-            hitEvnet?.Invoke(isKill);
         }
 
         gameObject.SetActive(false);

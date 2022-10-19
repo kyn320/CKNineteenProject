@@ -12,19 +12,24 @@ public class WeaponData : ItemData
     public WeaponType WeaponType { get { return weaponType; } }
 
     [SerializeField]
+    private WeaponAttackType attackType;
+    public WeaponAttackType AttackType { get { return attackType; } }
+
+
+    [SerializeField]
     private ProjectileMoveType projectileMoveType;
     public ProjectileMoveType ProjectileMoveType { get { return projectileMoveType; } }
+
+    [SerializeField]
+    private bool isMoveable = false;
+    public bool IsMoveable { get { return isMoveable; } }
 
     [SerializeField]
     private int attackAnimationType;
     public int AttackAnimationType { get { return attackAnimationType; } }
 
     [SerializeField]
-    private Vector3 spawnVector;
-    public Vector3 SpawnVector { get { return spawnVector; } }
-
-    [SerializeField]
-    private float spawnTime;
-    public float SpawnTime { get { return spawnTime; } }
+    private List<AttackHitBoxData> hitBoxDataList;
+    public List<AttackHitBoxData> HitBoxDataList { get {return hitBoxDataList; } }
 
 }

@@ -10,7 +10,10 @@ public class ProjectileMoveable : MonoBehaviour
     protected Rigidbody rigid;
 
     [SerializeField]
-    private Vector3 startPoint;
+    protected Vector3 startPoint;
+
+    [SerializeField]
+    protected Vector3 endPoint;
 
     [SerializeField]
     protected float maxDistance;
@@ -20,6 +23,8 @@ public class ProjectileMoveable : MonoBehaviour
 
     [SerializeField]
     protected float moveSpeed;
+    [SerializeField]
+    protected float moveTime;
 
 
     protected void Awake()
@@ -29,6 +34,10 @@ public class ProjectileMoveable : MonoBehaviour
     public virtual void SetStartPoint(Vector3 startPoint)
     {
         this.startPoint = startPoint;
+    }
+    public virtual void SetEndPoint(Vector3 endPoint)
+    {
+        this.endPoint = endPoint;
     }
 
     public virtual void SetDirection(Vector3 moveDirection)
@@ -44,6 +53,10 @@ public class ProjectileMoveable : MonoBehaviour
     public virtual void SetMaxDistance(float maxDistance)
     {
         this.maxDistance = maxDistance;
+    }
+
+    public virtual void Shot() {
+        rigid = GetComponent<Rigidbody>();
     }
 
     public virtual void Move()

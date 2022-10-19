@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using Sirenix.OdinInspector;
 
 
 namespace Landmark
@@ -27,24 +28,18 @@ namespace Landmark
         [HideInInspector]
         public UILandmarkView uiLandmarkView;
 
+        [SerializeField]
+        private float shieldRadius = 20f;
+        [ShowInInspector]
+        [ReadOnly]
+        private List<Transform> shieldTargetPoints = new List<Transform>();
+
+        [SerializeField]
+        private float alertRadius = 100f;
+
         private void Start()
         {
             ChangeState(LandmarkStateType.LANDMARK_WAIT);
-        }
-
-        private void Update()
-        {
-            if (isDebugMode)
-            {
-                if (Input.GetKeyDown(KeyCode.A))
-                {
-                    ChangeState(LandmarkStateType.LANDMARK_READY);
-                }
-                if (Input.GetKeyDown(KeyCode.D))
-                {
-                    //TODO 강제로 데미지 피해 주기
-                }
-            }
         }
 
         public void AddState(LandmarkStateType stateType, LandmarkStateBase state)
@@ -73,21 +68,15 @@ namespace Landmark
             return currentStateType;
         }
 
-        public LandmarkStatus GetStatus() { 
-            return status;
-        }
-
-        public void OnDamage(DamageInfo damageInfo)
+        public LandmarkStatus GetStatus()
         {
-            //TODO :: WAIT 인 경우 지형에 충돌 시 데미지 피해
-            //TODO :: WORK 인 경우 쉴드 충돌 시 데미지 피해
-            status.OnDamage(damageInfo.damage);
+            return status;
         }
 
         public void Destroy()
         {
             //TODO :: 랜드마크 파괴 처리
-            gameObject.SetActive(false);
+            ChangeState(LandmarkStateType.LANDMARK_DESTROY);
         }
 
         public void Interactive()
@@ -98,5 +87,40 @@ namespace Landmark
             //TODO :: Ready 상태로 변경하기
             ChangeState(LandmarkStateType.LANDMARK_READY);
         }
+
+        public Transform CreateTargetPoint(Transform directionTarget)
+        {
+            var newTargetPoint = Instantiate(new GameObject("Landmark_ShieldTarget"), transform);
+            var targetPosition = transform.position + (directionTarget.position - transform.position).normalized * shieldRadius;
+            targetPosition.y = transform.position.y;
+
+            newTargetPoint.transform.position = targetPosition;
+            shieldTargetPoints.Add(newTargetPoint.transform);
+
+            return newTargetPoint.transform;
+        }
+
+        public bool CheckInAlertArea(Transform taget)
+        {
+            return (transform.position - taget.position).sqrMagnitude <= alertRadius * alertRadius;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(transform.position, shieldRadius);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, alertRadius);
+
+            if (shieldTargetPoints.Count < 1)
+                return;
+
+            Gizmos.color = Color.red;
+            for (var i = 0; i < shieldTargetPoints.Count; ++i)
+            {
+                Gizmos.DrawSphere(shieldTargetPoints[i].position, 0.5f);
+            }
+        }
+
     }
 }

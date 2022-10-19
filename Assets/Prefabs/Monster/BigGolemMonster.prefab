@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 687764714752424922}
   - component: {fileID: 6875662415286002080}
   - component: {fileID: 6875662415286002083}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Golem01
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,6 +71,7 @@ MonoBehaviour:
     keys:
     - EndHit
     - EndAttack
+    - SpawnGroundHitBox
     values:
     - m_PersistentCalls:
         m_Calls:
@@ -124,6 +125,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5919483988528196889}
+          m_TargetAssemblyTypeName: BigGolemTwoHandAttackPattern, Assembly-CSharp
+          m_MethodName: SpawnGroundHitBox
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &328689117855915233
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5754284674595010218}
   - component: {fileID: 4676181124304970020}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,9 +248,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2427042284019850436}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 Head
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,9 +293,9 @@ GameObject:
   - component: {fileID: 5919483988528196889}
   - component: {fileID: 5919483988528196870}
   - component: {fileID: 5919483988528196871}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BigGolemMonster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,6 +313,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 687764714752424922}
+  - {fileID: 8675533375115804003}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -473,8 +489,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   refreshPathTimeRange:
-    min: 0.5
-    max: 1
+    min: 0.1
+    max: 0.2
   refreshPathTime: 0
   stopDistance: 1
   attackStartDistance: 10
@@ -632,6 +648,7 @@ MonoBehaviour:
   endAttackEvent:
     m_PersistentCalls:
       m_Calls: []
+  groundHitBox: {fileID: 6981455005973216111}
 --- !u!114 &5919483988528196870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,9 +709,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6017918731637800608}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 Footsteps
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -723,9 +740,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2108188132755950514}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 Neck
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -757,9 +774,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 138970162026227875}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 R UpperArm
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -789,9 +806,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8563817938549373512}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 L UpperArm
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -822,9 +839,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7984386832141845516}
   - component: {fileID: 238076577657104522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 R Forearm
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -868,9 +885,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6449765435617882639}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 L Hand
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -899,9 +916,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 394309328266989292}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -933,9 +950,9 @@ GameObject:
   m_Component:
   - component: {fileID: 13092187955351638}
   - component: {fileID: 4479575116721044645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 R Calf
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -978,9 +995,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 187761177658877090}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 Spine
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1012,9 +1029,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4525793403759583119}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 L Foot
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1045,9 +1062,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3754594737688993786}
   - component: {fileID: 4791334912251129062}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 R Thigh
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1090,9 +1107,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1621277902377384588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 Pelvis
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1122,9 +1139,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3494056559661674722}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 R Hand
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1153,9 +1170,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4971717947197543832}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 L Toe0
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1186,9 +1203,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5459076913968846964}
   - component: {fileID: 7493670304398222054}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 L Thigh
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1231,9 +1248,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6735863461688979453}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 L Toe0Nub
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1253,6 +1270,118 @@ Transform:
   m_Father: {fileID: 4971717947197543832}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6981455005973216111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8675533375115804003}
+  - component: {fileID: 1845196062424361786}
+  - component: {fileID: 5561073791661349641}
+  - component: {fileID: 5089509512152161975}
+  m_Layer: 6
+  m_Name: TwoHandAttackBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8675533375115804003
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981455005973216111}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 2}
+  m_LocalScale: {x: 3, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1409294409395147633}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1845196062424361786
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981455005973216111}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &5561073791661349641
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981455005973216111}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5089509512152161975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981455005973216111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c79f161a115410419857db27f526f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreTags: []
+  enableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  disableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionStayEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5919483988528196889}
+        m_TargetAssemblyTypeName: BigGolemTwoHandAttackPattern, Assembly-CSharp
+        m_MethodName: HitAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  triggerStayEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7107684475388111671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,9 +1392,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1117766090065939937}
   - component: {fileID: 2870054041835223960}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 Spine1
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1309,9 +1438,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4501240057422146093}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 R Toe0
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1341,9 +1470,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8770687372120969951}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 R Toe0Nub
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1372,9 +1501,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7613543516183639825}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 R Foot
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1404,9 +1533,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6940427945007240713}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 HeadNub
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1435,9 +1564,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1975412228081295262}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 R Clavicle
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1467,9 +1596,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7934873470945009304}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 L Clavicle
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1500,9 +1629,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8464276359412736940}
   - component: {fileID: 5052395694268599017}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bip001 L Calf
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1546,9 +1675,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5432161804749808825}
   - component: {fileID: 367900467062426971}
-  m_Layer: 0
+  - component: {fileID: 2786679542609269019}
+  - component: {fileID: 261840063477473693}
+  m_Layer: 6
   m_Name: Bip001 L Forearm
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1583,3 +1714,68 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 0
   m_Center: {x: -1, y: -0.05, z: 0.1}
+--- !u!114 &2786679542609269019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9099653901771405219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c79f161a115410419857db27f526f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreTags: []
+  enableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  disableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5919483988528196888}
+        m_TargetAssemblyTypeName: BigGolemOneHandAttackPattern, Assembly-CSharp
+        m_MethodName: HitAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  collisionStayEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerStayEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!54 &261840063477473693
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9099653901771405219}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0

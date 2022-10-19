@@ -29,6 +29,7 @@ public class PlayerMoveState : PlayerStateBase
     [SerializeField]
     private CameraMoveController cameraMoveController;
 
+    private bool isAttack = false;
 
     protected override void Awake()
     {
@@ -56,6 +57,9 @@ public class PlayerMoveState : PlayerStateBase
 
     public override void Update()
     {
+        if(!isStay || isAttack)
+            return;
+
         if (allowMove)
         {
             Move();
@@ -112,7 +116,7 @@ public class PlayerMoveState : PlayerStateBase
             if (inputVector.z < 0f)
             {
                 cameraMoveController.SetBackMoveCamera(true);
-                velocity = moveDirection * - backMoveSpeedMutiplyer * moveSpeed;
+                velocity = moveDirection * -backMoveSpeedMutiplyer * moveSpeed;
             }
             else
             {
@@ -127,14 +131,14 @@ public class PlayerMoveState : PlayerStateBase
 
     public void UpdateInputVector(Vector3 inputVector)
     {
-        if (!isStay)
+        if (!isStay || isAttack)
             return;
         this.inputVector = inputVector;
     }
 
     public void UpdateForwardView(Vector3 forwardView)
     {
-        if (!isStay)
+        if (!isStay || isAttack)
             return;
 
         this.cameraForwardVector = forwardView;
@@ -143,6 +147,10 @@ public class PlayerMoveState : PlayerStateBase
         transform.forward = cameraForwardVector;
     }
 
+    public void SetIsAttack(bool isAttack)
+    {
+        this.isAttack = isAttack;
+    }
 
     public override void Exit()
     {

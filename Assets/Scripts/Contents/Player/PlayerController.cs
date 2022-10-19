@@ -116,15 +116,20 @@ public class PlayerController : MonoBehaviour, IDamageable
         ChangeState(PlayerStateType.Jump);
     }
 
-    public bool OnDamage(DamageInfo damageInfo)
+    public virtual DamageInfo OnDamage(DamageInfo damageInfo)
     {
         if (status.isDeath || currentStateType == PlayerStateType.Hit || currentStateType == PlayerStateType.CriticalHit)
-            return false;
+        {
+            damageInfo.isHit = false;
+            damageInfo.isKill = false;
+
+            return damageInfo;
+        }
 
         UpdateBattleState(PlayerBattleStateType.Battle);
 
-        var isDeath = status.OnDamage(damageInfo.damage);
-        damageEvent?.Invoke(damageInfo);
+        var resultDamageInfo = status.OnDamage(damageInfo);
+        damageEvent?.Invoke(resultDamageInfo);
         if (isDeath)
         {
             ChangeState(PlayerStateType.Death);
@@ -138,7 +143,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             ChangeState(PlayerStateType.Hit);
         }
 
-        return isDeath;
+        return resultDamageInfo;
     }
 
     public PlayerBattleStateType GetBattleState()

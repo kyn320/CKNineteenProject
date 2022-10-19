@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class BezierCurveFollow : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class BezierCurveFollow : MonoBehaviour
     public int currentIndex = 0;
     [SerializeField]
     private float currentTime;
+    [ReadOnly]
+    [ShowInInspector]
+    private float timePerCount;
     [SerializeField]
     private float maxTime;
     [SerializeField]
@@ -17,6 +21,7 @@ public class BezierCurveFollow : MonoBehaviour
 
     public bool useUpdateTime;
     public bool useLookAt;
+    public bool isLoop = false;
 
     private void OnDrawGizmos()
     {
@@ -24,18 +29,22 @@ public class BezierCurveFollow : MonoBehaviour
         Gizmos.DrawSphere(transform.position, 1f);
     }
 
+    private void Start()
+    {
+        if (bezierCurve != null)
+            timePerCount = maxTime / bezierCurve.lineList.Count;
+    }
+
     private void FixedUpdate()
     {
         UpdatePosition();
+        UpdateBezier();
     }
 
     public void SetCurve(BezierCurve bezierCurve)
     {
         this.bezierCurve = bezierCurve;
-        currentIndex = 0;
-        currentTime = 0f;
-        currentProgress = 0f;
-        //RefreshMaxTime();
+        timePerCount = maxTime / bezierCurve.lineList.Count;
     }
 
     public void UpdatePosition()
@@ -46,7 +55,7 @@ public class BezierCurveFollow : MonoBehaviour
     public void UpdateBezier()
     {
         currentTime += Time.fixedDeltaTime;
-        currentProgress = Mathf.Clamp01(currentTime / maxTime);
+        currentProgress = Mathf.Clamp01(currentTime / timePerCount);
 
         var nextPosition = bezierCurve.GetPosition(currentIndex, currentProgress);
 
@@ -66,11 +75,15 @@ public class BezierCurveFollow : MonoBehaviour
 
             if (currentIndex >= bezierCurve.lineList.Count)
             {
-                useUpdateTime = false;
-            }
-            else
-            {
-                //RefreshMaxTime();
+                if (isLoop)
+                {
+                    useUpdateTime = true;
+                    currentIndex = 0;
+                }
+                else
+                {
+                    useUpdateTime = false;
+                }
             }
             currentTime = 0f;
             currentProgress = 0f;

@@ -12,9 +12,7 @@ namespace Landmark
             //테스트 빌드 기간에는 Active만 끄기
             controller.GetStatus().updateHpEvent.RemoveListener(controller.uiLandmarkView.UpdateShieldAmount);
             UIController.Instance.CloseView(controller.uiLandmarkView);
-
-            controller.Destroy();
-
+            WorldController.Instance.AlertActiveLandmark(null);
             isStay = true;
             enterEvent?.Invoke();
         }

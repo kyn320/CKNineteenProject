@@ -20,6 +20,10 @@ public abstract class UIBaseView : MonoBehaviour
     public UnityEvent openEvent;
     public UnityEvent closeEvent;
 
+    protected virtual void Start() { 
+        UIController.Instance.OpenView(this);
+    }
+
     public abstract void Init(UIData uiData);
 
     [Button("Open")]

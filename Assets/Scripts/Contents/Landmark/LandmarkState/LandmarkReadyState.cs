@@ -28,6 +28,7 @@ namespace Landmark
             controller.uiLandmarkView = view.GetComponent<UILandmarkView>();
             controller.GetStatus().updateHpEvent.AddListener(controller.uiLandmarkView.UpdateShieldAmount);
             controller.GetStatus().ForceUpdateHPEvent();
+            WorldController.Instance.AlertActiveLandmark(controller);
 
             enterEvent?.Invoke();
         }

@@ -39,12 +39,12 @@ public class StatusElement
     }
 
     public virtual float CalculateTotalAmount() { 
-        return amount + (amount * percent);
+        return amount + (amount * percent / 100f);
     }
 
     public virtual float CalculateTotalAmount(float origin)
     {
-        return origin + amount + (origin * percent);
+        return origin + amount + (origin * percent / 100f);
     }
 
     public virtual float CalculateAmount(float origin)
