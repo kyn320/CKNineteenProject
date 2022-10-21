@@ -57,13 +57,17 @@ public class PlayerMoveState : PlayerStateBase
 
     public override void Update()
     {
-        if(!isStay || isAttack)
+        if (!isStay)
             return;
 
         if (allowMove)
         {
             Move();
         }
+
+        if (isAttack)
+            return;
+
 
         animator.SetFloat("MoveX", inputVector.x);
         animator.SetFloat("MoveZ", inputVector.z);
@@ -84,13 +88,20 @@ public class PlayerMoveState : PlayerStateBase
         Vector3 viewVector = transform.forward * Mathf.Abs(inputVector.z) + transform.right
             * (inputVector.z < 0f ? -inputVector.x : inputVector.x);
 
-        if (Mathf.Abs(inputVector.x) > 0.5f || Mathf.Abs(inputVector.z) > 0.5f)
+        if (isAttack)
         {
-            animator.SetInteger("MoveSpeed", 1);
+            viewVector = transform.forward + transform.right;
         }
         else
         {
-            animator.SetInteger("MoveSpeed", 0);
+            if (Mathf.Abs(inputVector.x) > 0.5f || Mathf.Abs(inputVector.z) > 0.5f)
+            {
+                animator.SetInteger("MoveSpeed", 1);
+            }
+            else
+            {
+                animator.SetInteger("MoveSpeed", 0);
+            }
         }
 
         //땅 밟았을 경우에만 이동 가능 / 안 밟았을 경우 움직이긴 하되 매우 미미하다.
@@ -98,7 +109,7 @@ public class PlayerMoveState : PlayerStateBase
         {
             moveSpeed = status.currentStatus.GetElement(StatusType.MoveSpeed).CalculateTotalAmount();
 
-            if (inputVector.x != 0 || inputVector.z != 0)
+            if (!isAttack && (inputVector.x != 0 || inputVector.z != 0))
             {
                 transform.forward = viewVector;
             }
@@ -113,15 +124,18 @@ public class PlayerMoveState : PlayerStateBase
                 moveDirection = controller.GetSlopeDirection(moveDirection);
             }
 
-            if (inputVector.z < 0f)
+            if (!isAttack)
             {
-                cameraMoveController.SetBackMoveCamera(true);
-                velocity = moveDirection * -backMoveSpeedMutiplyer * moveSpeed;
-            }
-            else
-            {
-                cameraMoveController.SetBackMoveCamera(false);
-                velocity = moveDirection * moveSpeed;
+                if (inputVector.z < 0f)
+                {
+                    cameraMoveController.SetBackMoveCamera(true);
+                    velocity = moveDirection * -backMoveSpeedMutiplyer * moveSpeed;
+                }
+                else
+                {
+                    cameraMoveController.SetBackMoveCamera(false);
+                    velocity = moveDirection * moveSpeed;
+                }
             }
 
             controller.GetRigidbody().velocity = velocity;

@@ -11,13 +11,7 @@ GameObject:
   - component: {fileID: 2440569893261092877}
   - component: {fileID: 1617213337963603880}
   - component: {fileID: 3572913335190475618}
-  - component: {fileID: -7260574370146750580}
-  - component: {fileID: 2390757153419022372}
-  - component: {fileID: 6842024389211876464}
-  - component: {fileID: 272746817085242886}
-  - component: {fileID: -2314096440409324172}
-  - component: {fileID: 9130250380636919344}
-  - component: {fileID: -5644380162877138544}
+  - component: {fileID: 3597534352972059192}
   m_Layer: 8
   m_Name: Hand_sword_Dummy
   m_TagString: Untagged
@@ -90,36 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &-7260574370146750580
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3068488256194048695}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!65 &2390757153419022372
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3068488256194048695}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.16536312, y: 0.866519, z: 0.051781982}
-  m_Center: {x: 0.000000037252903, y: -0.000000014901161, z: 0.00000026728958}
---- !u!114 &6842024389211876464
+--- !u!114 &3597534352972059192
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,11 +93,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3068488256194048695}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c725960a3a6961e44a751a57a8f96572, type: 3}
+  m_Script: {fileID: 11500000, guid: 72687af85f1b08041ad267af09c01752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveType: 1
-  moveable: {fileID: 272746817085242886}
+  ownerObject: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: 0f7b928a385f3094ba9d952de97d3dac, type: 2}
   damageInfo:
     owner: {fileID: 0}
     ownerTag: 
@@ -143,110 +108,7 @@ MonoBehaviour:
     damage: 0
     hitPoint: {x: 0, y: 0, z: 0}
     hitNormal: {x: 0, y: 0, z: 0}
-  shotEvnet:
-    m_PersistentCalls:
-      m_Calls: []
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
-  isMove: 0
   vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
---- !u!114 &272746817085242886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3068488256194048695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1a4083c2c5acce49a5c88f282913d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileController: {fileID: 0}
-  startPoint: {x: 0, y: 0, z: 0}
-  maxDistance: 0
-  moveDirection: {x: 0, y: 0, z: 0}
-  moveSpeed: 0
---- !u!114 &-2314096440409324172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3068488256194048695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffdaa12f9c4a9ee49bf079647569d7ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  disableEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  collisionEnterEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6842024389211876464}
-        m_TargetAssemblyTypeName: ProjectileController, Assembly-CSharp
-        m_MethodName: Hit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  collisionStayEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  collisionExitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerEnterEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerStayEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerExitEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &9130250380636919344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3068488256194048695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 380e1a398b4fda942a91fb512f26e419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationList:
-  - {fileID: 11400000, guid: fdb162b5754f3a941b591b0de3bb8c0c, type: 2}
-  stopActionType: 0
-  autoActiveByPlay: 0
-  autoStartPlay: 0
-  resetOriginTransformByStop: 0
---- !u!114 &-5644380162877138544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3068488256194048695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f78101d8fe17a5546a02bb8ff936e519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveTime: 0
-  destinationEvent:
-    m_PersistentCalls:
-      m_Calls: []
