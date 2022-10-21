@@ -24,7 +24,6 @@ public abstract class MonsterStateBase : MonoBehaviour
     public UnityEvent exitEvent;
 
 
-
     protected virtual void Awake()
     {
         controller = GetComponent<MonsterController>();

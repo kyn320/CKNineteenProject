@@ -12,6 +12,8 @@ public class BuffController : MonoBehaviour
 
     public List<BuffBehaviour> buffBehaviourList;
 
+    public List<CrowdBehaviour> crowdBehaviourList;
+
     private void Awake()
     {
         status = GetComponent<UnitStatus>();
@@ -21,8 +23,9 @@ public class BuffController : MonoBehaviour
     {
         var buffObject = Instantiate(buffData.BuffBehaviourObject, transform);
 
-        var buffBehaviour = buffObject.GetComponent<BuffBehaviour>();
+        // CROWD TYPE일 경우, CRWOD BEHABIOUR로 추가.
 
+        var buffBehaviour = buffObject.GetComponent<BuffBehaviour>();
         buffBehaviourList.Add(buffBehaviour);
 
         buffBehaviour.SetBuffData(buffData);
