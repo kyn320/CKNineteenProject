@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 5413399869023604584}
   - component: {fileID: 177108442034520367}
   - component: {fileID: 1786684583}
+  - component: {fileID: 4371290555134426281}
   m_Layer: 6
   m_Name: SmallMonster
   m_TagString: Monster
@@ -384,6 +385,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4371290555134426281}
+        m_TargetAssemblyTypeName: TintSplashRender, Assembly-CSharp
+        m_MethodName: Splash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -411,12 +424,50 @@ MonoBehaviour:
   exitAnimatorTriggerList: []
   enterEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1786684583}
+        m_TargetAssemblyTypeName: MonsterHitState, Assembly-CSharp
+        m_MethodName: KnockBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4371290555134426281}
+        m_TargetAssemblyTypeName: TintSplashRender, Assembly-CSharp
+        m_MethodName: Splash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
   knockBackVector: {x: 0, y: 0, z: -6}
   vfxPrefabData: {fileID: 11400000, guid: 9802a65df7d6df84f911e2c9cb65db2a, type: 2}
+--- !u!114 &4371290555134426281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586416136825274974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9b7f29f75da8b49abbe30f063bb4a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tintColor: {r: 1, g: 0.2971698, b: 0.2971698, a: 1}
+  splashTime: 0.15
 --- !u!1001 &2434219640386749578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -524,6 +575,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -785901694772616368, guid: 2c494d0a3adc5d74aa2a469e433a7651,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9fe16d5e19f13544897c9096450a4d6d, type: 2}
+    - target: {fileID: -785901694772616368, guid: 2c494d0a3adc5d74aa2a469e433a7651,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9fe16d5e19f13544897c9096450a4d6d, type: 2}
     - target: {fileID: 919132149155446097, guid: 2c494d0a3adc5d74aa2a469e433a7651,
         type: 3}
       propertyPath: m_Name
