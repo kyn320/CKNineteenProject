@@ -35,7 +35,7 @@ public class TintSplashRender : MonoBehaviour
     private void ChangeColor(Color color)
     {
 
-        materialProperty.SetColor("_Color", color);
+        materialProperty.SetColor("_BaseColor", color);
 
         foreach (var render in meshRenderers)
         {
