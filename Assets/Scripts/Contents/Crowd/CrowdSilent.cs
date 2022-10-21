@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CrowdSilent : CrowdBehaviour
 {
+    /// <summary>
+    /// 침묵은 공격 키 입력 시에도 어떠한 반응도 존재하지 않는다.
+    /// </summary>
     public override void Active()
     {
 
@@ -17,8 +20,6 @@ public class CrowdSilent : CrowdBehaviour
 
     protected override void ApplyCrowd()
     {
-        crowdType = CrowdType.Slient;
-
         if (Input.GetMouseButtonDown(0))
             return;
     }

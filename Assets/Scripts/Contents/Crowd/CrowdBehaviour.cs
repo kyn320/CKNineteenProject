@@ -55,13 +55,17 @@ public abstract class CrowdBehaviour : MonoBehaviour
         // 버프 시작 시에 여기에 넣어서.
 
         if(stackCount > 0)
-        {
-            // 해당 버프는 중첩이므로, 중첩 설정 해준다.
-        }
+            ResetCooltime();
 
         ApplyCrowd();
         isActive = true;
-        // Active를 true로 변경함으로서, Active 메서드도 실행.
+
+        crowdType = buffData.CrowdTypes[0];
+    }
+
+    public void ResetCooltime()
+    {
+        currentLifeTime = buffData.LifeTime;
     }
 
     // 초기 장착 필요.
