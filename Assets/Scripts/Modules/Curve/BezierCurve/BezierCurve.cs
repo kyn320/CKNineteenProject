@@ -22,10 +22,9 @@ public class BezierCurve : MonoBehaviour
     [SerializeField]
     private Color handleLineColor = Color.red;
 
-    [SerializeField]
-    private float TEST_NearestFindStartRange = 5f;
-
-    public List<Vector3> searchProgressTestList;
+    [ReadOnly]
+    [ShowInInspector]
+    private List<Vector3> searchProgressList = new List<Vector3>();
 
     public Vector3 GetPosition(int index, float progress)
     {
@@ -99,16 +98,16 @@ public class BezierCurve : MonoBehaviour
             }
         }
 
-        for (var i = 0; i < searchProgressTestList.Count; ++i)
+        for (var i = 0; i < searchProgressList.Count; ++i)
         {
             Gizmos.color = Color.magenta;
-            Gizmos.DrawSphere(searchProgressTestList[i], 1f);
+            Gizmos.DrawSphere(searchProgressList[i], 1f);
         }
     }
 
     public Vector3 FindNearestPoint(Vector3 targetPosition)
     {
-        searchProgressTestList.Clear();
+        searchProgressList.Clear();
 
         var nearestPosition = Vector3.zero;
         var nearDistanceSqr = float.MaxValue;

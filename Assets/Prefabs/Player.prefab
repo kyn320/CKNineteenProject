@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 1294546405}
   - component: {fileID: 1294546406}
   - component: {fileID: 1294546404}
+  - component: {fileID: 3827645978518966163}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -419,7 +420,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  backMoveSpeedMutiplyer: 0.7
+  backMoveSpeedMutiplyer: 0.15
   allowMove: 1
   cameraMoveController: {fileID: 0}
 --- !u!114 &1294546402
@@ -508,6 +509,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  updateIsAttackEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1294546400}
+        m_TargetAssemblyTypeName: PlayerIdleState, Assembly-CSharp
+        m_MethodName: SetIsAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1294546399}
+        m_TargetAssemblyTypeName: PlayerMoveState, Assembly-CSharp
+        m_MethodName: SetIsAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  forwardDirection: {x: 0, y: 0, z: 0}
+  isMoveable: 0
 --- !u!114 &1294546405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,6 +643,20 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3827645978518966163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645977972770100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ffd0916862d2342940417e379d3fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: {fileID: 1383080239591342266}
+  buffBehaviourList: []
 --- !u!1 &3827645978462288803
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,12 +29,14 @@ public class ProjectileController : MonoBehaviour
         damageInfo.isCritical = isCritical;
     }
 
-    public void Shot(Vector3 startPoint, Vector3 moveDirection, float moveSpeed, float maxDistance)
+    public void Shot(Vector3 startPoint,Vector3 endPoint,  Vector3 moveDirection, float moveSpeed, float maxDistance)
     {
         moveable.SetStartPoint(startPoint);
+        moveable.SetEndPoint(endPoint);
         moveable.SetDirection(moveDirection);
         moveable.SetMoveSpeed(moveSpeed);
         moveable.SetMaxDistance(maxDistance);
+        moveable.Shot();
         isMove = true;
         shotEvnet?.Invoke();
     }

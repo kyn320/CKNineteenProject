@@ -19,7 +19,7 @@ MonoBehaviour:
   description: 
   icon: {fileID: 21300000, guid: 970324311431c794ca338446ea889948, type: 3}
   isUnique: 1
-  worldObject: {fileID: 4797647947300948221, guid: 48821c4e2250b6b449ec28deff9ed2df,
+  worldObject: {fileID: 1938176264512456523, guid: 05d73ae116aa387468c2651c8c1c4923,
     type: 3}
   statusInfoData:
     statusDic:
@@ -250,7 +250,11 @@ MonoBehaviour:
         amount: 0
         percent: 0
   weaponType: 4
-  projectileMoveType: 1
+  attackType: 2
+  projectileMoveType: 3
+  isMoveable: 0
   attackAnimationType: 4
-  spawnVector: {x: 0, y: 1, z: 4}
-  spawnTime: 0.5
+  hitBoxDataList: []
+  pivotOffsetList:
+  - position: {x: 0, y: 0, z: 0}
+    rotatation: {x: 0, y: 0, z: 0, w: 0}

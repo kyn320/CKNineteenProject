@@ -52,13 +52,13 @@ MonoBehaviour:
   cameraAnchor: {fileID: 7970744291048967399}
   directionObject: {fileID: 7970744291211667740}
   cameraVector:
-  - {x: 1, y: 0, z: -2.5}
+  - {x: 1, y: 0, z: -3}
   - {x: 1, y: 0.25, z: -1}
-  - {x: 1, y: 0, z: -1.5}
+  - {x: 1, y: 0, z: -2}
   isZoom: 0
   isBack: 0
   cameraAngle: 80
-  dampingSpeed: 10
+  dampingSpeed: 1000
   playerObjectForwardVector: {x: 0, y: 0, z: 0}
   updateForwardVector:
     m_PersistentCalls:
@@ -77,6 +77,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMoveState, Assembly-CSharp
+        m_MethodName: UpdateForwardView
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
         m_MethodName: UpdateForwardView
         m_Mode: 0
         m_Arguments:

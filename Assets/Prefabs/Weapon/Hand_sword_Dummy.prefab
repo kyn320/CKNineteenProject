@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 2440569893261092877}
   - component: {fileID: 1617213337963603880}
   - component: {fileID: 3572913335190475618}
-  m_Layer: 0
+  - component: {fileID: 3597534352972059192}
+  m_Layer: 8
   m_Name: Hand_sword_Dummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,8 +26,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3068488256194048695}
-  m_LocalRotation: {x: -0.000000199496, y: 0.7071068, z: 0.7071067, w: 0.00000019949603}
-  m_LocalPosition: {x: 22.453672, y: 0, z: 90.29527}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,3 +84,31 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3597534352972059192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3068488256194048695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72687af85f1b08041ad267af09c01752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerObject: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: 0f7b928a385f3094ba9d952de97d3dac, type: 2}
+  damageInfo:
+    owner: {fileID: 0}
+    ownerTag: 
+    isHit: 0
+    isCritical: 0
+    isKnockBack: 0
+    isKill: 0
+    damage: 0
+    hitPoint: {x: 0, y: 0, z: 0}
+    hitNormal: {x: 0, y: 0, z: 0}
+  hitEvnet:
+    m_PersistentCalls:
+      m_Calls: []
+  vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}

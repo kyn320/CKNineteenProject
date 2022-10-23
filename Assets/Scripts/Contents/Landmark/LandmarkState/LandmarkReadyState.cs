@@ -8,9 +8,6 @@ namespace Landmark
     public class LandmarkReadyState : LandmarkStateBase
     {
         [SerializeField]
-        private GameObject shieldObject;
-
-        [SerializeField]
         private float currentRecoverTime;
 
         public float autoRecoverTime;
@@ -31,7 +28,6 @@ namespace Landmark
             controller.uiLandmarkView = view.GetComponent<UILandmarkView>();
             controller.GetStatus().updateHpEvent.AddListener(controller.uiLandmarkView.UpdateShieldAmount);
             controller.GetStatus().ForceUpdateHPEvent();
-            shieldObject.SetActive(true);
             WorldController.Instance.AlertActiveLandmark(controller);
 
             enterEvent?.Invoke();

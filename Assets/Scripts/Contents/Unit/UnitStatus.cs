@@ -15,15 +15,23 @@ public class UnitStatus : SerializedMonoBehaviour
     public UnityEvent<float, float> updateHpEvent;
     public UnityEvent<bool, UnitStatus> updateDeathEvent;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         SetOriginStatus();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         var hpElement = currentStatus.GetElement(StatusType.HP);
         var maxHPElement = currentStatus.GetElement(StatusType.MaxHP);
+
+        hpElement.updateAmountAction += (value) => {
+            updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
+        };
+
+        maxHPElement.updateAmountAction += (value) => {
+            updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
+        };
 
         updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
     }

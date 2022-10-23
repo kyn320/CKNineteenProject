@@ -18,6 +18,18 @@ public class UIController : Singleton<UIController>
 
     public RectTransform backgroundDimmed;
 
+    public T GetView<T>(string viewName) where T : UIBaseView
+    {
+        var view = viewList.Find(item => item.viewName.Equals(viewName));
+
+        if (view == null)
+        {
+            return null;
+        }
+
+        return (T)view;
+    }
+
     public UIBaseView OpenView(UIBaseView view)
     {
         viewList.Add(view);
@@ -83,6 +95,18 @@ public class UIController : Singleton<UIController>
 
         viewList.Remove(view);
         view.Close();
+    }
+
+    public T GetPopup<T>(string popupName) where T : UIBasePopup
+    {
+        var popup = popupList.Find(item => item.viewName.Equals(popupName));
+
+        if (popup == null)
+        {
+            return null;
+        }
+
+        return (T)popup;
     }
 
     public UIBaseView OpenPopup(string popupName)

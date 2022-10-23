@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 
 public class PlayerInputController : MonoBehaviour
 {
-    private const float MaxAimDistance = 500f;
+    private const float MaxAimDistance = 50f;
     [SerializeField]
     private GameObject mainCamera;
 
