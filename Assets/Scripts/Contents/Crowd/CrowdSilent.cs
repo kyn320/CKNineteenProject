@@ -7,6 +7,7 @@ public class CrowdSilent : CrowdBehaviour
     public override void Active()
     {
 
+
     }
 
     public override void UnActive()
@@ -16,6 +17,9 @@ public class CrowdSilent : CrowdBehaviour
 
     protected override void ApplyCrowd()
     {
+        crowdType = CrowdType.Slient;
 
+        if (Input.GetMouseButtonDown(0))
+            return;
     }
 }
