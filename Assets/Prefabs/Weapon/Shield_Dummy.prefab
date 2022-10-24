@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -4512114423589556217}
   - component: {fileID: -1592686362680669315}
   - component: {fileID: 7982497186398759490}
+  - component: {fileID: 581075322508755532}
   m_Layer: 8
   m_Name: Shield_Dummy
   m_TagString: Untagged
@@ -149,6 +150,7 @@ MonoBehaviour:
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
+  isPiercing: 1
   isMove: 0
   vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
 --- !u!114 &5812913049709006897
@@ -165,9 +167,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileController: {fileID: 0}
   startPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
   maxDistance: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveSpeed: 0
+  moveTime: 0
 --- !u!114 &-4512114423589556217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +196,18 @@ MonoBehaviour:
       - m_Target: {fileID: 918985122668460515}
         m_TargetAssemblyTypeName: ProjectileController, Assembly-CSharp
         m_MethodName: Hit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 581075322508755532}
+        m_TargetAssemblyTypeName: ChainAttackFinder, Assembly-CSharp
+        m_MethodName: ChainAttackStart
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -250,3 +266,22 @@ MonoBehaviour:
   destinationEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &581075322508755532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6475858921729296120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789db7ffd0e5e9645acc7639c402366e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets: []
+  findMonsterDistance: 7
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  chainLog: []
+  chainLimit: 5
