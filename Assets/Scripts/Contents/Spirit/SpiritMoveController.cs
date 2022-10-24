@@ -72,7 +72,7 @@ public class SpiritMoveController : MonoBehaviour
         Physics.Raycast(parentPos, direction, out wallChacker, distance, spiritDontHit);
         Debug.DrawRay(parentPos, targetTransform.position - parentPos, Color.green);
 
-        if (wallChacker.collider && dontWallOutTag.Contains(wallChacker.collider.tag))
+        if (wallChacker.collider && dontWallOutTagList.Contains(wallChacker.collider.tag))
             Move(wallChacker.point - (direction * 0.3f));
         else
             Move(targetTransform.position);

@@ -15,6 +15,7 @@ public class ChainAttackFinder : MonoBehaviour
 
     [SerializeField]
     string[] chainLog;
+    [SerializeField]
     int chainCount = 0;
 
     [SerializeField]
@@ -37,31 +38,47 @@ public class ChainAttackFinder : MonoBehaviour
         if (targets.Length == 0)
             targets = Physics.OverlapSphere(transform.position, monsterSearchLength, targetLayer);
 
-
+        //Log 생성
         if (chainLog.Length == 0)
         {
             chainLog = new string[targets.Length];
             for (int i = 0; i < targets.Length; i++)
-                chainLog[i] = targets[i].transform.root.gameObject.name;
+            {
+                    chainLog[i] = targets[i].transform.root.gameObject.name;
+            }
         }
 
-        for (int i = 0; i < targets.Length && i < chainLimit; i++)
+        //중복 방지용 Log생성기
+        for(int i = 0; i < targets.Length && i < chainLimit; i++)
         {
-            if (targets[i].transform.root.name == chainLog[i] && chainCount < chainLimit)
+            if (targets[i].name == hitCollision.gameObject.transform.root.name)
             {
-                chainCount++;
-                Vector3 targetDistance = targets[i].transform.position - transform.position;
-                gameObject.GetComponent<ProjectileStraightMove>().SetDirection(targetDistance.normalized);
-                
+                chainLog[i] = "attackedName";
+
                 //다중 콜라이더를 지닌 몬스터일 경우 중복 체크를 방지
                 for (int j = 0; j < chainLog.Length; j++)
                     if (chainLog[j] == targets[i].transform.root.gameObject.name)
                         chainLog[j] = "attackedName";
+            }
+        }
 
-                chainLog[i] = "attackedName";
+        //타겟팅 지정
+        for (int i = 0; i < targets.Length && i < chainLimit; i++)
+        {
+            if (targets[i] && chainCount < chainLimit)
+            {
+                if(targets[i].transform.root.name == chainLog[i])
+                {
+                    chainCount++;
+                    Vector3 targetDistance = targets[i].transform.position - transform.position;
+                    Debug.Log($"{this.gameObject.name}가 \n{targets[i]}추격");
+                    gameObject.GetComponent<ProjectileStraightMove>().SetDirection(targetDistance.normalized);
 
-                return;
-            } 
+
+
+                    return;
+                }
+            }
             else if (chainCount >= chainLimit)
             {
                 Destroy(this.gameObject);
@@ -69,3 +86,5 @@ public class ChainAttackFinder : MonoBehaviour
         }
     }
 }
+
+
