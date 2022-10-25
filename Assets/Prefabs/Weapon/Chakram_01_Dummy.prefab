@@ -150,6 +150,7 @@ MonoBehaviour:
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
+  isPiercing: 1
   isMove: 0
   vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
 --- !u!114 &-4538060289748770086
@@ -305,7 +306,7 @@ TrailRenderer:
   m_Time: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 0.25
     widthCurve:
       serializedVersion: 2
       m_Curve:
