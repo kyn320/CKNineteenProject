@@ -29,6 +29,10 @@ public class WeaponData : ItemData
     public int AttackAnimationType { get { return attackAnimationType; } }
 
     [SerializeField]
+    private int comboCount;
+    public int ComboCount { get { return comboCount; } }
+
+    [SerializeField]
     private List<AttackHitBoxData> hitBoxDataList;
     public List<AttackHitBoxData> HitBoxDataList { get { return hitBoxDataList; } }
 
