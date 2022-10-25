@@ -22,7 +22,8 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: Event Emit has a time (1.666979) outside the clip's
+      valid range (0.000000..1.633333). It will never be fired
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -136,7 +137,7 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human:
-    - boneName: Bip001 Pelvis
+    - boneName: Bip001
       humanName: Hips
       limit:
         min: {x: 0, y: 0, z: 0}
