@@ -43,6 +43,10 @@ public class PlayerAttackState : PlayerStateBase
 
     [ReadOnly]
     [ShowInInspector]
+    private int currentHitCount = 0;
+
+    [ReadOnly]
+    [ShowInInspector]
     private List<ItemSlot> equipSlotDatas = new List<ItemSlot>();
 
     private GameObject weaponObject;
@@ -137,6 +141,7 @@ public class PlayerAttackState : PlayerStateBase
         if (!CheckAttackPossible())
             return;
 
+        currentHitCount = 0;
         transform.forward = forwardDirection;
 
         this.aimPoint = aimPoint;
@@ -300,6 +305,17 @@ public class PlayerAttackState : PlayerStateBase
 
     public void SuccessHit(bool isKill)
     {
+
+        ++currentHitCount;
+
+        if (currentHitCount == 1)
+        {
+            //첫 히트 에만 타임 스케일 연출이 처리됩니다.
+            var hitBoxData = currentAttackWeaponData.HitBoxDataList[currentComboIndex];
+            //GameTimeController.Instance.ChangeTimeScale(hitBoxData.TimeScale, hitBoxData.TimeScaleLifeTime);
+            CameraMoveController.Instance.PlayTweenAnimation(hitBoxData.HitTweeDataList);
+        }
+
         ComboSystem.Instance.AddHitCombo(1);
 
         if (isKill)
