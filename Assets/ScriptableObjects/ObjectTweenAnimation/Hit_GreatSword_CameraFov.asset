@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f331316cec5fb32499a3fcfd4753ee06, type: 3}
-  m_Name: CameraShake_Hit
+  m_Name: Hit_GreatSword_CameraFov
   m_EditorClassIdentifier: 
-  animationName: CameraShake_Hit
+  animationName: CameraFov_Hit
   duration: 0.05
   delay: 0
-  animationType: 5
-  easeType: 1
+  animationType: 7
+  easeType: 31
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -42,10 +42,10 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   loopCount: 2
-  loopType: 0
-  destinationFloat: 0
+  loopType: 1
+  destinationFloat: -4
   destinationVector: {x: 0, y: 0, z: 0}
-  strength: 0.5
-  vibrato: 1
-  randomness: 0.5
+  strength: 0
+  vibrato: 0
+  randomness: 0
   isRelative: 1

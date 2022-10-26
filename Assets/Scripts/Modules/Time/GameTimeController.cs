@@ -28,7 +28,7 @@ public class GameTimeController : Singleton<GameTimeController>
 
     IEnumerator CoTimeScaleAnimation(float lifeTime)
     {
-        yield return new WaitForSeconds(lifeTime);
+        yield return new WaitForSecondsRealtime(lifeTime);
         ChangeTimeScale(1f);
     }
 

@@ -308,12 +308,17 @@ public class PlayerAttackState : PlayerStateBase
 
         ++currentHitCount;
 
+        var hitBoxData = currentAttackWeaponData.HitBoxDataList[currentComboIndex];
+
         if (currentHitCount == 1)
         {
             //첫 히트 에만 타임 스케일 연출이 처리됩니다.
-            var hitBoxData = currentAttackWeaponData.HitBoxDataList[currentComboIndex];
-            //GameTimeController.Instance.ChangeTimeScale(hitBoxData.TimeScale, hitBoxData.TimeScaleLifeTime);
-            CameraMoveController.Instance.PlayTweenAnimation(hitBoxData.HitTweeDataList);
+            //CameraMoveController.Instance.PlayTweenAnimation(hitBoxData.HitTweeDataList);
+        }
+
+        if (currentHitCount == 3)
+        {
+            GameTimeController.Instance.ChangeTimeScale(hitBoxData.TimeScale, hitBoxData.TimeScaleLifeTime);
         }
 
         ComboSystem.Instance.AddHitCombo(1);
