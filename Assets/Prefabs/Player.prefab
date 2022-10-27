@@ -950,7 +950,7 @@ MonoBehaviour:
   eventDic:
     keys:
     - SpawnWeapon
-    - Shot
+    - PlayAttack
     - EndAttack
     - EndHit
     - AllowCombo
@@ -973,7 +973,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1294546403}
           m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
-          m_MethodName: Shot
+          m_MethodName: PlayAttack
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

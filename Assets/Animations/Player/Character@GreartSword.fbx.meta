@@ -70,15 +70,7 @@ ModelImporter:
         messageOptions: 0
       - time: 0.7531645
         functionName: Emit
-        data: Shot
-        objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.9198312
-        functionName: Emit
-        data: EndAttack
+        data: PlayAttack
         objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
           type: 3}
         floatParameter: 0
@@ -87,6 +79,14 @@ ModelImporter:
       - time: 0.76696163
         functionName: Emit
         data: AllowCombo
+        objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: Emit
+        data: EndAttack
         objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
           type: 3}
         floatParameter: 0

@@ -27,4 +27,8 @@ public class AttackHitBoxData : ScriptableObject
     private List<ObjectTweenAnimationData> hitTweenDataList;
     public List<ObjectTweenAnimationData> HitTweeDataList { get { return hitTweenDataList; } }
 
+    [SerializeField]
+    private VFXPrefabData screenVFXVolumeData;
+    public VFXPrefabData ScreenVFXVolumeData { get { return screenVFXVolumeData; } }
+
 }

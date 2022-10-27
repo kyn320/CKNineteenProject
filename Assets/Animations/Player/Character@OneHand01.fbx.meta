@@ -22,8 +22,9 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: Event Emit has a time (1.666979) outside the clip's
-      valid range (0.000000..1.633333). It will never be fired
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\n\t'Bip001 Pelvis' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -69,15 +70,23 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.45230448
+      - time: 0.10263451
         functionName: Emit
-        data: Shot
+        data: PlayAttack
         objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
           type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.8930247
+      - time: 0.1138465
+        functionName: Emit
+        data: AllowCombo
+        objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7503101
         functionName: Emit
         data: EndAttack
         objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,

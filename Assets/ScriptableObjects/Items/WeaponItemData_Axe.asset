@@ -254,8 +254,12 @@ MonoBehaviour:
   projectileMoveType: 1
   isMoveable: 0
   attackAnimationType: 2
+  comboCount: 2
   hitBoxDataList:
+  - {fileID: 11400000, guid: fd160bf9952415d4eb2fb1ebdd3e89aa, type: 2}
   - {fileID: 11400000, guid: fd160bf9952415d4eb2fb1ebdd3e89aa, type: 2}
   pivotOffsetList:
   - position: {x: -0.15, y: 0.05, z: 0.06}
     rotatation: {x: 0.49673176, y: -0.40957603, z: 0.28678823, w: 0.7094065}
+  - position: {x: -0.15, y: 0.05, z: 0.06}
+    rotatation: {x: -0.49673176, y: 0.4095761, z: -0.28678825, w: -0.7094065}

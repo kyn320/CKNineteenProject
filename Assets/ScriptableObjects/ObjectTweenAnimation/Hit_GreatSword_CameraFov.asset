@@ -13,22 +13,40 @@ MonoBehaviour:
   m_Name: Hit_GreatSword_CameraFov
   m_EditorClassIdentifier: 
   animationName: CameraFov_Hit
-  duration: 0.05
+  duration: 0.125
   delay: 0
   animationType: 7
-  easeType: 31
+  easeType: 0
   easeCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.112139046
+      value: 0.66989857
+      inSlope: 2.957064
+      outSlope: 2.957064
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.31544966
+      value: 0.93280476
+      inSlope: 0.30272868
+      outSlope: 0.30272868
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
