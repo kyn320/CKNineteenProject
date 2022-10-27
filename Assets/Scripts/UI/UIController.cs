@@ -32,12 +32,24 @@ public class UIController : Singleton<UIController>
 
     public UIBaseView OpenView(UIBaseView view)
     {
-        viewList.Add(view);
+        return OpenView(view, null);
+    }
 
-        view.Init(null);
-        view.Open();
+    public UIBaseView OpenView(UIData uiData)
+    {
+        var viewPrefab = Resources.Load<GameObject>(uiData.prefabPath);
+        var viewObject = Instantiate(viewPrefab, viewGroup);
+        var view = viewObject.GetComponent<UIBaseView>();
 
-        return view;
+        return OpenView(view, uiData);
+    }
+    public UIBaseView OpenView(string viewName)
+    {
+        var viewPrefab = Resources.Load<GameObject>($"UI/UI{viewName}");
+        var viewObject = Instantiate(viewPrefab, viewGroup);
+        var view = viewObject.GetComponent<UIBaseView>();
+
+        return OpenView(view, null);
     }
 
     public UIBaseView OpenView(UIBaseView view, UIData uiData)
@@ -46,55 +58,26 @@ public class UIController : Singleton<UIController>
 
         view.Init(uiData);
         view.Open();
-
         return view;
-    }
-
-    public UIBaseView OpenView(UIData uiData)
-    {
-        var viewPrefab = Resources.Load<GameObject>(uiData.prefabPath);
-        var viewObject = Instantiate(viewPrefab, viewGroup);
-        var view = viewObject.GetComponent<UIBaseView>();
-        viewList.Add(view);
-
-        view.Init(uiData);
-        view.Open();
-
-        return view;
-    }
-
-    public UIBaseView OpenView(string viewName)
-    {
-        var viewPrefab = Resources.Load<GameObject>($"UI/UI{viewName}");
-        var viewObject = Instantiate(viewPrefab, viewGroup);
-        var view = viewObject.GetComponent<UIBaseView>();
-        viewList.Add(view);
-
-        view.Init(null);
-        view.Open();
-
-        return view;
-    }
-
-    public void CloseView(UIBaseView view)
-    {
-        view.Close();
-        viewList.Remove(view);
     }
 
     public void CloseView(string viewName)
     {
         var view = viewList.Find(item => item.viewName.Equals(viewName));
 
-        viewList.Remove(view);
-        view.Close();
+        CloseView(view);
     }
     public void CloseView(UIData uiData)
     {
         var view = viewList.Find(item => item.viewName.Equals(uiData.viewName));
 
-        viewList.Remove(view);
+        CloseView(view);
+    }
+
+    public void CloseView(UIBaseView view)
+    {
         view.Close();
+        viewList.Remove(view);
     }
 
     public T GetPopup<T>(string popupName) where T : UIBasePopup
@@ -109,46 +92,52 @@ public class UIController : Singleton<UIController>
         return (T)popup;
     }
 
-    public UIBaseView OpenPopup(string popupName)
+    public UIBasePopup OpenPopup(string popupName)
     {
         var popupPrefab = Resources.Load<GameObject>($"UI/UI{popupName}Popup");
         var popupObject = Instantiate(popupPrefab, popupGroup);
-        var view = popupObject.GetComponent<UIBaseView>();
         var popupView = popupObject.GetComponent<UIBasePopup>();
-        popupList.Add(popupView);
 
-        if (popupView.useBackground)
-        {
-            backgroundDimmed.gameObject.SetActive(true);
-        }
-
-        backgroundDimmed.SetSiblingIndex(popupList.Count - 1);
-
-        view.Init(null);
-        view.Open();
-
-        return view;
+        return OpenPopup(popupView, null);
     }
 
-    public UIBaseView OpenPopup(UIPopupData popupData)
+    public UIBasePopup OpenPopup(UIPopupData popupData)
     {
         var popupPrefab = Resources.Load<GameObject>(popupData.prefabPath);
         var popupObject = Instantiate(popupPrefab, popupGroup);
-        var view = popupObject.GetComponent<UIBaseView>();
         var popupView = popupObject.GetComponent<UIBasePopup>();
-        popupList.Add(popupView);
 
-        if (popupView.useBackground)
+        return OpenPopup(popupView, popupData);
+    }
+
+    public UIBasePopup OpenPopup(UIBasePopup popup, UIPopupData popupData)
+    {
+
+        popupList.Add(popup);
+
+        if (popup.useBackground)
         {
             backgroundDimmed.gameObject.SetActive(true);
         }
 
         backgroundDimmed.SetSiblingIndex(popupList.Count - 1);
 
-        view.Init(popupData);
-        view.Open();
+        popup.Init(popupData);
+        popup.Open();
 
-        return view;
+        return popup;
+    }
+
+    public void ClosePopup(string popupName)
+    {
+        var popup = popupList.Find(item => item.viewName.Equals(popupName));
+        ClosePopup(popup);
+    }
+
+    public void ClosePopup(UIPopupData popupData)
+    {
+        var popup = popupList.Find(item => item.viewName.Equals(popupData.viewName));
+        ClosePopup(popup);
     }
 
     public void ClosePopup(UIBasePopup popup)
@@ -166,44 +155,6 @@ public class UIController : Singleton<UIController>
         }
 
         popup.GetComponent<UIBaseView>().Close();
-    }
-
-    public void ClosePopup(string popupName)
-    {
-        var view = popupList.Find(item => item.viewName.Equals(popupName));
-
-        popupList.Remove(view);
-
-        if (backgroundDimmed.gameObject.activeSelf && popupList.Count > 0)
-        {
-            backgroundDimmed.gameObject.SetActive(true);
-            backgroundDimmed.SetSiblingIndex(popupList.Count - 1);
-        }
-        else
-        {
-            backgroundDimmed.gameObject.SetActive(false);
-        }
-
-        view.Close();
-    }
-
-    public void ClosePopup(UIPopupData popupData)
-    {
-        var view = popupList.Find(item => item.viewName.Equals(popupData.viewName));
-
-        popupList.Remove(view);
-
-        if (backgroundDimmed.gameObject.activeSelf && popupList.Count > 0)
-        {
-            backgroundDimmed.gameObject.SetActive(true);
-            backgroundDimmed.SetSiblingIndex(popupList.Count - 1);
-        }
-        else
-        {
-            backgroundDimmed.gameObject.SetActive(false);
-        }
-
-        view.Close();
     }
 
     public GameObject CreateWorldUI(GameObject uiPrefab)
