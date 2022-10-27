@@ -57,7 +57,7 @@ public class UIController : Singleton<UIController>
         viewList.Add(view);
 
         view.Init(uiData);
-        view.Open();
+        view.BeginOpen();
         return view;
     }
 
@@ -76,8 +76,8 @@ public class UIController : Singleton<UIController>
 
     public void CloseView(UIBaseView view)
     {
-        view.Close();
         viewList.Remove(view);
+        view.BeginClose();
     }
 
     public T GetPopup<T>(string popupName) where T : UIBasePopup
@@ -123,7 +123,7 @@ public class UIController : Singleton<UIController>
         backgroundDimmed.SetSiblingIndex(popupList.Count - 1);
 
         popup.Init(popupData);
-        popup.Open();
+        popup.BeginOpen();
 
         return popup;
     }
@@ -154,7 +154,7 @@ public class UIController : Singleton<UIController>
             backgroundDimmed.gameObject.SetActive(false);
         }
 
-        popup.GetComponent<UIBaseView>().Close();
+        popup.BeginClose();
     }
 
     public GameObject CreateWorldUI(GameObject uiPrefab)

@@ -28,7 +28,6 @@ public class FadeController : Singleton<FadeController>
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
-
     public void SetActive(bool isActive) { 
         gameObject.SetActive(isActive);
     }

@@ -70,6 +70,13 @@ public class UITweenAnimator : MonoBehaviour
         if (autoActiveByPlay)
             gameObject.SetActive(true);
 
+        if (animations.Count == 0)
+        {
+            completeAction?.Invoke();
+            completeEvent?.Invoke();
+            return;
+        }
+
         for (var i = 0; i < animations.Count; ++i)
         {
             var animationData = animations[i];

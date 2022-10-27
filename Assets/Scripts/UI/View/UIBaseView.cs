@@ -19,7 +19,8 @@ public abstract class UIBaseView : MonoBehaviour
     public UnityEvent openEvent;
     public UnityEvent closeEvent;
 
-    protected virtual void Start() { 
+    protected virtual void Start()
+    {
         UIController.Instance.OpenView(this);
     }
 
@@ -27,6 +28,11 @@ public abstract class UIBaseView : MonoBehaviour
 
     [Button("Open")]
     public virtual void Open()
+    {
+        BeginOpen();
+    }
+
+    public virtual void BeginOpen()
     {
         gameObject.SetActive(true);
         PlayAnimation(openAnimationList, EndOpen);
@@ -40,6 +46,11 @@ public abstract class UIBaseView : MonoBehaviour
     [Button("Close")]
     public virtual void Close()
     {
+        BeginClose();
+    }
+
+    public virtual void BeginClose()
+    {
         closeEvent?.Invoke();
         PlayAnimation(closeAnimationList, EndClose);
     }
@@ -49,11 +60,17 @@ public abstract class UIBaseView : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public virtual void PlayAnimation(List<UIAnimationData> animations, UnityAction completeEvent = null)
+    public virtual void PlayAnimation(List<UIAnimationData> animations, UnityAction completeAction = null)
     {
         if (playTweenList.Count > 0)
         {
             Stop();
+        }
+
+        if (animations.Count == 0)
+        {
+            completeAction?.Invoke();
+            return;
         }
 
         for (var i = 0; i < animations.Count; ++i)
@@ -98,7 +115,7 @@ public abstract class UIBaseView : MonoBehaviour
                 playTweenList.Remove(tween);
                 if (playTweenList.Count <= 0)
                 {
-                    completeEvent?.Invoke();
+                    completeAction?.Invoke();
                 }
             });
             tween.SetRelative(animationData.IsRelative);

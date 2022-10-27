@@ -32,7 +32,7 @@ public class BezierCurve : MonoBehaviour
     }
 
     [Button("巨目 眠啊")]
-    public void AddPoint()
+    public virtual void AddPoint()
     {
         //巨目 积己
         var pointAnchor = new GameObject("CurvePoint_" + (pointList.Count));
@@ -66,7 +66,22 @@ public class BezierCurve : MonoBehaviour
 
     }
 
-    private void OnDrawGizmos()
+    [Button("风橇 弓扁")]
+    public void LinkLoop()
+    {
+
+        if (pointList.Count < 2)
+            return;
+
+        var bezierLine = new BezierLine();
+
+        bezierLine.points[0] = pointList[pointList.Count - 1];
+        bezierLine.points[1] = pointList[0];
+
+        lineList.Add(bezierLine);
+    }
+
+    protected virtual void OnDrawGizmos()
     {
         for (var i = 0; i < pointList.Count; ++i)
         {
