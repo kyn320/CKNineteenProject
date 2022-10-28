@@ -351,6 +351,11 @@ PrefabInstance:
       objectReference: {fileID: 1294546393}
     - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
         type: 3}
+      propertyPath: IsDontDestroy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970744291048967396, guid: 0e8fcbe29b888db42b4c6e8e459451db,
+        type: 3}
       propertyPath: cameraVector.Array.data[0].z
       value: -5
       objectReference: {fileID: 0}
@@ -5344,7 +5349,7 @@ PrefabInstance:
     - target: {fileID: 8099621406637484933, guid: 13fec370de54f5445aa1bb81da5e7ba0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8099621406637484933, guid: 13fec370de54f5445aa1bb81da5e7ba0,
         type: 3}

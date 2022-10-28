@@ -46,6 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationList: []
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopEvent:
+    m_PersistentCalls:
+      m_Calls: []
   stopActionType: 0
   autoActiveByPlay: 0
   autoStartPlay: 0
@@ -96,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7ac32630907964f8ce4b116426993a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDontDestroy: 1
+  IsDontDestroy: 0
   target: {fileID: 0}
   targetOffset: {x: 0, y: 1, z: 0}
   mainCamera: {fileID: 7970744291956046205}

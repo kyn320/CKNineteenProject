@@ -6,10 +6,13 @@ using Sirenix.OdinInspector;
 
 public class BezierCurve : MonoBehaviour
 {
-    public List<BezierLine> lineList;
-    public List<CurvePoint> pointList;
+    [SerializeField]
+    protected List<BezierLine> lineList;
+    [SerializeField]
+    protected List<CurvePoint> pointList;
 
-    public int drawDetailCount = 50;
+    [SerializeField]
+    protected int drawDetailCount = 50;
 
     [SerializeField]
     private float pointRadius = 0.5f;
@@ -24,11 +27,36 @@ public class BezierCurve : MonoBehaviour
 
     [ReadOnly]
     [ShowInInspector]
-    private List<Vector3> searchProgressList = new List<Vector3>();
+    protected List<Vector3> searchProgressList = new List<Vector3>();
+
+    public Vector3 GetPosition(float progress)
+    {
+        var index = (int)progress;
+        return GetPosition(index, progress - index);
+    }
 
     public Vector3 GetPosition(int index, float progress)
     {
+        if (index < 0)
+        {
+            return lineList[0].CalculatePoint(0f);
+        }
+        else if (index >= lineList.Count)
+        {
+            return lineList[lineList.Count - 1].CalculatePoint(1f);
+        }
+
         return lineList[index].CalculatePoint(progress);
+    }
+
+    public int GetLineCount()
+    {
+        return lineList.Count;
+    }
+
+    public List<CurvePoint> GetPointList()
+    {
+        return pointList;
     }
 
     [Button("¾ÞÄ¿ Ãß°¡")]
@@ -136,9 +164,10 @@ public class BezierCurve : MonoBehaviour
             var searchRange = new float[2] { 0f, 0f };
             var searchDistance = SearchLineBinarySplit(ref searchRange, line, targetPosition, 0.5f, 4, float.MaxValue);
 
-            if(nearDistanceSqr > searchDistance) {
+            if (nearDistanceSqr > searchDistance)
+            {
                 nearDistanceSqr = searchDistance;
-                progressRange =  searchRange;
+                progressRange = searchRange;
                 searchLine = line;
             }
         }
