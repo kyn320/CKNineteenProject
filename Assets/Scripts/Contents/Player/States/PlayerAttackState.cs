@@ -293,8 +293,8 @@ public class PlayerAttackState : PlayerStateBase
         }
 
         weaponObject = null;
-        weaponSpawnPoint = Vector3.zero;            
-        
+        weaponSpawnPoint = Vector3.zero;
+
         //공격 초기화
         currentComboIndex = 0;
         currentWeaponIndex = (int)Mathf.Repeat(currentWeaponIndex + 1, equipSlotDatas.Count);
@@ -308,17 +308,20 @@ public class PlayerAttackState : PlayerStateBase
 
         ++currentHitCount;
 
-        var hitBoxData = currentAttackWeaponData.HitBoxDataList[currentComboIndex];
-
-        if (currentHitCount == 1)
+        if (currentAttackWeaponData.AttackType == WeaponAttackType.Melee)
         {
-            CameraMoveController.Instance.PlayTweenAnimation(hitBoxData.HitTweeDataList);
-        }
+            var hitBoxData = currentAttackWeaponData.HitBoxDataList[currentComboIndex];
 
-        if (currentHitCount == 3)
-        {
-            Instantiate(hitBoxData.ScreenVFXVolumeData.GetVFXPrefab("Hit"));
-            GameTimeController.Instance.ChangeTimeScale(hitBoxData.TimeScale, hitBoxData.TimeScaleLifeTime);
+            if (currentHitCount == 1)
+            {
+                CameraMoveController.Instance.PlayTweenAnimation(hitBoxData.HitTweeDataList);
+            }
+
+            if (currentHitCount == 3)
+            {
+                Instantiate(hitBoxData.ScreenVFXVolumeData.GetVFXPrefab("Hit"));
+                GameTimeController.Instance.ChangeTimeScale(hitBoxData.TimeScale, hitBoxData.TimeScaleLifeTime);
+            }
         }
 
         ComboSystem.Instance.AddHitCombo(1);
