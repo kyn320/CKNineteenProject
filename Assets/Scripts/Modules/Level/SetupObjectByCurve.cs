@@ -21,6 +21,12 @@ public class SetupObjectByCurve : MonoBehaviour
     private bool useAutoUpdate = true;
 
     [SerializeField]
+    private bool useProjectionPosition = true;
+
+    [SerializeField]
+    private bool useProjectionRotation = true;
+
+    [SerializeField]
     private Quaternion offsetRotation;
 
     private void Update()
@@ -28,7 +34,7 @@ public class SetupObjectByCurve : MonoBehaviour
         if (bezierCurve == null || setupObjectList.Count == 0)
             return;
 
-        if(!useAutoUpdate)
+        if (!useAutoUpdate)
             return;
 
         var setupCount = setupObjectList.Count;
@@ -46,8 +52,27 @@ public class SetupObjectByCurve : MonoBehaviour
             lookAtPosition.Normalize();
             var lookAtDegree = Mathf.Atan2(lookAtPosition.x, lookAtPosition.z) * Mathf.Rad2Deg;
 
-            setupObjectList[i].transform.rotation = Quaternion.Euler(0f, lookAtDegree, 0f) * offsetRotation;
-            setupObjectList[i].transform.position = position;
+            var projectionInfo = GetProjectionInfo(position);
+
+            if (useProjectionPosition && projectionInfo.collider != null)
+            {
+                setupObjectList[i].transform.position = projectionInfo.point;
+            }
+            else
+            {
+                setupObjectList[i].transform.position = position;
+            }
+
+            if (useProjectionRotation && projectionInfo.collider != null)
+            {
+                var hitNormalRotation = Quaternion.FromToRotation(transform.up, projectionInfo.normal);
+                setupObjectList[i].transform.rotation = hitNormalRotation * Quaternion.Euler(0f, lookAtDegree, 0f) * offsetRotation;
+            }
+            else
+            {
+                setupObjectList[i].transform.rotation = Quaternion.Euler(0f, lookAtDegree, 0f) * offsetRotation;
+            }
+
         }
     }
 
@@ -64,7 +89,8 @@ public class SetupObjectByCurve : MonoBehaviour
     }
 
     [Button("오브젝트 전체 삭제")]
-    public void RemoveAllObjects() {
+    public void RemoveAllObjects()
+    {
         for (var i = 0; i < setupObjectList.Count; ++i)
         {
             DestroyImmediate(setupObjectList[i]);
@@ -76,6 +102,14 @@ public class SetupObjectByCurve : MonoBehaviour
     public GameObject GetRandomObject()
     {
         return setupPrefabList[Random.Range(0, setupPrefabList.Count)];
+    }
+
+    public RaycastHit GetProjectionInfo(Vector3 position)
+    {
+        RaycastHit rayCastHit;
+        Physics.Raycast(position, Vector3.down, out rayCastHit, 10000);
+
+        return rayCastHit;
     }
 
 }

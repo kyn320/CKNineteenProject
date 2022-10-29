@@ -189,7 +189,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
 
     public Vector3 GetSlopeDirection(Vector3 moveDirection)
     {
-        Debug.Log(Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized);
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
