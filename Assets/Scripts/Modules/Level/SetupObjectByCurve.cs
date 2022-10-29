@@ -39,9 +39,10 @@ public class SetupObjectByCurve : MonoBehaviour
         for (var i = 0; i < setupCount; ++i)
         {
             var position = bezierCurve.GetPosition(progressPerObjectCount * i);
-            var nextPosition = bezierCurve.GetPosition(progressPerObjectCount * i + 0.001f);
 
-            var lookAtPosition = nextPosition - position;
+            var lookAtPosition = bezierCurve.GetPosition(progressPerObjectCount * i - progressPerObjectCount * 0.5f) -
+                bezierCurve.GetPosition(progressPerObjectCount * i + progressPerObjectCount * 0.5f);
+
             lookAtPosition.Normalize();
             var lookAtDegree = Mathf.Atan2(lookAtPosition.x, lookAtPosition.z) * Mathf.Rad2Deg;
 

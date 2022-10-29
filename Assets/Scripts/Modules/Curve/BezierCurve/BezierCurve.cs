@@ -29,6 +29,13 @@ public class BezierCurve : MonoBehaviour
     [ShowInInspector]
     protected List<Vector3> searchProgressList = new List<Vector3>();
 
+    [SerializeField]
+    private bool showStepProgress = false;
+
+    [SerializeField]
+    [Min(0.1f)]
+    private float stepProgressAmount;
+
     public Vector3 GetPosition(float progress)
     {
         var index = (int)progress;
@@ -141,6 +148,20 @@ public class BezierCurve : MonoBehaviour
             }
         }
 
+        if (showStepProgress)
+        {
+            var progress = 0f;
+            while (progress < lineList.Count)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawSphere(GetPosition(progress), 1f);
+                progress += stepProgressAmount;
+            }
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(GetPosition(lineList.Count), 1f);
+        }
+
         for (var i = 0; i < searchProgressList.Count; ++i)
         {
             Gizmos.color = Color.magenta;
@@ -237,6 +258,31 @@ public class BezierCurve : MonoBehaviour
         progressRange[1] = nearestProgress > shortProgress ? nearestProgress : shortProgress;
 
         return nearestDistance;
+    }
+
+    [Button("Linear로 변경")]
+    public void ChangeLinear()
+    {
+        for (var i = 0; i < lineList.Count; ++i)
+        {
+            var line = lineList[i];
+
+            line.ChangePointsMode(CurvePoint.Mode.Free);
+
+            var leftHandle = line.LeftHandle;
+            var rightHandle = line.RightHandle;
+
+            //라인의 방향성 구하기 start => end 로
+            var direction = (line.StartPoint.GetAnchorPosition()- line.EndPoint.GetAnchorPosition());
+
+            //라인거리 / 3 값 구하기
+            var handlePosition = direction / 3f;
+
+            //각 핸들 방향으로 라인거리 / 3 만큼 위치 하기
+            leftHandle.localPosition = -handlePosition;
+            rightHandle.localPosition = handlePosition;
+        }
+
     }
 
 }
