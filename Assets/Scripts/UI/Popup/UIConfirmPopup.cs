@@ -22,7 +22,7 @@ public class UIConfirmPopup : UIBasePopup
 
     public void OnConfirm() {
         confirmEvent?.Invoke();
-        UIController.Instance.ClosePopup(confirmPopupData);
+        Close();
     }
 
 }

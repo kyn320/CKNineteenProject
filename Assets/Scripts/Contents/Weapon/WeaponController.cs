@@ -18,6 +18,9 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     protected VFXPrefabData vfxPrefabData;
 
+    public float hitPauseWaitTime = 0.1f;
+    public float hitPauseTime = 0.1f;
+
     public void SetOwnerObject(GameObject ownerObject)
     {
         this.ownerObject = ownerObject;
@@ -80,6 +83,10 @@ public class WeaponController : MonoBehaviour
                 hitEvnet?.Invoke(resultDamageInfo.isKill);
             }
         }
+
+
+        var hitPause = collision.gameObject.GetComponent<IHitPauseable>();
+        hitPause.HitPause(hitPauseWaitTime, hitPauseTime);
 
         gameObject.SetActive(false);
     }

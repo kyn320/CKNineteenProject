@@ -7,5 +7,7 @@ public enum UIType
 {
     None,
     View,
-    Popup
+    Popup,
+    Alert,
+    World,
 }

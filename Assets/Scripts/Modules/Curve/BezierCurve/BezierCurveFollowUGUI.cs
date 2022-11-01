@@ -41,7 +41,7 @@ public class BezierCurveFollowUGUI : MonoBehaviour
     private void Start()
     {
         if (bezierCurve != null)
-            timePerCount = maxTime / bezierCurve.lineList.Count;
+            timePerCount = maxTime / bezierCurve.GetLineCount();
     }
 
     private void FixedUpdate()
@@ -53,7 +53,7 @@ public class BezierCurveFollowUGUI : MonoBehaviour
     public void SetCurve(BezierCurveUGUI bezierCurve)
     {
         this.bezierCurve = bezierCurve;
-        timePerCount = maxTime / bezierCurve.lineList.Count;
+        timePerCount = maxTime / bezierCurve.GetLineCount();
     }
 
     public void UpdatePosition()
@@ -94,7 +94,7 @@ public class BezierCurveFollowUGUI : MonoBehaviour
         {
             ++currentIndex;
 
-            if (currentIndex >= bezierCurve.lineList.Count)
+            if (currentIndex >= bezierCurve.GetLineCount())
             {
                 if (isLoop)
                 {

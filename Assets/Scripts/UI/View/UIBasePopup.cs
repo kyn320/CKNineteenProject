@@ -10,17 +10,18 @@ public abstract class UIBasePopup : UIBaseView
 
     protected override void Start()
     {
-        
+
     }
 
     [Button("Open")]
-    public virtual new void Open()
+    public override void Open()
     {
         base.Open();
     }
 
     [Button("Close")]
-    public virtual new void Close() {
+    public override void Close()
+    {
         UIController.Instance.ClosePopup(this);
     }
 
