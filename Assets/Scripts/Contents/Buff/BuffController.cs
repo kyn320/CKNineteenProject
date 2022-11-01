@@ -14,9 +14,13 @@ public class BuffController : MonoBehaviour
 
     public List<CrowdBehaviour> crowdBehaviourList;
 
+    public BuffData temp;
+
     private void Awake()
     {
         status = GetComponent<UnitStatus>();
+
+        AddCrwod(temp);
     }
 
     public void AddBuff(BuffData buffData)
@@ -33,6 +37,22 @@ public class BuffController : MonoBehaviour
 
         var buffView = UIController.Instance.GetView<UIBuffView>("Buff");
         buffView.CreateBuffSlot(buffBehaviour);
+
+        buffBehaviour.StartBuff();
+    }
+
+    public void AddCrwod(BuffData buffData)
+    {
+        var buffObject = Instantiate(buffData.BuffBehaviourObject, transform);
+
+        var buffBehaviour = buffObject.GetComponent<CrowdBehaviour>();
+        crowdBehaviourList.Add(buffBehaviour);
+
+        buffBehaviour.SetBuffData(buffData);
+        buffBehaviour.SetBuffController(this);
+
+        //var buffView = UIController.Instance.GetView<UIBuffView>("Buff");
+        //buffView.CreateBuffSlot(buffBehaviour);
 
         buffBehaviour.StartBuff();
     }

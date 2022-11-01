@@ -25,11 +25,6 @@ public abstract class CrowdBehaviour : MonoBehaviour
 
     private int stackCount = 0;
 
-    private void Awake()
-    {
-        playerController = GetComponent<PlayerController>();
-    }
-
     protected virtual void Update()
     {
         // Buff가 Active가 아닐 경우엔 돌지 않는다.
@@ -57,10 +52,12 @@ public abstract class CrowdBehaviour : MonoBehaviour
         if(stackCount > 0)
             ResetCooltime();
 
-        ApplyCrowd();
+        crowdType = buffData.CrowdTypes[0];
+        playerController = controller.GetComponent<PlayerController>();
+
         isActive = true;
 
-        crowdType = buffData.CrowdTypes[0];
+        ApplyCrowd();
     }
 
     public void ResetCooltime()
@@ -89,6 +86,7 @@ public abstract class CrowdBehaviour : MonoBehaviour
     {
         exitEvent?.Invoke();
 
+        isActive = false;
     }
 
     protected virtual void ApplyCrowd()

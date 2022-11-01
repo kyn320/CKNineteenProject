@@ -9,15 +9,18 @@ public class CrowdStun : CrowdBehaviour
     /// </summary>
     public override void Active()
     {
-        playerController.GetInputController().enabled = false;
+        Debug.Log("STUN START");
     }
 
     public override void UnActive()
     {
+        Debug.Log("STUN END");
         playerController.GetInputController().enabled = true;
     }
 
     protected override void ApplyCrowd()
     {
+        Debug.Log("APPLY CRWOD");
+        playerController.GetInputController().enabled = false;
     }
 }
