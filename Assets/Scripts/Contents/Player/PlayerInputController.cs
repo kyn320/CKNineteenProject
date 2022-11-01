@@ -34,20 +34,21 @@ public class PlayerInputController : MonoBehaviour
 
     [Header("LockOnSetting")]
     [SerializeField]
-    private Vector3 lockOnPoint;
+    private float lockOnFindLength = 10f;
+
     [SerializeField]
-    private bool isLockOn;
-    [SerializeField]
-    private float lockOnFindLength = 50f;
-    [SerializeField]
-    private float lockOnDirectionLength = 50f;
+    private float lockOnAngleLimit = 10f;
+
     [SerializeField]
     private GameObject lockOnUI;
+
     [SerializeField]
     private LayerMask lockOnFindLayer;
-    [SerializeField]
-    GameObject lockOnObject = null;
-    [SerializeField]
+
+
+    private bool isLockOn;
+    private GameObject lockOnObject = null;
+    private Vector3 lockOnPoint;
     private Collider[] lockOnColliders = null;
     private float[] lockOnAngle = new float[100];
 
@@ -109,35 +110,54 @@ public class PlayerInputController : MonoBehaviour
 
             lockOnColliders = Physics.OverlapSphere(transform.position, lockOnFindLength, lockOnFindLayer);
 
-            for (int i = 0; i < lockOnColliders.Length; i++)
+            if (lockOnAngle.Length < lockOnColliders.Length)
+                lockOnAngle = new float[lockOnColliders.Length];
+
+
+            if (lockOnColliders.Length != 0)
             {
-                Vector3 targetDir = (lockOnColliders[i].gameObject.transform.position - mainCamera.transform.position).normalized;
-                lockOnAngle[i] = Vector3.Angle(transform.forward, targetDir);
+                for (int i = 0; i < lockOnColliders.Length; i++)
+                {
+                    Vector3 targetDir = (lockOnColliders[i].gameObject.transform.position - mainCamera.transform.position).normalized;
+                    lockOnAngle[i] = Vector3.Angle(mainCamera.transform.forward, targetDir);
 
-                if (lockOnAngle[i] <= lockOnDirectionLength
-                    && (Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized) > lockOnAngle[i]
-                    || lockOnPoint == Vector3.zero))
-                {
-                    lockOnObject = lockOnColliders[i].gameObject;
-                }
+                    //록온중인 상대 할당 및 변경
+                    if (lockOnAngle[i] <= lockOnAngleLimit
+                        && (lockOnAngle[i] < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)
+                        || lockOnPoint == Vector3.zero))
+                    {
+                        lockOnObject = lockOnColliders[i].gameObject;
+                    }
 
-                if (lockOnObject != null)
-                {
-                    lockOnPoint = lockOnObject.transform.position;
-                    lockOnUI.transform.position = Camera.main.WorldToScreenPoint(lockOnPoint);
-                    Debug.DrawRay(mainCamera.transform.position, lockOnPoint - mainCamera.transform.position, Color.green);
+                    //록온 UI위치 지속적으로 변경
+                    if (lockOnObject != null)
+                    {
+                        lockOnPoint = lockOnObject.transform.position;
+                        lockOnUI.transform.position = Camera.main.WorldToScreenPoint(lockOnPoint);
+
+
+                        //서치 가능 제한을 넘어설 경우 서치 헤제
+                        if ((lockOnAngleLimit < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)))
+                        {
+                            lockOnObject = null;
+                            lockOnPoint = Vector3.zero;
+                            lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+                        }
+                    }
                 }
-                else
-                {
-                    lockOnPoint = Vector3.zero;
-                    lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-                }
+            }
+            else
+            {
+                lockOnObject = null;
+                lockOnPoint = Vector3.zero;
+                lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
             }
         }
         else
         {
             isLockOn = false;
 
+            lockOnObject = null;
             lockOnPoint = Vector3.zero;
             lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         }
