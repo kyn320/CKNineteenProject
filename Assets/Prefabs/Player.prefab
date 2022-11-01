@@ -376,6 +376,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  lockOnPoint: {x: 0, y: 0, z: 0}
+  isLockOn: 0
+  lockOnFindLength: 50
+  lockOnDirectionLength: 50
+  lockOnUI: {fileID: 0}
+  lockOnFindLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  lockOnObject: {fileID: 0}
+  lockOnColliders: []
 --- !u!114 &1294546400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,6 +667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: {fileID: 1383080239591342266}
   buffBehaviourList: []
+  crowdBehaviourList: []
 --- !u!1 &3827645978462288803
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,6 +829,7 @@ MonoBehaviour:
     - Shot
     - EndAttack
     - EndHit
+    - AllowCombo
     values:
     - m_PersistentCalls:
         m_Calls:
@@ -887,6 +899,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1294546403}
+          m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
+          m_MethodName: AllowCombo
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &6946762501825792518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,7 +947,11 @@ MonoBehaviour:
       offsetPosition: {x: 0, y: 0.1, z: 0}
       offsetRotation: {x: 0, y: 0, z: 0, w: 0}
       usePosition: 1
+      useDampingPosition: 1
+      dampingPosition: 10
       useRotation: 1
+      useDampingRotation: 1
+      dampingRotation: 10
       rayHitPoint: {x: 0, y: 0, z: 0}
       rayHitNormal: {x: 0, y: 0, z: 0}
     - name: RightFoot
@@ -943,7 +973,11 @@ MonoBehaviour:
       offsetPosition: {x: 0, y: 0.1, z: 0}
       offsetRotation: {x: 0, y: 0, z: 0, w: 0}
       usePosition: 1
+      useDampingPosition: 1
+      dampingPosition: 10
       useRotation: 1
+      useDampingRotation: 1
+      dampingRotation: 10
       rayHitPoint: {x: 0, y: 0, z: 0}
       rayHitNormal: {x: 0, y: 0, z: 0}
   isActiveIK: 1

@@ -11,7 +11,8 @@ public class PlayerAttackState : PlayerStateBase
         Wait,
         Start,
         Spawn,
-        Attack
+        Attack,
+        ComboCheck,
     }
 
     [SerializeField]
@@ -35,6 +36,11 @@ public class PlayerAttackState : PlayerStateBase
     [ReadOnly]
     [ShowInInspector]
     private int currentWeaponIndex = 0;
+
+    [ReadOnly]
+    [ShowInInspector]
+    private int currentComboIndex = 0;
+
     [ReadOnly]
     [ShowInInspector]
     private List<ItemSlot> equipSlotDatas = new List<ItemSlot>();
@@ -108,6 +114,7 @@ public class PlayerAttackState : PlayerStateBase
 
         return false;
     }
+
     public void UpdateEquipList(List<ItemSlot> equipItems)
     {
         equipSlotDatas = equipItems;
@@ -141,7 +148,6 @@ public class PlayerAttackState : PlayerStateBase
 
         currentAttackWeaponData = (WeaponData)(equipSlotDatas[currentWeaponIndex].GetItemData());
 
-
         isMoveable = currentAttackWeaponData.IsMoveable;
 
         if (!isMoveable)
@@ -153,6 +159,7 @@ public class PlayerAttackState : PlayerStateBase
 
         //TODO :: 공격 무기 타입 별로 INDEX 대입.
         animator.SetInteger("AttackType", currentAttackWeaponData.AttackAnimationType);
+        animator.SetInteger("AttackCombo", currentComboIndex);
         animator.SetTrigger("Attack");
         animator.speed = attackSpeed;
 
@@ -181,8 +188,8 @@ public class PlayerAttackState : PlayerStateBase
         //무기 소환
         weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
         weaponObject.transform.SetParent(handBone);
-        weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[0].rotatation;
-        weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[0].position;
+        weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
+        weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
     }
 
     public void Shot()
@@ -218,7 +225,7 @@ public class PlayerAttackState : PlayerStateBase
                 weaponController.SetWeaponData(currentAttackWeaponData);
                 weaponController.hitEvnet.AddListener(SuccessHit);
                 weaponController.SetStatus(damageAmount, isCritical);
-                weaponController.CreateAttackHitBox(0);
+                weaponController.CreateAttackHitBox(currentComboIndex);
                 break;
             case WeaponAttackType.Projectile:
 
@@ -238,9 +245,23 @@ public class PlayerAttackState : PlayerStateBase
                 break;
         }
 
-        //공격 초기화
-        currentWeaponIndex = (int)Mathf.Repeat(currentWeaponIndex + 1, equipSlotDatas.Count);
-        updateWeaponIndexEvent?.Invoke(currentWeaponIndex);
+    }
+
+    public void AllowCombo()
+    {
+        attackStateType = AttackStateType.ComboCheck;
+
+        if (currentComboIndex < currentAttackWeaponData.ComboCount - 1)
+        {
+            ++currentComboIndex;
+        }
+        else
+        {
+            //공격 초기화
+            currentComboIndex = 0;
+            currentWeaponIndex = (int)Mathf.Repeat(currentWeaponIndex + 1, equipSlotDatas.Count);
+            updateWeaponIndexEvent?.Invoke(currentWeaponIndex);
+        }
     }
 
     public void EndAttack()
