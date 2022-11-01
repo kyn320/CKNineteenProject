@@ -454,7 +454,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationList:
   - {fileID: 11400000, guid: 7d97b0f7eec5c1047832a488c0f884d7, type: 2}
-  endEvent:
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopEvent:
     m_PersistentCalls:
       m_Calls: []
   stopActionType: 0
@@ -739,7 +742,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationList:
   - {fileID: 11400000, guid: 7d97b0f7eec5c1047832a488c0f884d7, type: 2}
-  endEvent:
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopEvent:
     m_PersistentCalls:
       m_Calls: []
   stopActionType: 0
@@ -759,7 +765,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationList: []
-  endEvent:
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopEvent:
     m_PersistentCalls:
       m_Calls: []
   stopActionType: 0

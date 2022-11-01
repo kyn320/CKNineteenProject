@@ -138,6 +138,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3582030805986803373}
   - component: {fileID: 3582030805986803374}
+  - component: {fileID: 3582030805408191744}
+  - component: {fileID: 3582030805408191743}
   m_Layer: 5
   m_Name: UIProfile
   m_TagString: Untagged
@@ -180,6 +182,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpAmountText: {fileID: 3582030807096320303}
   hpGauge: {fileID: 3582030805676210352}
+--- !u!225 &3582030805408191744
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3582030805986803372}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &3582030805408191743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3582030805986803372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485e20f9d47c53f4ba32c79b541c712c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewName: Buff
+  openAnimationList: []
+  closeAnimationList: []
+  openEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  closeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  uiBuffSlotPrefab: {fileID: 8353066117111753590, guid: 96e17e3472a57744494fbe1a94075b59,
+    type: 3}
+  buffArea: {fileID: 4875188669417499719}
+  debuffArea: {fileID: 3190362075782005190}
 --- !u!1 &3582030806107643301
 GameObject:
   m_ObjectHideFlags: 0

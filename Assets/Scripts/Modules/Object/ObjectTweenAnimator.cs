@@ -20,6 +20,11 @@ public class ObjectTweenAnimator : MonoBehaviour
 
     public List<ObjectTweenAnimationData> animationList;
 
+    [SerializeField]
+    private UnityEvent completeEvent;
+    [SerializeField]
+    private UnityEvent stopEvent;
+
     private List<Tween> playTweenList = new List<Tween>();
 
     public StopActionType stopActionType;
@@ -43,12 +48,12 @@ public class ObjectTweenAnimator : MonoBehaviour
         PlayAnimation(animationList, null);
     }
 
-    public virtual void PlayAnimation(UnityAction completeEvent)
+    public virtual void PlayAnimation(UnityAction completeAction)
     {
-        PlayAnimation(animationList, completeEvent);
+        PlayAnimation(animationList, completeAction);
     }
 
-    public virtual void PlayAnimation(List<ObjectTweenAnimationData> animations, UnityAction completeEvent = null)
+    public virtual void PlayAnimation(List<ObjectTweenAnimationData> animations, UnityAction completeAction = null)
     {
         if (playTweenList.Count > 0)
         {
@@ -64,6 +69,13 @@ public class ObjectTweenAnimator : MonoBehaviour
 
         if (autoActiveByPlay)
             gameObject.SetActive(true);
+
+        if (animations.Count == 0)
+        {
+            completeAction?.Invoke();
+            completeEvent?.Invoke();
+            return;
+        }
 
         for (var i = 0; i < animations.Count; ++i)
         {
@@ -104,6 +116,7 @@ public class ObjectTweenAnimator : MonoBehaviour
                 playTweenList.Remove(tween);
                 if (playTweenList.Count <= 0)
                 {
+                    completeAction?.Invoke();
                     completeEvent?.Invoke();
                     AutoHide();
                 }
@@ -126,6 +139,8 @@ public class ObjectTweenAnimator : MonoBehaviour
         {
             ResetOrigin();
         }
+
+        stopEvent?.Invoke();
     }
 
     private void ResetOrigin()
