@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f87e2ba67e2c94b94a67ae4a7b58ae, type: 3}
+  m_Name: TestBlood
+  m_EditorClassIdentifier: 
+  type: 0
+  crowdTypes: 01000000
+  buffName: Crowd Test
+  description: Test Description
+  buffIcon: {fileID: 21300000, guid: 5d9ba4e7d0964044ea54abe409d81dfd, type: 3}
+  lifeTime: 12
+  isOverlap: 0
+  statusDic:
+    keys: 
+    values: []
+  buffBehaviourObject: {fileID: 3037854578484070646, guid: 144a42495ed9ca649aaea2d4df533200,
+    type: 3}

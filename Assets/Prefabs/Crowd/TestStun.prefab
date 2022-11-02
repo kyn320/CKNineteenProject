@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &178493594254801012
+--- !u!1 &3037854578484070646
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2358241941862428924}
-  - component: {fileID: 6856133748644729162}
+  - component: {fileID: 6074566716994436091}
+  - component: {fileID: 8852148520345405616}
   m_Layer: 0
-  m_Name: Crowd_Blood
+  m_Name: TestStun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2358241941862428924
+--- !u!4 &6074566716994436091
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 178493594254801012}
+  m_GameObject: {fileID: 3037854578484070646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,28 +32,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6856133748644729162
+--- !u!114 &8852148520345405616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 178493594254801012}
+  m_GameObject: {fileID: 3037854578484070646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6187a5e7eaf6504dacd567b9c20c7bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 67230673f64519848af05f7ca411b640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionData: {fileID: 11400000, guid: e14b2e3924e3127489e6063b47bda029, type: 2}
-  currentTime: 0
-  maxTime: 0
-  isUpdate: 0
-  startEvent:
+  controller: {fileID: 0}
+  buffData: {fileID: 0}
+  crowdType: 1
+  enterEvent:
     m_PersistentCalls:
       m_Calls: []
-  updateTimerEvent:
+  exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  endEvent:
+  stayEvent:
     m_PersistentCalls:
       m_Calls: []
+  currentLifeTime: 5
+  prefabsEffect: {fileID: 1944352227106260212, guid: 376134db0da1f2e4c8d7c8be004a358f,
+    type: 3}
+  effectPos: {x: 0, y: 1.4, z: 0}

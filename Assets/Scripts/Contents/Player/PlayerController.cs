@@ -102,6 +102,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
         return animator;
     }
 
+    public void SetStateEnbaled(PlayerStateType type, bool isTrigger)
+    {
+        statesDic[type].enabled = isTrigger;
+    }
+
     public PlayerInputController GetInputController()
     {
         return inputController;

@@ -9,18 +9,15 @@ public class CrowdSilent : CrowdBehaviour
     /// </summary>
     public override void Active()
     {
-
-
     }
 
     public override void UnActive()
     {
-
+        playerController.SetStateEnbaled(PlayerStateType.Attack, true);
     }
 
     protected override void ApplyCrowd()
     {
-        if (Input.GetMouseButtonDown(0))
-            return;
+        playerController.SetStateEnbaled(PlayerStateType.Attack, false);
     }
 }

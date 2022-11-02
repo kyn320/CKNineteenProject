@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8686201317148983400
+--- !u!1 &3037854578484070646
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2597416905874782543}
-  - component: {fileID: 2630157997550955664}
+  - component: {fileID: 6074566716994436091}
+  - component: {fileID: 5485729329253555160}
   m_Layer: 0
-  m_Name: Crowd_Slow
+  m_Name: TestSilent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2597416905874782543
+--- !u!4 &6074566716994436091
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8686201317148983400}
+  m_GameObject: {fileID: 3037854578484070646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,28 +32,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2630157997550955664
+--- !u!114 &5485729329253555160
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8686201317148983400}
+  m_GameObject: {fileID: 3037854578484070646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eefebe629306bfc47821e23620a76487, type: 3}
+  m_Script: {fileID: 11500000, guid: 412621d85ca391c4baf1158f2f5b2d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionData: {fileID: 11400000, guid: 21473322acf1fb7429fc8d71b3ccd88e, type: 2}
-  currentTime: 0
-  maxTime: 0
-  isUpdate: 0
-  startEvent:
+  controller: {fileID: 0}
+  buffData: {fileID: 0}
+  crowdType: 2
+  currentLifeTime: 5
+  prefabsEffect: {fileID: 1522225397599930963, guid: d0d2254bc7b837c43b51e15483643a7c,
+    type: 3}
+  effectPos: {x: 0, y: 0.8, z: 0}
+  enterEvent:
     m_PersistentCalls:
       m_Calls: []
-  updateTimerEvent:
+  updateEvent:
     m_PersistentCalls:
       m_Calls: []
-  endEvent:
+  exitEvent:
     m_PersistentCalls:
       m_Calls: []

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6074566716994436091}
-  - component: {fileID: 8852148520345405616}
+  - component: {fileID: -2473351130616585087}
   m_Layer: 0
-  m_Name: TestCrowd_A
+  m_Name: TestBreak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8852148520345405616
+--- !u!114 &-2473351130616585087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,19 +41,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 3037854578484070646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67230673f64519848af05f7ca411b640, type: 3}
+  m_Script: {fileID: 11500000, guid: 18c19513b9719194e921ce595dc9e662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   buffData: {fileID: 0}
   crowdType: 0
+  currentLifeTime: 5
+  prefabsEffect: {fileID: 1352588752854095742, guid: cdce66e053eb7954e84fa0841860e62f,
+    type: 3}
+  effectPos: {x: 0, y: 0.5, z: 0}
   enterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  updateEvent:
     m_PersistentCalls:
       m_Calls: []
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  stayEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  currentLifeTime: 5

@@ -14,20 +14,40 @@ public class BuffController : MonoBehaviour
 
     public List<CrowdBehaviour> crowdBehaviourList;
 
-    public BuffData temp;
+    public BuffData temp, temp2, temp3, temp4, temp5;
 
     private void Awake()
     {
         status = GetComponent<UnitStatus>();
 
-        AddCrwod(temp);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            AddCrwod(temp);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            AddCrwod(temp2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            AddCrwod(temp3);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            AddCrwod(temp4);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            AddCrwod(temp5);
+        }
+    }
     public void AddBuff(BuffData buffData)
     {
         var buffObject = Instantiate(buffData.BuffBehaviourObject, transform);
-
-        // CROWD TYPE일 경우, CRWOD BEHABIOUR로 추가.
 
         var buffBehaviour = buffObject.GetComponent<BuffBehaviour>();
         buffBehaviourList.Add(buffBehaviour);
@@ -45,16 +65,15 @@ public class BuffController : MonoBehaviour
     {
         var buffObject = Instantiate(buffData.BuffBehaviourObject, transform);
 
-        var buffBehaviour = buffObject.GetComponent<CrowdBehaviour>();
-        crowdBehaviourList.Add(buffBehaviour);
+        var crowdBehaviour = buffObject.GetComponent<CrowdBehaviour>();
 
-        buffBehaviour.SetBuffData(buffData);
-        buffBehaviour.SetBuffController(this);
+        crowdBehaviour.SetBuffData(buffData);
+        crowdBehaviour.SetBuffController(this);
 
-        //var buffView = UIController.Instance.GetView<UIBuffView>("Buff");
-        //buffView.CreateBuffSlot(buffBehaviour);
+        var buffView = UIController.Instance.GetView<UIBuffView>("Buff");
+        buffView.CreateCrowdSlot(crowdBehaviour);
 
-        buffBehaviour.StartBuff();
+        crowdBehaviour.StartBuff();
     }
 
     public void SubBuff(BuffData buffData)
