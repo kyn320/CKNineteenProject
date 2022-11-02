@@ -14,6 +14,8 @@ public class BezierCurveEditor : OdinEditor
 
         var bezierCurve = target as BezierCurve;
 
+        bezierCurve.transform.position = Handles.DoPositionHandle(bezierCurve.transform.position, Quaternion.identity);
+
         var pointList = bezierCurve.GetPointList();
 
         for (var i = 0; i < pointList.Count; ++i)
