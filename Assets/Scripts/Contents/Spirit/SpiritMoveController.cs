@@ -103,7 +103,7 @@ public class SpiritMoveController : MonoBehaviour
     }
 
 
-
+    //정령이 회전하는 동작의 트리거입니다. AttackInput Event등의 이벤트에 넣어서 사용해주세요
     public void WeaponSpawnMove()
     {
         if (spiritMoveController)

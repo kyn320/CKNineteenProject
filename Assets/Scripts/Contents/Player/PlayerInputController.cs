@@ -33,15 +33,19 @@ public class PlayerInputController : MonoBehaviour
 
 
     [Header("LockOnSetting")]
+
+    //록온 가능 거리
     [SerializeField]
     private float lockOnFindLength = 15f;
 
+    //록온 각도 범위
     [SerializeField]
     private float lockOnAngleLimit = 15f;
     private float realLockOnAngleLimit = 10f;
 
+    //우클릭시 범위 확산 배율
     [SerializeField]
-    private float lockOnAngleMultiple = 2.5f;
+    private float lockOnAngleDiffusion = 2.5f;
 
     [SerializeField]
     private LayerMask lockOnFindLayer;
@@ -156,11 +160,11 @@ public class PlayerInputController : MonoBehaviour
 
         if(Input.GetMouseButton(1))
         {
-            realLockOnAngleLimit = lockOnAngleLimit * lockOnAngleMultiple;
+            realLockOnAngleLimit = lockOnAngleLimit * lockOnAngleDiffusion;
         }
         else
         {
-            realLockOnAngleLimit = lockOnAngleLimit / lockOnAngleMultiple;
+            realLockOnAngleLimit = lockOnAngleLimit / lockOnAngleDiffusion;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
