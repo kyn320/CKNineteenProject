@@ -25,26 +25,23 @@ public class ChainAttackFinder : MonoBehaviour
     private void Start()
     {
         chainLog = new string[0];
-        Debug.Log($"{this.gameObject.name} 생성됨");
     }
 
     public void ChainAttackStart(Collision hitCollision)
     {
         if (Mathf.Pow(2, hitCollision.gameObject.layer) != targetLayer)
-        {
             return;
-        }
 
         if (targets.Length == 0)
             targets = Physics.OverlapSphere(transform.position, monsterSearchLength, targetLayer);
 
-        //Log 생성
+        //공격한 오브젝트 Log 생성
         if (chainLog.Length == 0)
         {
             chainLog = new string[targets.Length];
             for (int i = 0; i < targets.Length; i++)
             {
-                    chainLog[i] = targets[i].transform.root.gameObject.name;
+                chainLog[i] = targets[i].transform.root.gameObject.name;
             }
         }
 
@@ -71,7 +68,6 @@ public class ChainAttackFinder : MonoBehaviour
                 {
                     chainCount++;
                     Vector3 targetDistance = targets[i].transform.position - transform.position;
-                    Debug.Log($"{this.gameObject.name}가 \n{targets[i]}추격");
                     gameObject.GetComponent<ProjectileStraightMove>().SetDirection(targetDistance.normalized);
 
 

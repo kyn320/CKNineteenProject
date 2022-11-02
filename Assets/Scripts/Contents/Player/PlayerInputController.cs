@@ -25,6 +25,8 @@ public class PlayerInputController : MonoBehaviour
 
     public UnityEvent<Vector3> attackinputEvent;
 
+    [Header("0 : DontLockOn, 1 : LockOn")]
+    private int isAttackType = 1;
 
     [ReadOnly]
     [ShowInInspector]
@@ -38,6 +40,7 @@ public class PlayerInputController : MonoBehaviour
 
     [SerializeField]
     private float lockOnAngleLimit = 10f;
+    private float realLockOnAngleLimit = 10f;
 
     [SerializeField]
     private GameObject lockOnUI;
@@ -97,14 +100,14 @@ public class PlayerInputController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //TODO :: 여기서 공격이랑 연결해서 쓰기
-            if(isLockOn)
-            attackinputEvent?.Invoke(lockOnPoint);
-            else
-            attackinputEvent?.Invoke(aimWorldPoint);
+            if(isAttackType == 0)
+                attackinputEvent?.Invoke(aimWorldPoint);
+            else 
+                attackinputEvent?.Invoke(lockOnPoint);
         }
 
-        //마우스 우클릭시 록온
-        if (Input.GetMouseButton(1))
+        //록온
+        if (isAttackType == 1)
         {
             isLockOn = true;
 
@@ -122,7 +125,7 @@ public class PlayerInputController : MonoBehaviour
                     lockOnAngle[i] = Vector3.Angle(mainCamera.transform.forward, targetDir);
 
                     //록온중인 상대 할당 및 변경
-                    if (lockOnAngle[i] <= lockOnAngleLimit
+                    if (lockOnAngle[i] <= realLockOnAngleLimit
                         && (lockOnAngle[i] < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)
                         || lockOnPoint == Vector3.zero))
                     {
@@ -137,7 +140,7 @@ public class PlayerInputController : MonoBehaviour
 
 
                         //서치 가능 제한을 넘어설 경우 서치 헤제
-                        if ((lockOnAngleLimit < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)))
+                        if ((realLockOnAngleLimit < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)))
                         {
                             lockOnObject = null;
                             lockOnPoint = Vector3.zero;
@@ -162,7 +165,14 @@ public class PlayerInputController : MonoBehaviour
             lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         }
 
-
+        if(Input.GetMouseButton(1))
+        {
+            realLockOnAngleLimit = lockOnAngleLimit * 2;
+        }
+        else
+        {
+            realLockOnAngleLimit = lockOnAngleLimit / 2;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
