@@ -47,9 +47,13 @@ public class SetupObjectByGrid : MonoBehaviour
         var boundSize = setupObjectBound.Size;
 
         var centerPosition = transform.position
-            - new Vector3((spacingPosition.x + boundSize.x) * gridSize.x
+            - new Vector3(-boundSize.x * 0.5f
+            + boundSize.x * gridSize.x * 0.5f
+            - spacingPosition.x * 1.5f + spacingPosition.x * (gridSize.x - 1 > 0 ? gridSize.x - 1 : 0)
             , 0f
-            , (spacingPosition.z + boundSize.z) * gridSize.y) * 0.5f;
+            , -boundSize.z * 0.5f
+            + boundSize.z * gridSize.y * 0.5f
+            - spacingPosition.z * 1.5f + spacingPosition.z * (gridSize.y - 1 > 0 ? gridSize.y - 1 : 0));
 
         var index = 0;
 
@@ -57,19 +61,17 @@ public class SetupObjectByGrid : MonoBehaviour
         {
             for (var x = 0; x < gridSize.x; ++x)
             {
-                var gridPosition = new Vector3(x, 0f, y);
-
-                Vector3 position = centerPosition + new Vector3(boundSize.x * x * 0.5f, 0, boundSize.z * y * 0.5f);
+                Vector3 position = centerPosition + new Vector3((boundSize.x + spacingPosition.x) * x, 0, (boundSize.z + spacingPosition.z) * y);
 
                 var projectionInfo = GetProjectionInfo(position);
 
                 if (useProjectionPosition && projectionInfo.collider != null)
                 {
-                    setupObjectList[index].transform.position = projectionInfo.point + Vector3.Scale(gridPosition, spacingPosition);
+                    setupObjectList[index].transform.position = projectionInfo.point;
                 }
                 else
                 {
-                    setupObjectList[index].transform.position = position + Vector3.Scale(gridPosition, spacingPosition);
+                    setupObjectList[index].transform.position = position;
                 }
 
                 if (useProjectionRotation && projectionInfo.collider != null)
@@ -102,6 +104,17 @@ public class SetupObjectByGrid : MonoBehaviour
         }
 
         UpdateGrid();
+    }
+
+    [Button("전체 높이 위치 수정")]
+    public void ChangeYPosition(float yPos)
+    {
+        for (var i = 0; i < setupObjectList.Count; ++i)
+        {
+            var position = setupObjectList[i].transform.localPosition;
+            position.y = yPos;
+            setupObjectList[i].transform.localPosition = position;
+        }
     }
 
     [Button("오브젝트 전체 삭제")]
