@@ -37,7 +37,7 @@ public class SpiritMoveController : MonoBehaviour
 
     //회전 할 시간
     [SerializeField]
-    float turnTime = 0.75f;
+    float turnTime = 1.5f;
     float turnTimer = 0;
 
     //회전 속도
