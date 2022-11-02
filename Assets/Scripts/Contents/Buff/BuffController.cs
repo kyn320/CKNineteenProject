@@ -14,36 +14,10 @@ public class BuffController : MonoBehaviour
 
     public List<CrowdBehaviour> crowdBehaviourList;
 
-    public BuffData temp, temp2, temp3, temp4, temp5;
-
     private void Awake()
     {
         status = GetComponent<UnitStatus>();
 
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            AddCrwod(temp);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            AddCrwod(temp2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            AddCrwod(temp3);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            AddCrwod(temp4);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            AddCrwod(temp5);
-        }
     }
     public void AddBuff(BuffData buffData)
     {
