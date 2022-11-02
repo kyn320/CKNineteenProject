@@ -5,15 +5,20 @@ using UnityEngine.Events;
 
 public class SwingTrap : MonoBehaviour
 {
-    public float swingTime;
+    [SerializeField]
+    private float swingTime;
+
+    [SerializeField]
     private float currentSwingTime;
 
-    public int startAxis;
+    [SerializeField]
+    private int startAxis;
     private int currentAxis;
 
     [Range(0f, 360f)]
     public float swingDegree;
 
+    private Quaternion axisRotation;
     private Quaternion startSwingRotation;
     private Quaternion targetSwingRotation;
 
@@ -25,6 +30,7 @@ public class SwingTrap : MonoBehaviour
 
     private void Start()
     {
+        axisRotation = transform.localRotation;
         currentAxis = startAxis;
         startSwingRotation = Quaternion.Euler(0, 0, swingDegree * 0.5f * startAxis);
         ChangeSwingTarget();
@@ -42,7 +48,7 @@ public class SwingTrap : MonoBehaviour
     {
         currentSwingTime += Time.deltaTime;
         var lerpTime = currentSwingTime / swingTime;
-        transform.rotation = Quaternion.Lerp(startSwingRotation, targetSwingRotation, animationCurve.Evaluate(lerpTime));
+        transform.rotation = axisRotation * Quaternion.Lerp(startSwingRotation, targetSwingRotation, animationCurve.Evaluate(lerpTime));
         if (lerpTime >= 1)
         {
             currentSwingTime = 0f;
