@@ -17,13 +17,11 @@ public class BuffController : MonoBehaviour
     private void Awake()
     {
         status = GetComponent<UnitStatus>();
-    }
 
+    }
     public void AddBuff(BuffData buffData)
     {
         var buffObject = Instantiate(buffData.BuffBehaviourObject, transform);
-
-        // CROWD TYPE일 경우, CRWOD BEHABIOUR로 추가.
 
         var buffBehaviour = buffObject.GetComponent<BuffBehaviour>();
         buffBehaviourList.Add(buffBehaviour);
@@ -35,6 +33,21 @@ public class BuffController : MonoBehaviour
         buffView.CreateBuffSlot(buffBehaviour);
 
         buffBehaviour.StartBuff();
+    }
+
+    public void AddCrwod(BuffData buffData)
+    {
+        var buffObject = Instantiate(buffData.BuffBehaviourObject, transform);
+
+        var crowdBehaviour = buffObject.GetComponent<CrowdBehaviour>();
+
+        crowdBehaviour.SetBuffData(buffData);
+        crowdBehaviour.SetBuffController(this);
+
+        var buffView = UIController.Instance.GetView<UIBuffView>("Buff");
+        buffView.CreateCrowdSlot(crowdBehaviour);
+
+        crowdBehaviour.StartBuff();
     }
 
     public void SubBuff(BuffData buffData)

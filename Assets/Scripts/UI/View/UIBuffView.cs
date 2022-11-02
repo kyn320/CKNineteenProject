@@ -12,6 +12,9 @@ public class UIBuffView : UIBaseView
     private RectTransform buffArea;
     [SerializeField]
     private RectTransform debuffArea;
+    [SerializeField]
+    private RectTransform crowdArea;
+
 
     public override void Init(UIData uiData)
     {
@@ -38,4 +41,11 @@ public class UIBuffView : UIBaseView
         buffSlot.SetBuff(buffBehaviour);
     }
 
+    public void CreateCrowdSlot(CrowdBehaviour crowdBehaviour)
+    {
+        var buffSlotObject = Instantiate(uiBuffSlotPrefab, crowdArea);
+        var buffSlot = buffSlotObject.GetComponent<UIBuffSlot>();
+
+        buffSlot.SetCrowd(crowdBehaviour);
+    }
 }

@@ -37,12 +37,33 @@ public class UIBuffSlot : MonoBehaviour
         buffBehaviour.endBuffEvent.AddListener(OnEndBuff);
     }
 
+    public void SetCrowd(CrowdBehaviour crowdBehaviour)
+    {
+        labelImage.SetColor(colorData.colorDic["Crowd"]);
+
+        buffIcon.SetImage(crowdBehaviour.GetBuffData().Icon);
+        lifeTimeText.UpdateAmount(crowdBehaviour.GetLifeTime());
+
+        crowdBehaviour.updateEvent.AddListener(UpdateCrowdLifeTime);
+        crowdBehaviour.exitEvent.AddListener(OnEndCrowd);
+    }
+
     public void UpdateLifeTime(BuffBehaviour buffBehaviour, float lifeTime)
     {
         lifeTimeText.UpdateAmount(lifeTime);
     }
 
     public void OnEndBuff(BuffBehaviour buffBehaviour)
+    {
+        Destroy(gameObject);
+    }
+
+    public void UpdateCrowdLifeTime(CrowdBehaviour buffBehaviour, float lifeTime)
+    {
+        lifeTimeText.UpdateAmount(lifeTime);
+    }
+
+    public void OnEndCrowd(CrowdBehaviour buffBehaviour)
     {
         Destroy(gameObject);
     }
