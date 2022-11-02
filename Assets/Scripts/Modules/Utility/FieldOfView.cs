@@ -40,7 +40,7 @@ public class FieldOfView : MonoBehaviour
     {
         visibleTargetList.Clear();
 
-        enterColliders = Physics.OverlapSphere(transform.position,viewRadius, targetMask);
+        enterColliders = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
 
         if (enterColliders.Length == 0)
             return;
@@ -66,6 +66,19 @@ public class FieldOfView : MonoBehaviour
             visibleEvent?.Invoke(visibleTargetList);
     }
 
+    public bool CheckFov(Transform target, float viewAngle, float checkDistance)
+    {
+        Vector3 dirToTarget = (target.position - transform.position).normalized;
+        float dstToTarget = Vector3.Distance(transform.position, target.position);
+
+        if (dstToTarget <= checkDistance && Vector3.Angle(transform.forward, dirToTarget) < viewAngle * 0.5f)
+        {
+            return !Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask);
+        }
+
+        return false;
+    }
+
     private void OnDrawGizmos()
     {
         Vector3 myPos = transform.position;
@@ -79,7 +92,7 @@ public class FieldOfView : MonoBehaviour
         Debug.DrawRay(myPos, rightDir * viewRadius, Color.blue);
         Debug.DrawRay(myPos, leftDir * viewRadius, Color.blue);
         Debug.DrawRay(myPos, lookDir * viewRadius, Color.cyan);
-    } 
-    
+    }
+
 
 }

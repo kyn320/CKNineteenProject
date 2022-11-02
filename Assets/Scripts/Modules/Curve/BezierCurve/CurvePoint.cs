@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [ExecuteInEditMode]
 public class CurvePoint : MonoBehaviour
@@ -12,13 +13,18 @@ public class CurvePoint : MonoBehaviour
         Aligned,
     }
 
-    public Mode mode = Mode.Aligned;
+    [SerializeField]
+    protected Mode mode = Mode.Aligned;
 
     [SerializeField]
     protected Transform anchor;
 
     [SerializeField]
     protected Transform[] handles = new Transform[2];
+
+    public void SetMode(Mode mode) {
+        this.mode = mode;   
+    }
 
     public void SetAnchor(Transform anchor)
     {

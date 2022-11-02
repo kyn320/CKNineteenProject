@@ -54,7 +54,17 @@ public class IKInfo
     [SerializeField]
     private bool usePosition = true;
     [SerializeField]
+    private bool useDampingPosition = true;
+    [SerializeField]
+    private float dampingPosition = 10f;
+
+
+    [SerializeField]
     private bool useRotation = true;
+    [SerializeField]
+    private bool useDampingRotation = true;
+    [SerializeField]
+    private float dampingRotation = 10f;
 
     public Vector3 rayHitPoint;
     public Vector3 rayHitNormal;
@@ -100,6 +110,7 @@ public class IKInfo
                 {
                     animator.SetLookAtWeight(0);
                 }
+
                 return;
             case IKTarget.LeftHand:
                 avatarIKGoal = AvatarIKGoal.LeftHand;
@@ -117,12 +128,22 @@ public class IKInfo
 
         if (isActiveIK)
         {
+            var ikPosition = animator.GetIKPosition(avatarIKGoal);
+            var ikRotation = animator.GetIKRotation(avatarIKGoal);
+
             if (useTargetTransform)
             {
                 if (usePosition)
                 {
                     animator.SetIKPositionWeight(avatarIKGoal, weight);
-                    animator.SetIKPosition(avatarIKGoal, targetTransform.position);
+                    if (useDampingPosition) { 
+                        ikPosition = Vector3.Slerp(ikPosition, targetTransform.position, Time.deltaTime * dampingPosition);
+                    }
+                    else
+                    { 
+                        ikPosition = targetTransform.position;
+                    }
+                    animator.SetIKPosition(avatarIKGoal, ikPosition);
                 }
                 else
                 {
@@ -132,7 +153,16 @@ public class IKInfo
                 if (useRotation)
                 {
                     animator.SetIKRotationWeight(avatarIKGoal, weight);
-                    animator.SetIKRotation(avatarIKGoal, targetTransform.rotation);
+
+                    if (useDampingRotation)
+                    {
+                        ikRotation = Quaternion.Slerp(ikRotation, targetTransform.rotation, Time.deltaTime * dampingRotation);
+                    }
+                    else
+                    {
+                        ikRotation = targetTransform.rotation;
+                    }
+                    animator.SetIKRotation(avatarIKGoal, ikRotation);
                 }
                 else
                 {
@@ -141,14 +171,22 @@ public class IKInfo
             }
             else if (useRayCast)
             {
-                //var ikPosition = animator.GetIKPosition(avatarIKGoal);
                 if (CheckRayCast(targetTransform.position))
                 {
                     if (usePosition)
                     {
                         rayHitPoint = raycastHit.point;
                         animator.SetIKPositionWeight(avatarIKGoal, weight);
-                        animator.SetIKPosition(avatarIKGoal, raycastHit.point + offsetPosition);
+
+                        if (useDampingPosition)
+                        {
+                            ikPosition = Vector3.Slerp(ikPosition, raycastHit.point + offsetPosition, Time.deltaTime * dampingPosition);
+                        }
+                        else
+                        {
+                            ikPosition = raycastHit.point + offsetPosition;
+                        }
+                        animator.SetIKPosition(avatarIKGoal, ikPosition);
                     }
                     else
                     {
@@ -159,10 +197,17 @@ public class IKInfo
                     {
                         rayHitNormal = Vector3.ProjectOnPlane(animator.transform.forward, raycastHit.normal);
                         animator.SetIKRotationWeight(avatarIKGoal, weight);
-
                         var lookAtRotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(animator.transform.forward, raycastHit.normal), raycastHit.normal);
-                        animator.SetIKRotation(avatarIKGoal
-                            , lookAtRotation);
+
+                        if (useDampingRotation)
+                        {
+                            ikRotation = Quaternion.Slerp(ikRotation, lookAtRotation, Time.deltaTime * dampingRotation);
+                        }
+                        else
+                        {
+                            ikRotation = lookAtRotation;
+                        }
+                        animator.SetIKRotation(avatarIKGoal, ikRotation);
                     }
                     else
                     {

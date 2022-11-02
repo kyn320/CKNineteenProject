@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Sirenix.OdinInspector;
 
 public class MonsterChaseState : MonsterStateBase
 {
@@ -16,16 +17,23 @@ public class MonsterChaseState : MonsterStateBase
     [SerializeField]
     private float attackStartDistance = 1f;
     [SerializeField]
+    private float attackStartViewDegree = 10f;
+    [SerializeField]
     private float currentDistanceSqr = 0f;
 
     [SerializeField]
     private NavMeshAgent navAgent;
+
+    [ShowInInspector]
+    [ReadOnly]
+    private FieldOfView fieldOfView;
 
     protected override void Awake()
     {
         base.Awake();
         refreshPathTime = refreshPathTimeRange.GetRandomAmount();
         navAgent = GetComponent<NavMeshAgent>();
+        fieldOfView = GetComponent<FieldOfView>();
     }
 
     public override void Enter()
@@ -71,11 +79,8 @@ public class MonsterChaseState : MonsterStateBase
             navAgent.SetDestination(target.position);
         }
 
-        currentDistanceSqr = (transform.position - target.position).sqrMagnitude;
-
-        if (currentDistanceSqr * currentDistanceSqr <= attackStartDistance * attackStartDistance)
+        if (fieldOfView.CheckFov(target, attackStartViewDegree, attackStartDistance))
         {
-            Debug.Log(currentDistanceSqr * currentDistanceSqr + " / " + attackStartDistance * attackStartDistance);
             controller.ChangeState(MonsterStateType.MONSTERSTATE_ATTACK);
         }
     }
@@ -84,5 +89,4 @@ public class MonsterChaseState : MonsterStateBase
     {
         refreshPathTime = refreshPathTimeRange.GetRandomAmount();
     }
-
 }

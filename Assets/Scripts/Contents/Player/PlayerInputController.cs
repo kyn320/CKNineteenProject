@@ -29,8 +29,29 @@ public class PlayerInputController : MonoBehaviour
     [ReadOnly]
     [ShowInInspector]
     private Vector3 aimWorldPoint;
-
     private RaycastHit aimRayCastHit;
+
+
+    [Header("LockOnSetting")]
+    [SerializeField]
+    private float lockOnFindLength = 10f;
+
+    [SerializeField]
+    private float lockOnAngleLimit = 10f;
+
+    [SerializeField]
+    private GameObject lockOnUI;
+
+    [SerializeField]
+    private LayerMask lockOnFindLayer;
+
+
+    private bool isLockOn;
+    private GameObject lockOnObject = null;
+    private Vector3 lockOnPoint;
+    private Collider[] lockOnColliders = null;
+    private float[] lockOnAngle = new float[100];
+
 
 
     private void Update()
@@ -51,7 +72,12 @@ public class PlayerInputController : MonoBehaviour
         if (aimRayCastHit.point == Vector3.zero)
             aimWorldPoint = mainCamera.transform.position + mainCamera.transform.forward * MaxAimDistance;
         else
-            aimWorldPoint = aimRayCastHit.point;
+        {
+            if (aimRayCastHit.point == Vector3.zero)
+                aimWorldPoint = mainCamera.transform.position + mainCamera.transform.forward * MaxAimDistance;
+            else
+                aimWorldPoint = aimRayCastHit.point;
+        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -71,8 +97,72 @@ public class PlayerInputController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //TODO :: 여기서 공격이랑 연결해서 쓰기
+            if(isLockOn)
+            attackinputEvent?.Invoke(lockOnPoint);
+            else
             attackinputEvent?.Invoke(aimWorldPoint);
         }
+
+        //마우스 우클릭시 록온
+        if (Input.GetMouseButton(1))
+        {
+            isLockOn = true;
+
+            lockOnColliders = Physics.OverlapSphere(transform.position, lockOnFindLength, lockOnFindLayer);
+
+            if (lockOnAngle.Length < lockOnColliders.Length)
+                lockOnAngle = new float[lockOnColliders.Length];
+
+
+            if (lockOnColliders.Length != 0)
+            {
+                for (int i = 0; i < lockOnColliders.Length; i++)
+                {
+                    Vector3 targetDir = (lockOnColliders[i].gameObject.transform.position - mainCamera.transform.position).normalized;
+                    lockOnAngle[i] = Vector3.Angle(mainCamera.transform.forward, targetDir);
+
+                    //록온중인 상대 할당 및 변경
+                    if (lockOnAngle[i] <= lockOnAngleLimit
+                        && (lockOnAngle[i] < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)
+                        || lockOnPoint == Vector3.zero))
+                    {
+                        lockOnObject = lockOnColliders[i].gameObject;
+                    }
+
+                    //록온 UI위치 지속적으로 변경
+                    if (lockOnObject != null)
+                    {
+                        lockOnPoint = lockOnObject.transform.position;
+                        lockOnUI.transform.position = Camera.main.WorldToScreenPoint(lockOnPoint);
+
+
+                        //서치 가능 제한을 넘어설 경우 서치 헤제
+                        if ((lockOnAngleLimit < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)))
+                        {
+                            lockOnObject = null;
+                            lockOnPoint = Vector3.zero;
+                            lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                lockOnObject = null;
+                lockOnPoint = Vector3.zero;
+                lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            }
+        }
+        else
+        {
+            isLockOn = false;
+
+            lockOnObject = null;
+            lockOnPoint = Vector3.zero;
+            lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        }
+
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

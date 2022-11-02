@@ -21,7 +21,9 @@ public class UITweenAnimator : MonoBehaviour
 
     public List<UIAnimationData> animationList;
     [SerializeField]
-    private UnityEvent endEvent;
+    private UnityEvent completeEvent;
+    [SerializeField]
+    private UnityEvent stopEvent;
 
     private List<Tween> playTweenList = new List<Tween>();
 
@@ -46,12 +48,12 @@ public class UITweenAnimator : MonoBehaviour
         PlayAnimation(animationList, null);
     }
 
-    public virtual void PlayAnimation(UnityAction completeEvent)
+    public virtual void PlayAnimation(UnityAction completeAction)
     {
-        PlayAnimation(animationList, completeEvent);
+        PlayAnimation(animationList, completeAction);
     }
 
-    public virtual void PlayAnimation(List<UIAnimationData> animations, UnityAction completeEvent = null)
+    public virtual void PlayAnimation(List<UIAnimationData> animations, UnityAction completeAction = null)
     {
         if (playTweenList.Count > 0)
         {
@@ -67,6 +69,13 @@ public class UITweenAnimator : MonoBehaviour
 
         if (autoActiveByPlay)
             gameObject.SetActive(true);
+
+        if (animations.Count == 0)
+        {
+            completeAction?.Invoke();
+            completeEvent?.Invoke();
+            return;
+        }
 
         for (var i = 0; i < animations.Count; ++i)
         {
@@ -110,6 +119,7 @@ public class UITweenAnimator : MonoBehaviour
                 playTweenList.Remove(tween);
                 if (playTweenList.Count <= 0)
                 {
+                    completeAction?.Invoke();
                     completeEvent?.Invoke();
                     AutoHide();
                 }
@@ -132,6 +142,8 @@ public class UITweenAnimator : MonoBehaviour
         {
             ResetOrigin();
         }
+
+        stopEvent?.Invoke();
     }
 
     private void ResetOrigin()
@@ -143,8 +155,6 @@ public class UITweenAnimator : MonoBehaviour
 
     public void AutoHide()
     {
-        endEvent?.Invoke();
-
         switch (stopActionType)
         {
             case StopActionType.Disable:

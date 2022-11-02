@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CameraMoveController : MonoBehaviour
+public class CameraMoveController : Singleton<CameraMoveController>
 {
     [SerializeField]
     private Transform target;
@@ -29,8 +29,13 @@ public class CameraMoveController : MonoBehaviour
     public Vector3 playerObjectForwardVector;
     public UnityEvent<Vector3> updateForwardVector;
 
-    private void Awake()
+    [SerializeField]
+    private ObjectTweenAnimator tweenAnimator;
+
+    protected override void Awake()
     {
+        base.Awake();
+
         cameraAnchor = this.gameObject;
 
         directionObject.transform.localPosition = new Vector3(0, mainCamera.transform.localPosition.y, mainCamera.transform.localPosition.z);
@@ -127,5 +132,10 @@ public class CameraMoveController : MonoBehaviour
     public void SetBackMoveCamera(bool isBack)
     {
         this.isBack = isBack;
+    }
+
+    public void PlayTweenAnimation(List<ObjectTweenAnimationData> animations)
+    {
+        tweenAnimator.PlayAnimation(animations);
     }
 }
