@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 8323345356433905279}
   - component: {fileID: 8323345356433905278}
   - component: {fileID: 8323345356433905277}
+  - component: {fileID: 435113779448151616}
   m_Layer: 0
   m_Name: SpearTrap
   m_TagString: Untagged
@@ -226,3 +227,16 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &435113779448151616
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323345356433905216}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

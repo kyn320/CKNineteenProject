@@ -68,7 +68,6 @@ public class SetupObjectByCurve : MonoBehaviour
         var lineCount = bezierCurve.GetLineCount();
         var progressPerObjectCount = (float)lineCount / (setupCount - 1);
 
-
         for (var i = 0; i < setupCount; ++i)
         {
             Vector3 position = Vector3.zero;
