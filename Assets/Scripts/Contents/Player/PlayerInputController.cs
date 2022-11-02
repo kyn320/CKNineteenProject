@@ -25,8 +25,6 @@ public class PlayerInputController : MonoBehaviour
 
     public UnityEvent<Vector3> attackinputEvent;
 
-    [Header("0 : DontLockOn, 1 : LockOn")]
-    private int isAttackType = 1;
 
     [ReadOnly]
     [ShowInInspector]
@@ -46,13 +44,12 @@ public class PlayerInputController : MonoBehaviour
     private float lockOnAngleMultiple = 2.5f;
 
     [SerializeField]
-    private GameObject lockOnUI;
-
-    [SerializeField]
     private LayerMask lockOnFindLayer;
 
+    [SerializeField]
+    UnityEvent <Vector3> LockOnMove;
 
-    private bool isLockOn;
+
     private GameObject lockOnObject = null;
     private Vector3 lockOnPoint;
     private Collider[] lockOnColliders = null;
@@ -103,17 +100,15 @@ public class PlayerInputController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //TODO :: 여기서 공격이랑 연결해서 쓰기
-            if(isAttackType == 0)
+            if(lockOnPoint != Vector3.zero)
                 attackinputEvent?.Invoke(aimWorldPoint);
             else 
                 attackinputEvent?.Invoke(lockOnPoint);
         }
 
-        //록온
-        if (isAttackType == 1)
-        {
-            isLockOn = true;
 
+
+        //록온
             lockOnColliders = Physics.OverlapSphere(transform.position, lockOnFindLength, lockOnFindLayer);
 
             if (lockOnAngle.Length < lockOnColliders.Length)
@@ -133,40 +128,31 @@ public class PlayerInputController : MonoBehaviour
                         || lockOnPoint == Vector3.zero))
                     {
                         lockOnObject = lockOnColliders[i].gameObject;
-                    }
+                    } 
 
                     //록온 UI위치 지속적으로 변경
                     if (lockOnObject != null)
                     {
                         lockOnPoint = lockOnObject.transform.position;
-                        lockOnUI.transform.position = Camera.main.WorldToScreenPoint(lockOnPoint);
+                        LockOnMove?.Invoke(lockOnPoint);
 
 
-                        //서치 가능 제한을 넘어설 경우 서치 헤제
-                        if ((realLockOnAngleLimit < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)))
+                    //서치 가능 제한을 넘어설 경우 서치 헤제
+                    if ((realLockOnAngleLimit < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)))
                         {
                             lockOnObject = null;
-                            lockOnPoint = Vector3.zero;
-                            lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+                            LockOnMove?.Invoke(Vector3.zero);
                         }
                     }
                 }
             }
             else
             {
-                lockOnObject = null;
                 lockOnPoint = Vector3.zero;
-                lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-            }
+                lockOnObject = null;
+            LockOnMove?.Invoke(Vector3.zero);
         }
-        else
-        {
-            isLockOn = false;
-
-            lockOnObject = null;
-            lockOnPoint = Vector3.zero;
-            lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-        }
+        
 
         if(Input.GetMouseButton(1))
         {

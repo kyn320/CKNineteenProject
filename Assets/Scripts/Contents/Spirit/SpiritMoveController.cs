@@ -122,7 +122,7 @@ public class SpiritMoveController : MonoBehaviour
         {
             if (turnTime > turnTimer && !isMoveable)
             {
-                yield return 0;
+                yield return new WaitForFixedUpdate();
                 turnTimer += Time.deltaTime;
                 deg += Time.deltaTime * moveSpeed;
 
