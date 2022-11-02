@@ -48,7 +48,7 @@ public class SwingTrap : MonoBehaviour
     {
         currentSwingTime += Time.deltaTime;
         var lerpTime = currentSwingTime / swingTime;
-        transform.rotation = axisRotation * Quaternion.Lerp(startSwingRotation, targetSwingRotation, animationCurve.Evaluate(lerpTime));
+        transform.localRotation = axisRotation * Quaternion.Lerp(startSwingRotation, targetSwingRotation, animationCurve.Evaluate(lerpTime));
         if (lerpTime >= 1)
         {
             currentSwingTime = 0f;

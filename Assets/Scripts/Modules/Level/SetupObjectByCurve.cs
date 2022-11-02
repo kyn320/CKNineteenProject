@@ -51,6 +51,9 @@ public class SetupObjectByCurve : MonoBehaviour
     private float snapOffset = 0f;
 
     [SerializeField]
+    private Vector3 offsetPosition;
+
+    [SerializeField]
     private Quaternion offsetRotation;
 
     private void Update()
@@ -86,8 +89,8 @@ public class SetupObjectByCurve : MonoBehaviour
                 resultProgress = farPointData.progress;
                 //Half 값입니다. 0.5 안해도 되요.
                 var diffProgress = snapPointData.progress - farPointData.progress;
-                lookAtPosition = bezierCurve.GetPosition(farPointData.progress + diffProgress) - 
-                    bezierCurve.GetPosition(farPointData.progress - diffProgress);                
+                lookAtPosition = bezierCurve.GetPosition(farPointData.progress + diffProgress) -
+                    bezierCurve.GetPosition(farPointData.progress - diffProgress);
             }
             else
             {
@@ -104,11 +107,11 @@ public class SetupObjectByCurve : MonoBehaviour
 
             if (useProjectionPosition && projectionInfo.collider != null)
             {
-                setupObjectList[i].transform.position = projectionInfo.point;
+                setupObjectList[i].transform.position = projectionInfo.point + offsetPosition;
             }
             else
             {
-                setupObjectList[i].transform.position = position;
+                setupObjectList[i].transform.position = position + offsetPosition;
             }
 
             if (useProjectionRotation && projectionInfo.collider != null)
