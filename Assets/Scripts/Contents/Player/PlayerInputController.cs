@@ -36,11 +36,14 @@ public class PlayerInputController : MonoBehaviour
 
     [Header("LockOnSetting")]
     [SerializeField]
-    private float lockOnFindLength = 10f;
+    private float lockOnFindLength = 15f;
 
     [SerializeField]
-    private float lockOnAngleLimit = 10f;
+    private float lockOnAngleLimit = 15f;
     private float realLockOnAngleLimit = 10f;
+
+    [SerializeField]
+    private float lockOnAngleMultiple = 2.5f;
 
     [SerializeField]
     private GameObject lockOnUI;
@@ -167,11 +170,11 @@ public class PlayerInputController : MonoBehaviour
 
         if(Input.GetMouseButton(1))
         {
-            realLockOnAngleLimit = lockOnAngleLimit * 2;
+            realLockOnAngleLimit = lockOnAngleLimit * lockOnAngleMultiple;
         }
         else
         {
-            realLockOnAngleLimit = lockOnAngleLimit / 2;
+            realLockOnAngleLimit = lockOnAngleLimit / lockOnAngleMultiple;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -187,5 +190,4 @@ public class PlayerInputController : MonoBehaviour
             moveInputEvent?.Invoke(inputVector);
         }
     }
-
 }
