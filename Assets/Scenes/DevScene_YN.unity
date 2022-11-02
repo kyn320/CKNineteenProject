@@ -568,8 +568,8 @@ Transform:
   m_Children:
   - {fileID: 1783901089}
   - {fileID: 785523548}
-  m_Father: {fileID: 2279950718878165795}
-  m_RootOrder: 3
+  m_Father: {fileID: 0}
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &118176020
 MonoBehaviour:
@@ -892,8 +892,8 @@ Transform:
   m_Children:
   - {fileID: 88164837}
   - {fileID: 1135922820}
-  m_Father: {fileID: 2279950718878165795}
-  m_RootOrder: 4
+  m_Father: {fileID: 0}
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &190000012
 MonoBehaviour:
@@ -967,8 +967,8 @@ Transform:
   m_Children:
   - {fileID: 1888933038}
   - {fileID: 540662746}
-  m_Father: {fileID: 2279950718878165795}
-  m_RootOrder: 6
+  m_Father: {fileID: 0}
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &190102232
 MonoBehaviour:
@@ -2841,8 +2841,8 @@ Transform:
   m_Children:
   - {fileID: 767373311}
   - {fileID: 1492019926}
-  m_Father: {fileID: 2279950718878165795}
-  m_RootOrder: 5
+  m_Father: {fileID: 0}
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &561773870
 MonoBehaviour:
@@ -3027,8 +3027,8 @@ Transform:
   m_Children:
   - {fileID: 15746781}
   - {fileID: 259072192}
-  m_Father: {fileID: 2279950718878165795}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &690463025
 MonoBehaviour:
@@ -3138,8 +3138,8 @@ Transform:
   m_Children:
   - {fileID: 245091464}
   - {fileID: 1233355259}
-  m_Father: {fileID: 2279950718878165795}
-  m_RootOrder: 8
+  m_Father: {fileID: 0}
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &717232219
 MonoBehaviour:
@@ -4936,8 +4936,8 @@ Transform:
   m_Children:
   - {fileID: 1886620875}
   - {fileID: 1924653799}
-  m_Father: {fileID: 2279950718878165795}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1171703204
 MonoBehaviour:
@@ -5987,8 +5987,8 @@ Transform:
   m_Children:
   - {fileID: 1950699530}
   - {fileID: 1057449315}
-  m_Father: {fileID: 2279950718878165795}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1464576956
 MonoBehaviour:
@@ -7278,8 +7278,8 @@ Transform:
   m_Children:
   - {fileID: 1969232095}
   - {fileID: 232042635}
-  m_Father: {fileID: 2279950718878165795}
-  m_RootOrder: 7
+  m_Father: {fileID: 0}
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1739419447
 MonoBehaviour:
@@ -8773,8 +8773,8 @@ Transform:
   m_Children:
   - {fileID: 2107682204}
   - {fileID: 495180288}
-  m_Father: {fileID: 2279950718878165795}
-  m_RootOrder: 9
+  m_Father: {fileID: 0}
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1960565717
 MonoBehaviour:
@@ -10158,17 +10158,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1171703203}
-  - {fileID: 1464576955}
-  - {fileID: 690463024}
-  - {fileID: 118176019}
-  - {fileID: 190000011}
-  - {fileID: 561773869}
-  - {fileID: 190102231}
-  - {fileID: 1739419446}
-  - {fileID: 717232218}
-  - {fileID: 1960565716}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10473,6 +10463,11 @@ PrefabInstance:
       propertyPath: mouseMoveEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 123838324}
+    - target: {fileID: 6242339994822949158, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b85439fd6f0344449a12d39d93a97bbe, type: 2}
     - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: updateBattleStateEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -10684,7 +10679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &6022870831379098310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10787,4 +10782,4 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
