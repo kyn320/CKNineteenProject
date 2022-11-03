@@ -20,7 +20,8 @@ public class CrowdBlood : CrowdBehaviour
         if (activeCalcTime <= 0)
         {
             var damageElement = GetBuffData().GetStatusElement(StatusType.HP);
-            float damageResult = playerController.GetStatus().currentStatus.GetElement(StatusType.HP).CalculateTotalAmount() * damageElement.GetPercent();
+            float damageResult = playerController.GetStatus().currentStatus.GetElement(StatusType.HP).CalculateTotalAmount() 
+                * (damageElement.GetPercent() / 100f);
 
             playerController?.OnDamage(new DamageInfo()
             {
