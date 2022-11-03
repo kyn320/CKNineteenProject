@@ -15,12 +15,12 @@ public abstract class UIBaseView : MonoBehaviour
     public List<UIAnimationData> closeAnimationList;
 
     private List<Tween> playTweenList = new List<Tween>();
-    private Coroutine animationCoroutine;
 
     public UnityEvent openEvent;
     public UnityEvent closeEvent;
 
-    protected virtual void Start() { 
+    protected virtual void Start()
+    {
         UIController.Instance.OpenView(this);
     }
 
@@ -28,6 +28,11 @@ public abstract class UIBaseView : MonoBehaviour
 
     [Button("Open")]
     public virtual void Open()
+    {
+        BeginOpen();
+    }
+
+    public virtual void BeginOpen()
     {
         gameObject.SetActive(true);
         PlayAnimation(openAnimationList, EndOpen);
@@ -41,6 +46,11 @@ public abstract class UIBaseView : MonoBehaviour
     [Button("Close")]
     public virtual void Close()
     {
+        BeginClose();
+    }
+
+    public virtual void BeginClose()
+    {
         closeEvent?.Invoke();
         PlayAnimation(closeAnimationList, EndClose);
     }
@@ -50,13 +60,18 @@ public abstract class UIBaseView : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public virtual void PlayAnimation(List<UIAnimationData> animations, UnityAction completeEvent = null)
+    public virtual void PlayAnimation(List<UIAnimationData> animations, UnityAction completeAction = null)
     {
-        for(var i = 0; i < playTweenList.Count; ++i) {
-            playTweenList[i].Kill(true);
+        if (playTweenList.Count > 0)
+        {
+            Stop();
         }
 
-        playTweenList.Clear();
+        if (animations.Count == 0)
+        {
+            completeAction?.Invoke();
+            return;
+        }
 
         for (var i = 0; i < animations.Count; ++i)
         {
@@ -79,6 +94,12 @@ public abstract class UIBaseView : MonoBehaviour
                 case UIAnimationType.Alpha:
                     tween = GetComponent<CanvasGroup>()?.DOFade(animationData.DestinationFloat, animationData.Duration);
                     break;
+                case UIAnimationType.ShakePosition:
+                    tween = transform.DOShakePosition(animationData.Duration, animationData.Strength, animationData.Vibrato, animationData.Randomness);
+                    break;
+                case UIAnimationType.ShakeRotation:
+                    tween = transform.DOShakeRotation(animationData.Duration, animationData.Strength, animationData.Vibrato, animationData.Randomness);
+                    break;
             }
 
             if (animationData.LoopCount > 0)
@@ -89,24 +110,28 @@ public abstract class UIBaseView : MonoBehaviour
             playTweenList.Add(tween);
             tween.SetDelay(animationData.Delay);
             tween.SetEase(animationData.EaseType);
-            tween.OnComplete(() => {
+            tween.OnComplete(() =>
+            {
                 playTweenList.Remove(tween);
+                if (playTweenList.Count <= 0)
+                {
+                    completeAction?.Invoke();
+                }
             });
             tween.SetRelative(animationData.IsRelative);
             tween.Play();
         }
-
-        animationCoroutine = StartCoroutine("CoWaitCompleteAnimation", completeEvent);
     }
 
-    private IEnumerator CoWaitCompleteAnimation(UnityAction completeEvent)
+    public void Stop()
     {
-        while (playTweenList.Count > 0)
+        for (var i = 0; i < playTweenList.Count; ++i)
         {
-            yield return null;
+            playTweenList[i].Kill();
         }
-        completeEvent?.Invoke();
-        animationCoroutine = null;
+
+        playTweenList.Clear();
     }
+
 
 }

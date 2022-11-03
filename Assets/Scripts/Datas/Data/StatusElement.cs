@@ -54,12 +54,12 @@ public class StatusElement
 
     public virtual float GetPercentAmount(float origin)
     {
-        return origin * percent;
+        return origin * (percent / 100f);
     }
 
     public virtual float CalculatePercent(float origin)
     {
-        return origin + (origin * percent);
+        return origin + (origin * (percent / 100f));
     }
 
     public void SetAmount(float amount)

@@ -26,13 +26,13 @@ public class UIYesOrNoPopup : UIBasePopup
 
     public void OnYes() {
         yesEvent?.Invoke();
-        UIController.Instance.ClosePopup(yesOrNoPopupData);
+        Close();
     }
 
     public void OnNo()
     {
         noEvent?.Invoke();
-        UIController.Instance.ClosePopup(yesOrNoPopupData);
+        Close();
     }
 
 }

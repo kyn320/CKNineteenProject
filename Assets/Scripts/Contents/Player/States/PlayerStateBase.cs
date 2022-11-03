@@ -34,4 +34,6 @@ public abstract class PlayerStateBase : MonoBehaviour
     public abstract void Update();
 
     public abstract void Exit();
+
+    public void UsedKnockback(bool isTrigger) { }
 }

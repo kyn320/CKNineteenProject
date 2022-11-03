@@ -43,6 +43,10 @@ public class PlayerAttackState : PlayerStateBase
 
     [ReadOnly]
     [ShowInInspector]
+    private int currentHitCount = 0;
+
+    [ReadOnly]
+    [ShowInInspector]
     private List<ItemSlot> equipSlotDatas = new List<ItemSlot>();
 
     private GameObject weaponObject;
@@ -137,6 +141,7 @@ public class PlayerAttackState : PlayerStateBase
         if (!CheckAttackPossible())
             return;
 
+        currentHitCount = 0;
         transform.forward = forwardDirection;
 
         this.aimPoint = aimPoint;
@@ -159,7 +164,7 @@ public class PlayerAttackState : PlayerStateBase
 
         //TODO :: 공격 무기 타입 별로 INDEX 대입.
         animator.SetInteger("AttackType", currentAttackWeaponData.AttackAnimationType);
-        animator.SetInteger("AttackCombo", currentComboIndex);
+        animator.SetFloat("AttackCombo", currentComboIndex + 1);
         animator.SetTrigger("Attack");
         animator.speed = attackSpeed;
 
@@ -192,7 +197,7 @@ public class PlayerAttackState : PlayerStateBase
         weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
     }
 
-    public void Shot()
+    public void PlayAttack()
     {
         if (!isAttack)
             return;
@@ -245,30 +250,23 @@ public class PlayerAttackState : PlayerStateBase
                 break;
         }
 
+        if (currentComboIndex < currentAttackWeaponData.ComboCount - 1)
+        {
+            attackStateType = AttackStateType.ComboCheck;
+            ++currentComboIndex;
+        }
     }
 
     public void AllowCombo()
     {
-        attackStateType = AttackStateType.ComboCheck;
-
-        if (currentComboIndex < currentAttackWeaponData.ComboCount - 1)
-        {
-            ++currentComboIndex;
-        }
-        else
-        {
-            //공격 초기화
-            currentComboIndex = 0;
-            currentWeaponIndex = (int)Mathf.Repeat(currentWeaponIndex + 1, equipSlotDatas.Count);
-            updateWeaponIndexEvent?.Invoke(currentWeaponIndex);
-        }
+        //다음 콤보에 대한 입력을 받을 수 있습니다.
+        isAttack = attackStateType != AttackStateType.ComboCheck;
     }
 
     public void EndAttack()
     {
         attackStateType = AttackStateType.Wait;
-        //공격 종료
-        //다음 콤보에 대한 입력을 받을 수 있습니다.
+
         isAttack = false;
 
         if (!isMoveable)
@@ -296,10 +294,36 @@ public class PlayerAttackState : PlayerStateBase
 
         weaponObject = null;
         weaponSpawnPoint = Vector3.zero;
+
+        //공격 초기화
+        currentComboIndex = 0;
+        currentWeaponIndex = (int)Mathf.Repeat(currentWeaponIndex + 1, equipSlotDatas.Count);
+        updateWeaponIndexEvent?.Invoke(currentWeaponIndex);
+
+        //공격 종료
     }
 
     public void SuccessHit(bool isKill)
     {
+
+        ++currentHitCount;
+
+        if (currentAttackWeaponData.AttackType == WeaponAttackType.Melee)
+        {
+            var hitBoxData = currentAttackWeaponData.HitBoxDataList[currentComboIndex];
+
+            if (currentHitCount == 1)
+            {
+                CameraMoveController.Instance.PlayTweenAnimation(hitBoxData.HitTweeDataList);
+            }
+
+            if (currentHitCount == 3)
+            {
+                Instantiate(hitBoxData.ScreenVFXVolumeData.GetVFXPrefab("Hit"));
+                GameTimeController.Instance.ChangeTimeScale(hitBoxData.TimeScale, hitBoxData.TimeScaleLifeTime);
+            }
+        }
+
         ComboSystem.Instance.AddHitCombo(1);
 
         if (isKill)

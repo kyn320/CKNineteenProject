@@ -56,7 +56,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7357104089178531641}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -73,8 +73,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewName: Setting
-  openAnimationList: []
-  closeAnimationList: []
+  openAnimationList:
+  - {fileID: 11400000, guid: dae535f7cd8302e43a4be03c60baa28c, type: 2}
+  closeAnimationList:
+  - {fileID: 11400000, guid: a93b01aae555f8e4991c04e4cd23fcb2, type: 2}
   openEvent:
     m_PersistentCalls:
       m_Calls: []

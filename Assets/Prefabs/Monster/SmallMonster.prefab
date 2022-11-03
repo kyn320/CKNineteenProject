@@ -236,6 +236,7 @@ MonoBehaviour:
   refreshPathTime: 0
   stopDistance: 1
   attackStartDistance: 10
+  attackStartViewDegree: 5
   currentDistanceSqr: 0
   navAgent: {fileID: 4703875880860071132}
 --- !u!114 &4703875881879617303
@@ -324,7 +325,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   attackDistance: 20
-  attackAfterTime: 3
+  attackAfterTime: 0.5
 --- !u!114 &5413399869023604584
 MonoBehaviour:
   m_ObjectHideFlags: 0

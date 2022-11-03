@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
-public class PlayerController : MonoBehaviour, IDamageable
+public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
 {
     private PlayerInputController inputController;
 
@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public UnityEvent<PlayerBattleStateType> updateBattleStateEvent;
 
     public UnityEvent<DamageInfo> damageEvent;
+    private Coroutine hitPauseCoroutine;
 
     public UnityEvent<float> updateMoveSpeedEvent;
 
@@ -101,6 +102,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         return animator;
     }
 
+    public void SetStateEnbaled(PlayerStateType type, bool isTrigger)
+    {
+        statesDic[type].enabled = isTrigger;
+    }
+
     public PlayerInputController GetInputController()
     {
         return inputController;
@@ -134,11 +140,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             ChangeState(PlayerStateType.Death);
         }
-        else if (damageInfo.isCritical)
+        else if (damageInfo.isCritical && damageInfo.isKnockBack)
         {
             ChangeState(PlayerStateType.CriticalHit);
         }
-        else
+        else if(damageInfo.isKnockBack)
         {
             ChangeState(PlayerStateType.Hit);
         }
@@ -188,8 +194,25 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public Vector3 GetSlopeDirection(Vector3 moveDirection)
     {
-        Debug.Log(Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized);
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
+
+    public virtual void HitPause(float playWaitTime,float lifeTime)
+    {
+        if (hitPauseCoroutine != null)
+        {
+            StopCoroutine(hitPauseCoroutine);
+        }
+
+        hitPauseCoroutine = StartCoroutine(CoHitPause(playWaitTime, lifeTime));
+    }
+
+    public virtual IEnumerator CoHitPause(float playWaitTime, float lifeTime)
+    {
+        yield return new WaitForSeconds(playWaitTime);
+        animator.speed = 0;
+        yield return new WaitForSeconds(lifeTime);
+        animator.speed = 1f;
     }
 
     private void OnDrawGizmos()

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
-public class MonsterController : MonoBehaviour, IDamageable
+public class MonsterController : MonoBehaviour, IDamageable, IHitPauseable
 {
     private UnitStatus status;
 
@@ -27,6 +27,7 @@ public class MonsterController : MonoBehaviour, IDamageable
     private Animator animator;
 
     public UnityEvent<DamageInfo> damageEvent;
+    private Coroutine hitPauseCoroutine;
 
     private void Awake()
     {
@@ -106,11 +107,11 @@ public class MonsterController : MonoBehaviour, IDamageable
         }
         else
         {
-            if (damageInfo.isCritical)
+            if (damageInfo.isCritical && damageInfo.isKnockBack)
             {
                 ChangeState(MonsterStateType.MONSTERSTATE_CRITICALHIT);
             }
-            else
+            else if (damageInfo.isKnockBack)
             {
                 ChangeState(MonsterStateType.MONSTERSTATE_HIT);
             }
@@ -118,5 +119,23 @@ public class MonsterController : MonoBehaviour, IDamageable
 
         damageEvent?.Invoke(damageInfo);
         return resultDamageInfo;
+    }
+
+    public virtual void HitPause(float playWaitTime, float lifeTime)
+    {
+        if (hitPauseCoroutine != null)
+        {
+            StopCoroutine(hitPauseCoroutine);
+        }
+
+        hitPauseCoroutine = StartCoroutine(CoHitPause(playWaitTime, lifeTime));
+    }
+
+    public virtual IEnumerator CoHitPause(float playWaitTime, float lifeTime)
+    {
+        yield return new WaitForSeconds(playWaitTime);
+        animator.speed = 0;
+        yield return new WaitForSeconds(lifeTime);
+        animator.speed = 1f;
     }
 }

@@ -22,12 +22,11 @@ public class UIInventoryPopup : UIBasePopup
         inventoryListView.UpdateSlots();
     }
 
-    public override void Close()
+    public override void BeginClose()
     {
-        base.Close();
         TPSMouseSetting.Instance.CloseUICursor();
+        base.BeginClose();
     }
-
 
 
 }

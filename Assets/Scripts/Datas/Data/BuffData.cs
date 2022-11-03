@@ -60,4 +60,12 @@ public class BuffData : ScriptableObject
             statusDic.Add(statusType, new StatusElement() { name = statusType.ToString(), type = statusType });
         }
     }
+
+    public StatusElement GetStatusElement(StatusType statusType)
+    {
+        if (statusDic.ContainsKey(statusType))
+            return statusDic[statusType];
+
+        return null;
+    }
 }
