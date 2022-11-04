@@ -8280,6 +8280,12 @@ Transform:
   m_Father: {fileID: 1565968577}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 57.4, y: -109.3, z: 0}
+--- !u!4 &1647535441 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7731805628854102056, guid: 8b1e51a882d72f64aa743313b6184c33,
+    type: 3}
+  m_PrefabInstance: {fileID: 3827645978518966160}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1652537027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11019,7 +11025,7 @@ PrefabInstance:
     - target: {fileID: 1487739244764698189, guid: 4d46fd763ed7bba41bf691be8acd4d9c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1487739244764698189, guid: 4d46fd763ed7bba41bf691be8acd4d9c,
         type: 3}
@@ -11253,6 +11259,10 @@ PrefabInstance:
       propertyPath: cameraMoveController
       value: 
       objectReference: {fileID: 123838324}
+    - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: handBone
+      value: 
+      objectReference: {fileID: 1647535441}
     - target: {fileID: 1294546403, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
       propertyPath: spiritObject
       value: 
