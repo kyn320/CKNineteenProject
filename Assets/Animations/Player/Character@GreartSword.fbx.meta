@@ -23,11 +23,11 @@ ModelImporter:
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
       copied configuration does not match position in animation file:\n\t'Bip001
       L Thigh' : position error = 33.162636 mm\n\t'Bip001 L Calf' : position error
-      = 78.795494 mm\n\t'Bip001 L Foot' : position error = 4.297384 mm\n\t'Bip001
-      L Toe0' : position error = 37.687584 mm\n\t'Bip001 R Thigh' : position error
-      = 33.162563 mm\n\t'Bip001 R Calf' : position error = 78.795494 mm\n\t'Bip001
-      R Foot' : position error = 4.297454 mm\n\t'Bip001 R Toe0' : position error
-      = 37.687611 mm\n"
+      = 78.795494 mm\n\t'Bip001 L Foot' : position error = 4.297524 mm\n\t'Bip001
+      L Toe0' : position error = 37.687569 mm\n\t'Bip001 R Thigh' : position error
+      = 33.162575 mm\n\t'Bip001 R Calf' : position error = 78.795494 mm\n\t'Bip001
+      R Foot' : position error = 4.297314 mm\n\t'Bip001 R Toe0' : position error
+      = 37.687649 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -189,6 +189,9 @@ ModelImporter:
           L UpperArm/Bip001 L Forearm/Bip001 L Hand/Bip001 L Finger4/Bip001 L Finger41/Bip001
           L Finger42
         weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 L Clavicle/Bip001
+          L UpperArm/Bip001 L Forearm/Bip001 L Hand/Weapon02
+        weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck/Bip001
@@ -258,14 +261,6 @@ ModelImporter:
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 R Clavicle/Bip001
           R UpperArm/Bip001 R Forearm/Bip001 R Hand/Weapon01
         weight: 1
-      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 R Clavicle/Bip001
-          R UpperArm/Bip001 R Forearm/Bip001 R Hand/Weapon01/Cylinder001
-        weight: 0
-      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 R Clavicle/Bip001
-          R UpperArm/Bip001 R Forearm/Bip001 R Hand/Weapon01/Cylinder001/Dummy004
-        weight: 0
-      - path: character_Dummy
-        weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
