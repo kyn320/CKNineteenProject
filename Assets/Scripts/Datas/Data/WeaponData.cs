@@ -33,6 +33,10 @@ public class WeaponData : ItemData
     public int ComboCount { get { return comboCount; } }
 
     [SerializeField]
+    private List<VFXPrefabData> attackVFXDataList;
+    public List<VFXPrefabData> AttackVFXDataList { get { return attackVFXDataList; } }
+
+    [SerializeField]
     private List<AttackHitBoxData> hitBoxDataList;
     public List<AttackHitBoxData> HitBoxDataList { get { return hitBoxDataList; } }
 

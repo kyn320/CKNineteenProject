@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swingTime: 2
+  currentSwingTime: 0
   startAxis: 1
   swingDegree: 90
   animationCurve:
@@ -182,7 +183,7 @@ GameObject:
   - component: {fileID: 6359284687599952377}
   - component: {fileID: 6359284687599952380}
   - component: {fileID: 6359284687599952379}
-  - component: {fileID: 6359284687599952378}
+  - component: {fileID: 6639555934476404422}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -197,14 +198,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6359284687599952376}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6359284686658333141}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6359284687599952380
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6359284687599952376}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -7123397515482408388, guid: 42607017c69c4244ca26febf91aa8c6c, type: 3}
 --- !u!23 &6359284687599952379
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -255,8 +256,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6359284687599952378
-CapsuleCollider:
+--- !u!64 &6639555934476404422
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -265,7 +266,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7123397515482408388, guid: a2e9367a7e21154418ab92b779604f53, type: 3}
