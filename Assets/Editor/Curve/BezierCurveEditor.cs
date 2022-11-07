@@ -49,23 +49,26 @@ public class BezierCurveEditor : OdinEditor
             Undo.SetCurrentGroupName("Modify BezierCurve");
             int group = Undo.GetCurrentGroup();
 
-            Undo.RegisterCompleteObjectUndo(bezierCurve.transform, "Modify BezierCurve : rootPivot");
             for (var i = 0; i < pointList.Count; ++i)
             {
                 var anchor = pointList[i].GetAnchor();
                 var leftHandle = pointList[i].GetLeftHandle();
                 var rightHandle = pointList[i].GetRightHandle();
 
-
-                Undo.RegisterCompleteObjectUndo(anchor.transform, "Modify BezierCurve : anchor");
                 Undo.RegisterCompleteObjectUndo(leftHandle.transform, "Modify BezierCurve : leftHandle");
                 Undo.RegisterCompleteObjectUndo(rightHandle.transform, "Modify BezierCurve : rightHandle");
 
-                anchor.position = changePointList[i].anchor;
+                Undo.RegisterCompleteObjectUndo(anchor.transform, "Modify BezierCurve : anchor");
+
                 leftHandle.position = changePointList[i].leftHandle;
                 rightHandle.position = changePointList[i].rightHandle;
+
+                anchor.position = changePointList[i].anchor;
             }
+
+            Undo.RegisterCompleteObjectUndo(bezierCurve.transform, "Modify BezierCurve : rootPivot");
             bezierCurve.transform.position = rootPivot;
+
             Undo.CollapseUndoOperations(group);
         }
 

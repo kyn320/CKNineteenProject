@@ -33,6 +33,9 @@ public class SetupObjectByCurve : MonoBehaviour
     private bool useAutoUpdate = true;
 
     [SerializeField]
+    private bool useRotationFromHeight = true;
+
+    [SerializeField]
     private bool useProjectionPosition = true;
 
     [SerializeField]
@@ -56,6 +59,13 @@ public class SetupObjectByCurve : MonoBehaviour
     [SerializeField]
     private Quaternion offsetRotation;
 
+    [SerializeField]
+    private Vector3 randomPositionRangeByPivot;
+    [SerializeField]
+    private Vector3 randomRotaionRangeByAxis;
+    [SerializeField]
+    private Vector3 randomScaleRange;
+
     private void Update()
     {
         if (bezierCurve == null || setupObjectList.Count == 0)
@@ -67,6 +77,8 @@ public class SetupObjectByCurve : MonoBehaviour
         var setupCount = setupObjectList.Count;
         var lineCount = bezierCurve.GetLineCount();
         var progressPerObjectCount = (float)lineCount / (setupCount - 1);
+
+        SetActiveAllObjects(false);
 
         for (var i = 0; i < setupCount; ++i)
         {
@@ -100,7 +112,14 @@ public class SetupObjectByCurve : MonoBehaviour
             }
 
             lookAtPosition.Normalize();
-            var lookAtDegree = Mathf.Atan2(lookAtPosition.x, lookAtPosition.z) * Mathf.Rad2Deg;
+
+            var lookAtRotation = Quaternion.LookRotation(lookAtPosition, Vector3.up); //Mathf.Atan2(lookAtPosition.x, lookAtPosition.z) * Mathf.Rad2Deg;
+
+            if (!useRotationFromHeight)
+            {
+                lookAtRotation.x = 0;
+                lookAtRotation.z = 0;
+            }
 
             var projectionInfo = GetProjectionInfo(position);
 
@@ -116,17 +135,76 @@ public class SetupObjectByCurve : MonoBehaviour
             if (useProjectionRotation && projectionInfo.collider != null)
             {
                 var hitNormalRotation = Quaternion.FromToRotation(transform.up, projectionInfo.normal);
-                setupObjectList[i].transform.rotation = hitNormalRotation * Quaternion.Euler(0f, lookAtDegree, 0f) * offsetRotation;
+                setupObjectList[i].transform.rotation = hitNormalRotation * lookAtRotation * offsetRotation;
             }
             else
             {
-                setupObjectList[i].transform.rotation = Quaternion.Euler(0f, lookAtDegree, 0f) * offsetRotation;
+                setupObjectList[i].transform.rotation = lookAtRotation * offsetRotation;
             }
 
 
             setupObjectBoundList[i].progress = resultProgress;
             setupObjectBoundList[i].line = bezierCurve.GetLine(resultProgress);
         }
+
+        SetActiveAllObjects(true);
+    }
+
+    [Button("랜덤 위치 적용")]
+    public void UpdateRandomPositionSetup()
+    {
+#if UNITY_EDITOR
+        useAutoUpdate = false;
+
+        UnityEditor.Undo.SetCurrentGroupName("Setup Random Positions");
+        var group = UnityEditor.Undo.GetCurrentGroup();
+
+        for (var i = 0; i < setupObjectList.Count; ++i)
+        {
+            UnityEditor.Undo.RecordObject(setupObjectList[i].transform, "Setup Random Position");
+            setupObjectList[i].transform.position += GetRandomVectorRange(randomPositionRangeByPivot);
+        }
+
+        UnityEditor.Undo.CollapseUndoOperations(group);
+#endif
+    }
+
+    [Button("랜덤 회전 적용")]
+    public void UpdateRandomRotationSetup()
+    {
+#if UNITY_EDITOR
+        useAutoUpdate = false;
+
+        UnityEditor.Undo.SetCurrentGroupName("Setup Random Rotations");
+        var group = UnityEditor.Undo.GetCurrentGroup();
+
+        for (var i = 0; i < setupObjectList.Count; ++i)
+        {
+            UnityEditor.Undo.RecordObject(setupObjectList[i].transform, "Setup Random Rotation");
+            var randomRotationVector = GetRandomVectorRange(randomRotaionRangeByAxis);
+            var randomRotationQuaternion = Quaternion.Euler(randomRotationVector.x, randomRotationVector.y, randomRotationVector.z);
+            setupObjectList[i].transform.rotation *= randomRotationQuaternion;
+        }
+        UnityEditor.Undo.CollapseUndoOperations(group);
+#endif
+    }
+
+    [Button("랜덤 크기 적용")]
+    public void UpdateRandomScaleSetup()
+    {
+#if UNITY_EDITOR
+        useAutoUpdate = false;
+
+        UnityEditor.Undo.SetCurrentGroupName("Setup Random Scales");
+        var group = UnityEditor.Undo.GetCurrentGroup();
+
+        for (var i = 0; i < setupObjectList.Count; ++i)
+        {
+            UnityEditor.Undo.RecordObject(setupObjectList[i].transform, "Setup Random Scale");
+            setupObjectList[i].transform.localScale += GetRandomVectorRange(randomScaleRange);
+        }
+        UnityEditor.Undo.CollapseUndoOperations(group);
+#endif
     }
 
     [Button("오브젝트 재 설정")]
@@ -163,9 +241,47 @@ public class SetupObjectByCurve : MonoBehaviour
         }
     }
 
+    [Button("설치 된 오브젝트 독립화")]
+    public void BreakLinkBySetupObjects(Transform newParents)
+    {
+#if UNITY_EDITOR
+        useAutoUpdate = false;
+
+        UnityEditor.Undo.SetCurrentGroupName("BreakLink SetupObjects");
+        var group = UnityEditor.Undo.GetCurrentGroup();
+
+        for (var i = 0; i < setupObjectList.Count; ++i)
+        {
+            UnityEditor.Undo.SetTransformParent(setupObjectList[i].transform, newParents, "BreakLink SetupObject Element");
+            //setupObjectList[i].transform.SetParent(newParents);
+        }
+
+        UnityEditor.Undo.RecordObject(this, "Clear SetupObjects");
+        setupObjectList.Clear();
+        setupObjectBoundList.Clear();
+
+        UnityEditor.Undo.CollapseUndoOperations(group);
+#endif
+    }
+
     public GameObject GetRandomObject()
     {
         return setupPrefabList[Random.Range(0, setupPrefabList.Count)];
+    }
+
+    public Vector3 GetRandomVectorRange(Vector3 rangeVector)
+    {
+        return new Vector3(Random.Range(-rangeVector.x * 0.5f, rangeVector.x * 0.5f)
+            , Random.Range(-rangeVector.y * 0.5f, rangeVector.y * 0.5f)
+            , Random.Range(-rangeVector.z * 0.5f, rangeVector.z * 0.5f));
+    }
+
+    public void SetActiveAllObjects(bool isActive)
+    {
+        for (var i = 0; i < setupObjectList.Count; ++i)
+        {
+            setupObjectList[i].SetActive(isActive);
+        }
     }
 
     public RaycastHit GetProjectionInfo(Vector3 position)
@@ -233,6 +349,10 @@ public class SetupObjectByCurve : MonoBehaviour
 
             Gizmos.matrix = Matrix4x4.identity;
             Gizmos.color = Color.magenta;
+
+            if (setupObjectBoundList[i].boxCollider == null)
+                continue;
+
             var pivots = setupObjectBoundList[i].GetAllPivots();
 
             for (var k = 0; k < pivots.Length; ++k)
