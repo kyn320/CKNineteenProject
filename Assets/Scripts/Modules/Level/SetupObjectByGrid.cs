@@ -109,12 +109,19 @@ public class SetupObjectByGrid : MonoBehaviour
     [Button("전체 높이 위치 수정")]
     public void ChangeYPosition(float yPos)
     {
+#if UNITY_EDITOR
+        UnityEditor.Undo.SetCurrentGroupName("Setup Height");
+        var group = UnityEditor.Undo.GetCurrentGroup();
+
         for (var i = 0; i < setupObjectList.Count; ++i)
         {
+            UnityEditor.Undo.RecordObject(setupObjectList[i].transform, "Setup Height");
             var position = setupObjectList[i].transform.localPosition;
             position.y = yPos;
             setupObjectList[i].transform.localPosition = position;
         }
+        UnityEditor.Undo.CollapseUndoOperations(group);
+#endif
     }
 
     [Button("오브젝트 전체 삭제")]
@@ -136,6 +143,28 @@ public class SetupObjectByGrid : MonoBehaviour
         {
             setupObjectList[i].isStatic = isStaic;
         }
+    }
+
+    [Button("설치 된 오브젝트 독립화")]
+    public void BreakLinkBySetupObjects(Transform newParents)
+    {
+#if UNITY_EDITOR
+        useAutoUpdate = false;
+
+        UnityEditor.Undo.SetCurrentGroupName("BreakLink SetupObjects");
+        var group = UnityEditor.Undo.GetCurrentGroup();
+
+        for (var i = 0; i < setupObjectList.Count; ++i)
+        {
+            UnityEditor.Undo.SetTransformParent(setupObjectList[i].transform, newParents, "BreakLink SetupObject Element");
+        }
+
+        UnityEditor.Undo.RecordObject(this, "Clear SetupObjects");
+        setupObjectList.Clear();
+        setupObjectBound = null;
+
+        UnityEditor.Undo.CollapseUndoOperations(group);
+#endif
     }
 
     public RaycastHit GetProjectionInfo(Vector3 position)
