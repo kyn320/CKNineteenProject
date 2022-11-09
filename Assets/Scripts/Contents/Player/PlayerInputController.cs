@@ -10,6 +10,9 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]
     private GameObject mainCamera;
 
+    [SerializeField]
+    private float mouseDPI = 1f;
+
     public bool allowInput = true;
 
     [ReadOnly]
@@ -26,11 +29,11 @@ public class PlayerInputController : MonoBehaviour
     public UnityEvent<Vector3> attackinputEvent;
 
 
+
     [ReadOnly]
     [ShowInInspector]
     private Vector3 aimWorldPoint;
     private RaycastHit aimRayCastHit;
-
 
     [Header("LockOnSetting")]
 
@@ -55,7 +58,6 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]
     UnityEvent<Vector3> LockOnMoveEvent;
 
-
     [SerializeField]
     private Vector3 lockOnPoint;
     private GameObject lockOnObject = null;
@@ -74,7 +76,7 @@ public class PlayerInputController : MonoBehaviour
         }
 
         var mousePos = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        mouseMoveEvent?.Invoke(mousePos);
+        mouseMoveEvent?.Invoke(mousePos * mouseDPI);
 
         Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out aimRayCastHit);
         Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * MaxAimDistance, Color.blue);
