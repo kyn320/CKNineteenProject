@@ -51,8 +51,9 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]
     private LayerMask lockOnFindLayer;
 
+    //UI에 옯겨서 사용해주세요
     [SerializeField]
-    UnityEvent<Vector3> LockOnMove;
+    UnityEvent<Vector3> LockOnMoveEvent;
 
 
     [SerializeField]
@@ -78,15 +79,11 @@ public class PlayerInputController : MonoBehaviour
         Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out aimRayCastHit);
         Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * MaxAimDistance, Color.blue);
 
-        if (aimRayCastHit.point == Vector3.zero)
-            aimWorldPoint = mainCamera.transform.position + mainCamera.transform.forward * MaxAimDistance;
-        else
-        {
             if (aimRayCastHit.point == Vector3.zero)
                 aimWorldPoint = mainCamera.transform.position + mainCamera.transform.forward * MaxAimDistance;
             else
                 aimWorldPoint = aimRayCastHit.point;
-        }
+        
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -106,10 +103,16 @@ public class PlayerInputController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //TODO :: 여기서 공격이랑 연결해서 쓰기
-            if (lockOnPoint != Vector3.zero)
+            if (lockOnPoint == new Vector3(0,0,0))
+            {
                 attackinputEvent?.Invoke(aimWorldPoint);
+                Debug.Log($"aimWorldPoint : {aimWorldPoint}");
+            }
             else
+            {
                 attackinputEvent?.Invoke(lockOnPoint);
+                Debug.Log($"lockOnPoint : {lockOnPoint}");
+            }
         }
 
 
@@ -136,19 +139,19 @@ public class PlayerInputController : MonoBehaviour
                     lockOnObject = lockOnColliders[i].gameObject;
                 }
 
-                //록온 UI위치 지속적으로 변경
+                //록온된 오브젝트가 있다면 UI위치 지속적으로 변경
                 if (lockOnObject != null)
                 {
                     lockOnPoint = lockOnObject.transform.position;
-                    LockOnMove?.Invoke(lockOnPoint);
+                    LockOnMoveEvent?.Invoke(lockOnPoint);
 
 
-                    //서치 가능 제한을 넘어설 경우 서치 헤제
+                    //서치 가능 제한을 넘어설 경우 서치 해제
                     if ((realLockOnAngleLimit < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)))
                     {
                         lockOnPoint = Vector3.zero;
                         lockOnObject = null;
-                        LockOnMove?.Invoke(Vector3.zero);
+                        LockOnMoveEvent?.Invoke(Vector3.zero);
                     }
                 }
             }
@@ -157,7 +160,7 @@ public class PlayerInputController : MonoBehaviour
         {
             lockOnPoint = Vector3.zero;
             lockOnObject = null;
-            LockOnMove?.Invoke(Vector3.zero);
+            LockOnMoveEvent?.Invoke(Vector3.zero);
         }
 
 
