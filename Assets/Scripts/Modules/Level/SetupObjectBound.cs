@@ -22,7 +22,7 @@ public class SetupObjectBound
         }
     }
 
-    public Vector3 Size { get { return boxCollider.size; } }
+    public Vector3 Size { get { return Vector3.Scale(boxCollider.size, transform.localScale); } }
     public Vector3 Foward { get { return Center + (transform.forward * Size.z * 0.5f); } }
     public Vector3 Back { get { return Center + (-transform.forward * Size.z * 0.5f); } }
     public Vector3 Left { get { return Center + (-transform.right * Size.x * 0.5f); } }

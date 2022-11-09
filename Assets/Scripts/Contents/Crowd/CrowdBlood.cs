@@ -8,8 +8,6 @@ public class CrowdBlood : CrowdBehaviour
     /// 일정 시간마다 체력의 %비율이 지속적으로 감소됩니다.
     /// </summary>
     /// 
-    [SerializeField]
-    private int damagePercent = 0;
 
     [SerializeField]
     private float activeCalcTime = .0f;
@@ -21,7 +19,9 @@ public class CrowdBlood : CrowdBehaviour
 
         if (activeCalcTime <= 0)
         {
-            float damageResult = (playerController.GetStatus().currentStatus.GetElement(StatusType.HP).GetAmount() / 100) * damagePercent;
+            var damageElement = GetBuffData().GetStatusElement(StatusType.HP);
+            float damageResult = playerController.GetStatus().currentStatus.GetElement(StatusType.HP).CalculateTotalAmount() 
+                * (damageElement.GetPercent() / 100f);
 
             playerController?.OnDamage(new DamageInfo()
             {
@@ -31,7 +31,7 @@ public class CrowdBlood : CrowdBehaviour
             });
             activeCalcTime = activeStandardTime;
         }
-        
+
     }
 
     public override void UnActive()

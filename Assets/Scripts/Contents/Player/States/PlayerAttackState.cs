@@ -197,6 +197,12 @@ public class PlayerAttackState : PlayerStateBase
         weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
     }
 
+    public void CreateAttackVFX() {
+        var vfxData = currentAttackWeaponData.AttackVFXDataList[currentComboIndex];
+        var vfxObject = Instantiate(vfxData.GetVFXPrefab("Attack"), transform);
+        //vfxObject.transform.forward = transform.forward;
+    }
+
     public void PlayAttack()
     {
         if (!isAttack)

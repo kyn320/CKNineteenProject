@@ -255,10 +255,10 @@ MonoBehaviour:
   isMoveable: 0
   attackAnimationType: 7
   comboCount: 0
+  attackVFXDataList:
+  - {fileID: 11400000, guid: 2b1d714a92886434e9fc658b64471e5a, type: 2}
   hitBoxDataList:
   - {fileID: 11400000, guid: 2482a56390449154694930aae57e87ee, type: 2}
   pivotOffsetList:
   - position: {x: 0, y: 0, z: 0}
-    rotatation: {x: 0, y: 0, z: 0, w: 0}
-  screenVFXVolumeData: {fileID: 11400000, guid: d2b378ee9bb61b4499aa432f0cb5ecc1,
-    type: 2}
+    rotatation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
