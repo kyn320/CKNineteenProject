@@ -51,6 +51,7 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]
     private LayerMask lockOnFindLayer;
 
+    //UI에 옯겨서 사용해주세요
     [SerializeField]
     UnityEvent<Vector3> LockOnMoveEvent;
 
