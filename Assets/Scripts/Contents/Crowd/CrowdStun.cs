@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CrowdStun : CrowdBehaviour
 {
+
     public override void Active()
     {
-        playerController.GetInputController().enabled = false;
     }
 
     public override void UnActive()
@@ -16,6 +16,6 @@ public class CrowdStun : CrowdBehaviour
 
     protected override void ApplyCrowd()
     {
-        crowdType = CrowdType.Stun;
+        playerController.GetInputController().enabled = false;
     }
 }

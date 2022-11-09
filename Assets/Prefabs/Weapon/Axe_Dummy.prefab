@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7362555970600566325, guid: d263fa6168ad1814581c86a6a483cb75, type: 3}
+  - {fileID: -7362555970600566325, guid: 1ec0af75d78171345859380e3377e2a8, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,3 +112,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
+  hitPauseWaitTime: 0.1
+  hitPauseTime: 0.1

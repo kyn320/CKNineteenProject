@@ -107,11 +107,11 @@ public class MonsterController : MonoBehaviour, IDamageable, IHitPauseable
         }
         else
         {
-            if (damageInfo.isCritical)
+            if (damageInfo.isCritical && damageInfo.isKnockBack)
             {
                 ChangeState(MonsterStateType.MONSTERSTATE_CRITICALHIT);
             }
-            else
+            else if (damageInfo.isKnockBack)
             {
                 ChangeState(MonsterStateType.MONSTERSTATE_HIT);
             }

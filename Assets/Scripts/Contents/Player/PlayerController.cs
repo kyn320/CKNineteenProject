@@ -102,6 +102,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
         return animator;
     }
 
+    public void SetStateEnbaled(PlayerStateType type, bool isTrigger)
+    {
+        statesDic[type].enabled = isTrigger;
+    }
+
     public PlayerInputController GetInputController()
     {
         return inputController;
@@ -135,11 +140,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
         {
             ChangeState(PlayerStateType.Death);
         }
-        else if (damageInfo.isCritical)
+        else if (damageInfo.isCritical && damageInfo.isKnockBack)
         {
             ChangeState(PlayerStateType.CriticalHit);
         }
-        else
+        else if(damageInfo.isKnockBack)
         {
             ChangeState(PlayerStateType.Hit);
         }

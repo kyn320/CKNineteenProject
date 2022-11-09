@@ -4,14 +4,33 @@ using UnityEngine;
 
 public class CrowdBlood : CrowdBehaviour
 {
+    /// <summary>
+    /// 일정 시간마다 체력의 %비율이 지속적으로 감소됩니다.
+    /// </summary>
+    /// 
+
     [SerializeField]
-    private float activeTime = .0f;
-    [SerializeField]
-    private int decreasePercent = 0;
+    private float activeCalcTime = .0f;
+    private float activeStandardTime = .0f;
 
     public override void Active()
     {
-        // 플레이어 체력을 가져와서, Active 상태에서 일정한 시간 마다 피가 줄어들게 설정.
+        activeCalcTime -= Time.deltaTime;
+
+        if (activeCalcTime <= 0)
+        {
+            var damageElement = GetBuffData().GetStatusElement(StatusType.HP);
+            float damageResult = playerController.GetStatus().currentStatus.GetElement(StatusType.HP).CalculateTotalAmount() 
+                * (damageElement.GetPercent() / 100f);
+
+            playerController?.OnDamage(new DamageInfo()
+            {
+                damage = damageResult,
+                isCritical = false,
+                isKnockBack = false
+            });
+            activeCalcTime = activeStandardTime;
+        }
 
     }
 
@@ -22,10 +41,6 @@ public class CrowdBlood : CrowdBehaviour
 
     protected override void ApplyCrowd()
     {
-        crowdType = CrowdType.Blood;
-
-        currentLifeTime = activeTime;
-        isActive = true;
 
     }
 }
