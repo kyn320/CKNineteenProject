@@ -212,17 +212,22 @@ public class BezierCurve : MonoBehaviour
         pointAnchor.transform.SetParent(transform);
         var curvePoint = pointAnchor.AddComponent<CurvePoint>();
         curvePoint.SetAnchor(pointAnchor.transform);
-
+        //앵커 위치 로컬로 배치
+        pointAnchor.transform.localPosition = Vector3.zero;
 
         //왼쪽 핸들 생성
         var leftHandle = new GameObject("LeftHandle");
         leftHandle.transform.SetParent(pointAnchor.transform);
         curvePoint.SetLeftHandle(leftHandle.transform);
+        //왼쪽 핸들 로컬로 배치
+        leftHandle.transform.localPosition = Vector3.left;
 
         //오른쪽 핸들 생성
         var rightHandle = new GameObject("RightHandle");
         rightHandle.transform.SetParent(pointAnchor.transform);
         curvePoint.SetRightHandle(rightHandle.transform);
+        //오른쪽 핸들 로컬로 배치
+        rightHandle.transform.localPosition = Vector3.right;
 
         pointList.Add(curvePoint);
 
@@ -314,24 +319,24 @@ public class BezierCurve : MonoBehaviour
             }
         }
 
-        if (showStepProgress)
+        if (showStepProgress && lineList.Count > 0)
         {
             var progress = 0f;
             while (progress < lineList.Count)
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawSphere(GetPosition(progress), 1f);
+                Gizmos.DrawSphere(GetPosition(progress), pointRadius);
                 progress += stepProgressAmount;
             }
 
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(GetPosition(lineList.Count), 1f);
+            Gizmos.DrawSphere(GetPosition(lineList.Count), pointRadius);
         }
 
         for (var i = 0; i < searchProgressList.Count; ++i)
         {
             Gizmos.color = Color.magenta;
-            Gizmos.DrawSphere(searchProgressList[i], 1f);
+            Gizmos.DrawSphere(searchProgressList[i], pointRadius);
         }
     }
 
