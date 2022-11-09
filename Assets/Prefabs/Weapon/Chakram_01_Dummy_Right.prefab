@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 6843325645673205883}
   - component: {fileID: 4904664783250206120}
   m_Layer: 8
-  m_Name: Chakram_01_Dummy
+  m_Name: Chakram_01_Dummy_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938176264512456523}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5646372, y: 0.51454055, z: 0.09284386}
@@ -215,6 +215,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationList:
   - {fileID: 11400000, guid: fdb162b5754f3a941b591b0de3bb8c0c, type: 2}
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopEvent:
+    m_PersistentCalls:
+      m_Calls: []
   stopActionType: 0
   autoActiveByPlay: 0
   autoStartPlay: 0
@@ -247,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be95b62790a724041b3201b462194452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileController: {fileID: 0}
+  projectileController: {fileID: -8473696380066206174}
   startPoint: {x: 0, y: 0, z: 0}
   endPoint: {x: 0, y: 0, z: 0}
   maxDistance: 0

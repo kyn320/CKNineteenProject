@@ -500,7 +500,9 @@ MonoBehaviour:
       m_Calls: []
   spiritObject: {fileID: 0}
   spiritPivot: {fileID: 660589262}
-  handBone: {fileID: 0}
+  handBones:
+  - {fileID: 4051896872484096371}
+  - {fileID: 7731805628854102056}
   damageCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
   criticalDamageCalculator: {fileID: 11400000, guid: abf026fdca9ff9646b383fc39cfc0800,
     type: 2}
@@ -1136,6 +1138,12 @@ MonoBehaviour:
       rayHitNormal: {x: 0, y: 0, z: 0}
   isActiveIK: 1
   gizmoSize: 0.125
+--- !u!4 &4051896872484096371 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 514645658704629951, guid: 0877daf60f4a8d74e897543d21fd9b03,
+    type: 3}
+  m_PrefabInstance: {fileID: 4548452843503688140}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4077412145646173735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0877daf60f4a8d74e897543d21fd9b03,
@@ -1294,6 +1302,12 @@ CapsuleCollider:
   m_Height: 0.5
   m_Direction: 0
   m_Center: {x: 0.25, y: 0, z: 0}
+--- !u!4 &7731805628854102056 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3146963348515327516, guid: 0877daf60f4a8d74e897543d21fd9b03,
+    type: 3}
+  m_PrefabInstance: {fileID: 4548452843503688140}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &7959492675666158685 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 0877daf60f4a8d74e897543d21fd9b03,

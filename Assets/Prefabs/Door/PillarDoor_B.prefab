@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4823838477346695819}
   - component: {fileID: 7283799167767191109}
   - component: {fileID: 7283799167767191108}
-  - component: {fileID: 7283799167767191107}
   - component: {fileID: 7283799167767191106}
+  - component: {fileID: 7283799167767191107}
   m_Layer: 0
   m_Name: PillarDoor_B
   m_TagString: Untagged
@@ -113,44 +113,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  openAnimator: {fileID: 7283799167767191107}
+  openAnimator: {fileID: 7283799167767191106}
   beginOpenEvent:
     m_PersistentCalls:
       m_Calls: []
   endOpenEvent:
     m_PersistentCalls:
       m_Calls: []
-  closeAnimator: {fileID: 7283799167767191106}
+  closeAnimator: {fileID: 7283799167767191107}
   beginCloseEvent:
     m_PersistentCalls:
       m_Calls: []
   endCloseEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7283799167767191107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6481044874378595166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 380e1a398b4fda942a91fb512f26e419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationList:
-  - {fileID: 11400000, guid: bf8236104b70aea4d9cba9bdac2c09fc, type: 2}
-  completeEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  stopEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  stopActionType: 0
-  autoActiveByPlay: 0
-  autoStartPlay: 0
-  resetOriginTransformByStop: 0
 --- !u!114 &7283799167767191106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +141,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationList:
   - {fileID: 11400000, guid: c4cf9063ee719634e8178ac258709e5f, type: 2}
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopActionType: 0
+  autoActiveByPlay: 0
+  autoStartPlay: 0
+  resetOriginTransformByStop: 0
+--- !u!114 &7283799167767191107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481044874378595166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 380e1a398b4fda942a91fb512f26e419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationList:
+  - {fileID: 11400000, guid: bf8236104b70aea4d9cba9bdac2c09fc, type: 2}
   completeEvent:
     m_PersistentCalls:
       m_Calls: []
