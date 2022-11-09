@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f74766f31b7aac349a0e659178fdba4e, type: 3}
-  m_Name: UIBuffColorData
+  m_Script: {fileID: 11500000, guid: 65d52c67487f94c41b666d412b7b76ca, type: 3}
+  m_Name: TrapStatus
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,12 +21,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  colorDic:
-    keys:
-    - Buff
-    - DeBuff
-    - Crowd
+  statusDic:
+    keys: 05000000
     values:
-    - {r: 0.15686274, g: 1, b: 0, a: 1}
-    - {r: 1, g: 0, b: 0, a: 1}
-    - {r: 1, g: 0.86603415, b: 0, a: 0}
+    - type: 5
+      name: MaxAttackPower
+      amount: 100
+      percent: 0
