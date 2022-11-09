@@ -12,6 +12,10 @@ public class WeaponData : ItemData
     public WeaponType WeaponType { get { return weaponType; } }
 
     [SerializeField]
+    private HandType handType;
+    public HandType HandType { get { return handType; } }
+
+    [SerializeField]
     private WeaponAttackType attackType;
     public WeaponAttackType AttackType { get { return attackType; } }
 
@@ -43,5 +47,9 @@ public class WeaponData : ItemData
     [SerializeField]
     private List<PivotOffsetData> pivotOffsetList;
     public List<PivotOffsetData> PivotOffsetDataList { get { return pivotOffsetList; } }
+
+    [SerializeField]
+    private List<GameObject> subWeaponList;
+    public List<GameObject> SubWeaponList { get { return subWeaponList; } }
 
 }

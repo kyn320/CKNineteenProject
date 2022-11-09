@@ -250,11 +250,16 @@ MonoBehaviour:
         amount: 0
         percent: 0
   weaponType: 4
+  handType: 2
   attackType: 2
   projectileMoveType: 3
   isMoveable: 0
   attackAnimationType: 4
+  comboCount: 0
+  attackVFXDataList: []
   hitBoxDataList: []
   pivotOffsetList:
   - position: {x: 0, y: 0, z: 0}
     rotatation: {x: 0, y: 0, z: 0, w: 0}
+  subWeaponList:
+  - {fileID: 1938176264512456523, guid: 5b52afbe77df8d64db6f364b0c2997a8, type: 3}

@@ -49,7 +49,14 @@ public class PlayerAttackState : PlayerStateBase
     [ShowInInspector]
     private List<ItemSlot> equipSlotDatas = new List<ItemSlot>();
 
-    private GameObject weaponObject;
+    [ReadOnly]
+    [ShowInInspector]
+    private List<GameObject> weaponSpawnObjectList = new List<GameObject>();
+    [ReadOnly]
+    [ShowInInspector]
+    private List<Transform> weaponHandBoneList = new List<Transform>();
+
+
     private Vector3 weaponSpawnPoint;
     [ReadOnly]
     [ShowInInspector]
@@ -57,8 +64,9 @@ public class PlayerAttackState : PlayerStateBase
     [ReadOnly]
     [ShowInInspector]
     private Vector3 aimPoint;
+
     [SerializeField]
-    private Transform handBone;
+    private Transform[] handBones = new Transform[2];
 
     private Animator animator;
 
@@ -187,20 +195,58 @@ public class PlayerAttackState : PlayerStateBase
 
         attackStateType = AttackStateType.Spawn;
 
+        GameObject weaponObject = null;
+
         //무기 소환 및 선 딜레이 시작
         //spiritPivot.SetOffset(handBone.position);
 
+        switch (currentAttackWeaponData.HandType)
+        {
+            case HandType.Left:
+                weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
+                weaponObject.transform.SetParent(handBones[0]);
+                weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
+                weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
+                weaponSpawnObjectList.Add(weaponObject);
+                weaponHandBoneList.Add(handBones[0]);
+                break;
+            case HandType.Right:
+                weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
+                weaponObject.transform.SetParent(handBones[1]);
+                weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
+                weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
+                weaponSpawnObjectList.Add(weaponObject);
+                weaponHandBoneList.Add(handBones[1]);
+                break;
+            case HandType.All:
+                for (var i = 0; i < 2; ++i)
+                {
+                    if (i == 0)
+                    {
+                        weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
+                    }
+                    else
+                    {
+                        weaponObject = Instantiate(currentAttackWeaponData.SubWeaponList[i - 1]);
+                    }
+
+                    weaponObject.transform.SetParent(handBones[i]);
+                    weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
+                    weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
+                    weaponSpawnObjectList.Add(weaponObject);
+                    weaponHandBoneList.Add(handBones[i]);
+                }
+                break;
+        }
+
         //무기 소환
-        weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
-        weaponObject.transform.SetParent(handBone);
-        weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
-        weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
+
     }
 
-    public void CreateAttackVFX() {
+    public void CreateAttackVFX()
+    {
         var vfxData = currentAttackWeaponData.AttackVFXDataList[currentComboIndex];
         var vfxObject = Instantiate(vfxData.GetVFXPrefab("Attack"), transform);
-        //vfxObject.transform.forward = transform.forward;
     }
 
     public void PlayAttack()
@@ -231,28 +277,37 @@ public class PlayerAttackState : PlayerStateBase
             case WeaponAttackType.None:
                 break;
             case WeaponAttackType.Melee:
-                var weaponController = weaponObject.GetComponent<WeaponController>();
-                weaponController.SetOwnerObject(this.gameObject);
-                weaponController.SetWeaponData(currentAttackWeaponData);
-                weaponController.hitEvnet.AddListener(SuccessHit);
-                weaponController.SetStatus(damageAmount, isCritical);
-                weaponController.CreateAttackHitBox(currentComboIndex);
+                for (var i = 0; i < weaponSpawnObjectList.Count; ++i)
+                {
+                    var weaponController = weaponSpawnObjectList[i].GetComponent<WeaponController>();
+                    weaponController.SetOwnerObject(this.gameObject);
+                    weaponController.SetWeaponData(currentAttackWeaponData);
+                    weaponController.hitEvnet.AddListener(SuccessHit);
+                    weaponController.SetStatus(damageAmount, isCritical);
+                    weaponController.CreateAttackHitBox(currentComboIndex);
+                }
                 break;
             case WeaponAttackType.Projectile:
+                for (var i = 0; i < weaponSpawnObjectList.Count; ++i)
+                {
+                    var weaponObject = weaponSpawnObjectList[i];
+                    var handBone = weaponHandBoneList[i];
 
-                weaponObject.transform.SetParent(null);
-                //spiritPivot.SetOriginOffset();
-                sonicBoomVFX.SetActive(true);
-                //방향 계산     
-                projectileDirection = aimPoint - handBone.transform.position;
-                var projectileController = weaponObject.GetComponent<ProjectileController>();
-                projectileController.hitEvnet.AddListener(SuccessHit);
-                projectileController.SetStatus(damageAmount, isCritical);
-                projectileController.Shot(handBone.position
-                    , aimPoint
-                    , projectileDirection.normalized
-                    , currentAttackWeaponData.StatusInfoData.GetElement(StatusType.ThrowSpeed).GetAmount()
-                    , currentAttackWeaponData.StatusInfoData.GetElement(StatusType.AttackDistance).GetAmount());
+                    weaponObject.transform.SetParent(null);
+                    //spiritPivot.SetOriginOffset();
+                    sonicBoomVFX.SetActive(true);
+                    //방향 계산     
+                    projectileDirection = aimPoint - handBone.transform.position;
+                    Debug.Log(projectileDirection);
+                    var projectileController = weaponObject.GetComponent<ProjectileController>();
+                    projectileController.hitEvnet.AddListener(SuccessHit);
+                    projectileController.SetStatus(damageAmount, isCritical);
+                    projectileController.Shot(handBone.position
+                        , aimPoint
+                        , projectileDirection.normalized
+                        , currentAttackWeaponData.StatusInfoData.GetElement(StatusType.ThrowSpeed).GetAmount()
+                        , currentAttackWeaponData.StatusInfoData.GetElement(StatusType.AttackDistance).GetAmount());
+                }
                 break;
         }
 
@@ -289,16 +344,18 @@ public class PlayerAttackState : PlayerStateBase
             case WeaponAttackType.None:
                 break;
             case WeaponAttackType.Melee:
-                if (weaponObject != null)
+                if (weaponSpawnObjectList.Count > 0)
                 {
-                    Destroy(weaponObject);
+                    Destroy(weaponSpawnObjectList[0]);
                 }
                 break;
             case WeaponAttackType.Projectile:
                 break;
         }
 
-        weaponObject = null;
+        weaponSpawnObjectList.Clear();
+        weaponHandBoneList.Clear();
+
         weaponSpawnPoint = Vector3.zero;
 
         //공격 초기화
@@ -341,9 +398,13 @@ public class PlayerAttackState : PlayerStateBase
         if (!isAttack)
             return;
 
-        if (weaponObject != null)
+        if (weaponSpawnObjectList.Count > 0)
         {
-            Destroy(weaponObject);
+            for (var i = 0; i < weaponSpawnObjectList.Count; ++i)
+            {
+
+                Destroy(weaponSpawnObjectList[i]);
+            }
         }
 
         spiritPivot.SetOriginOffset();
