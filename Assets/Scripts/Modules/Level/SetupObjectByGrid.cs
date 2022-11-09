@@ -12,8 +12,11 @@ public class SetupObjectByGrid : MonoBehaviour
     [SerializeField]
     private Vector2Int gridSize;
 
+    [ReadOnly]
     [SerializeField]
-    private List<GameObject> setupObjectList;
+    private List<GameObject> setupObjectList = new List<GameObject>();
+
+    [ReadOnly]
     [SerializeField]
     private SetupObjectBound setupObjectBound;
 

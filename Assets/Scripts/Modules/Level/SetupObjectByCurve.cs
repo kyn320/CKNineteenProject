@@ -24,10 +24,13 @@ public class SetupObjectByCurve : MonoBehaviour
 
     public int setupObjectCount;
 
+    [ReadOnly]
     [SerializeField]
-    private List<GameObject> setupObjectList;
+    private List<GameObject> setupObjectList = new List<GameObject>();
+
+    [ReadOnly]
     [SerializeField]
-    private List<SetupObjectBound> setupObjectBoundList;
+    private List<SetupObjectBound> setupObjectBoundList = new List<SetupObjectBound>();
 
     [SerializeField]
     private bool useAutoUpdate = true;
