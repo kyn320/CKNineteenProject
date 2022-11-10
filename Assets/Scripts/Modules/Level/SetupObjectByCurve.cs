@@ -96,6 +96,7 @@ public class SetupObjectByCurve : MonoBehaviour
             {
                 var prevBound = setupObjectBoundList[i - 1];
                 var nextBound = setupObjectBoundList[i];
+
                 var snapPointData = GetSnapPointData(prevBound);
                 var farPointData = bezierCurve.GetPositionToDistance(snapPointData.progress, GetBoundDistanceByAxis(nextBound) + snapOffset);
 
@@ -213,14 +214,18 @@ public class SetupObjectByCurve : MonoBehaviour
     [Button("오브젝트 재 설정")]
     public void UpdateSetupObjects()
     {
+#if UNITY_EDITOR
         RemoveAllObjects();
 
         for (var i = 0; i < setupObjectCount; ++i)
         {
-            var element = Instantiate(GetRandomObject(), transform);
+            var element = UnityEditor.PrefabUtility.InstantiatePrefab(GetRandomObject()) as GameObject;
+            element.transform.SetParent(transform);
+
             setupObjectList.Add(element);
             setupObjectBoundList.Add(new SetupObjectBound());
         }
+#endif
     }
 
     [Button("오브젝트 전체 삭제")]

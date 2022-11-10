@@ -96,17 +96,21 @@ public class SetupObjectByGrid : MonoBehaviour
     [Button("오브젝트 재 설정")]
     public void UpdateSetupObjects()
     {
+#if UNITY_EDITOR
         RemoveAllObjects();
         var setupObjectCount = gridSize.x * gridSize.y;
         setupObjectBound = new SetupObjectBound();
 
         for (var i = 0; i < setupObjectCount; ++i)
         {
-            var element = Instantiate(setupPrefab, transform);
+            var element = UnityEditor.PrefabUtility.InstantiatePrefab(setupPrefab) as GameObject;
+            element.transform.SetParent(transform);
+
             setupObjectList.Add(element);
         }
 
         UpdateGrid();
+#endif
     }
 
     [Button("전체 높이 위치 수정")]
