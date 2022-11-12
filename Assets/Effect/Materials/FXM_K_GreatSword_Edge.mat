@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FXM_K_GreatSwordTrail
+  m_Name: FXM_K_GreatSword_Edge
   m_Shader: {fileID: 4800000, guid: 3d8dfeb19a060554f8014831ed6e1148, type: 3}
   m_ValidKeywords:
   - _USE_CUSTOM_ON
@@ -55,7 +55,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 066021ea85d281a429e2ca106949ef5f, type: 3}
+        m_Texture: {fileID: 2800000, guid: e289ab1f9732f4b4191690348981871a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -112,8 +112,8 @@ Material:
     - _MainTex_Mult: 1
     - _Main_Inten: -0.75
     - _Main_Upanner: 0.066
-    - _Mask_Mult: 2.28
-    - _Mask_Power: 1
+    - _Mask_Mult: 4.86
+    - _Mask_Power: 1.54
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -125,6 +125,12 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _TessEdgeLength: 16
+    - _TessMax: 25
+    - _TessMaxDisp: 25
+    - _TessMin: 10
+    - _TessPhongStrength: 0.5
+    - _TessValue: 16
     - _Use_Custom: 1
     - _Use_Custom1: 1
     - _WorkflowMode: 1
@@ -134,7 +140,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TintColor: {r: 3.0442483, g: 11.141703, b: 22.363522, a: 0}
+    - _TintColor: {r: 29.857058, g: 29.857058, b: 29.857058, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8609231664776061200
 MonoBehaviour:

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FXM_K_GreatSwordTrail
-  m_Shader: {fileID: 4800000, guid: 3d8dfeb19a060554f8014831ed6e1148, type: 3}
+  m_Name: FXM_K_GreatSword_TrailDistort
+  m_Shader: {fileID: 4800000, guid: 9c0e41e51302f144fa8a716358546770, type: 3}
   m_ValidKeywords:
   - _USE_CUSTOM_ON
   m_InvalidKeywords:
@@ -46,21 +46,21 @@ Material:
         m_Texture: {fileID: 2800000, guid: 716a2bcab0e5f994b8e7b949a288e34f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _EdgeTex:
-        m_Texture: {fileID: 2800000, guid: e289ab1f9732f4b4191690348981871a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 066021ea85d281a429e2ca106949ef5f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3d7c37708918afb4b90d87ea9fbd3cdd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTex:
+        m_Texture: {fileID: 2800000, guid: ea946ad52c45cff43b0f4bb6e2745571, type: 3}
+        m_Scale: {x: 0.24, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -71,10 +71,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -103,18 +99,17 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _Diss_Val: 1
+    - _Distort_Upanner: 0.166
     - _DstBlend: 0
-    - _Edge_Inten: 4.6836686
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MainTex_Mult: 1
-    - _Main_Inten: -0.75
     - _Main_Upanner: 0.066
     - _Mask_Mult: 2.28
     - _Mask_Power: 1
     - _Metallic: 0
+    - _Normal_Scale: 0.192
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -134,7 +129,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TintColor: {r: 3.0442483, g: 11.141703, b: 22.363522, a: 0}
+    - _TintColor: {r: 3.044249, g: 8.781487, b: 22.363522, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8609231664776061200
 MonoBehaviour:
