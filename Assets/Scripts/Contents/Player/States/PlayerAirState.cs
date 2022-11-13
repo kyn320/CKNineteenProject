@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAirState : PlayerStateBase
 {
     [SerializeField]
-    private float gravity = 9.81f;
+    private float gravityScale = 2f;
 
     private Animator animator;
     private Vector3 inputVector;
@@ -22,7 +22,7 @@ public class PlayerAirState : PlayerStateBase
 
     public override void Enter()
     {
-        controller.GetRigidbody().useGravity = true;
+        controller.GetRigidbody().useGravity = false;
         for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
         {
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
@@ -50,6 +50,8 @@ public class PlayerAirState : PlayerStateBase
             else
                 controller.ChangeState(PlayerStateType.Idle);
         }
+
+        controller.GetRigidbody().AddForce(Physics.gravity * gravityScale, ForceMode.Acceleration);
     }
 
     public void UpdateMoveInput(Vector3 inputVector)

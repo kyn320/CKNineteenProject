@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+  mouseDPI: 1
   allowInput: 1
   moveInputEvent:
     m_PersistentCalls:
@@ -383,7 +384,7 @@ MonoBehaviour:
   lockOnFindLayer:
     serializedVersion: 2
     m_Bits: 64
-  LockOnMove:
+  LockOnMoveEvent:
     m_PersistentCalls:
       m_Calls: []
   lockOnPoint: {x: 0, y: 0, z: 0}
@@ -476,7 +477,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  gravity: 9.81
+  gravityScale: 2
 --- !u!114 &1294546403
 MonoBehaviour:
   m_ObjectHideFlags: 0
