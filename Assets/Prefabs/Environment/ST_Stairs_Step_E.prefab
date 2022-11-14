@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6403843163559857607}
   - component: {fileID: 8030163296214811234}
   - component: {fileID: 5229850907693512360}
+  - component: {fileID: 4452340937656684192}
   m_Layer: 0
   m_Name: ST_Stairs_Step_E
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4452340937656684192
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6022673627613026173}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5079826, y: 0.16835177, z: 0.34831497}
+  m_Center: {x: 0.00000023841858, y: -0.000000011175871, z: 0.0000002682209}

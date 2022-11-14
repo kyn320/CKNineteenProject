@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4468552084671286370}
   - component: {fileID: 697116654343472071}
   - component: {fileID: 3335004235530385165}
+  - component: {fileID: 6009371329443774161}
   m_Layer: 0
   m_Name: ST_Ceiling_B
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6009371329443774161
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3839508754124609240}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.0178294, y: 0.56647944, z: 6.555821}
+  m_Center: {x: 0, y: 0.28323853, z: -0.00000047683716}
