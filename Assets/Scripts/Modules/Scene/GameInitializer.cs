@@ -15,7 +15,7 @@ public class GameInitializer : MonoBehaviour
         var saveData = SaveLoadSystem.Instance.SaveLoadData;
 
         var bgmVolume = saveData.bgmVolume;
-        var sfxVolume = saveData.bgmVolume;
+        var sfxVolume = saveData.sfxVolume;
 
         SoundManager.Instance.ChangeBGMVolume(bgmVolume);
         SoundManager.Instance.ChangeSFXVolume(sfxVolume);
