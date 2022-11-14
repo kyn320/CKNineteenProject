@@ -10,6 +10,9 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField]
     private GameObject mainCamera;
 
+    [SerializeField]
+    private float mouseDPI = 1f;
+
     public bool allowInput = true;
 
     [ReadOnly]
@@ -26,29 +29,38 @@ public class PlayerInputController : MonoBehaviour
     public UnityEvent<Vector3> attackinputEvent;
 
 
+
     [ReadOnly]
     [ShowInInspector]
     private Vector3 aimWorldPoint;
     private RaycastHit aimRayCastHit;
 
-
     [Header("LockOnSetting")]
-    [SerializeField]
-    private float lockOnFindLength = 10f;
 
+    //록온 가능 거리
     [SerializeField]
-    private float lockOnAngleLimit = 10f;
+    private float lockOnFindLength = 15f;
 
+    //록온 각도 범위
     [SerializeField]
-    private GameObject lockOnUI;
+    private float lockOnAngleLimit = 15f;
+    [SerializeField]
+    private float realLockOnAngleLimit = 15f;
+
+    //우클릭시 범위 확산 배율
+    [SerializeField]
+    private float lockOnAngleDiffusion = 2.5f;
 
     [SerializeField]
     private LayerMask lockOnFindLayer;
 
+    //UI에 옯겨서 사용해주세요
+    [SerializeField]
+    UnityEvent<Vector3> LockOnMoveEvent;
 
-    private bool isLockOn;
-    private GameObject lockOnObject = null;
+    [SerializeField]
     private Vector3 lockOnPoint;
+    private GameObject lockOnObject = null;
     private Collider[] lockOnColliders = null;
     private float[] lockOnAngle = new float[100];
 
@@ -64,20 +76,16 @@ public class PlayerInputController : MonoBehaviour
         }
 
         var mousePos = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        mouseMoveEvent?.Invoke(mousePos);
+        mouseMoveEvent?.Invoke(mousePos * mouseDPI);
 
         Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out aimRayCastHit);
         Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * MaxAimDistance, Color.blue);
 
-        if (aimRayCastHit.point == Vector3.zero)
-            aimWorldPoint = mainCamera.transform.position + mainCamera.transform.forward * MaxAimDistance;
-        else
-        {
             if (aimRayCastHit.point == Vector3.zero)
                 aimWorldPoint = mainCamera.transform.position + mainCamera.transform.forward * MaxAimDistance;
             else
                 aimWorldPoint = aimRayCastHit.point;
-        }
+        
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -97,72 +105,75 @@ public class PlayerInputController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //TODO :: 여기서 공격이랑 연결해서 쓰기
-            if(isLockOn)
-            attackinputEvent?.Invoke(lockOnPoint);
-            else
-            attackinputEvent?.Invoke(aimWorldPoint);
-        }
-
-        //마우스 우클릭시 록온
-        if (Input.GetMouseButton(1))
-        {
-            isLockOn = true;
-
-            lockOnColliders = Physics.OverlapSphere(transform.position, lockOnFindLength, lockOnFindLayer);
-
-            if (lockOnAngle.Length < lockOnColliders.Length)
-                lockOnAngle = new float[lockOnColliders.Length];
-
-
-            if (lockOnColliders.Length != 0)
+            if (lockOnPoint == new Vector3(0,0,0))
             {
-                for (int i = 0; i < lockOnColliders.Length; i++)
-                {
-                    Vector3 targetDir = (lockOnColliders[i].gameObject.transform.position - mainCamera.transform.position).normalized;
-                    lockOnAngle[i] = Vector3.Angle(mainCamera.transform.forward, targetDir);
-
-                    //록온중인 상대 할당 및 변경
-                    if (lockOnAngle[i] <= lockOnAngleLimit
-                        && (lockOnAngle[i] < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)
-                        || lockOnPoint == Vector3.zero))
-                    {
-                        lockOnObject = lockOnColliders[i].gameObject;
-                    }
-
-                    //록온 UI위치 지속적으로 변경
-                    if (lockOnObject != null)
-                    {
-                        lockOnPoint = lockOnObject.transform.position;
-                        lockOnUI.transform.position = Camera.main.WorldToScreenPoint(lockOnPoint);
-
-
-                        //서치 가능 제한을 넘어설 경우 서치 헤제
-                        if ((lockOnAngleLimit < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)))
-                        {
-                            lockOnObject = null;
-                            lockOnPoint = Vector3.zero;
-                            lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-                        }
-                    }
-                }
+                attackinputEvent?.Invoke(aimWorldPoint);
+                Debug.Log($"aimWorldPoint : {aimWorldPoint}");
             }
             else
             {
-                lockOnObject = null;
-                lockOnPoint = Vector3.zero;
-                lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+                attackinputEvent?.Invoke(lockOnPoint);
+                Debug.Log($"lockOnPoint : {lockOnPoint}");
+            }
+        }
+
+
+
+        //록온
+        lockOnColliders = Physics.OverlapSphere(transform.position, lockOnFindLength, lockOnFindLayer);
+
+        if (lockOnAngle.Length < lockOnColliders.Length)
+            lockOnAngle = new float[lockOnColliders.Length];
+
+
+        if (lockOnColliders.Length != 0)
+        {
+            for (int i = 0; i < lockOnColliders.Length; i++)
+            {
+                Vector3 targetDir = (lockOnColliders[i].gameObject.transform.position - mainCamera.transform.position).normalized;
+                lockOnAngle[i] = Vector3.Angle(mainCamera.transform.forward, targetDir);
+
+                //록온중인 상대 할당 및 변경
+                if (lockOnAngle[i] <= realLockOnAngleLimit
+                    && (lockOnAngle[i] < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)
+                    || lockOnPoint == Vector3.zero))
+                {
+                    lockOnObject = lockOnColliders[i].gameObject;
+                }
+
+                //록온된 오브젝트가 있다면 UI위치 지속적으로 변경
+                if (lockOnObject != null)
+                {
+                    lockOnPoint = lockOnObject.transform.position;
+                    LockOnMoveEvent?.Invoke(lockOnPoint);
+
+
+                    //서치 가능 제한을 넘어설 경우 서치 해제
+                    if ((realLockOnAngleLimit < Vector3.Angle(mainCamera.transform.forward, (lockOnPoint - mainCamera.transform.position).normalized)))
+                    {
+                        lockOnPoint = Vector3.zero;
+                        lockOnObject = null;
+                        LockOnMoveEvent?.Invoke(Vector3.zero);
+                    }
+                }
             }
         }
         else
         {
-            isLockOn = false;
-
-            lockOnObject = null;
             lockOnPoint = Vector3.zero;
-            lockOnUI.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            lockOnObject = null;
+            LockOnMoveEvent?.Invoke(Vector3.zero);
         }
 
 
+        if (Input.GetMouseButton(1))
+        {
+            realLockOnAngleLimit = lockOnAngleLimit * lockOnAngleDiffusion;
+        }
+        else
+        {
+            realLockOnAngleLimit = lockOnAngleLimit / lockOnAngleDiffusion;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -177,5 +188,4 @@ public class PlayerInputController : MonoBehaviour
             moveInputEvent?.Invoke(inputVector);
         }
     }
-
 }

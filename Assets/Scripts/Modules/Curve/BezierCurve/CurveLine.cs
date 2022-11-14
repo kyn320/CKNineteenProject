@@ -17,6 +17,14 @@ public abstract class CurveLine
         get { return points[1]; }
     }
 
+    public void ChangePointsMode(CurvePoint.Mode mode)
+    {
+        for (var i = 0; i < points.Length; ++i)
+        {
+            points[i].SetMode(mode);
+        }
+    }
+
     public bool ContainsPoint(CurvePoint curvePoint)
     {
         for (var i = 0; i < points.Length; ++i)

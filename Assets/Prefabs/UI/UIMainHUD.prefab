@@ -494,7 +494,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationList:
   - {fileID: 11400000, guid: d0731b0bc497d594db3998f73887af15, type: 2}
-  endEvent:
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopEvent:
     m_PersistentCalls:
       m_Calls: []
   stopActionType: 0

@@ -27,12 +27,10 @@ public class UITargetFollower : MonoBehaviour
     {
         if (target != null)
         {
-
             Camera cam = Camera.main;
             var targetPos = RectTransformUtility.WorldToScreenPoint(Camera.main, target.position + targetOffset);
 
             rectTransform.anchoredPosition = targetPos;
-
         }
     }
 

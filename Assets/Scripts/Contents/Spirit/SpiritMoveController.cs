@@ -27,8 +27,28 @@ public class SpiritMoveController : MonoBehaviour
 
     public LayerMask spiritDontHit;
 
+    //정령 회전 중심 오브젝트
+    [SerializeField]
+    GameObject turnTargetObject;
+
+    //회전 반지름
+    [SerializeField]
+    float turnRadius = 0.2f;
+
+    //회전 할 시간
+    [SerializeField]
+    float turnTime = 1.5f;
+    float turnTimer = 0;
+
+    //회전 속도
+    [SerializeField]
+    float moveSpeed = 1000;
+
+    SpiritMoveController spiritMoveController;
+
     private void Awake()
     {
+        spiritMoveController = GetComponent<SpiritMoveController>();
         transform.position = targetTransform.position;
         isMoveable = true;
     }
@@ -80,5 +100,58 @@ public class SpiritMoveController : MonoBehaviour
     public void SetRotation(Quaternion rotation)
     {
         transform.rotation = rotation;
+    }
+
+
+    //정령이 회전하는 동작의 트리거입니다. AttackInput Event등의 이벤트에 넣어서 사용해주세요
+    public void WeaponSpawnMove()
+    {
+        if (spiritMoveController)
+            spiritMoveController.enabled = false;
+
+        isMoveable = false;
+
+        StartCoroutine(TurnMove());
+    }
+
+    public IEnumerator TurnMove()
+    {
+        float deg = 0;
+
+        while (true)
+        {
+            if (turnTime > turnTimer && !isMoveable)
+            {
+                yield return new WaitForFixedUpdate();
+                turnTimer += Time.deltaTime;
+                deg += Time.deltaTime * moveSpeed;
+
+                if (deg < 360)
+                {
+                    var rad = Mathf.Deg2Rad * (deg);
+                    var x = turnRadius * Mathf.Sin(rad);
+                    var y = turnRadius * Mathf.Cos(rad);
+                    Debug.Log($"x : {x} / y : {y} \ndeg : {deg}");
+                    transform.position = turnTargetObject.transform.position + new Vector3(x, y, 0);
+                }
+                else
+                    deg = 0;
+            }
+            else
+            {
+                isMoveable = true;
+
+                if (spiritMoveController)
+                    spiritMoveController.enabled = true;
+
+                turnTimer = 0;
+                yield break;
+            }
+        }
+    }
+
+    public void SetMoveable(bool isSetMoveable)
+    {
+        isMoveable = isSetMoveable;
     }
 }

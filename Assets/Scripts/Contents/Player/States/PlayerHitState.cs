@@ -8,6 +8,8 @@ public class PlayerHitState : PlayerStateBase
     [SerializeField]
     private Vector3 knockBackVector;
 
+    private bool onKnockback = false;
+
     protected override void Awake()
     {
         base.Awake();
@@ -24,9 +26,13 @@ public class PlayerHitState : PlayerStateBase
         }
 
         isStay = true;
-        var knockBackDirection = transform.forward * knockBackVector.z + transform.up * knockBackVector.y;
-        controller.GetRigidbody().velocity = Vector3.zero;
-        controller.GetRigidbody().AddForce(knockBackDirection, ForceMode.Impulse);
+
+        //if (onKnockback)
+        {
+            var knockBackDirection = transform.forward * knockBackVector.z + transform.up * knockBackVector.y;
+            controller.GetRigidbody().velocity = Vector3.zero;
+            controller.GetRigidbody().AddForce(knockBackDirection, ForceMode.Impulse);
+        }
         enterEvent?.Invoke();
     }
 
@@ -51,5 +57,10 @@ public class PlayerHitState : PlayerStateBase
     {
         if (isStay)
             controller.ChangeState(PlayerStateType.Idle);
+    }
+
+    public void UsedKnockback(bool isTrigger)
+    {
+        onKnockback = isTrigger;
     }
 }
