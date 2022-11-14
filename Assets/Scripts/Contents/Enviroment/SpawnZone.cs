@@ -8,13 +8,18 @@ public class SpawnZone : MonoBehaviour
     [SerializeField]
     private Transform spawnPoint;
 
+    [SerializeField]
+    public List<string> tagNames;
+
     public UnityEvent<GameObject> enterZoneEvent;
 
-    private void OnTriggerEnter(Collider other)
+    public void Spawn(Collider other)
     {
-        other.transform.position = spawnPoint.position;
-        other.transform.rotation = spawnPoint.rotation;
+        if (!tagNames.Contains(other.gameObject.tag))
+            return;
 
+        other.transform.position = spawnPoint.position;
         enterZoneEvent?.Invoke(other.gameObject);
     }
+
 }

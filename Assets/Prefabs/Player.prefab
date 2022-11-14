@@ -223,7 +223,7 @@ MonoBehaviour:
   animator: {fileID: 7959492675666158685}
   slopeLimit: 45
   footPointTransform: {fileID: 3827645977113965213}
-  groundCheckRadius: 0.25
+  groundCheckRadius: 0.125
   groundMask:
     serializedVersion: 2
     m_Bits: 1
@@ -477,7 +477,8 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  gravityScale: 2
+  gravityScale: 1.7
+  airMoveSpeedMultiplyer: 1
 --- !u!114 &1294546403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,32 +840,32 @@ PrefabInstance:
     - target: {fileID: -1603731280207961878, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_AABB.m_Center.x
-      value: -0.15130198
+      value: 0.06831223
       objectReference: {fileID: 0}
     - target: {fileID: -1603731280207961878, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_AABB.m_Center.y
-      value: -0.1301215
+      value: -0.10988587
       objectReference: {fileID: 0}
     - target: {fileID: -1603731280207961878, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_AABB.m_Center.z
-      value: -0.44588
+      value: -0.1061127
       objectReference: {fileID: 0}
     - target: {fileID: -1603731280207961878, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_AABB.m_Extent.x
-      value: 0.19163579
+      value: 0.32247964
       objectReference: {fileID: 0}
     - target: {fileID: -1603731280207961878, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_AABB.m_Extent.y
-      value: 0.15598375
+      value: 0.073221475
       objectReference: {fileID: 0}
     - target: {fileID: -1603731280207961878, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_AABB.m_Extent.z
-      value: 0.5596927
+      value: 0.09730841
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
