@@ -17,7 +17,7 @@ MonoBehaviour:
   equipHandType: 2
   itemName: "\uB300 \uAC80"
   description: 
-  icon: {fileID: 21300000, guid: 350f2e489c1d0458db18e969f67cb28a, type: 3}
+  icon: {fileID: 21300000, guid: c7696a4d4e387004eb7bed88b9568c33, type: 3}
   isUnique: 1
   worldObject: {fileID: 7799617847009353881, guid: 458b71b5eb7d5db44a1b94e718dbdf6c,
     type: 3}
@@ -249,7 +249,7 @@ MonoBehaviour:
         name: AfterAttackTime
         amount: 0
         percent: 0
-  weaponType: 7
+  weaponType: 8
   handType: 1
   attackType: 1
   projectileMoveType: 1
@@ -263,3 +263,4 @@ MonoBehaviour:
   pivotOffsetList:
   - position: {x: 0, y: 0, z: 0}
     rotatation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
+  subWeaponList: []
