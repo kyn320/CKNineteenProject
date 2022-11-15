@@ -9,10 +9,17 @@ public class PropBehavior : MonoBehaviour
 {
     [SerializeField]
     private float startCount = .0f;
+    [SerializeField]
+    private float rotationCount = .0f;
+
+    [SerializeField]
+    private float rotationPower = .0f;
+    
+
 
     private Rigidbody rig;
     private BoxCollider coll;
-    private Renderer render;
+    private MeshRenderer render;
 
     bool usedProp = false;
     // Start is called before the first frame update
@@ -20,7 +27,7 @@ public class PropBehavior : MonoBehaviour
     {
         rig = GetComponent<Rigidbody>();
         coll = GetComponent<BoxCollider>();
-        render = GetComponent<Renderer>();
+        render = GetComponent<MeshRenderer>();
 
         if(rig == null || coll == null)
         {
@@ -37,16 +44,18 @@ public class PropBehavior : MonoBehaviour
     IEnumerator FadeOut()
     {
         int i = 100;
+
         while (i > 0)
         {
+            Debug.Log(i);
+
             i -= 1;
-            float f = i / 10.0f;
+            float f = i / 100;
             Color c = render.material.color;
             c.a = f;
-            GetComponent<Renderer>().material.color = c;
+            render.material.color = c;
             yield return new WaitForSeconds(0.02f);
         }
-
         Destroy(this.gameObject);
     }
 
@@ -60,27 +69,41 @@ public class PropBehavior : MonoBehaviour
             if(startCount <= 0)
             {
                 rig.constraints = RigidbodyConstraints.None;
-                StartCoroutine("FadeOut");
+                coll.isTrigger = true;
             }
+            else
+                DownEffect();
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
             usedProp = true;
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Default"))
+        {
+            usedProp = false;
+
+            StartCoroutine("FadeOut");
+            rig.constraints = RigidbodyConstraints.FreezeAll;
+            coll.enabled = false;
+        }
+
+        Debug.Log(other.transform.name);
+    }
+
     private void DownEffect()
     {
+        rotationCount -= Time.deltaTime * 20;
 
+        float power = Mathf.Sin(rotationCount) * rotationPower;
+
+        transform.rotation = Quaternion.Euler(new Vector3(power, transform.position.y, transform.position.z));
     }
-
-    private void DestroyEffect()
-    {
-
-    }
-
 }
