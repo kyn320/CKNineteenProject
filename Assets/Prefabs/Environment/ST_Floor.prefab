@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 4349777530512659264}
   - component: {fileID: 860847284796120293}
   - component: {fileID: 3176919287343425583}
+  - component: {fileID: 8934385394472671996}
   m_Layer: 0
   m_Name: ST_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4349777530512659264
 Transform:
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8934385394472671996
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3969451598817430010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0000913, y: 0.075368926, z: 2.000088}
+  m_Center: {x: 0.00000166893, y: 0.037637472, z: 0}

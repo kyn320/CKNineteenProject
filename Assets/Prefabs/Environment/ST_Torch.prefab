@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 5123274249377920677}
   - component: {fileID: 8121781629323360512}
   - component: {fileID: 6292278639598521802}
+  - component: {fileID: 8959112443169917345}
   m_Layer: 0
   m_Name: ST_Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5123274249377920677
 Transform:
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8959112443169917345
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5499553088973040671}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.771661, y: 3.7555413, z: 1.7716625}
+  m_Center: {x: -0.0000012814999, y: 1.8777707, z: 0.000016540289}

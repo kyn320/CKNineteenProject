@@ -64,7 +64,10 @@ public class PlayerInputController : MonoBehaviour
     private Collider[] lockOnColliders = null;
     private float[] lockOnAngle = new float[100];
 
-
+    private void Start()
+    {
+        mouseDPI = GlobalSetting.Instance.mouseSensitivity / 100f;
+    }
 
     private void Update()
     {

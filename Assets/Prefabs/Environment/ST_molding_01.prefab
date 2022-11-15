@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 7391989729519483537}
   - component: {fileID: 5853066445542864180}
   - component: {fileID: 8565481050598785534}
+  - component: {fileID: 1634957195010248728}
   m_Layer: 0
   m_Name: ST_molding_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7391989729519483537
 Transform:
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1634957195010248728
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916852958357643307}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 0.8365498, z: 0.78381884}
+  m_Center: {x: -0.00000011920929, y: 0.4182733, z: 0.3919093}

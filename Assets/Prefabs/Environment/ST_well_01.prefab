@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 2318687033888612187}
   - component: {fileID: 1694050583787540734}
   - component: {fileID: 3487630328198325300}
+  - component: {fileID: 7870927051284920015}
   m_Layer: 0
   m_Name: ST_well_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2318687033888612187
 Transform:
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7870927051284920015
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127311502668482017}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4043677, y: 1.6396652, z: 1.3085896}
+  m_Center: {x: 0.013384342, y: 0.8198325, z: -0.012915671}

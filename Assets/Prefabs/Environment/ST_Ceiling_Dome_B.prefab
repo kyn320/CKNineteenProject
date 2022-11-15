@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 9063616956887940970}
   - component: {fileID: 5361451847750791375}
   - component: {fileID: 7891224936983610373}
+  - component: {fileID: 2167934135520874471}
   m_Layer: 0
   m_Name: ST_Ceiling_Dome_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &9063616956887940970
 Transform:
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2167934135520874471
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8539879554879284688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.0206175, y: 10.013373, z: 4.9932966}
+  m_Center: {x: 0.3129797, y: 5.0066867, z: 0.3334217}
