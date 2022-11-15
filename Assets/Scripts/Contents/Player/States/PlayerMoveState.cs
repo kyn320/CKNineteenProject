@@ -104,7 +104,7 @@ public class PlayerMoveState : PlayerStateBase
             }
         }
 
-        //땅 밟았을 경우에만 이동 가능 / 안 밟았을 경우 움직이긴 하되 매우 미미하다.
+        //땅 밟았을 경우에만 이동 가능
         if (controller.IsGround())
         {
             moveSpeed = status.currentStatus.GetElement(StatusType.MoveSpeed).CalculateTotalAmount();
@@ -121,7 +121,20 @@ public class PlayerMoveState : PlayerStateBase
             var isSlope = controller.CheckSlope();
             if (isSlope)
             {
+                //경사면 이동 처리
                 moveDirection = controller.GetSlopeDirection(moveDirection);
+            }
+            else
+            {
+                //계단 이동 처리
+                var rayhit = controller.GetStairCastHit();
+                if (rayhit.collider != null)
+                {
+                    Vector3 stairPosition = transform.position;
+                    stairPosition.y = rayhit.point.y;
+
+                    transform.position = Vector3.Lerp(transform.position, stairPosition, Time.deltaTime / 0.1f);
+                }
             }
 
             if (!isAttack)

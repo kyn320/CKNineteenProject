@@ -26,6 +26,9 @@ public class PlayerAirState : PlayerStateBase
 
     public override void Enter()
     {
+        animator.SetTrigger("Airial");
+        animator.SetBool("IsGrounded", false);
+
         moveSpeed = controller.GetStatus().currentStatus.GetElement(StatusType.MoveSpeed).CalculateTotalAmount();
 
         controller.GetRigidbody().useGravity = false;
@@ -51,8 +54,7 @@ public class PlayerAirState : PlayerStateBase
         if(inputVector.z > 0)
             inputVector.z = 0;
 
-        Vector3 viewVector = transform.forward * inputVector.z + transform.right
-    * (inputVector.z < 0f ? -inputVector.x : inputVector.x);
+        Vector3 viewVector = transform.forward * inputVector.z; //+ transform.right * (inputVector.z < 0f ? -inputVector.x : inputVector.x);
 
         var velocity = rigidBody.velocity;
         var isGround = controller.IsGround();

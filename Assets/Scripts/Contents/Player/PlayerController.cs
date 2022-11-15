@@ -40,6 +40,13 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
     private float slopeRayDistance;
     private RaycastHit slopeHit;
 
+    [SerializeField]
+    private float stairCheckRadius;
+    [SerializeField]
+    private float stairRayOffset;
+    [SerializeField]
+    private float stairRayDistance;
+
     public UnityEvent<PlayerBattleStateType> updateBattleStateEvent;
 
     public UnityEvent<DamageInfo> damageEvent;
@@ -144,7 +151,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
         {
             ChangeState(PlayerStateType.CriticalHit);
         }
-        else if(damageInfo.isKnockBack)
+        else if (damageInfo.isKnockBack)
         {
             ChangeState(PlayerStateType.Hit);
         }
@@ -192,12 +199,39 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
         return false;
     }
 
+    public RaycastHit GetGroundedRaycastHit()
+    {
+        Physics.Raycast(footPointTransform.position + Vector3.up * slopeRayOffset
+                , Vector3.down
+                , out slopeHit
+                , slopeRayDistance
+                , groundMask
+                );
+
+        return slopeHit;
+    }
+
+    public RaycastHit GetStairCastHit()
+    {
+        RaycastHit sphereHit;
+
+        Physics.SphereCast(footPointTransform.position + Vector3.up * stairRayOffset
+                , stairCheckRadius
+                , Vector3.down
+                , out sphereHit
+                , stairRayDistance
+                , groundMask
+                );
+
+        return sphereHit;
+    }
+
     public Vector3 GetSlopeDirection(Vector3 moveDirection)
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
-    public virtual void HitPause(float playWaitTime,float lifeTime)
+    public virtual void HitPause(float playWaitTime, float lifeTime)
     {
         if (hitPauseCoroutine != null)
         {

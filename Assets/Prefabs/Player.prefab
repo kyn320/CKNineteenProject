@@ -223,12 +223,15 @@ MonoBehaviour:
   animator: {fileID: 7959492675666158685}
   slopeLimit: 45
   footPointTransform: {fileID: 3827645977113965213}
-  groundCheckRadius: 0.125
+  groundCheckRadius: 0.2
   groundMask:
     serializedVersion: 2
     m_Bits: 1
   slopeRayOffset: 0.5
   slopeRayDistance: 1
+  stairCheckRadius: 0.25
+  stairRayOffset: 0.5
+  stairRayDistance: 1
   updateBattleStateEvent:
     m_PersistentCalls:
       m_Calls:
