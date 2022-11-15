@@ -72665,6 +72665,11 @@ PrefabInstance:
       propertyPath: updateHpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1022972269}
+    - target: {fileID: 3350630234940442445, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3827645977174835326, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: m_IsActive
@@ -72683,22 +72688,22 @@ PrefabInstance:
     - target: {fileID: 3827645977972770106, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15
+      value: 148.5983
       objectReference: {fileID: 0}
     - target: {fileID: 3827645977972770106, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.991419
       objectReference: {fileID: 0}
     - target: {fileID: 3827645977972770106, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: -68.953
       objectReference: {fileID: 0}
     - target: {fileID: 3827645977972770106, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3827645977972770106, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
@@ -72708,7 +72713,7 @@ PrefabInstance:
     - target: {fileID: 3827645977972770106, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3827645977972770106, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
@@ -72723,7 +72728,7 @@ PrefabInstance:
     - target: {fileID: 3827645977972770106, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3827645977972770106, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
@@ -72795,6 +72800,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b85439fd6f0344449a12d39d93a97bbe, type: 2}
+    - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: stairCheckRadius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6507632351326195042, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: updateBattleStateEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -61,7 +61,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3827645977972770106}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &3827645977174835296
 CapsuleCollider:
@@ -121,6 +121,7 @@ Transform:
   m_Children:
   - {fileID: 4077412145646173735}
   - {fileID: 3827645977113965213}
+  - {fileID: 3350630234940442445}
   - {fileID: 3827645977174835327}
   - {fileID: 3827645978462288804}
   - {fileID: 6112353785902175156}
@@ -229,9 +230,10 @@ MonoBehaviour:
     m_Bits: 1
   slopeRayOffset: 0.5
   slopeRayDistance: 1
-  stairCheckRadius: 0.25
-  stairRayOffset: 0.5
-  stairRayDistance: 1
+  stairCheckTransform: {fileID: 3350630234940442445}
+  stairCheckRadius: 0.5
+  stairRayOffset: 0
+  stairRayDistance: 5
   updateBattleStateEvent:
     m_PersistentCalls:
       m_Calls:
@@ -706,7 +708,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3827645977972770106}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &660589262
 MonoBehaviour:
@@ -723,6 +725,37 @@ MonoBehaviour:
   originAxis: {fileID: 4077412145646173735}
   originOffset: {x: -0.5, y: 1, z: 0}
   offset: {x: -0.5, y: 1, z: 0}
+--- !u!1 &8655856459110943596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3350630234940442445}
+  m_Layer: 7
+  m_Name: StairPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3350630234940442445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655856459110943596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3827645977972770106}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4548452843503688140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -843,32 +876,32 @@ PrefabInstance:
     - target: {fileID: -1603731280207961878, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_AABB.m_Center.x
-      value: 0.06831223
+      value: 0.068470776
       objectReference: {fileID: 0}
     - target: {fileID: -1603731280207961878, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_AABB.m_Center.y
-      value: -0.10988587
+      value: -0.10759211
       objectReference: {fileID: 0}
     - target: {fileID: -1603731280207961878, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_AABB.m_Center.z
-      value: -0.1061127
+      value: -0.107831664
       objectReference: {fileID: 0}
     - target: {fileID: -1603731280207961878, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_AABB.m_Extent.x
-      value: 0.32247964
+      value: 0.32263795
       objectReference: {fileID: 0}
     - target: {fileID: -1603731280207961878, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_AABB.m_Extent.y
-      value: 0.073221475
+      value: 0.07092794
       objectReference: {fileID: 0}
     - target: {fileID: -1603731280207961878, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
       propertyPath: m_AABB.m_Extent.z
-      value: 0.09730841
+      value: 0.09903019
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0877daf60f4a8d74e897543d21fd9b03,
         type: 3}
@@ -1547,7 +1580,7 @@ PrefabInstance:
     - target: {fileID: 4270784343080819297, guid: 0e7d547ccea2aeb4b956ca6f7c986e85,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4270784343080819297, guid: 0e7d547ccea2aeb4b956ca6f7c986e85,
         type: 3}

@@ -41,11 +41,14 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
     private RaycastHit slopeHit;
 
     [SerializeField]
+    private Transform stairCheckTransform;
+    [SerializeField]
     private float stairCheckRadius;
     [SerializeField]
     private float stairRayOffset;
     [SerializeField]
     private float stairRayDistance;
+    private RaycastHit stairHit;
 
     public UnityEvent<PlayerBattleStateType> updateBattleStateEvent;
 
@@ -213,17 +216,15 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
 
     public RaycastHit GetStairCastHit()
     {
-        RaycastHit sphereHit;
-
-        Physics.SphereCast(footPointTransform.position + Vector3.up * stairRayOffset
+        Physics.SphereCast(stairCheckTransform.position + Vector3.up * stairRayOffset
                 , stairCheckRadius
                 , Vector3.down
-                , out sphereHit
+                , out stairHit
                 , stairRayDistance
                 , groundMask
                 );
 
-        return sphereHit;
+        return stairHit;
     }
 
     public Vector3 GetSlopeDirection(Vector3 moveDirection)
@@ -252,10 +253,18 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
     private void OnDrawGizmos()
     {
         Debug.DrawRay(footPointTransform.position + Vector3.up * slopeRayOffset, Vector3.down * slopeRayDistance, Color.red);
+        Debug.DrawRay(stairCheckTransform.position + Vector3.up * stairRayOffset, Vector3.down * stairRayDistance, Color.blue);
+
         Gizmos.DrawWireSphere(footPointTransform.position, groundCheckRadius);
 
         if (slopeHit.collider != null)
             Gizmos.DrawSphere(slopeHit.point, groundCheckRadius);
+
+        if(stairHit.collider != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(stairHit.point, groundCheckRadius);
+        }
     }
 
 }
