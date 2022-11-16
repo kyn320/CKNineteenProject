@@ -11,6 +11,9 @@ public class UnitStatus : SerializedMonoBehaviour
     [SerializeField]
     public StatusInfo currentStatus;
 
+    [SerializeField]
+    private GameObject uiDamageText;
+
     public bool isDeath = false;
     public UnityEvent<float, float> updateHpEvent;
     public UnityEvent<bool, UnitStatus> updateDeathEvent;
@@ -25,11 +28,13 @@ public class UnitStatus : SerializedMonoBehaviour
         var hpElement = currentStatus.GetElement(StatusType.HP);
         var maxHPElement = currentStatus.GetElement(StatusType.MaxHP);
 
-        hpElement.updateAmountAction += (value) => {
+        hpElement.updateAmountAction += (value) =>
+        {
             updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
         };
 
-        maxHPElement.updateAmountAction += (value) => {
+        maxHPElement.updateAmountAction += (value) =>
+        {
             updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
         };
 
@@ -50,7 +55,7 @@ public class UnitStatus : SerializedMonoBehaviour
     public bool GetCriticalSuccess()
     {
         var tryPercent = Random.Range(0f, 100f);
-        Debug.Log(tryPercent  + " / " + currentStatus.GetElement(StatusType.CriticalPercent).CalculateTotalAmount());
+        Debug.Log(tryPercent + " / " + currentStatus.GetElement(StatusType.CriticalPercent).CalculateTotalAmount());
         return tryPercent <= currentStatus.GetElement(StatusType.CriticalPercent).CalculateTotalAmount();
     }
 
@@ -69,6 +74,8 @@ public class UnitStatus : SerializedMonoBehaviour
 
         var hpElement = currentStatus.GetElement(StatusType.HP);
         var maxHPElement = currentStatus.GetElement(StatusType.MaxHP);
+
+        Instantiate(uiDamageText).GetComponent<UIDamageText>().SetDamageAmount(transform, damageInfo.damage);
 
         hpElement.SubAmount(damageInfo.damage);
 

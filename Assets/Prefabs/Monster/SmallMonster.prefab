@@ -74,7 +74,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.4
-  m_Center: {x: 0, y: 0.3, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &4703875880860071132
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -123,6 +123,8 @@ MonoBehaviour:
     statusDic:
       keys: 
       values: []
+  uiDamageText: {fileID: 6111895687571895212, guid: 0969cd1fc4497444b95cf3554289e310,
+    type: 3}
   isDeath: 0
   updateHpEvent:
     m_PersistentCalls:
