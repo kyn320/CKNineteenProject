@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1885738326814987281}
   - component: {fileID: 2065215747545555897}
   - component: {fileID: 4316989987607848984}
-  m_Layer: 8
+  - component: {fileID: 1108443819129327635}
+  m_Layer: 0
   m_Name: AttackHitBox_Potion_Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +32,6 @@ Transform:
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 927564076877673263}
   - {fileID: 4423813192905612659}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,7 +44,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8208132476067455825}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 0.5, z: 2}
@@ -61,7 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c79f161a115410419857db27f526f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreTags: []
+  ignoreTags:
+  - Enemy
+  - Ground
   enableEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -79,13 +81,49 @@ MonoBehaviour:
       m_Calls: []
   triggerEnterEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1108443819129327635}
+        m_TargetAssemblyTypeName: HealEvent, Assembly-CSharp
+        m_MethodName: playerSearch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   triggerStayEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1108443819129327635}
+        m_TargetAssemblyTypeName: HealEvent, Assembly-CSharp
+        m_MethodName: Healing
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.7
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   triggerExitEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1108443819129327635}
+        m_TargetAssemblyTypeName: HealEvent, Assembly-CSharp
+        m_MethodName: playerExit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4316989987607848984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +137,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 10
+--- !u!114 &1108443819129327635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208132476067455825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40fe0174663b23245a5a4ace13bcc8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heallingDelayTime: 2
+  heallingDelayTimer: 0
+  healEffect: {fileID: 7804051832666484829, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
+    type: 3}
 --- !u!1001 &6345278206790347510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109,7 +163,7 @@ PrefabInstance:
     - target: {fileID: 7307792159092471685, guid: e64171a1d8cc6404e858df86a811b885,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7307792159092471685, guid: e64171a1d8cc6404e858df86a811b885,
         type: 3}
@@ -193,84 +247,4 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7307792159092471685, guid: e64171a1d8cc6404e858df86a811b885,
     type: 3}
   m_PrefabInstance: {fileID: 6345278206790347510}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &6958854542652244855
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 6888705394358234652}
-    m_Modifications:
-    - target: {fileID: 7804051832666484824, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804051832666484824, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804051832666484824, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.602
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804051832666484824, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804051832666484824, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804051832666484824, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804051832666484824, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804051832666484824, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804051832666484824, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804051832666484824, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804051832666484824, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804051832666484829, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_Name
-      value: FXPrefab_Item_K_Potion_Heal_Hit_Root
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804051832666484829, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 187c3bcb4ab48aa49af2aae29252e2fc, type: 3}
---- !u!4 &927564076877673263 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7804051832666484824, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
-    type: 3}
-  m_PrefabInstance: {fileID: 6958854542652244855}
   m_PrefabAsset: {fileID: 0}
