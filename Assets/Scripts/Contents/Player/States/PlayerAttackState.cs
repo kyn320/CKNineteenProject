@@ -295,7 +295,7 @@ public class PlayerAttackState : PlayerStateBase
 
                     weaponObject.transform.SetParent(null);
                     //spiritPivot.SetOriginOffset();
-                    sonicBoomVFX.SetActive(true);
+                    //sonicBoomVFX.SetActive(true);
                     //방향 계산     
                     projectileDirection = aimPoint - handBone.transform.position;
                     Debug.Log(projectileDirection);
