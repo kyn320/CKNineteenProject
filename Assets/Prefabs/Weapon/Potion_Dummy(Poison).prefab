@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: -797207109506774323}
   - component: {fileID: -2151394774465714199}
   m_Layer: 8
-  m_Name: Potion_Dummy
+  m_Name: Potion_Dummy(Poison)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa4f27d262f7004b9ea5173cd3376ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaEffectObject: {fileID: 8208132476067455825, guid: 0bab84f9931cbf648b80db3ed045d0ec,
+  areaEffectObject: {fileID: 8208132476067455825, guid: c049d5d1cedcd4840a32136359580843,
     type: 3}
   isLowSpawn: 1
   lowSpawnDistance: 0
