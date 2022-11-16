@@ -6,6 +6,9 @@ ModelImporter:
   - first:
       74: 7415701192096322044
     second: Golem01@Dameged
+  - first:
+      74: -2043922274521618417
+    second: dameged
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -34,7 +37,43 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: dameged
+      takeName: GolemDameged
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.66603035
+        functionName: Emit
+        data: EndHit
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -96,7 +135,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 93ba755ad6a984a4ea334f0bcbc028d8,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 7e530ca11f42f614bba226fd16187814,
     type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
