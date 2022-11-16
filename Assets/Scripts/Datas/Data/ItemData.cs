@@ -45,13 +45,13 @@ public class ItemData : ScriptableObject
     private StatusInfo statusInfoData;
     public StatusInfo StatusInfoData { get { return statusInfoData; } }
 
-    [SerializeField]
-    private StatusInfo addStatusInfoData;
-    public StatusInfo AddStatusInfoData { get { return addStatusInfoData; } }
-
-    [SerializeField]
-    private StatusInfo subStatusInfoData;
-    public StatusInfo SubStatusInfoData { get { return subStatusInfoData; } }
+    //[SerializeField]
+    //private StatusInfo addStatusInfoData;
+    //public StatusInfo AddStatusInfoData { get { return addStatusInfoData; } }
+    //
+    //[SerializeField]
+    //private StatusInfo subStatusInfoData;
+    //public StatusInfo SubStatusInfoData { get { return subStatusInfoData; } }
 
     [Button("AutoGenerate")]
     public void AutoGenerate()

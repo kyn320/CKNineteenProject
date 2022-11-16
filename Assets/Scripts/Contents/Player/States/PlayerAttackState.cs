@@ -259,6 +259,9 @@ public class PlayerAttackState : PlayerStateBase
         //정령이 자유 이동하도록 변경
         spiritMoveController.isMoveable = true;
 
+        //무기 능력치 적용
+        controller.GetStatus().currentStatus.AddStatusInfo(currentAttackWeaponData.StatusInfoData);
+
         //피해량 계산
         var isCritical = controller.GetStatus().GetCriticalSuccess();
         var damageAmount = 0f;
@@ -310,6 +313,9 @@ public class PlayerAttackState : PlayerStateBase
                 }
                 break;
         }
+
+        //무기 능력치 효과 해제
+        controller.GetStatus().currentStatus.SubStatusInfo(currentAttackWeaponData.StatusInfoData);
 
         if (currentComboIndex < currentAttackWeaponData.ComboCount - 1)
         {
@@ -368,7 +374,6 @@ public class PlayerAttackState : PlayerStateBase
 
     public void SuccessHit(bool isKill)
     {
-
         ++currentHitCount;
 
         if (currentAttackWeaponData.AttackType == WeaponAttackType.Melee)
