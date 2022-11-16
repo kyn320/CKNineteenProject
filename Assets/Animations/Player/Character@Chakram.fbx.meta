@@ -24,12 +24,12 @@ ModelImporter:
       copied configuration does not match position in animation file:\n\t'Bip001
       L Thigh' : position error = 33.162582 mm\n\t'Bip001 L Calf' : position error
       = 78.795593 mm\n\t'Bip001 L Foot' : position error = 4.297384 mm\n\t'Bip001
-      L Toe0' : position error = 37.687565 mm\n\t'Bip001 R Thigh' : position error
-      = 33.162628 mm\n\t'Bip001 R Calf' : position error = 78.795494 mm\n\t'Bip001
+      L Toe0' : position error = 37.687561 mm\n\t'Bip001 R Thigh' : position error
+      = 33.162609 mm\n\t'Bip001 R Calf' : position error = 78.795494 mm\n\t'Bip001
       R Foot' : position error = 4.297524 mm\n\t'Bip001 R Toe0' : position error
-      = 37.687565 mm\n"
+      = 37.687557 mm\n"
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'NEW_PC@CharkramForexporte' has import animation
+    animationImportWarnings: "\nClip 'NEW_PC@CharkramForexporte01' has import animation
       warnings that might lower retargeting quality:\n\t'Bip001 Pelvis' is inbetween
       humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
@@ -69,7 +69,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.16413034
+      - time: 0.15782617
         functionName: Emit
         data: SpawnWeapon
         objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
@@ -77,7 +77,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.2605294
+      - time: 0.18645532
         functionName: Emit
         data: PlayAttack
         objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
@@ -85,7 +85,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.72892493
+      - time: 0.59940684
         functionName: Emit
         data: EndAttack
         objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
