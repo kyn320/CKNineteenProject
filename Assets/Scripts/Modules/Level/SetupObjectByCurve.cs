@@ -129,11 +129,13 @@ public class SetupObjectByCurve : MonoBehaviour
 
             if (useProjectionPosition && projectionInfo.collider != null)
             {
-                setupObjectList[i].transform.position = projectionInfo.point + offsetPosition;
+                setupObjectList[i].transform.position = projectionInfo.point;
+                setupObjectList[i].transform.localPosition += Quaternion.LookRotation(setupObjectList[i].transform.forward, Vector3.up) * offsetPosition;
             }
             else
             {
-                setupObjectList[i].transform.position = position + offsetPosition;
+                setupObjectList[i].transform.position = position;
+                setupObjectList[i].transform.localPosition += Quaternion.LookRotation(setupObjectList[i].transform.forward, Vector3.up) * offsetPosition;
             }
 
             if (useProjectionRotation && projectionInfo.collider != null)
@@ -233,7 +235,7 @@ public class SetupObjectByCurve : MonoBehaviour
     {
         for (var i = 0; i < setupObjectList.Count; ++i)
         {
-            DestroyImmediate(setupObjectList[i]);
+            Destroy(setupObjectList[i]);
         }
 
         setupObjectList.Clear();

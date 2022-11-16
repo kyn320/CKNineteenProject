@@ -18,6 +18,8 @@ public class BezierCurve : MonoBehaviour
     [SerializeField]
     private float pointRadius = 0.5f;
     [SerializeField]
+    private Color rootAnchorColor = Color.white;
+    [SerializeField]
     private Color anchorColor = Color.white;
     [SerializeField]
     private Color curveLineColor = Color.white;
@@ -290,6 +292,9 @@ public class BezierCurve : MonoBehaviour
     protected virtual void OnDrawGizmos()
     {
         stepProgressAmount = Mathf.Max(stepProgressAmount, 0.1f);
+
+        Gizmos.color = rootAnchorColor;
+        Gizmos.DrawWireSphere(transform.position, pointRadius);
 
         for (var i = 0; i < pointList.Count; ++i)
         {
