@@ -9,13 +9,14 @@ public class PropBehavior : MonoBehaviour
 {
     [SerializeField]
     private float startCount = .0f;
-    [SerializeField]
-    private float rotationCount = .0f;
 
+    [SerializeField]
+    private float rotationSpeed = .0f;
     [SerializeField]
     private float rotationPower = .0f;
     
 
+    private float rotationCount = .0f;
 
     private Rigidbody rig;
     private BoxCollider coll;
@@ -59,7 +60,6 @@ public class PropBehavior : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(usedProp)
@@ -78,6 +78,7 @@ public class PropBehavior : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.transform.name);
         if (collision.transform.tag == "Player")
         {
             usedProp = true;
@@ -94,13 +95,11 @@ public class PropBehavior : MonoBehaviour
             rig.constraints = RigidbodyConstraints.FreezeAll;
             coll.enabled = false;
         }
-
-        Debug.Log(other.transform.name);
     }
 
     private void DownEffect()
     {
-        rotationCount -= Time.deltaTime * 20;
+        rotationCount -= Time.deltaTime * rotationSpeed;
 
         float power = Mathf.Sin(rotationCount) * rotationPower;
 
