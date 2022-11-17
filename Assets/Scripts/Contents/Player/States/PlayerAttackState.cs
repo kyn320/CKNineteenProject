@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -262,18 +263,9 @@ public class PlayerAttackState : PlayerStateBase
         //무기 능력치 적용
         controller.GetStatus().currentStatus.AddStatusInfo(currentAttackWeaponData.StatusInfoData);
 
-        //피해량 계산
-        var isCritical = controller.GetStatus().GetCriticalSuccess();
+        //피해량 선언
+        var isCritical = false;
         var damageAmount = 0f;
-
-        if (isCritical)
-        {
-            damageAmount = damageCalculator.Calculate(controller.GetStatus().currentStatus);
-        }
-        else
-        {
-            damageAmount = criticalDamageCalculator.Calculate(controller.GetStatus().currentStatus);
-        }
 
         switch (currentAttackWeaponData.AttackType)
         {
@@ -286,7 +278,12 @@ public class PlayerAttackState : PlayerStateBase
                     weaponController.SetOwnerObject(this.gameObject);
                     weaponController.SetWeaponData(currentAttackWeaponData);
                     weaponController.hitEvnet.AddListener(SuccessHit);
-                    weaponController.SetStatus(damageAmount, isCritical);
+
+                    //피해량을 계산합니다.
+                    isCritical = CalculateCritical();
+                    damageAmount = CalculateDamageAmount(isCritical);
+
+                    weaponController.SetCalculator(CalculateCritical, CalculateDamageAmount);
                     weaponController.CreateAttackHitBox(currentComboIndex);
                 }
                 break;
@@ -304,7 +301,12 @@ public class PlayerAttackState : PlayerStateBase
                     Debug.Log(projectileDirection);
                     var projectileController = weaponObject.GetComponent<ProjectileController>();
                     projectileController.hitEvnet.AddListener(SuccessHit);
-                    projectileController.SetStatus(damageAmount, isCritical);
+
+                    //피해량을 계산합니다.
+                    isCritical = CalculateCritical();
+                    damageAmount = CalculateDamageAmount(isCritical);
+
+                    projectileController.SetCalculator(CalculateCritical, CalculateDamageAmount);
                     projectileController.Shot(handBone.position
                         , aimPoint
                         , projectileDirection.normalized
@@ -396,6 +398,23 @@ public class PlayerAttackState : PlayerStateBase
 
         if (isKill)
             ComboSystem.Instance.AddKillCombo(1);
+    }
+
+    private bool CalculateCritical()
+    {
+        return controller.GetStatus().GetCriticalSuccess();
+    }
+
+    private float CalculateDamageAmount(bool isCritical)
+    {
+        if (isCritical)
+        {
+            return criticalDamageCalculator.Calculate(controller.GetStatus().currentStatus);
+        }
+        else
+        {
+            return damageCalculator.Calculate(controller.GetStatus().currentStatus);
+        }
     }
 
     public void ForceStopAttack()

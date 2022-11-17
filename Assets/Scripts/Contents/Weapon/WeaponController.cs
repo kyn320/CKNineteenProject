@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,20 +22,24 @@ public class WeaponController : MonoBehaviour
     public float hitPauseWaitTime = 0.1f;
     public float hitPauseTime = 0.1f;
 
+    private Func<bool> calculateCritical;
+    private Func<bool, float> calculateDamage;
+
+
     public void SetOwnerObject(GameObject ownerObject)
     {
         this.ownerObject = ownerObject;
     }
 
+    public void SetCalculator(Func<bool> calculateCritical, Func<bool, float> calculateDamage)
+    {
+        this.calculateCritical = calculateCritical;
+        this.calculateDamage = calculateDamage;
+    }
+
     public void SetWeaponData(WeaponData weaponData)
     {
         this.weaponData = weaponData;
-    }
-
-    public void SetStatus(float attackPower, bool isCritical)
-    {
-        damageInfo.damage = attackPower;
-        damageInfo.isCritical = isCritical;
     }
 
     public void CreateAttackHitBox(int index)
@@ -64,6 +69,9 @@ public class WeaponController : MonoBehaviour
         if (damageable != null)
         {
             var contact = collision.contacts[0];
+
+            damageInfo.isCritical = calculateCritical();
+            damageInfo.damage = calculateDamage(damageInfo.isCritical);
             damageInfo.hitPoint = contact.point;
             damageInfo.hitNormal = contact.normal;
 
