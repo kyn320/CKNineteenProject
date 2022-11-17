@@ -75,7 +75,8 @@ public class UnitStatus : SerializedMonoBehaviour
         var hpElement = currentStatus.GetElement(StatusType.HP);
         var maxHPElement = currentStatus.GetElement(StatusType.MaxHP);
 
-        Instantiate(uiDamageText).GetComponent<UIDamageText>().SetDamageAmount(transform, damageInfo.damage);
+        var damageText = UIController.Instance.CreateWorldUI(uiDamageText);
+        damageText.GetComponent<UIDamageText>().SetDamageAmount(damageInfo.hitPoint, damageInfo.damage);
 
         hpElement.SubAmount(damageInfo.damage);
 

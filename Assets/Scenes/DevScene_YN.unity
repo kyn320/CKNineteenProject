@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18308675, g: 0.22876027, b: 0.30666548, a: 1}
+  m_IndirectSpecularColor: {r: 0.183087, g: 0.22876072, b: 0.30666608, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2511,6 +2511,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DebugModules
       objectReference: {fileID: 0}
+    - target: {fileID: 1503829246528949465, guid: c4dad5675059d4048abc7124d6bed2e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1503829246528949468, guid: c4dad5675059d4048abc7124d6bed2e9,
         type: 3}
       propertyPath: m_RootOrder
@@ -4388,7 +4393,6 @@ GameObject:
   m_Component:
   - component: {fileID: 112096378}
   - component: {fileID: 112096377}
-  - component: {fileID: 112096376}
   - component: {fileID: 112096375}
   m_Layer: 0
   m_Name: UICamera
@@ -4430,14 +4434,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &112096376
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112096374}
-  m_Enabled: 1
 --- !u!20 &112096377
 Camera:
   m_ObjectHideFlags: 0
@@ -35477,7 +35473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDontDestroy: 0
-  uiCamera: {fileID: 0}
+  uiCamera: {fileID: 112096377}
   rootCanvas: {fileID: 650007924}
   worldGroup: {fileID: 1811602577}
   viewGroup: {fileID: 714438586}
