@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3379042565793953530}
-  - component: {fileID: 7785128264576003664}
+  - component: {fileID: 2540724141935260211}
   m_Layer: 0
-  m_Name: SFXPlayer
+  m_Name: SFXRandomPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7785128264576003664
+--- !u!114 &2540724141935260211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1133932875261127371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc9e3416dfddc7e4281fb73e7192390d, type: 3}
+  m_Script: {fileID: 11500000, guid: 78d2d9f7b935e024d8de6c08228564ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
@@ -51,4 +51,4 @@ MonoBehaviour:
   autoPlay: 1
   isLoop: 0
   autoDestroy: 0
-  audioClip: {fileID: 0}
+  audioClipList: []

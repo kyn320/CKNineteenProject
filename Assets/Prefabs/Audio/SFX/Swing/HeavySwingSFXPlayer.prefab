@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3379042565793953530}
   - component: {fileID: 7785128264576003664}
   m_Layer: 0
-  m_Name: SFXPlayer
+  m_Name: HeavySwingSFXPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,5 +50,5 @@ MonoBehaviour:
   aliveSceneChange: 0
   autoPlay: 1
   isLoop: 0
-  autoDestroy: 0
-  audioClip: {fileID: 0}
+  autoDestroy: 1
+  audioClip: {fileID: 8300000, guid: f8337faf029d78947882ca9b45f82ff6, type: 3}

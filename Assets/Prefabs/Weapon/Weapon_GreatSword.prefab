@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &644095675675166344
+--- !u!1 &7799617847009353881
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 268977060625226802}
-  - component: {fileID: 3752697658985452439}
-  - component: {fileID: 1436848300095727453}
-  - component: {fileID: 3916420744388967796}
-  m_Layer: 8
-  m_Name: Shot_sword_Dummy
+  - component: {fileID: 7455181104140155427}
+  - component: {fileID: 5825903244604700038}
+  - component: {fileID: 8592080201505407308}
+  - component: {fileID: 5539042124157938818}
+  m_Layer: 0
+  m_Name: Weapon_GreatSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &268977060625226802
+--- !u!4 &7455181104140155427
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 644095675675166344}
+  m_GameObject: {fileID: 7799617847009353881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,21 +34,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3752697658985452439
+--- !u!33 &5825903244604700038
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 644095675675166344}
-  m_Mesh: {fileID: 108480438537456563, guid: 52f773ef49c09ed40ad1f1ff956a987d, type: 3}
---- !u!23 &1436848300095727453
+  m_GameObject: {fileID: 7799617847009353881}
+  m_Mesh: {fileID: -21432236276189082, guid: 5fd50bc623650d9448e662a2fe15be14, type: 3}
+--- !u!23 &8592080201505407308
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 644095675675166344}
+  m_GameObject: {fileID: 7799617847009353881}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,20 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3916420744388967796
+--- !u!114 &5539042124157938818
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 644095675675166344}
+  m_GameObject: {fileID: 7799617847009353881}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72687af85f1b08041ad267af09c01752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ownerObject: {fileID: 0}
-  weaponData: {fileID: 11400000, guid: 0f7b928a385f3094ba9d952de97d3dac, type: 2}
+  weaponData: {fileID: 11400000, guid: aa3b4f061af7d5b43907e19175a5ed89, type: 2}
   damageInfo:
     owner: {fileID: 0}
     ownerTag: 
@@ -112,3 +112,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
+  sfxPrefabData: {fileID: 11400000, guid: 5eb270fb4b84d5048b01eb1278622807, type: 2}
+  hitPauseWaitTime: 0.3
+  hitPauseTime: 0.1

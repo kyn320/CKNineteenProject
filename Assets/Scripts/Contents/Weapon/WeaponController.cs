@@ -18,6 +18,8 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField]
     protected VFXPrefabData vfxPrefabData;
+    [SerializeField]
+    protected SFXPrefabData sfxPrefabData;
 
     public float hitPauseWaitTime = 0.1f;
     public float hitPauseTime = 0.1f;
@@ -82,10 +84,12 @@ public class WeaponController : MonoBehaviour
                 if (resultDamageInfo.isCritical)
                 {
                     Instantiate(vfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
+                    Instantiate(sfxPrefabData.GetSFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
                 }
                 else
                 {
                     Instantiate(vfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
+                    Instantiate(sfxPrefabData.GetSFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
                 }
 
                 hitEvnet?.Invoke(resultDamageInfo.isKill);
