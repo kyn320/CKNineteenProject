@@ -21,13 +21,13 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 1, b: 0.9023006, a: 1}
+  m_AmbientEquatorColor: {r: 0, g: 0.5999999, b: 1, a: 1}
+  m_AmbientGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: ecf09f5c0d3ce314aa59ab6aa536948a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -23928,6 +23928,7 @@ MonoBehaviour:
   - {fileID: 704491588}
   drawDetailCount: 50
   pointRadius: 0.5
+  rootAnchorColor: {r: 1, g: 1, b: 1, a: 1}
   anchorColor: {r: 1, g: 1, b: 1, a: 1}
   curveLineColor: {r: 1, g: 1, b: 1, a: 1}
   handleColor: {r: 0, g: 0, b: 1, a: 1}
@@ -65676,6 +65677,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Camera Anchor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970744291956046179, guid: 0e8fcbe29b888db42b4c6e8e459451db,
+        type: 3}
+      propertyPath: m_Cameras.Array.size
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e8fcbe29b888db42b4c6e8e459451db, type: 3}
