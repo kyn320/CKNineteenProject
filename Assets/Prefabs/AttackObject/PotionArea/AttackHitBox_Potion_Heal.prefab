@@ -98,9 +98,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1108443819129327635}
-        m_TargetAssemblyTypeName: HealEvent, Assembly-CSharp
-        m_MethodName: Healing
-        m_Mode: 4
+        m_TargetAssemblyTypeName: AreaEvent, Assembly-CSharp
+        m_MethodName: IntervalEvent
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -149,11 +149,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40fe0174663b23245a5a4ace13bcc8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  user: {fileID: 0}
+  playerStatus: {fileID: 0}
+  userTags:
+  - Player
   intervalDelayTime: 2
   intervalDelayTimer: 0
   IntervalEvents:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1108443819129327635}
+        m_TargetAssemblyTypeName: AreaEvent, Assembly-CSharp
+        m_MethodName: Healing
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 7
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hitEffect: {fileID: 7804051832666484829, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
     type: 3}
 --- !u!1001 &6345278206790347510

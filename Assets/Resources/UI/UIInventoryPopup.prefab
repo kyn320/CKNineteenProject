@@ -554,6 +554,9 @@ MonoBehaviour:
   frontAdditionalText: 
   backAdditionalText: 
   viewFormat: 
+  updateAmountEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4561981487232637186
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,6 +2085,9 @@ MonoBehaviour:
   frontAdditionalText: 
   backAdditionalText: 
   viewFormat: 
+  updateAmountEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4561981487556079643
 GameObject:
   m_ObjectHideFlags: 0
@@ -4346,6 +4352,9 @@ MonoBehaviour:
   frontAdditionalText: 
   backAdditionalText: 
   viewFormat: 
+  updateAmountEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4561981488013473786
 GameObject:
   m_ObjectHideFlags: 0
@@ -6079,7 +6088,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed63975cc8630674bb33a0c748246dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rootCanvas: {fileID: 0}
   lineList:
   - points:
     - {fileID: 4561981488201882772}
@@ -6104,7 +6112,9 @@ MonoBehaviour:
   curveLineColor: {r: 1, g: 1, b: 1, a: 1}
   handleColor: {r: 0, g: 0, b: 1, a: 1}
   handleLineColor: {r: 1, g: 0, b: 0, a: 1}
-  TEST_NearestFindStartRange: 5
+  showStepProgress: 0
+  stepProgressAmount: 0
+  rootCanvas: {fileID: 0}
   searchProgressTestList: []
 --- !u!1 &4561981488363055387
 GameObject:
@@ -7207,6 +7217,9 @@ MonoBehaviour:
   frontAdditionalText: 
   backAdditionalText: 
   viewFormat: 
+  updateAmountEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4561981488603885165
 GameObject:
   m_ObjectHideFlags: 0
@@ -7819,6 +7832,9 @@ MonoBehaviour:
   frontAdditionalText: 
   backAdditionalText: 
   viewFormat: 
+  updateAmountEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4561981488799407373
 GameObject:
   m_ObjectHideFlags: 0
@@ -8805,6 +8821,9 @@ MonoBehaviour:
   frontAdditionalText: 
   backAdditionalText: 
   viewFormat: 
+  updateAmountEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4561981489087173147
 GameObject:
   m_ObjectHideFlags: 0
