@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2742564025163618746}
   - component: {fileID: 1270104045766022687}
   - component: {fileID: 3910434748970525397}
+  - component: {fileID: 2290986992508771399}
   m_Layer: 0
   m_Name: ST_Ceiling_Molding_C
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2290986992508771399
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261833046262072064}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.9958153, y: 1.9919342, z: 3.4603567}
+  m_Center: {x: 0, y: 0.99596673, z: -0.3725993}

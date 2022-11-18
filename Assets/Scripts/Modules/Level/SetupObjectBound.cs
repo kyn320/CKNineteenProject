@@ -16,13 +16,13 @@ public class SetupObjectBound
         get
         {
             return transform.position
-+ transform.up * boxCollider.center.y
-+ transform.forward * boxCollider.center.z
-+ transform.right * boxCollider.center.x;
++ transform.up * boxCollider.center.y * 0.5f
++ transform.forward * boxCollider.center.z * 0.5f
++ transform.right * boxCollider.center.x * 0.5f;
         }
     }
 
-    public Vector3 Size { get { return Vector3.Scale(boxCollider.size , transform.lossyScale); } }
+    public Vector3 Size { get { return Vector3.Scale(boxCollider.size, transform.lossyScale); } }
     public Vector3 Foward { get { return Center + (transform.forward * Size.z * 0.5f); } }
     public Vector3 Back { get { return Center + (-transform.forward * Size.z * 0.5f); } }
     public Vector3 Left { get { return Center + (-transform.right * Size.x * 0.5f); } }

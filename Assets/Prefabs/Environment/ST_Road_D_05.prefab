@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7742952850400821093}
   - component: {fileID: 6691123102462652608}
   - component: {fileID: 8880907473828103178}
+  - component: {fileID: 1236940918971473560}
   m_Layer: 0
   m_Name: ST_Road_D_05
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1236940918971473560
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6935453521379419615}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.103052, y: 1.0149676, z: 8.028987}
+  m_Center: {x: 0, y: 0.50748366, z: 0}
