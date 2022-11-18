@@ -114,7 +114,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8844494543450790664}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.19065621, y: 0.1675744, z: 0.17911531}
@@ -149,6 +149,7 @@ MonoBehaviour:
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
+  isPiercing: 0
   isMove: 0
   vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
 --- !u!114 &-1893385011041399713
@@ -165,9 +166,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileController: {fileID: 0}
   startPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
   maxDistance: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveSpeed: 0
+  moveTime: 0
 --- !u!114 &7905502379509581553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +191,15 @@ MonoBehaviour:
       m_Calls: []
   collisionEnterEvent:
     m_PersistentCalls:
+      m_Calls: []
+  collisionStayEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEnterEvent:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -2174087569668372753}
         m_TargetAssemblyTypeName: ProjectileController, Assembly-CSharp
@@ -201,15 +213,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  collisionStayEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  collisionExitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerEnterEvent:
-    m_PersistentCalls:
-      m_Calls: []
   triggerStayEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -230,6 +233,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationList:
   - {fileID: 11400000, guid: fdb162b5754f3a941b591b0de3bb8c0c, type: 2}
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopEvent:
+    m_PersistentCalls:
+      m_Calls: []
   stopActionType: 0
   autoActiveByPlay: 0
   autoStartPlay: 0

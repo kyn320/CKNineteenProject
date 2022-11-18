@@ -135,7 +135,7 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
                     isCritical = isCritical,
                     isKnockBack = true,
                     hitPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position),
-                    hitNormal = transform.position - other.transform.position,
+                    hitNormal = (transform.position - other.transform.position).normalized,
                 });
 
             }

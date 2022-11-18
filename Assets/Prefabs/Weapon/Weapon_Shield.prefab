@@ -115,7 +115,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6475858921729296120}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.7682, y: 0.8256, z: 0.17500007}
@@ -192,6 +192,15 @@ MonoBehaviour:
       m_Calls: []
   collisionEnterEvent:
     m_PersistentCalls:
+      m_Calls: []
+  collisionStayEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEnterEvent:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 918985122668460515}
         m_TargetAssemblyTypeName: ProjectileController, Assembly-CSharp
@@ -217,15 +226,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  collisionStayEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  collisionExitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerEnterEvent:
-    m_PersistentCalls:
-      m_Calls: []
   triggerStayEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -246,6 +246,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationList:
   - {fileID: 11400000, guid: fdb162b5754f3a941b591b0de3bb8c0c, type: 2}
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopEvent:
+    m_PersistentCalls:
+      m_Calls: []
   stopActionType: 0
   autoActiveByPlay: 0
   autoStartPlay: 0
@@ -279,9 +285,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
-  findMonsterDistance: 7
+  monsterSearchLength: 5
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
   chainLog: []
+  chainCount: 0
   chainLimit: 5

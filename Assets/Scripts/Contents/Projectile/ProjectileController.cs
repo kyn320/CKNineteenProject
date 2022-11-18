@@ -54,21 +54,19 @@ public class ProjectileController : MonoBehaviour
             moveable.Move();
     }
 
-    public void Hit(Collision collision)
+    public void Hit(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
             return;
 
-        var damageable = collision.gameObject.GetComponent<IDamageable>();
+        var damageable = other.gameObject.GetComponent<IDamageable>();
 
         if (damageable != null)
         {
-            var contact = collision.contacts[0];
-
             damageInfo.isCritical = calculateCritical();
             damageInfo.damage = calculateDamage(damageInfo.isCritical);
-            damageInfo.hitPoint = contact.point;
-            damageInfo.hitNormal = contact.normal;
+            damageInfo.hitPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+            damageInfo.hitNormal = (transform.position - other.transform.position).normalized;
 
             var resultDamageInfo = damageable.OnDamage(damageInfo);
 
