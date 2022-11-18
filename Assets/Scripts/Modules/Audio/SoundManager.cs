@@ -6,12 +6,13 @@ using UnityEngine;
 public class SoundManager : Singleton<SoundManager>
 {
     public const int MaxSFXPlayCount = 5;
-
+    [SerializeField]
     private float bgmMasterVolume;
     public float BGMMasterVolume
     {
         get { return bgmMasterVolume; }
     }
+    [SerializeField]
     private float sfxMasterVolume;
     public float SFXMasterVolume
     {
@@ -31,18 +32,12 @@ public class SoundManager : Singleton<SoundManager>
     {
         bgmAudioPlayer = GetComponent<AudioSource>();
         base.Awake();
-
-        bgmMasterVolume = PlayerPrefs.GetFloat("BGM", 0.5f);
-        sfxMasterVolume = PlayerPrefs.GetFloat("SFX", 0.5f);
-
-        bgmAudioPlayer.volume = bgmMasterVolume;
     }
 
     public void ChangeBGMVolume(float bgm)
     {
         bgmMasterVolume = bgm;
         bgmAudioPlayer.volume = bgmVolume * bgmMasterVolume;
-        PlayerPrefs.SetFloat("BGM", bgmMasterVolume);
     }
 
     public void ChangeSFXVolume(float sfx)
@@ -55,8 +50,6 @@ public class SoundManager : Singleton<SoundManager>
         {
             sfxPlayerDic[keyList[i]].ChangeMasterVolume(sfx);
         }
-
-        PlayerPrefs.SetFloat("SFX", sfxMasterVolume);
     }
 
     public void PlayBGM(AudioClip bgm, float volume)

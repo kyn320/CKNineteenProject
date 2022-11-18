@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 1126259371359931337}
   - component: {fileID: 4039339067887977580}
   - component: {fileID: 2299767326846939302}
+  - component: {fileID: 7178106645333483522}
   m_Layer: 0
   m_Name: ST_Cliff_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1126259371359931337
 Transform:
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &7178106645333483522
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354260734142402931}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 14.45
+  m_Height: 50
+  m_Direction: 2
+  m_Center: {x: -0.07561934, y: 1.3546405, z: 22.363808}

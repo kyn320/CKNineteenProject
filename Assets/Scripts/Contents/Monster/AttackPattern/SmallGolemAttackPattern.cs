@@ -7,6 +7,18 @@ using Cysharp.Threading.Tasks;
 public class SmallGolemAttackPattern : MonsterAttackPattern
 {
     [SerializeField]
+    private float currentAttackTick = 0f;
+
+    [SerializeField]
+    private float attackTickTime = 0.1f;
+
+    [SerializeField]
+    private float attackAllowTime = 0.1f;
+
+    [SerializeField]
+    private bool allowAttack = false;
+
+    [SerializeField]
     private float attackDistance = 0f;
 
     [SerializeField]
@@ -45,13 +57,26 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         navAgent.stoppingDistance = 0.01f;
         navAgent.speed = attackSpeed;
         var success = navAgent.SetDestination(destination);
-
+        currentAttackTick = 0;
         startAttackEvent?.Invoke();
     }
     protected override void Update()
     {
         if (!isAttacked)
             return;
+
+        currentAttackTick += Time.deltaTime;
+
+        if (allowAttack && currentAttackTick >= attackAllowTime)
+        {
+            allowAttack = false;
+            currentAttackTick = 0f;
+        }
+        else if (!allowAttack && currentAttackTick >= attackTickTime)
+        {
+            allowAttack = true;
+            currentAttackTick = 0f;
+        }
 
         if (navAgent.remainingDistance <= 0.1f && navAgent.velocity.sqrMagnitude > 0.1f)
         {
@@ -79,18 +104,18 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         controller.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground"))
             return;
 
         if (isAttacked)
         {
-            if (!collision.gameObject.CompareTag("Monster"))
+            if (!other.gameObject.CompareTag("Monster"))
             {
-                Debug.Log("SmallGolemAttack :: " + collision.gameObject + " / " + collision.gameObject.tag);
+                Debug.Log("SmallGolemAttack :: " + other.gameObject + " / " + other.gameObject.tag);
 
-                var damageable = collision.gameObject.GetComponent<IDamageable>();
+                var damageable = other.gameObject.GetComponent<IDamageable>();
 
                 var isCritical = controller.GetStatus().GetCriticalSuccess();
                 var damageAmount = 0f;
@@ -109,12 +134,19 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
                     damage = damageAmount,
                     isCritical = isCritical,
                     isKnockBack = true,
-                    hitPoint = collision.contacts[0].point,
-                    hitNormal = collision.contacts[0].normal
+                    hitPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position),
+                    hitNormal = (transform.position - other.transform.position).normalized,
                 });
 
             }
-            EndAttack();
+            //else {
+            //    EndAttack();
+            //}
         }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+
     }
 }

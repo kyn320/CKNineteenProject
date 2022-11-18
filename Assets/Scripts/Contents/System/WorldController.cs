@@ -51,8 +51,6 @@ public class WorldController : Singleton<WorldController>
         }
     }
 
-
-
     public void ChangeMonsterTargetToLandmark(MonsterController monster)
     {
         if (currentActiveLandmark == null)

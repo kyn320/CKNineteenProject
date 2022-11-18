@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: e614b8470c2ea1940b20713b2eeead41
+guid: 9658ea96b3a23e240a085bfe4016afb0
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: 1827226128182048838
-    second: Take 001
+      74: -5663730647963438184
+    second: Golem01@Walking
+  - first:
+      74: -7854325787040239049
+    second: Walk
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -34,7 +37,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk
+      takeName: GolemWalk
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 84
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -96,7 +128,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 93ba755ad6a984a4ea334f0bcbc028d8,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 7e530ca11f42f614bba226fd16187814,
     type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2

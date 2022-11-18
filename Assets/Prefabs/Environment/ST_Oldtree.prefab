@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 6020080735383693869}
   - component: {fileID: 7215967395133302152}
   - component: {fileID: 4882099173113483586}
+  - component: {fileID: 5115740201401015348}
   m_Layer: 0
   m_Name: ST_Oldtree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6020080735383693869
 Transform:
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4427394405292297522, guid: 838f452ddac08574189d778c1545861b, type: 3}
+  - {fileID: 2100000, guid: dd6ec6fcaebcf6c428b95f1261c1b5f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5115740201401015348
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6395198490880241815}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8948779, y: 4.450983, z: 1.8037975}
+  m_Center: {x: -0.43350694, y: 2.2251854, z: -0.3151698}

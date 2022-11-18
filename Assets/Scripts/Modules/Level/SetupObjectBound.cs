@@ -16,9 +16,9 @@ public class SetupObjectBound
         get
         {
             return transform.position
-+ transform.up * boxCollider.center.y
-+ transform.forward * boxCollider.center.z
-+ transform.right * boxCollider.center.x;
++ transform.up * boxCollider.center.y * 0.5f
++ transform.forward * boxCollider.center.z * 0.5f
++ transform.right * boxCollider.center.x * 0.5f;
         }
     }
 

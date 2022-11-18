@@ -40,6 +40,16 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
     private float slopeRayDistance;
     private RaycastHit slopeHit;
 
+    [SerializeField]
+    private Transform stairCheckTransform;
+    [SerializeField]
+    private float stairCheckRadius;
+    [SerializeField]
+    private float stairRayOffset;
+    [SerializeField]
+    private float stairRayDistance;
+    private RaycastHit stairHit;
+
     public UnityEvent<PlayerBattleStateType> updateBattleStateEvent;
 
     public UnityEvent<DamageInfo> damageEvent;
@@ -144,7 +154,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
         {
             ChangeState(PlayerStateType.CriticalHit);
         }
-        else if(damageInfo.isKnockBack)
+        else if (damageInfo.isKnockBack)
         {
             ChangeState(PlayerStateType.Hit);
         }
@@ -192,12 +202,37 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
         return false;
     }
 
+    public RaycastHit GetGroundedRaycastHit()
+    {
+        Physics.Raycast(footPointTransform.position + Vector3.up * slopeRayOffset
+                , Vector3.down
+                , out slopeHit
+                , slopeRayDistance
+                , groundMask
+                );
+
+        return slopeHit;
+    }
+
+    public RaycastHit GetStairCastHit()
+    {
+        Physics.SphereCast(stairCheckTransform.position + Vector3.up * stairRayOffset
+                , stairCheckRadius
+                , Vector3.down
+                , out stairHit
+                , stairRayDistance
+                , groundMask
+                );
+
+        return stairHit;
+    }
+
     public Vector3 GetSlopeDirection(Vector3 moveDirection)
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
-    public virtual void HitPause(float playWaitTime,float lifeTime)
+    public virtual void HitPause(float playWaitTime, float lifeTime)
     {
         if (hitPauseCoroutine != null)
         {
@@ -218,10 +253,18 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
     private void OnDrawGizmos()
     {
         Debug.DrawRay(footPointTransform.position + Vector3.up * slopeRayOffset, Vector3.down * slopeRayDistance, Color.red);
+        Debug.DrawRay(stairCheckTransform.position + Vector3.up * stairRayOffset, Vector3.down * stairRayDistance, Color.blue);
+
         Gizmos.DrawWireSphere(footPointTransform.position, groundCheckRadius);
 
         if (slopeHit.collider != null)
             Gizmos.DrawSphere(slopeHit.point, groundCheckRadius);
+
+        if(stairHit.collider != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(stairHit.point, groundCheckRadius);
+        }
     }
 
 }

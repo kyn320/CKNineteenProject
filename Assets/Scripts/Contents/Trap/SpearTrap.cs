@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpearTrap : MonoBehaviour
+public class SpearTrap : Trap
 {
     public enum State
     {
@@ -93,6 +93,12 @@ public class SpearTrap : MonoBehaviour
     {
         currentTime = 0f;
         this.state = state;
+    }
+
+    public override void Free()
+    {
+        base.Free();
+        ChangeState(State.Hide);
     }
 
 }

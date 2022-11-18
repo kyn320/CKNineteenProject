@@ -11,12 +11,15 @@ GameObject:
   - component: {fileID: 1640193474923279593}
   - component: {fileID: 2408573486893644620}
   - component: {fileID: 470643318777761670}
+  - component: {fileID: 2616076937568488980}
+  - component: {fileID: 4361948736882893695}
+  - component: {fileID: 5110425341891920324}
   m_Layer: 0
   m_Name: ST_Road_A_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1640193474923279593
 Transform:
@@ -61,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4427394405292297522, guid: 31c3f5c3464577348996dac9ebda0963, type: 3}
+  - {fileID: 2100000, guid: 39f5b54e898d5e549bea5cf81184464f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +86,42 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2616076937568488980
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128219014055816787}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 0.8588997, z: 8}
+  m_Center: {x: 0, y: 0.42944926, z: -1.5660157e-16}
+--- !u!65 &4361948736882893695
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128219014055816787}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 1.0000013, z: 0.990288}
+  m_Center: {x: 0, y: 0.50000006, z: 3.504856}
+--- !u!65 &5110425341891920324
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128219014055816787}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 1.0000013, z: 1.0003314}
+  m_Center: {x: 0, y: 0.50000006, z: -3.4998343}

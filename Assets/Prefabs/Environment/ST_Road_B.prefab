@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 6997092744814671467}
   - component: {fileID: 6248024656073931214}
   - component: {fileID: 8165455053532679428}
+  - component: {fileID: 1324092689432327828}
   m_Layer: 0
   m_Name: ST_Road_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6997092744814671467
 Transform:
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4427394405292297522, guid: bda8254996b9fab4f9c6cebee4de0bfe, type: 3}
+  - {fileID: 2100000, guid: 39f5b54e898d5e549bea5cf81184464f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1324092689432327828
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7661039044898614481}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 1.037135, z: 8}
+  m_Center: {x: 0.0000005364418, y: 0.5185669, z: 0}

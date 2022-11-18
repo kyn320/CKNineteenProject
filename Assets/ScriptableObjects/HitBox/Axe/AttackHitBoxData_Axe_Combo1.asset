@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94affdb1ab5806b4c870bf03b8f3fecd, type: 3}
   m_Name: AttackHitBoxData_Axe_Combo1
   m_EditorClassIdentifier: 
-  createPosition: {x: 0, y: 1, z: 2.5}
+  createPosition: {x: 0, y: 1, z: 1}
   hitBoxPrefab: {fileID: 8208132476067455825, guid: 01a197f5f28c46246bb8f72a55ad213f,
     type: 3}
+  timeScale: 0.6
+  timeScaleLifeTime: 0.1
+  hitTweenDataList:
+  - {fileID: 11400000, guid: 443bc291dd1408a408c5f244512ec85c, type: 2}
+  - {fileID: 11400000, guid: ef27a32a3d3033b45a0629bb0cb87a34, type: 2}
+  screenVFXVolumeData: {fileID: 11400000, guid: d2b378ee9bb61b4499aa432f0cb5ecc1,
+    type: 2}

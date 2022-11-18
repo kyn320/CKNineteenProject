@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SwingTrap : MonoBehaviour
+public class SwingTrap : Trap
 {
     [SerializeField]
     private float swingTime;
@@ -25,8 +25,6 @@ public class SwingTrap : MonoBehaviour
     [SerializeField]
     private AnimationCurve animationCurve;
 
-    [SerializeField]
-    private bool isUpdate = true;
 
     private void Start()
     {

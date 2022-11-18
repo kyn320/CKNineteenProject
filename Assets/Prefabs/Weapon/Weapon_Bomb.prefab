@@ -1,0 +1,261 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8844494543450790664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8211790835418890674}
+  - component: {fileID: 5069364143811497495}
+  - component: {fileID: 7042794864541203165}
+  - component: {fileID: -2032195053235094617}
+  - component: {fileID: 6321662770416098605}
+  - component: {fileID: -2174087569668372753}
+  - component: {fileID: -1893385011041399713}
+  - component: {fileID: 7905502379509581553}
+  - component: {fileID: -5802004950042175344}
+  - component: {fileID: -2220229767953124357}
+  m_Layer: 8
+  m_Name: Weapon_Bomb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8211790835418890674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844494543450790664}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5069364143811497495
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844494543450790664}
+  m_Mesh: {fileID: 7983099479414707717, guid: 1ec0af75d78171345859380e3377e2a8, type: 3}
+--- !u!23 &7042794864541203165
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844494543450790664}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d2e6044f392308243a7cba135314ab72, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &-2032195053235094617
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844494543450790664}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &6321662770416098605
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844494543450790664}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19065621, y: 0.1675744, z: 0.17911531}
+  m_Center: {x: 0.0000000037252903, y: -0.0000000037252903, z: 0}
+--- !u!114 &-2174087569668372753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844494543450790664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c725960a3a6961e44a751a57a8f96572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveType: 1
+  moveable: {fileID: -1893385011041399713}
+  damageInfo:
+    owner: {fileID: 0}
+    ownerTag: 
+    isHit: 0
+    isCritical: 0
+    isKnockBack: 0
+    isKill: 0
+    damage: 0
+    hitPoint: {x: 0, y: 0, z: 0}
+    hitNormal: {x: 0, y: 0, z: 0}
+  shotEvnet:
+    m_PersistentCalls:
+      m_Calls: []
+  hitEvnet:
+    m_PersistentCalls:
+      m_Calls: []
+  isPiercing: 0
+  isMove: 0
+  vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
+--- !u!114 &-1893385011041399713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844494543450790664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a4083c2c5acce49a5c88f282913d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileController: {fileID: 0}
+  startPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  maxDistance: 0
+  moveDirection: {x: 0, y: 0, z: 0}
+  moveSpeed: 0
+  moveTime: 0
+--- !u!114 &7905502379509581553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844494543450790664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffdaa12f9c4a9ee49bf079647569d7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  disableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionStayEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2174087569668372753}
+        m_TargetAssemblyTypeName: ProjectileController, Assembly-CSharp
+        m_MethodName: Hit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  triggerStayEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-5802004950042175344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844494543450790664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 380e1a398b4fda942a91fb512f26e419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationList:
+  - {fileID: 11400000, guid: fdb162b5754f3a941b591b0de3bb8c0c, type: 2}
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopActionType: 0
+  autoActiveByPlay: 0
+  autoStartPlay: 0
+  resetOriginTransformByStop: 0
+--- !u!114 &-2220229767953124357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844494543450790664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78101d8fe17a5546a02bb8ff936e519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 0
+  destinationEvent:
+    m_PersistentCalls:
+      m_Calls: []

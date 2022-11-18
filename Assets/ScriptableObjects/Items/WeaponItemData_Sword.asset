@@ -17,7 +17,7 @@ MonoBehaviour:
   equipHandType: 1
   itemName: "\uBB34\uAE30 2"
   description: 
-  icon: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
+  icon: {fileID: 21300000, guid: 0aa10d35061626247863e5bb22d3e33b, type: 3}
   isUnique: 1
   worldObject: {fileID: 3068488256194048695, guid: 747749803a542d94faff586c9062d7a3,
     type: 3}
@@ -256,7 +256,9 @@ MonoBehaviour:
   isMoveable: 0
   attackAnimationType: 1
   comboCount: 2
-  attackVFXDataList: []
+  attackVFXDataList:
+  - {fileID: 11400000, guid: 903bebdbd9139fa47aba6e74a62c74ec, type: 2}
+  - {fileID: 11400000, guid: e2afb5271a631c14ca02278081403e53, type: 2}
   hitBoxDataList:
   - {fileID: 11400000, guid: 3b61edb6ac864614d94edf84d0514927, type: 2}
   - {fileID: 11400000, guid: 3b61edb6ac864614d94edf84d0514927, type: 2}
@@ -265,3 +267,4 @@ MonoBehaviour:
     rotatation: {x: -0.70441604, y: -0.061628412, z: -0.061628412, w: 0.70441604}
   - position: {x: -0.09, y: 0.04, z: 0.001}
     rotatation: {x: -0.704416, y: -0.061628513, z: -0.061628513, w: 0.704416}
+  subWeaponList: []

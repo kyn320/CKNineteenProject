@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerAirState : PlayerStateBase
 {
     [SerializeField]
-    private float gravity = 9.81f;
+    private float gravityScale = 2f;
+
+    private float moveSpeed = 0f;
+    [SerializeField]
+    private float airMoveSpeedMultiplyer = 2f;
 
     private Animator animator;
     private Vector3 inputVector;
@@ -22,7 +26,12 @@ public class PlayerAirState : PlayerStateBase
 
     public override void Enter()
     {
-        controller.GetRigidbody().useGravity = true;
+        animator.SetTrigger("Airial");
+        animator.SetBool("IsGrounded", false);
+
+        moveSpeed = controller.GetStatus().currentStatus.GetElement(StatusType.MoveSpeed).CalculateTotalAmount();
+
+        controller.GetRigidbody().useGravity = false;
         for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
         {
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
@@ -40,7 +49,14 @@ public class PlayerAirState : PlayerStateBase
 
     private void FixedUpdate()
     {
-        var velocity = controller.GetRigidbody().velocity;
+        var rigidBody = controller.GetRigidbody();
+
+        if(inputVector.z > 0)
+            inputVector.z = 0;
+
+        Vector3 viewVector = transform.forward * inputVector.z; //+ transform.right * (inputVector.z < 0f ? -inputVector.x : inputVector.x);
+
+        var velocity = rigidBody.velocity;
         var isGround = controller.IsGround();
         animator.SetBool("IsGrounded", isGround);
         if (velocity.y < 0 && isGround)
@@ -50,6 +66,9 @@ public class PlayerAirState : PlayerStateBase
             else
                 controller.ChangeState(PlayerStateType.Idle);
         }
+
+        rigidBody.AddForce(Physics.gravity * gravityScale 
+            + viewVector * airMoveSpeedMultiplyer * moveSpeed, ForceMode.Acceleration);
     }
 
     public void UpdateMoveInput(Vector3 inputVector)

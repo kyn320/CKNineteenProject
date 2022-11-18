@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 7926306252089205073}
   - component: {fileID: 6507769765467205364}
   - component: {fileID: 9058086125320788542}
+  - component: {fileID: 1803685157825485197}
   m_Layer: 0
   m_Name: ST_Jar_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7926306252089205073
 Transform:
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2914bb367a49c340b545a240cafaba7, type: 2}
+  - {fileID: 2100000, guid: cacc77ea3326106409a71003bdd29f58, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1803685157825485197
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7400598528794065899}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2978243, y: 0.45073885, z: 0.29782432}
+  m_Center: {x: 0.00031019747, y: 0.22535881, z: -0.000000037252903}

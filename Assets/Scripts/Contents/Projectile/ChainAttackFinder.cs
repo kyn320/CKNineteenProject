@@ -27,7 +27,7 @@ public class ChainAttackFinder : MonoBehaviour
         chainLog = new string[0];
     }
 
-    public void ChainAttackStart(Collision hitCollision)
+    public void ChainAttackStart(Collider hitCollision)
     {
         if (Mathf.Pow(2, hitCollision.gameObject.layer) != targetLayer)
             return;

@@ -102,4 +102,18 @@ public class SaveLoadSystem : Singleton<SaveLoadSystem>
         return success;
     }
 
+    public void UpdateBGMVolume(float volume)
+    {
+        saveLoadData.bgmVolume = volume;
+    }
+
+    public void UpdateSFXVolume(float volume)
+    {
+        saveLoadData.sfxVolume = volume;
+    }
+
+    public void UpdateMouseSensitivity(int amount)
+    {
+        saveLoadData.mouseSensitivity = amount;
+    }
 }

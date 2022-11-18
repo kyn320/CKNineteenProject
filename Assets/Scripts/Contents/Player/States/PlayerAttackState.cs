@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -259,18 +260,12 @@ public class PlayerAttackState : PlayerStateBase
         //정령이 자유 이동하도록 변경
         spiritMoveController.isMoveable = true;
 
-        //피해량 계산
-        var isCritical = controller.GetStatus().GetCriticalSuccess();
-        var damageAmount = 0f;
+        //무기 능력치 적용
+        controller.GetStatus().currentStatus.AddStatusInfo(currentAttackWeaponData.StatusInfoData);
 
-        if (isCritical)
-        {
-            damageAmount = damageCalculator.Calculate(controller.GetStatus().currentStatus);
-        }
-        else
-        {
-            damageAmount = criticalDamageCalculator.Calculate(controller.GetStatus().currentStatus);
-        }
+        //피해량 선언
+        var isCritical = false;
+        var damageAmount = 0f;
 
         switch (currentAttackWeaponData.AttackType)
         {
@@ -283,7 +278,12 @@ public class PlayerAttackState : PlayerStateBase
                     weaponController.SetOwnerObject(this.gameObject);
                     weaponController.SetWeaponData(currentAttackWeaponData);
                     weaponController.hitEvnet.AddListener(SuccessHit);
-                    weaponController.SetStatus(damageAmount, isCritical);
+
+                    //피해량을 계산합니다.
+                    isCritical = CalculateCritical();
+                    damageAmount = CalculateDamageAmount(isCritical);
+
+                    weaponController.SetCalculator(CalculateCritical, CalculateDamageAmount);
                     weaponController.CreateAttackHitBox(currentComboIndex);
                 }
                 break;
@@ -295,13 +295,18 @@ public class PlayerAttackState : PlayerStateBase
 
                     weaponObject.transform.SetParent(null);
                     //spiritPivot.SetOriginOffset();
-                    sonicBoomVFX.SetActive(true);
+                    //sonicBoomVFX.SetActive(true);
                     //방향 계산     
                     projectileDirection = aimPoint - handBone.transform.position;
                     Debug.Log(projectileDirection);
                     var projectileController = weaponObject.GetComponent<ProjectileController>();
                     projectileController.hitEvnet.AddListener(SuccessHit);
-                    projectileController.SetStatus(damageAmount, isCritical);
+
+                    //피해량을 계산합니다.
+                    isCritical = CalculateCritical();
+                    damageAmount = CalculateDamageAmount(isCritical);
+
+                    projectileController.SetCalculator(CalculateCritical, CalculateDamageAmount);
                     projectileController.Shot(handBone.position
                         , aimPoint
                         , projectileDirection.normalized
@@ -310,6 +315,9 @@ public class PlayerAttackState : PlayerStateBase
                 }
                 break;
         }
+
+        //무기 능력치 효과 해제
+        controller.GetStatus().currentStatus.SubStatusInfo(currentAttackWeaponData.StatusInfoData);
 
         if (currentComboIndex < currentAttackWeaponData.ComboCount - 1)
         {
@@ -368,7 +376,6 @@ public class PlayerAttackState : PlayerStateBase
 
     public void SuccessHit(bool isKill)
     {
-
         ++currentHitCount;
 
         if (currentAttackWeaponData.AttackType == WeaponAttackType.Melee)
@@ -391,6 +398,23 @@ public class PlayerAttackState : PlayerStateBase
 
         if (isKill)
             ComboSystem.Instance.AddKillCombo(1);
+    }
+
+    private bool CalculateCritical()
+    {
+        return controller.GetStatus().GetCriticalSuccess();
+    }
+
+    private float CalculateDamageAmount(bool isCritical)
+    {
+        if (isCritical)
+        {
+            return criticalDamageCalculator.Calculate(controller.GetStatus().currentStatus);
+        }
+        else
+        {
+            return damageCalculator.Calculate(controller.GetStatus().currentStatus);
+        }
     }
 
     public void ForceStopAttack()

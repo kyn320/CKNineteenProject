@@ -18,6 +18,8 @@ public class BezierCurve : MonoBehaviour
     [SerializeField]
     private float pointRadius = 0.5f;
     [SerializeField]
+    private Color rootAnchorColor = Color.white;
+    [SerializeField]
     private Color anchorColor = Color.white;
     [SerializeField]
     private Color curveLineColor = Color.white;
@@ -93,7 +95,7 @@ public class BezierCurve : MonoBehaviour
 
         while (searchProgress < GetLineCount())
         {
-            searchProgress += 0.001f;
+            searchProgress += 0.01f;
             var checkPosition = GetPosition(searchProgress);
             var distance = (checkPosition - startPosition).magnitude;
             var diff = checkDistance - distance;
@@ -121,6 +123,7 @@ public class BezierCurve : MonoBehaviour
         var progressRange = new float[2] { 0f, 0f };
 
         BezierLine searchLine = null;
+        var resultLineIndex = 0;
 
         for (var i = 0; i < lineList.Count; ++i)
         {
@@ -133,6 +136,7 @@ public class BezierCurve : MonoBehaviour
                 nearDistanceSqr = searchDistanceSqr;
                 progressRange = searchRange;
                 searchLine = line;
+                resultLineIndex = i;
             }
         }
 
@@ -154,7 +158,7 @@ public class BezierCurve : MonoBehaviour
             }
         }
 
-        return new CurveNearPointData { line = searchLine, progress = resultProgress, position = nearestPosition };
+        return new CurveNearPointData { line = searchLine, progress = resultLineIndex + resultProgress, position = nearestPosition };
     }
 
     public float SearchLineBinarySplit(ref float[] progressRange, BezierLine curveLine, Vector3 targetPosition, float progress, int step, float nearDistance)
@@ -288,6 +292,9 @@ public class BezierCurve : MonoBehaviour
     protected virtual void OnDrawGizmos()
     {
         stepProgressAmount = Mathf.Max(stepProgressAmount, 0.1f);
+
+        Gizmos.color = rootAnchorColor;
+        Gizmos.DrawWireSphere(transform.position, pointRadius);
 
         for (var i = 0; i < pointList.Count; ++i)
         {
