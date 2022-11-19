@@ -93,7 +93,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -332,6 +332,8 @@ MonoBehaviour:
   allowAttack: 0
   attackDistance: 20
   attackAfterTime: 0.25
+  vfxPrefabData: {fileID: 11400000, guid: 6d06a6d0518ad2149b7ac40121250c30, type: 2}
+  sfxPrefabData: {fileID: 0}
 --- !u!114 &5413399869023604584
 MonoBehaviour:
   m_ObjectHideFlags: 0
