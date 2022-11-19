@@ -28,6 +28,10 @@ public class PlayerAttackState : PlayerStateBase
 
     [ReadOnly]
     [ShowInInspector]
+    private bool isCombo = false;
+
+    [ReadOnly]
+    [ShowInInspector]
     private AttackStateType attackStateType;
 
     [ReadOnly]
@@ -118,6 +122,9 @@ public class PlayerAttackState : PlayerStateBase
 
     public bool CheckAttackPossible()
     {
+        if(isCombo)
+            return true;
+
         if (!isAttack
         && equipSlotDatas.Count > 0
         && (controller.GetState() == PlayerStateType.Idle || controller.GetState() == PlayerStateType.Move))
@@ -156,6 +163,7 @@ public class PlayerAttackState : PlayerStateBase
         this.aimPoint = aimPoint;
 
         isAttack = true;
+        isCombo = false;
 
         controller.UpdateBattleState(PlayerBattleStateType.Battle);
         attackStateType = AttackStateType.Start;
@@ -364,14 +372,18 @@ public class PlayerAttackState : PlayerStateBase
     public void AllowCombo()
     {
         //다음 콤보에 대한 입력을 받을 수 있습니다.
-        isAttack = attackStateType != AttackStateType.ComboCheck;
+        isCombo = attackStateType == AttackStateType.ComboCheck;
     }
 
     public void EndAttack()
     {
+        if(!isAttack)
+            return;
+
         attackStateType = AttackStateType.Wait;
 
         isAttack = false;
+        isCombo = false;
 
         if (!isMoveable)
             updateIsAttackEvent?.Invoke(isAttack);
@@ -389,7 +401,7 @@ public class PlayerAttackState : PlayerStateBase
 
         //공격 초기화
         currentComboIndex = 0;
-
+        Debug.Log("Update Weapon Index");
         currentWeaponIndex = (int)Mathf.Repeat(currentWeaponIndex + 1, equipSlotDatas.Count);
         updateWeaponIndexEvent?.Invoke(currentWeaponIndex);
 
@@ -459,7 +471,7 @@ public class PlayerAttackState : PlayerStateBase
 
     public override void Exit()
     {
-        EndAttack();
+        //EndAttack();
         exitEvent?.Invoke();
     }
 
