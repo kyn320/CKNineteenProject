@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using Cysharp.Threading.Tasks;
 
-public class SmallGolemAttackPattern : MonsterAttackPattern
+public class ObserverMeleeAttackPattern : MonsterAttackPattern
 {
+    [SerializeField]
+    private Transform renderObject;
+
     [SerializeField]
     private float currentAttackTick = 0f;
 
@@ -14,6 +17,9 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
 
     [SerializeField]
     private float attackAllowTime = 0.1f;
+
+    [SerializeField]
+    private bool isUpdate = false;
 
     [SerializeField]
     private bool allowAttack = false;
@@ -28,6 +34,8 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
 
     [SerializeField]
     private VFXPrefabData vfxPrefabData;
+
+    private GameObject attackVFX;
 
     [SerializeField]
     private SFXPrefabData sfxPrefabData;
@@ -57,18 +65,32 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
             startAttackTriggerDataList[i].Invoke(animator);
         }
 
-        var destination = transform.position + transform.forward * attackDistance;
-
-        //TODO :: 바라보고 있는 방향으로 직선 거리 n 만큼 이동.
         navAgent.stoppingDistance = 0.01f;
         navAgent.speed = attackSpeed;
-        var success = navAgent.SetDestination(destination);
         currentAttackTick = 0;
         startAttackEvent?.Invoke();
     }
-    protected override void Update()
+
+    public void PlayAttack()
     {
         if (!isAttacked)
+            return;
+
+        navAgent.isStopped = false;
+        //TODO :: 바라보고 있는 방향으로 직선 거리 n 만큼 이동.
+        var destination = transform.position + transform.forward * attackDistance;
+        var success = navAgent.SetDestination(destination);
+        isUpdate = true;
+
+        animator.SetTrigger("Attack");
+        animator.SetInteger("AttackType", 3);
+
+        attackVFX = Instantiate(vfxPrefabData.GetVFXPrefab("MeleeAttack"), renderObject);
+    }
+
+    protected override void Update()
+    {
+        if (!isAttacked || !isUpdate)
             return;
 
         currentAttackTick += Time.deltaTime;
@@ -96,6 +118,9 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
             return;
 
         isAttacked = false;
+        isUpdate = false;
+
+        Destroy(attackVFX);
 
         navAgent.isStopped = true;
 

@@ -5035,7 +5035,6 @@ GameObject:
   - component: {fileID: 5327795873384994574}
   - component: {fileID: 5327795873384994575}
   - component: {fileID: 5327795873384994572}
-  - component: {fileID: 4703429562881625510}
   m_Layer: 0
   m_Name: FXprefab_Monster_N_Observer_Attack
   m_TagString: Untagged
@@ -9838,26 +9837,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!95 &4703429562881625510
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5327795873384994562}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5567411276091727277
 GameObject:
   m_ObjectHideFlags: 0

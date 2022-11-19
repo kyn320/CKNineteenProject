@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a37fee47aad1694ebb64d74d41a1e5f, type: 3}
-  m_Name: SwordAttackVFXData
+  m_Name: ObserverMonsterVFXData
   m_EditorClassIdentifier: 
   vfxDic:
     keys:
-    - Attack
-    - Spawn
-    - Dissapear
+    - MeleeAttack
+    - ProjectileAttack
+    - Death
     values:
-    - {fileID: 4463567695770747930, guid: b547df6ae99d6b44b87a21e877d05dfc, type: 3}
-    - {fileID: 5452784466812260937, guid: e9ebdc636c9bbc54aa72d8e3a38206d5, type: 3}
-    - {fileID: 4065380034455942582, guid: 6c1fa529776fe9a42a1f6281326a0f04, type: 3}
+    - {fileID: 3633123774716060637, guid: 43a46044b1c3e8a4ea758310b0c6ad33, type: 3}
+    - {fileID: 4060133609681971579, guid: a33bc3d48849ba54eaed27d03e47bc37, type: 3}
+    - {fileID: 8966803498262969358, guid: 434cf4bd0e5dd124796c93f3fa87fbc5, type: 3}

@@ -96,9 +96,11 @@ public class WeaponController : MonoBehaviour
 
 
         var hitPause = other.gameObject.GetComponent<IHitPauseable>();
-        hitPause.HitPause(hitPauseWaitTime, hitPauseTime);
+        hitPause?.HitPause(hitPauseWaitTime, hitPauseTime);
+    }
 
-        gameObject.SetActive(false);
+    public void AutoDestroy() { 
+        Destroy(gameObject);
     }
 
 }

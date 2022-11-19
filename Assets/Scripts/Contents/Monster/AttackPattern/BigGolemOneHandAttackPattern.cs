@@ -7,6 +7,12 @@ public class BigGolemOneHandAttackPattern : MonsterAttackPattern
 {
     private NavMeshAgent navAgent;
 
+    [SerializeField]
+    private VFXPrefabData vfxPrefabData;
+
+    [SerializeField]
+    private SFXPrefabData sfxPrefabData;
+
     protected override void Awake()
     {
         base.Awake();
@@ -35,7 +41,7 @@ public class BigGolemOneHandAttackPattern : MonsterAttackPattern
 
     protected override void Update()
     {
-
+        return;
     }
 
     public void HitAttack(Collision collision)

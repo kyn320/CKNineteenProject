@@ -6,5 +6,6 @@ public enum MonsterType
 {
     NONE = 0,
     MONSTERTYPE_SMALL,
-    MONSTERTYPE_BIG
+    MONSTERTYPE_BIG,
+    MONSTERTYPE_OBSERVER,
 }
