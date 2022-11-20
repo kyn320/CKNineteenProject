@@ -13,10 +13,15 @@ public class PlayerMoveState : PlayerStateBase
     private float moveSpeed = 1f;
     [SerializeField]
     private float backMoveSpeedMutiplyer = 0.5f;
+    [SerializeField]
+    private float moveStopSpeedMutiplyer = 0.5f;
 
     [SerializeField]
     private bool allowMove = true;
 
+    [ReadOnly]
+    [ShowInInspector]
+    private Vector3 prevInputVector;
     [ReadOnly]
     [ShowInInspector]
     private Vector3 inputVector;
@@ -69,19 +74,20 @@ public class PlayerMoveState : PlayerStateBase
             return;
 
 
-        animator.SetFloat("MoveX", inputVector.x);
-        animator.SetFloat("MoveZ", inputVector.z);
-
         if (!controller.IsGround())
         {
             controller.ChangeState(PlayerStateType.Air);
         }
         else if (Mathf.Abs(inputVector.x) + Mathf.Abs(inputVector.z) < 0.1f)
         {
+            if (prevInputVector.z > 0f)
+            {
+                controller.GetRigidbody().velocity = transform.forward * moveStopSpeedMutiplyer * moveSpeed;
+            }
             controller.ChangeState(PlayerStateType.Idle);
         }
-
     }
+
     private void Move()
     {
         //움직일 방향
@@ -96,6 +102,9 @@ public class PlayerMoveState : PlayerStateBase
         {
             if (Mathf.Abs(inputVector.x) > 0.5f || Mathf.Abs(inputVector.z) > 0.5f)
             {
+                prevInputVector = inputVector;
+                animator.SetFloat("MoveX", inputVector.x);
+                animator.SetFloat("MoveZ", inputVector.z);
                 animator.SetInteger("MoveSpeed", 1);
             }
             else

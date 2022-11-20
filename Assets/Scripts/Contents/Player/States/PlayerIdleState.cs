@@ -92,7 +92,7 @@ public class PlayerIdleState : PlayerStateBase
         }
         else
         {
-            controller.GetRigidbody().velocity = Vector3.zero;
+            //controller.GetRigidbody().velocity = Vector3.zero;
         }
     }
 
