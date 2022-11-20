@@ -59,6 +59,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
 
     [SerializeField]
     private bool isDeath = false;
+    [SerializeField]
+    private bool isAttack = false;
 
     private void Awake()
     {
@@ -124,12 +126,19 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
 
     public void Jump()
     {
+        if(isAttack)
+            return;
+
         if (!IsGround()
             && currentStateType != PlayerStateType.Idle
             && currentStateType != PlayerStateType.Move)
             return;
 
         ChangeState(PlayerStateType.Jump);
+    }
+    public void SetIsAttack(bool isAttack)
+    {
+        this.isAttack = isAttack;
     }
 
     public virtual DamageInfo OnDamage(DamageInfo damageInfo)
