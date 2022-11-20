@@ -19,6 +19,12 @@ public class PlayerIdleState : PlayerStateBase
     [ShowInInspector]
     private float currentChangeBattleTime;
 
+
+    [SerializeField]
+    private float delayToMoveStop = 1f;
+    private float currentDelayToMoveStop = 0f;
+    private bool isDelayMoveStop = false;
+
     private bool isAttack = false;
 
     public override void Enter()
@@ -36,6 +42,8 @@ public class PlayerIdleState : PlayerStateBase
         controller.updateMoveSpeedEvent?.Invoke(0f);
         currentChangeBattleTime = changeNormalBattleTime;
         currentRecoverTickTime = recoverTickTime;
+        isDelayMoveStop = true;
+        currentDelayToMoveStop = delayToMoveStop;
         enterEvent?.Invoke();
     }
 
@@ -64,6 +72,14 @@ public class PlayerIdleState : PlayerStateBase
 
     public override void Update()
     {
+        currentDelayToMoveStop -= Time.deltaTime;
+
+        if (isDelayMoveStop && currentDelayToMoveStop <= 0f)
+        {
+            isDelayMoveStop = false;
+            currentDelayToMoveStop = 0f;
+        }
+
         switch (controller.GetBattleState())
         {
             case PlayerBattleStateType.Normal:
@@ -92,7 +108,8 @@ public class PlayerIdleState : PlayerStateBase
         }
         else
         {
-            //controller.GetRigidbody().velocity = Vector3.zero;
+            if (!isDelayMoveStop)
+                controller.GetRigidbody().velocity = Vector3.zero;
         }
     }
 
