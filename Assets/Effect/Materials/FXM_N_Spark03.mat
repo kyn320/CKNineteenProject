@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FXM_N_Light01
-  m_Shader: {fileID: -6465566751694194690, guid: 64b906aa3cdaac24a8d47de81ae6e767,
+  m_Name: FXM_N_Spark03
+  m_Shader: {fileID: -6465566751694194690, guid: 7d7807b13a58bb24f9fad0e6b5456817,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -22,11 +22,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Main_Texture:
-        m_Texture: {fileID: 2800000, guid: 25305a8a830ec8e48ab1f428a2f16933, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1591d3d724fc57f479c7a9140ec7138b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 113dba7830f21c4489689ce26a430858, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6f492e043912037429b3d700e61d13c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -43,11 +43,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Intensity: 3
+    - _Intensity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8247391321165188834
 MonoBehaviour:
