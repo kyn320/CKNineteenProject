@@ -104,14 +104,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsDontDestroy: 0
   target: {fileID: 0}
-  targetOffset: {x: 0, y: 1, z: 0}
+  targetOffset: {x: 0, y: 0, z: 0}
   mainCamera: {fileID: 7970744291956046205}
   cameraAnchor: {fileID: 7970744291048967399}
   directionObject: {fileID: 7970744291211667740}
   cameraVector:
-  - {x: 1, y: 0, z: -5}
-  - {x: 1, y: 0.25, z: -1}
-  - {x: 1, y: 0, z: -5}
+  - {x: 1, y: 0, z: -4.5}
+  - {x: 1, y: 1, z: -3}
+  - {x: 1, y: 0, z: -4}
   isZoom: 0
   isBack: 0
   cameraAngle: 80
@@ -215,14 +215,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7970744291956046205}
-  m_LocalRotation: {x: -0.043619405, y: -0, z: -0, w: 0.9990483}
+  m_LocalRotation: {x: -0.13052624, y: 0, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 1, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2055265549674031758}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -5, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -15, y: 0, z: 0}
 --- !u!20 &7970744291956046177
 Camera:
   m_ObjectHideFlags: 0
@@ -290,7 +290,8 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras: []
+  m_Cameras:
+  - {fileID: 0}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2

@@ -52,6 +52,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 442ceef19115ca64cb036e9b9e1924dc, type: 3}
         m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
+    - _HexaTex:
+        m_Texture: {fileID: 2800000, guid: e1c30023b4732624d81b17b8f683dab3, type: 3}
+        m_Scale: {x: 30, y: 15}
+        m_Offset: {x: 0, y: 0}
     - _InsideTex:
         m_Texture: {fileID: 2800000, guid: d3e5c84ff8046f5449e36e5897a950aa, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -128,6 +132,15 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Hexa_BackOpacity: 0.003
+    - _Hexa_MaskMult: 0.32
+    - _Hexa_Maskpow: 3.13
+    - _Hexa_ScrollSpeed: -0.122
+    - _Hexa_Upanner: 0
+    - _Hexa_VmaskPow: 8.4
+    - _Hexa_Vmask_mult: 10
+    - _Hexa_Vpanner: 0
+    - _Hexa_Wavecount: 7.3
     - _InsideMask_Mult: 1.64
     - _InsideMask_Pow: 1
     - _Inside_Mult: 0.1
@@ -164,7 +177,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Gap_Color: {r: 3.4772916, g: 3.4772916, b: 15.813397, a: 0}
-    - _Main_Frescolor: {r: 2.0174558, g: 4.371155, b: 12.844469, a: 0}
+    - _Main_Frescolor: {r: 0.9411765, g: 2.0705884, b: 5.992157, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &877164538430319058

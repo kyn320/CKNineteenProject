@@ -127,15 +127,6 @@ public class SetupObjectByCurve : MonoBehaviour
 
             var projectionInfo = GetProjectionInfo(position);
 
-            if (useProjectionPosition && projectionInfo.collider != null)
-            {
-                setupObjectList[i].transform.position = projectionInfo.point + offsetPosition;
-            }
-            else
-            {
-                setupObjectList[i].transform.position = position + offsetPosition;
-            }
-
             if (useProjectionRotation && projectionInfo.collider != null)
             {
                 var hitNormalRotation = Quaternion.FromToRotation(transform.up, projectionInfo.normal);
@@ -146,6 +137,16 @@ public class SetupObjectByCurve : MonoBehaviour
                 setupObjectList[i].transform.rotation = lookAtRotation * offsetRotation;
             }
 
+            if (useProjectionPosition && projectionInfo.collider != null)
+            {
+                setupObjectList[i].transform.position = projectionInfo.point;
+                setupObjectList[i].transform.position += Quaternion.LookRotation(setupObjectList[i].transform.forward, setupObjectList[i].transform.up) * offsetPosition;
+            }
+            else
+            {
+                setupObjectList[i].transform.position = position;
+                setupObjectList[i].transform.position += Quaternion.LookRotation(setupObjectList[i].transform.forward, setupObjectList[i].transform.up) * offsetPosition;
+            }
 
             setupObjectBoundList[i].progress = resultProgress;
             setupObjectBoundList[i].line = bezierCurve.GetLine(resultProgress);

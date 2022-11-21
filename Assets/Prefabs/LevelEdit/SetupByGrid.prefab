@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1181275415958878987
 Transform:
@@ -44,13 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c208c5f3dac1749a96d8776be39a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setupPrefabList: []
-  gridSize: {x: 0, y: 0}
+  setupPrefab: {fileID: 708602162016867403, guid: 9ff56adf8f4ed574f8bacf5de9c32adb,
+    type: 3}
+  gridSize: {x: 1, y: 0}
   setupObjectList: []
-  setupObjectBoundList: []
+  setupObjectBound:
+    name: 
+    progress: 0
+    transform: {fileID: 0}
+    boxCollider: {fileID: 0}
   useAutoUpdate: 1
   useProjectionPosition: 1
-  useProjectionRotation: 1
+  useProjectionRotation: 0
   showObjectBounds: 1
-  offsetPosition: {x: 0, y: 0, z: 0}
-  offsetRotation: {x: 0, y: 0, z: 0, w: 0}
+  spacingPosition: {x: 0, y: 0, z: 0}
+  offsetRotation: {x: 0.08715574, y: 0, z: 0, w: 0.9961947}

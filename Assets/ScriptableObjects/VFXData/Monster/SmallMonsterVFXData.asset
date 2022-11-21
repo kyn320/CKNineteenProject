@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a37fee47aad1694ebb64d74d41a1e5f, type: 3}
+  m_Name: SmallMonsterVFXData
+  m_EditorClassIdentifier: 
+  vfxDic:
+    keys:
+    - Attack
+    - EndAttack
+    values:
+    - {fileID: 2607250984777923288, guid: 59d16c31df87b3948a50c1156e472fa9, type: 3}
+    - {fileID: 7220961580750735766, guid: 4ae8329bfa5326746aa123bc83f9e2b1, type: 3}

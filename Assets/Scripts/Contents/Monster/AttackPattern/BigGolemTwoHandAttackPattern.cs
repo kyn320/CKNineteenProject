@@ -12,6 +12,12 @@ public class BigGolemTwoHandAttackPattern : MonsterAttackPattern
     [SerializeField]
     private GameObject groundHitBox;
 
+    [SerializeField]
+    private VFXPrefabData vfxPrefabData;
+
+    [SerializeField]
+    private SFXPrefabData sfxPrefabData;
+
     protected override void Awake()
     {
         base.Awake();

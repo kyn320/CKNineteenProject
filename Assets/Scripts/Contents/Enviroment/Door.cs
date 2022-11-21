@@ -15,40 +15,40 @@ public class Door : MonoBehaviour
     }
 
     [SerializeField]
-    private State state;
+    protected State state;
 
     [SerializeField]
     private ObjectTweenAnimator openAnimator;
-    public UnityEvent beginOpenEvent;
-    public UnityEvent endOpenEvent;
+    public UnityEvent<Door> beginOpenEvent;
+    public UnityEvent<Door> endOpenEvent;
 
     [SerializeField]
     private ObjectTweenAnimator closeAnimator;
-    public UnityEvent beginCloseEvent;
-    public UnityEvent endCloseEvent;
+    public UnityEvent<Door> beginCloseEvent;
+    public UnityEvent<Door> endCloseEvent;
 
     [Button("Open")]
-    public void Open()
+    public virtual void Open()
     {
         state = State.OpenWork;
-        beginOpenEvent?.Invoke();
+        beginOpenEvent?.Invoke(this);
 
         openAnimator.PlayAnimation(() =>
         {
-            endOpenEvent?.Invoke();
+            endOpenEvent?.Invoke(this);
             state = State.Open;
         });
     }
 
     [Button("Close")]
-    public void Close()
+    public virtual void Close()
     {
         state = State.CloseWork;
-        beginCloseEvent?.Invoke();
+        beginCloseEvent?.Invoke(this);
 
         closeAnimator.PlayAnimation(() =>
         {
-            endCloseEvent?.Invoke();
+            endCloseEvent?.Invoke(this);
             state = State.Close;
         });
     }

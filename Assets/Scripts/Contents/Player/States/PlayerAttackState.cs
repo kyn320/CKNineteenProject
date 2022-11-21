@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,10 @@ public class PlayerAttackState : PlayerStateBase
     [ReadOnly]
     [ShowInInspector]
     private bool isAttack = false;
+
+    [ReadOnly]
+    [ShowInInspector]
+    private bool isCombo = false;
 
     [ReadOnly]
     [ShowInInspector]
@@ -117,6 +122,9 @@ public class PlayerAttackState : PlayerStateBase
 
     public bool CheckAttackPossible()
     {
+        if(isCombo)
+            return true;
+
         if (!isAttack
         && equipSlotDatas.Count > 0
         && (controller.GetState() == PlayerStateType.Idle || controller.GetState() == PlayerStateType.Move))
@@ -155,6 +163,7 @@ public class PlayerAttackState : PlayerStateBase
         this.aimPoint = aimPoint;
 
         isAttack = true;
+        isCombo = false;
 
         controller.UpdateBattleState(PlayerBattleStateType.Battle);
         attackStateType = AttackStateType.Start;
@@ -203,43 +212,58 @@ public class PlayerAttackState : PlayerStateBase
         switch (currentAttackWeaponData.HandType)
         {
             case HandType.Left:
-                weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
-                weaponObject.transform.SetParent(handBones[0]);
-                weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
-                weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
-                weaponSpawnObjectList.Add(weaponObject);
-                weaponHandBoneList.Add(handBones[0]);
-                break;
-            case HandType.Right:
-                weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
-                weaponObject.transform.SetParent(handBones[1]);
-                weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
-                weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
-                weaponSpawnObjectList.Add(weaponObject);
-                weaponHandBoneList.Add(handBones[1]);
-                break;
-            case HandType.All:
-                for (var i = 0; i < 2; ++i)
                 {
-                    if (i == 0)
-                    {
-                        weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
-                    }
-                    else
-                    {
-                        weaponObject = Instantiate(currentAttackWeaponData.SubWeaponList[i - 1]);
-                    }
-
-                    weaponObject.transform.SetParent(handBones[i]);
+                    weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
+                    weaponObject.transform.SetParent(handBones[0]);
                     weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
                     weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
                     weaponSpawnObjectList.Add(weaponObject);
-                    weaponHandBoneList.Add(handBones[i]);
+                    weaponHandBoneList.Add(handBones[0]);
+
+                    var vfxData = currentAttackWeaponData.AttackVFXDataList[currentComboIndex];
+                    var vfxObject = Instantiate(vfxData.GetVFXPrefab("Spawn"), handBones[0]);
+
+                    var weaponAnimator = weaponObject.GetComponent<Animator>();
+                    weaponAnimator.SetTrigger("Spawn");
+                }
+                break;
+            case HandType.Right:
+                {
+                    weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
+                    weaponObject.transform.SetParent(handBones[1]);
+                    weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
+                    weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
+                    weaponSpawnObjectList.Add(weaponObject);
+                    weaponHandBoneList.Add(handBones[1]);
+                    var vfxData = currentAttackWeaponData.AttackVFXDataList[currentComboIndex];
+                    var vfxObject = Instantiate(vfxData.GetVFXPrefab("Spawn"), handBones[1]);
+
+                    var weaponAnimator = weaponObject.GetComponent<Animator>();
+                    weaponAnimator.SetTrigger("Spawn");
+                }
+                break;
+            case HandType.All:
+                {
+                    for (var i = 0; i < 2; ++i)
+                    {
+                        if (i == 0)
+                        {
+                            weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
+                        }
+                        else
+                        {
+                            weaponObject = Instantiate(currentAttackWeaponData.SubWeaponList[i - 1]);
+                        }
+
+                        weaponObject.transform.SetParent(handBones[i]);
+                        weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
+                        weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
+                        weaponSpawnObjectList.Add(weaponObject);
+                        weaponHandBoneList.Add(handBones[i]);
+                    }
                 }
                 break;
         }
-
-        //무기 소환
 
     }
 
@@ -259,18 +283,12 @@ public class PlayerAttackState : PlayerStateBase
         //정령이 자유 이동하도록 변경
         spiritMoveController.isMoveable = true;
 
-        //피해량 계산
-        var isCritical = controller.GetStatus().GetCriticalSuccess();
-        var damageAmount = 0f;
+        //무기 능력치 적용
+        controller.GetStatus().currentStatus.AddStatusInfo(currentAttackWeaponData.StatusInfoData);
 
-        if (isCritical)
-        {
-            damageAmount = damageCalculator.Calculate(controller.GetStatus().currentStatus);
-        }
-        else
-        {
-            damageAmount = criticalDamageCalculator.Calculate(controller.GetStatus().currentStatus);
-        }
+        //피해량 선언
+        var isCritical = false;
+        var damageAmount = 0f;
 
         switch (currentAttackWeaponData.AttackType)
         {
@@ -283,7 +301,12 @@ public class PlayerAttackState : PlayerStateBase
                     weaponController.SetOwnerObject(this.gameObject);
                     weaponController.SetWeaponData(currentAttackWeaponData);
                     weaponController.hitEvnet.AddListener(SuccessHit);
-                    weaponController.SetStatus(damageAmount, isCritical);
+
+                    //피해량을 계산합니다.
+                    isCritical = CalculateCritical();
+                    damageAmount = CalculateDamageAmount(isCritical);
+
+                    weaponController.SetCalculator(CalculateCritical, CalculateDamageAmount);
                     weaponController.CreateAttackHitBox(currentComboIndex);
                 }
                 break;
@@ -295,13 +318,18 @@ public class PlayerAttackState : PlayerStateBase
 
                     weaponObject.transform.SetParent(null);
                     //spiritPivot.SetOriginOffset();
-                    sonicBoomVFX.SetActive(true);
+                    //sonicBoomVFX.SetActive(true);
                     //방향 계산     
                     projectileDirection = aimPoint - handBone.transform.position;
                     Debug.Log(projectileDirection);
                     var projectileController = weaponObject.GetComponent<ProjectileController>();
                     projectileController.hitEvnet.AddListener(SuccessHit);
-                    projectileController.SetStatus(damageAmount, isCritical);
+
+                    //피해량을 계산합니다.
+                    isCritical = CalculateCritical();
+                    damageAmount = CalculateDamageAmount(isCritical);
+
+                    projectileController.SetCalculator(CalculateCritical, CalculateDamageAmount);
                     projectileController.Shot(handBone.position
                         , aimPoint
                         , projectileDirection.normalized
@@ -311,6 +339,9 @@ public class PlayerAttackState : PlayerStateBase
                 break;
         }
 
+        //무기 능력치 효과 해제
+        controller.GetStatus().currentStatus.SubStatusInfo(currentAttackWeaponData.StatusInfoData);
+
         if (currentComboIndex < currentAttackWeaponData.ComboCount - 1)
         {
             attackStateType = AttackStateType.ComboCheck;
@@ -318,17 +349,41 @@ public class PlayerAttackState : PlayerStateBase
         }
     }
 
+    public void DissapearWeapon() {
+        switch (currentAttackWeaponData.AttackType)
+        {
+            case WeaponAttackType.None:
+                break;
+            case WeaponAttackType.Melee:
+                if (weaponSpawnObjectList.Count > 0)
+                {
+                    var vfxData = currentAttackWeaponData.AttackVFXDataList[0];
+                    var vfxObject = Instantiate(vfxData.GetVFXPrefab("Dissapear"), handBones[1]);
+
+                    var weaponAnimator = weaponSpawnObjectList[0].GetComponent<Animator>();
+                    weaponAnimator.SetTrigger("Dissapear");
+                }
+                break;
+            case WeaponAttackType.Projectile:
+                break;
+        }
+    }
+
     public void AllowCombo()
     {
         //다음 콤보에 대한 입력을 받을 수 있습니다.
-        isAttack = attackStateType != AttackStateType.ComboCheck;
+        isCombo = attackStateType == AttackStateType.ComboCheck;
     }
 
     public void EndAttack()
     {
+        if(!isAttack)
+            return;
+
         attackStateType = AttackStateType.Wait;
 
         isAttack = false;
+        isCombo = false;
 
         if (!isMoveable)
             updateIsAttackEvent?.Invoke(isAttack);
@@ -338,21 +393,7 @@ public class PlayerAttackState : PlayerStateBase
         animator.speed = 1f;
 
         animator.SetInteger("AttackType", 0);
-
-        switch (currentAttackWeaponData.AttackType)
-        {
-            case WeaponAttackType.None:
-                break;
-            case WeaponAttackType.Melee:
-                if (weaponSpawnObjectList.Count > 0)
-                {
-                    Destroy(weaponSpawnObjectList[0]);
-                }
-                break;
-            case WeaponAttackType.Projectile:
-                break;
-        }
-
+        DissapearWeapon();
         weaponSpawnObjectList.Clear();
         weaponHandBoneList.Clear();
 
@@ -360,6 +401,7 @@ public class PlayerAttackState : PlayerStateBase
 
         //공격 초기화
         currentComboIndex = 0;
+        Debug.Log("Update Weapon Index");
         currentWeaponIndex = (int)Mathf.Repeat(currentWeaponIndex + 1, equipSlotDatas.Count);
         updateWeaponIndexEvent?.Invoke(currentWeaponIndex);
 
@@ -368,7 +410,6 @@ public class PlayerAttackState : PlayerStateBase
 
     public void SuccessHit(bool isKill)
     {
-
         ++currentHitCount;
 
         if (currentAttackWeaponData.AttackType == WeaponAttackType.Melee)
@@ -393,6 +434,23 @@ public class PlayerAttackState : PlayerStateBase
             ComboSystem.Instance.AddKillCombo(1);
     }
 
+    private bool CalculateCritical()
+    {
+        return controller.GetStatus().GetCriticalSuccess();
+    }
+
+    private float CalculateDamageAmount(bool isCritical)
+    {
+        if (isCritical)
+        {
+            return criticalDamageCalculator.Calculate(controller.GetStatus().currentStatus);
+        }
+        else
+        {
+            return damageCalculator.Calculate(controller.GetStatus().currentStatus);
+        }
+    }
+
     public void ForceStopAttack()
     {
         if (!isAttack)
@@ -413,7 +471,7 @@ public class PlayerAttackState : PlayerStateBase
 
     public override void Exit()
     {
-        EndAttack();
+        //EndAttack();
         exitEvent?.Invoke();
     }
 

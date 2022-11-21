@@ -35,7 +35,7 @@ public class BezierCurveFollowUGUI : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, 1f);
+        Gizmos.DrawSphere(transform.position, 0.25f);
     }
 
     private void Start()

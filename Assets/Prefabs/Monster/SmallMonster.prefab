@@ -54,7 +54,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5586416136825274974}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 1
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -70,11 +70,11 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5586416136825274974}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.4
-  m_Center: {x: 0, y: 0.3, z: 0}
+  m_Center: {x: 0, y: 0.5, z: -0.05}
 --- !u!195 &4703875880860071132
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -93,7 +93,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -123,6 +123,8 @@ MonoBehaviour:
     statusDic:
       keys: 
       values: []
+  uiDamageText: {fileID: 6111895687571895212, guid: 0969cd1fc4497444b95cf3554289e310,
+    type: 3}
   isDeath: 0
   updateHpEvent:
     m_PersistentCalls:
@@ -234,9 +236,9 @@ MonoBehaviour:
     min: 0.1
     max: 0.2
   refreshPathTime: 0
-  stopDistance: 1
-  attackStartDistance: 10
-  attackStartViewDegree: 5
+  stopDistance: 0.3
+  attackStartDistance: 12
+  attackStartViewDegree: 20
   currentDistanceSqr: 0
   navAgent: {fileID: 4703875880860071132}
 --- !u!114 &4703875881879617303
@@ -324,8 +326,14 @@ MonoBehaviour:
   endAttackEvent:
     m_PersistentCalls:
       m_Calls: []
+  currentAttackTick: 0
+  attackTickTime: 0.1
+  attackAllowTime: 0.1
+  allowAttack: 0
   attackDistance: 20
-  attackAfterTime: 0.5
+  attackAfterTime: 0.25
+  vfxPrefabData: {fileID: 11400000, guid: 6d06a6d0518ad2149b7ac40121250c30, type: 2}
+  sfxPrefabData: {fileID: 0}
 --- !u!114 &5413399869023604584
 MonoBehaviour:
   m_ObjectHideFlags: 0

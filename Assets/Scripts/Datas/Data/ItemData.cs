@@ -48,7 +48,7 @@ public class ItemData : ScriptableObject
     [SerializeField]
     private StatusInfo addStatusInfoData;
     public StatusInfo AddStatusInfoData { get { return addStatusInfoData; } }
-
+    
     [SerializeField]
     private StatusInfo subStatusInfoData;
     public StatusInfo SubStatusInfoData { get { return subStatusInfoData; } }

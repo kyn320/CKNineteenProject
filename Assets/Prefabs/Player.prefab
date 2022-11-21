@@ -151,7 +151,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3827645977972770100}
-  m_Material: {fileID: 13400000, guid: 137f94b9a7d87ac40b6278329b85c0f0, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.25
@@ -184,6 +184,8 @@ MonoBehaviour:
     statusDic:
       keys: 
       values: []
+  uiDamageText: {fileID: 6111895687571895212, guid: 0969cd1fc4497444b95cf3554289e310,
+    type: 3}
   isDeath: 0
   updateHpEvent:
     m_PersistentCalls:
@@ -280,6 +282,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   isDeath: 0
+  isAttack: 0
 --- !u!114 &4134729834005925682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,6 +441,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   backMoveSpeedMutiplyer: 0.4
+  moveStopSpeedMutiplyer: 0.5
   allowMove: 1
   cameraMoveController: {fileID: 0}
 --- !u!114 &1294546402

@@ -40,14 +40,18 @@ public class CameraMoveController : Singleton<CameraMoveController>
 
         directionObject.transform.localPosition = new Vector3(0, mainCamera.transform.localPosition.y, mainCamera.transform.localPosition.z);
 
-        cameraVector[0] = mainCamera.transform.localPosition;
+        //cameraVector[0] = mainCamera.transform.localPosition;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        CameraMode();
         transform.position = Vector3.Lerp(transform.position, target.position + targetOffset, Time.deltaTime * dampingSpeed);
+    }
+
+    private void Update()
+    {
+        CameraMode();
     }
 
     public void CameraMove(Vector2 mousePos)

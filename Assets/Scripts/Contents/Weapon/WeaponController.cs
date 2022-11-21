@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,24 +18,30 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField]
     protected VFXPrefabData vfxPrefabData;
+    [SerializeField]
+    protected SFXPrefabData sfxPrefabData;
 
     public float hitPauseWaitTime = 0.1f;
     public float hitPauseTime = 0.1f;
+
+    private Func<bool> calculateCritical;
+    private Func<bool, float> calculateDamage;
+
 
     public void SetOwnerObject(GameObject ownerObject)
     {
         this.ownerObject = ownerObject;
     }
 
+    public void SetCalculator(Func<bool> calculateCritical, Func<bool, float> calculateDamage)
+    {
+        this.calculateCritical = calculateCritical;
+        this.calculateDamage = calculateDamage;
+    }
+
     public void SetWeaponData(WeaponData weaponData)
     {
         this.weaponData = weaponData;
-    }
-
-    public void SetStatus(float attackPower, bool isCritical)
-    {
-        damageInfo.damage = attackPower;
-        damageInfo.isCritical = isCritical;
     }
 
     public void CreateAttackHitBox(int index)
@@ -50,22 +57,23 @@ public class WeaponController : MonoBehaviour
         hitBoxPosition += ownerObject.transform.forward * hitBoxData.CreatePosition.z;
 
         hitBoxObject.transform.position = hitBoxPosition;
-        hitBoxObject.GetComponent<AttackHitBox>().collisionEnterEvent.AddListener(Hit);
+        hitBoxObject.GetComponent<AttackHitBox>().triggerEnterEvent.AddListener(Hit);
     }
 
 
-    public void Hit(Collision collision)
+    public void Hit(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
             return;
 
-        var damageable = collision.gameObject.GetComponent<IDamageable>();
+        var damageable = other.gameObject.GetComponent<IDamageable>();
 
         if (damageable != null)
         {
-            var contact = collision.contacts[0];
-            damageInfo.hitPoint = contact.point;
-            damageInfo.hitNormal = contact.normal;
+            damageInfo.isCritical = calculateCritical();
+            damageInfo.damage = calculateDamage(damageInfo.isCritical);
+            damageInfo.hitPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+            damageInfo.hitNormal = (transform.position - other.transform.position).normalized;
 
             var resultDamageInfo = damageable.OnDamage(damageInfo);
 
@@ -74,10 +82,12 @@ public class WeaponController : MonoBehaviour
                 if (resultDamageInfo.isCritical)
                 {
                     Instantiate(vfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
+                    Instantiate(sfxPrefabData.GetSFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
                 }
                 else
                 {
                     Instantiate(vfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
+                    Instantiate(sfxPrefabData.GetSFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
                 }
 
                 hitEvnet?.Invoke(resultDamageInfo.isKill);
@@ -85,10 +95,12 @@ public class WeaponController : MonoBehaviour
         }
 
 
-        var hitPause = collision.gameObject.GetComponent<IHitPauseable>();
-        hitPause.HitPause(hitPauseWaitTime, hitPauseTime);
+        var hitPause = other.gameObject.GetComponent<IHitPauseable>();
+        hitPause?.HitPause(hitPauseWaitTime, hitPauseTime);
+    }
 
-        gameObject.SetActive(false);
+    public void AutoDestroy() { 
+        Destroy(gameObject);
     }
 
 }

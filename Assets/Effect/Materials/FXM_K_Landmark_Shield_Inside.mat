@@ -54,6 +54,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 442ceef19115ca64cb036e9b9e1924dc, type: 3}
         m_Scale: {x: 2, y: 5}
         m_Offset: {x: 0, y: 0}
+    - _HexaTex:
+        m_Texture: {fileID: 2800000, guid: e1c30023b4732624d81b17b8f683dab3, type: 3}
+        m_Scale: {x: 30, y: 30}
+        m_Offset: {x: 0, y: 0}
     - _InsideTex:
         m_Texture: {fileID: 2800000, guid: d3e5c84ff8046f5449e36e5897a950aa, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -130,6 +134,15 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Hexa_BackOpacity: 0.003
+    - _Hexa_MaskMult: 0.32
+    - _Hexa_Maskpow: 2.1
+    - _Hexa_ScrollSpeed: -0.122
+    - _Hexa_Upanner: 0
+    - _Hexa_VmaskPow: 3.4
+    - _Hexa_Vmask_mult: 10
+    - _Hexa_Vpanner: 0
+    - _Hexa_Wavecount: 7.3
     - _InsideMask_Mult: 1.64
     - _InsideMask_Pow: 3.19
     - _Inside_Mult: 0.33

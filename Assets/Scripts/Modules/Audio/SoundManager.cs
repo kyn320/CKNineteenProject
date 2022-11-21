@@ -6,12 +6,13 @@ using UnityEngine;
 public class SoundManager : Singleton<SoundManager>
 {
     public const int MaxSFXPlayCount = 5;
-
+    [SerializeField]
     private float bgmMasterVolume;
     public float BGMMasterVolume
     {
         get { return bgmMasterVolume; }
     }
+    [SerializeField]
     private float sfxMasterVolume;
     public float SFXMasterVolume
     {

@@ -29,9 +29,9 @@ ModelImporter:
       R Foot' : position error = 4.297524 mm\n\t'Bip001 R Toe0' : position error
       = 37.687531 mm\n"
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
-      might lower retargeting quality:\n\t'Bip001 Pelvis' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n"
+    animationImportWarnings: "\nClip 'PC@TwoHand02_2' has import animation warnings
+      that might lower retargeting quality:\n\t'Bip001 Pelvis' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -69,7 +69,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.3316519
+      - time: 0.31159928
+        functionName: Emit
+        data: CreateAttackVFX
+        objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.325739
         functionName: Emit
         data: PlayAttack
         objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
@@ -77,7 +85,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.946585
+      - time: 1
         functionName: Emit
         data: EndAttack
         objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
