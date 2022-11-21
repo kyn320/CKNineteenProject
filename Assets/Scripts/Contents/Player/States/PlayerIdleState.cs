@@ -42,7 +42,7 @@ public class PlayerIdleState : PlayerStateBase
         controller.updateMoveSpeedEvent?.Invoke(0f);
         currentChangeBattleTime = changeNormalBattleTime;
         currentRecoverTickTime = recoverTickTime;
-        isDelayMoveStop = true;
+        isDelayMoveStop = controller.GetPrevState() == PlayerStateType.Move;
         currentDelayToMoveStop = delayToMoveStop;
         enterEvent?.Invoke();
     }
@@ -72,12 +72,15 @@ public class PlayerIdleState : PlayerStateBase
 
     public override void Update()
     {
-        currentDelayToMoveStop -= Time.deltaTime;
-
-        if (isDelayMoveStop && currentDelayToMoveStop <= 0f)
+        if (isDelayMoveStop)
         {
-            isDelayMoveStop = false;
-            currentDelayToMoveStop = 0f;
+            currentDelayToMoveStop -= Time.deltaTime;
+
+            if (currentDelayToMoveStop <= 0f)
+            {
+                isDelayMoveStop = false;
+                currentDelayToMoveStop = 0f;
+            }
         }
 
         switch (controller.GetBattleState())
