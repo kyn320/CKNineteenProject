@@ -55,7 +55,6 @@ public class UnitStatus : SerializedMonoBehaviour
     public bool GetCriticalSuccess()
     {
         var tryPercent = Random.Range(0f, 100f);
-        Debug.Log(tryPercent + " / " + currentStatus.GetElement(StatusType.CriticalPercent).CalculateTotalAmount());
         return tryPercent <= currentStatus.GetElement(StatusType.CriticalPercent).CalculateTotalAmount();
     }
 
