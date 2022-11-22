@@ -98,11 +98,8 @@ public class BezierCurve : MonoBehaviour
         {
             searchProgress += detailStep;
             var checkPosition = GetPosition(searchProgress);
-            var distance = (checkPosition - startPosition).magnitude;
-            var diff = checkDistance - distance;
-
-            if (diff < 0)
-                break;
+            var distance = (checkPosition - startPosition).sqrMagnitude;
+            var diff = Mathf.Abs(distance - checkDistance * checkDistance);
 
             if (diff < minDiff)
             {
@@ -113,6 +110,64 @@ public class BezierCurve : MonoBehaviour
         }
 
         return nearPointData;
+    }
+
+    public CurveNearPointData FindProjectionPoint(Vector3 targetPosition)
+    {
+        //가까운 점
+        var nearestPosition = Vector3.zero;
+        //가까운 거리
+        var nearDistanceSqr = float.MaxValue;
+        //근사 값 범위
+        var nearProgress = 0f;
+        //제일 가까운 Bezier Line
+        BezierLine nearLine = null;
+        //제일 가까운 Bezier Line Index
+        var resultLineIndex = 0;
+
+        //TODO :: 알고리즘 최적화 방법
+        for (var i = 0; i < lineList.Count; ++i)
+        {
+            var searchLine = lineList[i];
+            var scaneTime = 1f / (drawDetailCount * 0.5f);
+
+            for (var t = 0f; t <= 1f; t += scaneTime)
+            {
+                var searchPoint = searchLine.CalculatePoint(t);
+                var sqrDistance = (searchPoint - targetPosition).sqrMagnitude;
+                if (sqrDistance < nearDistanceSqr)
+                {
+                    resultLineIndex = i;
+                    nearLine = searchLine;
+                    nearProgress = t;
+                    nearDistanceSqr = sqrDistance;
+                    nearestPosition = searchPoint;
+                }
+            }
+        }
+
+        var minAngle = 360f;
+        var projectileProgress = 0f;
+
+        //캐싱된 곡선을 기반으로 drawDetailCount 만큼 나누어 곡선 내 모든 점을 다시 추적 후 가까운 점을 캐싱
+        for (var i = -250; i <= 250; ++i)
+        {
+            var t = nearProgress + i * 0.001f;
+            t = Mathf.Clamp01(t);
+            var searchPoint = nearLine.CalculatePoint(t);
+
+            var projectionDirection = (searchPoint - targetPosition).normalized;
+            var angle = Vector3.Angle(projectionDirection.normalized, Vector3.down);
+
+            if (angle < minAngle)
+            {
+                minAngle = angle;
+                projectileProgress = t;
+                nearestPosition = searchPoint;
+            }
+        }
+
+        return new CurveNearPointData { line = nearLine, progress = resultLineIndex + projectileProgress, position = nearestPosition };
     }
 
     public CurveNearPointData FindNearestPoint(Vector3 targetPosition)
@@ -152,9 +207,9 @@ public class BezierCurve : MonoBehaviour
         }
 
         //캐싱된 곡선을 기반으로 drawDetailCount 만큼 나누어 곡선 내 모든 점을 다시 추적 후 가까운 점을 캐싱
-        for (var i = -10; i <= 10; ++i)
+        for (var i = -250; i <= 250; ++i)
         {
-            var t = nearProgress + i * (1f / drawDetailCount);
+            var t = nearProgress + i * 0.001f;
             t = Mathf.Clamp01(t);
             var searchPoint = nearLine.CalculatePoint(t);
 
