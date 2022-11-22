@@ -7,8 +7,11 @@ public abstract class CrowdBehaviour : MonoBehaviour
 {
     [SerializeField]
     private BuffController controller;
+    [SerializeField]
     protected PlayerController playerController;
-    protected GameObject characterObject;
+    [SerializeField]
+    protected MonsterController monsterController;
+    protected GameObject userObject;
 
     [SerializeField]
     private BuffData buffData;
@@ -34,7 +37,7 @@ public abstract class CrowdBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        characterObject = GameObject.Find("Character");
+        userObject = transform.parent.gameObject;
     }
 
     protected virtual void Update()
@@ -66,10 +69,14 @@ public abstract class CrowdBehaviour : MonoBehaviour
             ResetCooltime();
 
         crowdType = buffData.CrowdTypes[0];
-        playerController = controller.GetComponent<PlayerController>();
+        string userTag = transform.parent.tag;
+        if(userTag == "Player")
+            playerController = controller.GetComponent<PlayerController>();
+        else if(userTag == "Monster")
+            monsterController = controller.GetComponent<MonsterController>();
 
 
-        effectObject = Instantiate(prefabsEffect, characterObject.transform);
+        effectObject = Instantiate(prefabsEffect, userObject.transform);
         effectObject.transform.localPosition = effectPos;
 
         isActive = true;

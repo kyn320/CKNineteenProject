@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2065215747545555897}
   - component: {fileID: 4316989987607848984}
   - component: {fileID: 1108443819129327635}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackHitBox_Potion_Poison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,9 +97,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1108443819129327635}
-        m_TargetAssemblyTypeName: AreaEvent, Assembly-CSharp
-        m_MethodName: IntervalEvent
-        m_Mode: 1
+        m_TargetAssemblyTypeName: PotionAreaEvent, Assembly-CSharp
+        m_MethodName: deBuff
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -148,31 +148,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40fe0174663b23245a5a4ace13bcc8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  user: {fileID: 0}
+  weaponData: {fileID: 0}
   playerStatus: {fileID: 0}
   userTags:
-  - Player
   - Monster
-  intervalDelayTime: 2
-  intervalDelayTimer: 0
+  intervalDelayTime: 1
   IntervalEvents:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1108443819129327635}
-        m_TargetAssemblyTypeName: AreaEvent, Assembly-CSharp
-        m_MethodName: deBuff
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 418086e49336cea4d911b365be99bd77,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: BuffData, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   hitEffect: {fileID: 8185024392912332393, guid: 1165bca26cac294459f51734f6285929,
     type: 3}
+  buffdata: {fileID: 11400000, guid: a65961ee16a427847b80bfb356126650, type: 2}
 --- !u!1001 &9052334478146931070
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,6 +166,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6888705394358234652}
     m_Modifications:
+    - target: {fileID: 562740339, guid: 6c51c8fef205f824498b6482006debe9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106815664, guid: 6c51c8fef205f824498b6482006debe9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5865064226988851177, guid: 6c51c8fef205f824498b6482006debe9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5865064227027696989, guid: 6c51c8fef205f824498b6482006debe9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5865064227581088754, guid: 6c51c8fef205f824498b6482006debe9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5865064227630135536, guid: 6c51c8fef205f824498b6482006debe9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5865064228032798443, guid: 6c51c8fef205f824498b6482006debe9,
         type: 3}
       propertyPath: m_RootOrder
@@ -239,6 +253,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FXprefab_Item_N_Potion_Curse
+      objectReference: {fileID: 0}
+    - target: {fileID: 5865064228032798446, guid: 6c51c8fef205f824498b6482006debe9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c51c8fef205f824498b6482006debe9, type: 3}
