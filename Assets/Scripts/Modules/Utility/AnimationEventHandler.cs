@@ -1,17 +1,20 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.Events;
+using Sirenix.OdinInspector;
 
 public class AnimationEventHandler : MonoBehaviour
 {
-    public SerializableDictionary<string, UnityEvent> eventDic;
+    public SerializableDictionary<string, UnityEvent<int,float>> animatoinEventDic;
 
-    public void Emit(string eventName)
+    public void Emit(AnimationEvent animationEvent)
     {
-        if (eventDic.ContainsKey(eventName))
+        if (animatoinEventDic.ContainsKey(animationEvent.stringParameter))
         {
-            eventDic[eventName]?.Invoke();
+            animatoinEventDic[animationEvent.stringParameter]?.Invoke(animationEvent.intParameter, animationEvent.floatParameter);
         }
     }
 

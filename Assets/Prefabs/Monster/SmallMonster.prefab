@@ -661,6 +661,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventDic:
+    keys: []
+    values: []
+  animatoinEventDic:
     keys:
     - EndHit
     values:
@@ -678,13 +681,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 5586416136825274974}
+        - m_Target: {fileID: 1786684583}
           m_TargetAssemblyTypeName: MonsterHitState, Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: EndHit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
