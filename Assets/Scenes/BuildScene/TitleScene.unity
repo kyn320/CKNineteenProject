@@ -27021,8 +27021,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4077412146071588861}
   - component: {fileID: 7959492676045772167}
-  - component: {fileID: 5596731401153657583}
-  - component: {fileID: 6946762501975129052}
+  - component: {fileID: 7959492676045772168}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -27783,123 +27782,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5596731401153657583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3737477598721447239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventDic:
-    keys:
-    - SpawnWeapon
-    - PlayAttack
-    - EndAttack
-    - EndHit
-    - AllowCombo
-    - CreateAttackVFX
-    values:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
-          m_MethodName: SpawnWeapon
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
-          m_MethodName: PlayAttack
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
-          m_MethodName: EndAttack
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PlayerHitState, Assembly-CSharp
-          m_MethodName: EndHit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PlayerCriticalHitState, Assembly-CSharp
-          m_MethodName: EndHit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
-          m_MethodName: AllowCombo
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PlayerAttackState, Assembly-CSharp
-          m_MethodName: CreateAttackVFX
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &5601476475553059449
 GameObject:
   m_ObjectHideFlags: 0
@@ -47893,75 +47775,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6946762501975129052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3737477598721447239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61ffc90c595409944adec0f2c8a9e5c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ikInfoDic:
-    keys: 0300000004000000
-    values:
-    - name: LeftFoot
-      ikTarget: 3
-      weight: 0.7
-      useTargetTransform: 0
-      targetTransform: {fileID: 6606818176763429803}
-      useRayCast: 1
-      rayStartOffset: {x: 0, y: 0.07, z: 0}
-      rayDirection: {x: 0, y: -1, z: 0}
-      rayDistance: 0.5
-      useDynamicRayDistance: 1
-      dynamicRayDistanceRange:
-        min: 0.5
-        max: 0.23
-      rayMask:
-        serializedVersion: 2
-        m_Bits: 1
-      offsetPosition: {x: 0, y: 0.1, z: 0}
-      offsetRotation: {x: 0, y: 0, z: 0, w: 0}
-      usePosition: 1
-      useDampingPosition: 1
-      dampingPosition: 10
-      useRotation: 1
-      useDampingRotation: 1
-      dampingRotation: 10
-      rayHitPoint: {x: 0, y: 0, z: 0}
-      rayHitNormal: {x: 0, y: 0, z: 0}
-    - name: RightFoot
-      ikTarget: 4
-      weight: 0.7
-      useTargetTransform: 0
-      targetTransform: {fileID: 6054684730282523740}
-      useRayCast: 1
-      rayStartOffset: {x: 0, y: 0.07, z: 0}
-      rayDirection: {x: 0, y: -1, z: 0}
-      rayDistance: 0.5
-      useDynamicRayDistance: 1
-      dynamicRayDistanceRange:
-        min: 0.5
-        max: 0.23
-      rayMask:
-        serializedVersion: 2
-        m_Bits: 1
-      offsetPosition: {x: 0, y: 0.1, z: 0}
-      offsetRotation: {x: 0, y: 0, z: 0, w: 0}
-      usePosition: 1
-      useDampingPosition: 1
-      dampingPosition: 10
-      useRotation: 1
-      useDampingRotation: 1
-      dampingRotation: 10
-      rayHitPoint: {x: 0, y: 0, z: 0}
-      rayHitNormal: {x: 0, y: 0, z: 0}
-  isActiveIK: 1
-  gizmoSize: 0.125
 --- !u!4 &7120489983413819603
 Transform:
   m_ObjectHideFlags: 0
@@ -48244,7 +48057,7 @@ Animator:
   m_GameObject: {fileID: 3737477598721447239}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0877daf60f4a8d74e897543d21fd9b03, type: 3}
-  m_Controller: {fileID: 9100000, guid: 47d93d57534f2a64bbae129c2f0e1044, type: 2}
+  m_Controller: {fileID: 9100000, guid: 698ef972d74402545b299d875d434f71, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -48254,6 +48067,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7959492676045772168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3737477598721447239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c543b85a942e8b949902d73a13605c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7959492676045772167}
+  timeRange:
+    min: 10
+    max: 30
+  animationTime: 0
+  currentTime: 0
 --- !u!1 &8033220980964785271
 GameObject:
   m_ObjectHideFlags: 0
