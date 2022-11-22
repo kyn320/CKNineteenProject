@@ -53,8 +53,8 @@ public class SetupObjectByCurve : MonoBehaviour
     [SerializeField]
     private SnapAxis snapAxis;
 
-    [SerializeField]
-    private float snapOffset = 0f;
+    //[SerializeField]
+    //private float snapOffset = 0f;
 
     [SerializeField]
     private Vector3 offsetPosition;
@@ -104,7 +104,7 @@ public class SetupObjectByCurve : MonoBehaviour
 
                 if (i == 0)
                 {
-                    farPointData = bezierCurve.GetPositionToDistance(0f, GetBoundDistanceByAxis(nextBound) + snapOffset);
+                    farPointData = bezierCurve.GetPositionToDistance(0f, GetBoundDistanceByAxis(nextBound));
                     diffProgress = farPointData.progress;
                 }
                 else
@@ -112,7 +112,7 @@ public class SetupObjectByCurve : MonoBehaviour
                     var prevBound = setupObjectBoundList[i - 1];
 
                     snapPointData = GetSnapPointData(prevBound);
-                    farPointData = bezierCurve.GetPositionToDistance(snapPointData.progress, GetBoundDistanceByAxis(nextBound) + snapOffset);
+                    farPointData = bezierCurve.GetPositionToDistance(snapPointData.progress, GetBoundDistanceByAxis(nextBound));
 
                     //Half 값입니다. 0.5 안해도 되요.
                     diffProgress = farPointData.progress - snapPointData.progress;
@@ -133,8 +133,7 @@ public class SetupObjectByCurve : MonoBehaviour
             }
 
             lookAtPosition.Normalize();
-            //Debug.Log($"{i} : {lookAtPosition}");
-            var lookAtRotation = Quaternion.LookRotation(lookAtPosition, Vector3.up); //Mathf.Atan2(lookAtPosition.x, lookAtPosition.z) * Mathf.Rad2Deg;
+            var lookAtRotation = Quaternion.LookRotation(lookAtPosition, Vector3.up);
 
             if (!useRotationFromHeight)
             {

@@ -92,14 +92,17 @@ public class BezierCurve : MonoBehaviour
         var searchProgress = startProgress;
         var minDiff = 999f;
         var nearPointData = new CurveNearPointData();
-        var detailStep = 1f / drawDetailCount;
+        var detailStep = 0.0001f;
 
         while (searchProgress < GetLineCount())
         {
             searchProgress += detailStep;
             var checkPosition = GetPosition(searchProgress);
             var distance = (checkPosition - startPosition).sqrMagnitude;
-            var diff = Mathf.Abs(distance - checkDistance * checkDistance);
+            var diff = checkDistance * checkDistance - distance;
+
+            if(diff < 0)
+                break;
 
             if (diff < minDiff)
             {
