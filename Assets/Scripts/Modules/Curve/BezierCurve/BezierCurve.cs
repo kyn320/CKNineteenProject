@@ -155,7 +155,7 @@ public class BezierCurve : MonoBehaviour
         //캐싱된 곡선을 기반으로 drawDetailCount 만큼 나누어 곡선 내 모든 점을 다시 추적 후 가까운 점을 캐싱
         for (var i = -250; i <= 250; ++i)
         {
-            var t = nearProgress + i * 0.001f;
+            var t = nearProgress + i * 0.0001f;
             t = Mathf.Clamp01(t);
             var searchPoint = nearLine.CalculatePoint(t);
 
