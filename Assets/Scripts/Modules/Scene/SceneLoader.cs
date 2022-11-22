@@ -22,6 +22,14 @@ public class SceneLoader : Singleton<SceneLoader>
         });
     }
 
+    public void SwitchDirectScene(string nextScene)
+    {
+        FadeController.Instance.FadeIn(() =>
+        {
+            LoadScene(nextScene);
+        });
+    }
+
     public void LoadNextScene()
     {
         LoadScene(nextSceneName);

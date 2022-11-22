@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class UICreaditView : MonoBehaviour
 {
+    [SerializeField]
+    private string nextScene;
+
     private float currentShowTime = 0f;
     public float showTime = 5f;
 
@@ -22,6 +25,7 @@ public class UICreaditView : MonoBehaviour
 
     private void Start()
     {
+        FadeController.Instance.SetActive(false);
         Canvas.ForceUpdateCanvases();
 
         startPoint = creaditBound.anchoredPosition;
@@ -44,6 +48,8 @@ public class UICreaditView : MonoBehaviour
         {
             isUpdate = false;
             endCreaditEvent?.Invoke();
+            FadeController.Instance.SetActive(true);
+            SceneLoader.Instance.SwitchDirectScene(nextScene);
         }
     }
 
