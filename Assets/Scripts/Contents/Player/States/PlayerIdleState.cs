@@ -111,6 +111,9 @@ public class PlayerIdleState : PlayerStateBase
         }
         else
         {
+            if (isAttack)
+                return;
+
             if (!isDelayMoveStop)
                 controller.GetRigidbody().velocity = Vector3.zero;
         }

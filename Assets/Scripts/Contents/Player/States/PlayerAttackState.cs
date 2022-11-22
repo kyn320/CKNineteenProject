@@ -122,7 +122,7 @@ public class PlayerAttackState : PlayerStateBase
 
     public bool CheckAttackPossible()
     {
-        if(isCombo)
+        if (isCombo)
             return true;
 
         if (!isAttack
@@ -349,7 +349,8 @@ public class PlayerAttackState : PlayerStateBase
         }
     }
 
-    public void DissapearWeapon() {
+    public void DissapearWeapon()
+    {
         switch (currentAttackWeaponData.AttackType)
         {
             case WeaponAttackType.None:
@@ -377,7 +378,7 @@ public class PlayerAttackState : PlayerStateBase
 
     public void EndAttack()
     {
-        if(!isAttack)
+        if (!isAttack)
             return;
 
         attackStateType = AttackStateType.Wait;
@@ -480,4 +481,10 @@ public class PlayerAttackState : PlayerStateBase
         forwardView.y = 0;
         forwardDirection = forwardView;
     }
+
+    public void MoveStep(int value, float stepSpeed)
+    {
+        controller.GetRigidbody().velocity = transform.forward * stepSpeed;
+    }
+
 }

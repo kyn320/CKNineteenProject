@@ -65,14 +65,13 @@ public class PlayerMoveState : PlayerStateBase
         if (!isStay)
             return;
 
+        if (isAttack)
+            return;
+
         if (allowMove)
         {
             Move();
         }
-
-        if (isAttack)
-            return;
-
 
         if (!controller.IsGround())
         {
