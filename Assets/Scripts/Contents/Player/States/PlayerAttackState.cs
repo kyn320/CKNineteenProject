@@ -260,11 +260,16 @@ public class PlayerAttackState : PlayerStateBase
                         weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
                         weaponSpawnObjectList.Add(weaponObject);
                         weaponHandBoneList.Add(handBones[i]);
+
+                        var vfxData = currentAttackWeaponData.AttackVFXDataList[currentComboIndex];
+                        var vfxObject = Instantiate(vfxData.GetVFXPrefab("Spawn"), handBones[i]);
+
+                        var weaponAnimator = weaponObject.GetComponent<Animator>();
+                        weaponAnimator.SetTrigger("Spawn");
                     }
                 }
                 break;
         }
-
     }
 
     public void CreateAttackVFX()
@@ -317,11 +322,13 @@ public class PlayerAttackState : PlayerStateBase
                     var handBone = weaponHandBoneList[i];
 
                     weaponObject.transform.SetParent(null);
-                    //spiritPivot.SetOriginOffset();
-                    //sonicBoomVFX.SetActive(true);
+
                     //방향 계산     
                     projectileDirection = aimPoint - handBone.transform.position;
-                    Debug.Log(projectileDirection);
+
+                    var vfxData = currentAttackWeaponData.AttackVFXDataList[currentComboIndex];
+                    var vfxObject = Instantiate(vfxData.GetVFXPrefab("Shot"), transform);
+
                     var projectileController = weaponObject.GetComponent<ProjectileController>();
                     projectileController.hitEvnet.AddListener(SuccessHit);
 
@@ -356,7 +363,7 @@ public class PlayerAttackState : PlayerStateBase
             case WeaponAttackType.None:
                 break;
             case WeaponAttackType.Melee:
-                if (weaponSpawnObjectList.Count > 0)
+                for (var i = 0; i < weaponSpawnObjectList.Count; ++i)
                 {
                     var vfxData = currentAttackWeaponData.AttackVFXDataList[0];
                     var vfxObject = Instantiate(vfxData.GetVFXPrefab("Dissapear"), handBones[1]);
@@ -366,10 +373,10 @@ public class PlayerAttackState : PlayerStateBase
 
                     vfxObject.transform.SetParent(null);
                     weaponSpawnObjectList[0].transform.SetParent(null);
-
                 }
                 break;
             case WeaponAttackType.Projectile:
+                //TODO :: 여기 어떻게 할지 논의 중 // 아마 Spawn만 처리할 가능성 농후
                 break;
         }
     }
