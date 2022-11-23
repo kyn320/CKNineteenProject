@@ -115,7 +115,7 @@ public class BezierCurve : MonoBehaviour
         return nearPointData;
     }
 
-    public CurveNearPointData FindProjectionPoint(Vector3 targetPosition)
+    public CurveNearPointData FindProjectionPoint(Vector3 targetPosition, Vector3 downVector)
     {
         //가까운 점
         var nearestPosition = Vector3.zero;
@@ -160,7 +160,7 @@ public class BezierCurve : MonoBehaviour
             var searchPoint = nearLine.CalculatePoint(t);
 
             var projectionDirection = (searchPoint - targetPosition).normalized;
-            var angle = Vector3.Angle(projectionDirection.normalized, Vector3.down);
+            var angle = Vector3.Angle(projectionDirection.normalized, downVector);
 
             if (angle < minAngle)
             {

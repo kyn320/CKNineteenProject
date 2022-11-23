@@ -171,6 +171,23 @@ public class SetupObjectByCurve : MonoBehaviour
         SetActiveAllObjects(true);
     }
 
+    [Button("일괄 크기 적용")]
+    public void UpdateAllObjectScaleSetup(Vector3 scale)
+    {
+#if UNITY_EDITOR
+        UnityEditor.Undo.SetCurrentGroupName("Setup All Objects Scale");
+        var group = UnityEditor.Undo.GetCurrentGroup();
+
+        for (var i = 0; i < setupObjectList.Count; ++i)
+        {
+            UnityEditor.Undo.RecordObject(setupObjectList[i].transform, "Setup Object Scale");
+            setupObjectList[i].transform.localScale = scale;
+        }
+
+        UnityEditor.Undo.CollapseUndoOperations(group);
+#endif
+    }
+
     [Button("랜덤 위치 적용")]
     public void UpdateRandomPositionSetup()
     {
@@ -338,7 +355,7 @@ public class SetupObjectByCurve : MonoBehaviour
                 break;
         }
 
-        return bezierCurve.FindProjectionPoint(snapPosition);
+        return bezierCurve.FindProjectionPoint(snapPosition, -bound.transform.up);
     }
 
     public float GetBoundDistanceByAxis(SetupObjectBound bound)
