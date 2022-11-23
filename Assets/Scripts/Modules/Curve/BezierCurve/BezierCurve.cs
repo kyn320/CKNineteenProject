@@ -16,6 +16,8 @@ public class BezierCurve : MonoBehaviour
     protected int drawDetailCount = 50;
 
     [SerializeField]
+    public bool showOnlyRoot = false;
+    [SerializeField]
     private float pointRadius = 0.5f;
     [SerializeField]
     private Color rootAnchorColor = Color.white;
