@@ -41,7 +41,12 @@ public class BigGolemTwoHandAttackPattern : MonsterAttackPattern
         {
             startAttackTriggerDataList[i].Invoke(animator);
         }
+
+
         startAttackEvent?.Invoke();
+
+        //임시로 SpawnGroundHitBox를 이곳에서 부르도록 만들어 두었습니다. 확인 후 적절한곳에 베치해주신다면 감사드리겠습니다.
+        SpawnGroundHitBox();
     }
 
     protected override void Update()
@@ -51,6 +56,10 @@ public class BigGolemTwoHandAttackPattern : MonsterAttackPattern
 
     public async void SpawnGroundHitBox()
     {
+        await UniTask.Delay(1250);
+        Debug.Log($"vfxPrefabData.GetVFXPrefab(Attack_1) : {vfxPrefabData.GetVFXPrefab("Attack_1").name}");
+        GameObject effect = Instantiate(vfxPrefabData.GetVFXPrefab("Attack_1"), transform);
+        effect.transform.parent = null;
         groundHitBox.SetActive(true);
         await UniTask.Delay(1000);
         groundHitBox.SetActive(false);
