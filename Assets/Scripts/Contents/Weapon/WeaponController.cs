@@ -27,12 +27,9 @@ public class WeaponController : MonoBehaviour
     private Func<bool> calculateCritical;
     private Func<bool, float> calculateDamage;
 
-    public GameObject spawnEffect;
-    public GameObject dissapearEffect;
-
     private void Start()
     {
-        GameObject effect = Instantiate(spawnEffect, transform);
+        GameObject effect = Instantiate(weaponData.spawnEffect, transform);
         effect.transform.parent = null;
     }
 
@@ -108,7 +105,7 @@ public class WeaponController : MonoBehaviour
     }
 
     public void AutoDestroy() {
-        GameObject effect = Instantiate(dissapearEffect, transform);
+        GameObject effect = Instantiate(weaponData.dissapearEffect, transform);
         effect.transform.parent = null;
         Destroy(gameObject);
     }
