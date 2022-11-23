@@ -363,6 +363,10 @@ public class PlayerAttackState : PlayerStateBase
 
                     var weaponAnimator = weaponSpawnObjectList[0].GetComponent<Animator>();
                     weaponAnimator.SetTrigger("Dissapear");
+
+                    vfxObject.transform.SetParent(null);
+                    weaponSpawnObjectList[0].transform.SetParent(null);
+
                 }
                 break;
             case WeaponAttackType.Projectile:

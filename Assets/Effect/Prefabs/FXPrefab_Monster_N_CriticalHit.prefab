@@ -9774,6 +9774,7 @@ Transform:
   - {fileID: 1587514326766655242}
   - {fileID: 8948449086843892156}
   - {fileID: 1182462300}
+  - {fileID: 2553682678629446559}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -24314,3 +24315,78 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1001 &3870969422896821278
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1587514328066282404}
+    m_Modifications:
+    - target: {fileID: 1641829192032012161, guid: 348c48431987fe14a9c45ad677a0bf8b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641829192032012161, guid: 348c48431987fe14a9c45ad677a0bf8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641829192032012161, guid: 348c48431987fe14a9c45ad677a0bf8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641829192032012161, guid: 348c48431987fe14a9c45ad677a0bf8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641829192032012161, guid: 348c48431987fe14a9c45ad677a0bf8b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641829192032012161, guid: 348c48431987fe14a9c45ad677a0bf8b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641829192032012161, guid: 348c48431987fe14a9c45ad677a0bf8b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641829192032012161, guid: 348c48431987fe14a9c45ad677a0bf8b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641829192032012161, guid: 348c48431987fe14a9c45ad677a0bf8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641829192032012161, guid: 348c48431987fe14a9c45ad677a0bf8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641829192032012161, guid: 348c48431987fe14a9c45ad677a0bf8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003909307709938608, guid: 348c48431987fe14a9c45ad677a0bf8b,
+        type: 3}
+      propertyPath: m_Name
+      value: HeavyBlowSFXRandomPlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 348c48431987fe14a9c45ad677a0bf8b, type: 3}
+--- !u!4 &2553682678629446559 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1641829192032012161, guid: 348c48431987fe14a9c45ad677a0bf8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3870969422896821278}
+  m_PrefabAsset: {fileID: 0}
