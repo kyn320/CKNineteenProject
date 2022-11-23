@@ -381,7 +381,7 @@ public class SetupObjectByCurve : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (!showObjectBounds)
+        if (!showObjectBounds || bezierCurve == null)
             return;
 
         for (var i = 0; i < setupObjectList.Count; ++i)
