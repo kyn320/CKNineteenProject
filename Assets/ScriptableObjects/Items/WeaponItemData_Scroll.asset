@@ -256,7 +256,9 @@ MonoBehaviour:
   isMoveable: 1
   attackAnimationType: 6
   comboCount: 0
-  attackVFXDataList: []
+  attackVFXDataList:
+  - {fileID: 11400000, guid: 4f01a51099b45c04d9faf7b682d09813, type: 2}
+  attackSFXDataList: []
   hitBoxDataList: []
   pivotOffsetList:
   - position: {x: 0, y: 0, z: 0}

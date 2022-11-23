@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7721de92895d0d74aa2876fd29948fab, type: 3}
-  m_Name: OneSwordSFXPrefabData
+  m_Name: ScrollSFXPrefabData
   m_EditorClassIdentifier: 
   sfxDic:
     keys:
     - Hit
     - CriticalHit
+    - Shot
     values:
     - {fileID: 1133932875261127371, guid: 569d554e1dae9244bb5b1ad3cd4ee1ec, type: 3}
     - {fileID: 1133932875261127371, guid: 569d554e1dae9244bb5b1ad3cd4ee1ec, type: 3}
+    - {fileID: 1133932875261127371, guid: f3b5e35af5b909f41b3306f026447cb5, type: 3}

@@ -261,11 +261,11 @@ public class PlayerAttackState : PlayerStateBase
                         weaponSpawnObjectList.Add(weaponObject);
                         weaponHandBoneList.Add(handBones[i]);
 
-                        var vfxData = currentAttackWeaponData.AttackVFXDataList[currentComboIndex];
-                        var vfxObject = Instantiate(vfxData.GetVFXPrefab("Spawn"), handBones[i]);
+                        //var vfxData = currentAttackWeaponData.AttackVFXDataList[currentComboIndex];
+                        //var vfxObject = Instantiate(vfxData.GetVFXPrefab("Spawn"), handBones[i]);
 
-                        var weaponAnimator = weaponObject.GetComponent<Animator>();
-                        weaponAnimator.SetTrigger("Spawn");
+                        //var weaponAnimator = weaponObject.GetComponent<Animator>();
+                        //weaponAnimator.SetTrigger("Spawn");
                     }
                 }
                 break;

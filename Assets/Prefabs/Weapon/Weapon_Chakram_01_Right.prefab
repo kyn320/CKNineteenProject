@@ -150,9 +150,10 @@ MonoBehaviour:
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
-  isPiercing: 1
+  isDontDestroy: 0
   isMove: 0
   vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
+  sfxPrefabData: {fileID: 11400000, guid: f3c6d2337bf6e044ca23b8cfebd9e198, type: 2}
 --- !u!114 &-4538060289748770086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +261,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveSpeed: 0
   moveTime: 0
+  offsetRotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
   cycleType: 2
   cycleTime: 0
   absolute: 2

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjectileMoveable : MonoBehaviour
 {
+
     [SerializeField]
     private ProjectileController projectileController;
 
@@ -26,6 +27,8 @@ public class ProjectileMoveable : MonoBehaviour
     [SerializeField]
     protected float moveTime;
 
+    [SerializeField]
+    protected Quaternion offsetRotation;
 
     protected void Awake()
     {
@@ -44,7 +47,7 @@ public class ProjectileMoveable : MonoBehaviour
     public virtual void SetDirection(Vector3 moveDirection)
     {
         this.moveDirection = moveDirection;
-        transform.forward = moveDirection;
+        transform.forward = offsetRotation * moveDirection;
     }
 
     public virtual void SetMoveSpeed(float moveSpeed)

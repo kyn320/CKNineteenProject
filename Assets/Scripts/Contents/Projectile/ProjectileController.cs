@@ -27,7 +27,7 @@ public class ProjectileController : MonoBehaviour
     [SerializeField]
     protected VFXPrefabData vfxPrefabData;
     [SerializeField]
-    protected VFXPrefabData sfxPrefabData;
+    protected SFXPrefabData sfxPrefabData;
 
     private Func<bool> calculateCritical;
     private Func<bool, float> calculateDamage;
@@ -38,7 +38,7 @@ public class ProjectileController : MonoBehaviour
         this.calculateDamage = calculateDamage;
     }
 
-    public void Shot(Vector3 startPoint,Vector3 endPoint,  Vector3 moveDirection, float moveSpeed, float maxDistance)
+    public void Shot(Vector3 startPoint, Vector3 endPoint, Vector3 moveDirection, float moveSpeed, float maxDistance)
     {
         moveable.SetStartPoint(startPoint);
         moveable.SetEndPoint(endPoint);
@@ -46,6 +46,8 @@ public class ProjectileController : MonoBehaviour
         moveable.SetMoveSpeed(moveSpeed);
         moveable.SetMaxDistance(maxDistance);
         moveable.Shot();
+
+        Instantiate(sfxPrefabData.GetSFXPrefab("Shot"), startPoint, Quaternion.identity);
         isMove = true;
         shotEvnet?.Invoke();
     }
@@ -77,20 +79,20 @@ public class ProjectileController : MonoBehaviour
                 if (resultDamageInfo.isCritical)
                 {
                     Instantiate(vfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
-                    Instantiate(sfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
+                    Instantiate(sfxPrefabData.GetSFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
                 }
                 else
                 {
                     Instantiate(vfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
-                    Instantiate(sfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
+                    Instantiate(sfxPrefabData.GetSFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
                 }
 
                 hitEvnet?.Invoke(resultDamageInfo.isKill);
             }
         }
 
-        if(!isDontDestroy /*|| collision.gameObject.CompareTag("Ground")*/)
-        gameObject.SetActive(false);
+        if (!isDontDestroy /*|| collision.gameObject.CompareTag("Ground")*/)
+            gameObject.SetActive(false);
     }
 
 }

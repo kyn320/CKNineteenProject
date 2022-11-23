@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7721de92895d0d74aa2876fd29948fab, type: 3}
-  m_Name: OneSwordSFXPrefabData
+  m_Script: {fileID: 11500000, guid: 9a37fee47aad1694ebb64d74d41a1e5f, type: 3}
+  m_Name: ProjectileWeaponVFXData
   m_EditorClassIdentifier: 
-  sfxDic:
+  vfxDic:
     keys:
-    - Hit
-    - CriticalHit
+    - Shot
     values:
-    - {fileID: 1133932875261127371, guid: 569d554e1dae9244bb5b1ad3cd4ee1ec, type: 3}
-    - {fileID: 1133932875261127371, guid: 569d554e1dae9244bb5b1ad3cd4ee1ec, type: 3}
+    - {fileID: 4270784343080819292, guid: 0e7d547ccea2aeb4b956ca6f7c986e85, type: 3}

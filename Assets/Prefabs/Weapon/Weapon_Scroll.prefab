@@ -149,8 +149,10 @@ MonoBehaviour:
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
+  isDontDestroy: 0
   isMove: 0
   vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
+  sfxPrefabData: {fileID: 11400000, guid: 21ce3476be9cfd64a99cad23f392084a, type: 2}
 --- !u!114 &-8088923142567571286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,9 +167,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileController: {fileID: 0}
   startPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
   maxDistance: 0
   moveDirection: {x: 0, y: 0, z: 0}
   moveSpeed: 0
+  moveTime: 0
 --- !u!114 &2335733953178374154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +234,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationList:
   - {fileID: 11400000, guid: fdb162b5754f3a941b591b0de3bb8c0c, type: 2}
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stopEvent:
+    m_PersistentCalls:
+      m_Calls: []
   stopActionType: 0
   autoActiveByPlay: 0
   autoStartPlay: 0
