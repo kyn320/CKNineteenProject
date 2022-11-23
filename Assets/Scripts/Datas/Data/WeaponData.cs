@@ -51,7 +51,4 @@ public class WeaponData : ItemData
     [SerializeField]
     private List<GameObject> subWeaponList;
     public List<GameObject> SubWeaponList { get { return subWeaponList; } }
-
-    public GameObject spawnEffect;
-    public GameObject dissapearEffect;
 }
