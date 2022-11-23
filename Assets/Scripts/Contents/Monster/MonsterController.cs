@@ -55,6 +55,14 @@ public class MonsterController : MonoBehaviour, IDamageable, IHitPauseable
         statesDic.Add(stateType, state);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            ChangeState(MonsterStateType.MONSTERSTATE_DEATH);
+        }
+    }
+
     public void ChangeState(MonsterStateType state)
     {
         statesDic[currentStateType].Exit();

@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class MonsterDeathState : MonsterStateBase
 {
-
     public override void Enter()
     {
+        enterEvent?.Invoke();
+
         for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
         {
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
         }
 
-        enterEvent?.Invoke();
-        gameObject.SetActive(false);
+        Invoke("Delete", 5f);
+    }
+
+    void Delete()
+    {
+        Destroy(gameObject);
     }
 
     public override void Exit()
