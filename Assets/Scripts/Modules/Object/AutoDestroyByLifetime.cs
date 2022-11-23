@@ -21,4 +21,9 @@ public class AutoDestroyByLifetime : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void nowDestroy()
+    {
+        Destroy(gameObject);
+    }
 }

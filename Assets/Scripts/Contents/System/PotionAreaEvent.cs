@@ -47,6 +47,22 @@ public class PotionAreaEvent : MonoBehaviour
             }
         }
     }
+    public void LavaBurst(Collider collider)
+    {
+        GameObject user = collider.gameObject;
+        Debug.Log(user.GetComponent<Rigidbody>().velocity);
+        user.GetComponent<Rigidbody>().velocity = (Vector3.up * 10f);
+        Debug.Log(user.GetComponent<Rigidbody>().velocity);
+
+        float damageResult = weaponData.StatusInfoData.GetElement(StatusType.MaxAttackPower).GetAmount();
+
+        user.GetComponent<MonsterController>()?.OnDamage(new DamageInfo()
+        {
+            damage = damageResult,
+            isCritical = false,
+            isKnockBack = false
+        });
+    }
 
     public void IntervalEvent(Collider collider)
     {
@@ -70,7 +86,7 @@ public class PotionAreaEvent : MonoBehaviour
     public void Healing(Collider collider)
     {
         GameObject user = collider.gameObject;
-        if (user)
+        if (user.CompareTag("Player"))
         {
             //healPoint는 임시 변수 값 지정해 줄 것
             float healPoint = 1f;
@@ -88,9 +104,15 @@ public class PotionAreaEvent : MonoBehaviour
             }
         }
     }
+
     public void deBuff(Collider collider)
     {
         GameObject user = collider.gameObject;
+        if (collider.gameObject.transform.root)
+            user = collider.gameObject.transform.root.gameObject;
+
+        Debug.Log($"user : {user.name}");
+
         if (user)
         {
             BuffController buffController = user.GetComponent<BuffController>();
@@ -108,6 +130,7 @@ public class PotionAreaEvent : MonoBehaviour
                 buffController.AddCrwod(buffdata);
         }
     }
+
     public void UserExit(Collider collider)
     {
         if (collider.gameObject.tag == "Player")
