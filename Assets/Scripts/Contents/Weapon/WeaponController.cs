@@ -27,6 +27,14 @@ public class WeaponController : MonoBehaviour
     private Func<bool> calculateCritical;
     private Func<bool, float> calculateDamage;
 
+    public GameObject spawnEffect;
+    public GameObject dissapearEffect;
+
+    private void Start()
+    {
+        GameObject effect = Instantiate(spawnEffect, transform);
+        effect.transform.parent = null;
+    }
 
     public void SetOwnerObject(GameObject ownerObject)
     {
@@ -99,7 +107,9 @@ public class WeaponController : MonoBehaviour
         hitPause?.HitPause(hitPauseWaitTime, hitPauseTime);
     }
 
-    public void AutoDestroy() { 
+    public void AutoDestroy() {
+        GameObject effect = Instantiate(dissapearEffect, transform);
+        effect.transform.parent = null;
         Destroy(gameObject);
     }
 
