@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FootStepSFXPlayer : SFXPlayer
+public class FootStepSFXPlayer : RandomSFXPlayer
 {
     [SerializeField]
     private float stepDistance = 0.5f;

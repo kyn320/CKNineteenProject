@@ -51,7 +51,9 @@ MonoBehaviour:
   autoPlay: 0
   isLoop: 0
   autoDestroy: 0
-  audioClip: {fileID: 8300000, guid: cf558620ec2ad694cb2f4f0aed92c714, type: 3}
+  audioClipList:
+  - {fileID: 8300000, guid: 7bf37528ec4c039478b48db4b8d46344, type: 3}
+  - {fileID: 8300000, guid: 1a294aea9c636db4bbf3d26d3a2d738d, type: 3}
   stepDistance: 1
   prevPlayPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &3827645977174835326
@@ -480,6 +482,8 @@ MonoBehaviour:
   moveStopSpeedMutiplyer: 0.5
   allowMove: 1
   cameraMoveController: {fileID: 0}
+  vfxPrefabData: {fileID: 0}
+  dustEffect: {fileID: 0}
 --- !u!114 &1294546402
 MonoBehaviour:
   m_ObjectHideFlags: 0

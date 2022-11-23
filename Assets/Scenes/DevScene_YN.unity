@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6665169, g: 0.57404864, b: 0.4006104, a: 1}
+  m_IndirectSpecularColor: {r: 0.66636074, g: 0.57322735, b: 0.40115443, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -90408,6 +90408,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1294546399, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: dustEffect
+      value: 
+      objectReference: {fileID: 4151390648000443254, guid: 40d27f91c2abbe443a21aaeefb89e1c7,
+        type: 3}
+    - target: {fileID: 1294546399, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
+      propertyPath: vfxPrefabData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9bcb52f378e5a284f9f0baa14cd92bf8,
+        type: 2}
+    - target: {fileID: 1294546399, guid: 8b1e51a882d72f64aa743313b6184c33, type: 3}
       propertyPath: cameraMoveController
       value: 
       objectReference: {fileID: 123838324}
@@ -90419,6 +90429,11 @@ PrefabInstance:
       propertyPath: updateWeaponIndexEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1909883685}
+    - target: {fileID: 441552213152060453, guid: 8b1e51a882d72f64aa743313b6184c33,
+        type: 3}
+      propertyPath: stepDistance
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1383080239591342266, guid: 8b1e51a882d72f64aa743313b6184c33,
         type: 3}
       propertyPath: serializationData.Prefab
