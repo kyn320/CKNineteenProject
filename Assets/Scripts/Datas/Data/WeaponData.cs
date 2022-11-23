@@ -41,6 +41,10 @@ public class WeaponData : ItemData
     public List<VFXPrefabData> AttackVFXDataList { get { return attackVFXDataList; } }
 
     [SerializeField]
+    private List<SFXPrefabData> attackSFXDataList;
+    public List<SFXPrefabData> AttackSFXDataList { get { return attackSFXDataList; } }
+
+    [SerializeField]
     private List<AttackHitBoxData> hitBoxDataList;
     public List<AttackHitBoxData> HitBoxDataList { get { return hitBoxDataList; } }
 

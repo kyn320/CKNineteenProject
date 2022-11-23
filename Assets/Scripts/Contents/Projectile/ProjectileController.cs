@@ -26,6 +26,8 @@ public class ProjectileController : MonoBehaviour
 
     [SerializeField]
     protected VFXPrefabData vfxPrefabData;
+    [SerializeField]
+    protected VFXPrefabData sfxPrefabData;
 
     private Func<bool> calculateCritical;
     private Func<bool, float> calculateDamage;
@@ -75,10 +77,12 @@ public class ProjectileController : MonoBehaviour
                 if (resultDamageInfo.isCritical)
                 {
                     Instantiate(vfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
+                    Instantiate(sfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
                 }
                 else
                 {
                     Instantiate(vfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
+                    Instantiate(sfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
                 }
 
                 hitEvnet?.Invoke(resultDamageInfo.isKill);
