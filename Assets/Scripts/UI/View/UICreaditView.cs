@@ -29,7 +29,7 @@ public class UICreaditView : MonoBehaviour
         Canvas.ForceUpdateCanvases();
 
         startPoint = creaditBound.anchoredPosition;
-        endPoint = startPoint + Vector3.up * creaditBound.rect.height * 1.5f;
+        endPoint = startPoint + Vector3.up * (creaditBound.rect.height + Screen.height);
         startCreaditEvent?.Invoke();
         currentShowTime = 0f;
         isUpdate = true;
