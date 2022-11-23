@@ -40,6 +40,7 @@ public class BuffController : MonoBehaviour
         var buffObject = Instantiate(buffData.BuffBehaviourObject, transform);
 
         var crowdBehaviour = buffObject.GetComponent<CrowdBehaviour>();
+        crowdBehaviourList.Add(crowdBehaviour);
 
         crowdBehaviour.SetBuffData(buffData);
         crowdBehaviour.SetBuffController(this);

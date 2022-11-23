@@ -27,13 +27,13 @@ public class ObjectMoveController : MonoBehaviour
 
             if (Vector3.Distance(transform.position, movePos[moveNum]) >= speed)
             {
-                Debug.Log($"움직임 speed / 100 : {speed / 100} \nDistance : {Vector3.Distance(transform.position, movePos[moveNum])}");
+                //Debug.Log($"움직임 speed / 100 : {speed / 100} \nDistance : {Vector3.Distance(transform.position, movePos[moveNum])}");
                 transform.position += moveDir * speed;
 
             }
             else
             {
-                Debug.Log($"안 움직임 speed / 100 : {speed / 100} \nDistance : {Vector3.Distance(transform.position, movePos[moveNum])}");
+                //Debug.Log($"안 움직임 speed / 100 : {speed / 100} \nDistance : {Vector3.Distance(transform.position, movePos[moveNum])}");
                 if (isMoveOrder)
                     moveNum++;
                 else

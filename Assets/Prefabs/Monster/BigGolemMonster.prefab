@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 5919483988528196870}
   - component: {fileID: 5919483988528196871}
   - component: {fileID: 1099133918682716955}
+  - component: {fileID: -8826620581401483296}
   m_Layer: 6
   m_Name: BigGolemMonster
   m_TagString: Monster
@@ -451,6 +452,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tintColor: {r: 1, g: 0, b: 0, a: 1}
   splashTime: 0.25
+--- !u!114 &-8826620581401483296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784834343265454539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ffd0916862d2342940417e379d3fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: {fileID: 0}
+  buffBehaviourList: []
+  crowdBehaviourList: []
 --- !u!1 &6981455005973216111
 GameObject:
   m_ObjectHideFlags: 0

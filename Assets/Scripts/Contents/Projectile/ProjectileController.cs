@@ -19,7 +19,7 @@ public class ProjectileController : MonoBehaviour
     public UnityEvent<bool> hitEvnet;
 
     [SerializeField]
-    private bool isPiercing = false;
+    private bool isDontDestroy = false;
 
     [SerializeField]
     protected bool isMove = false;
@@ -85,7 +85,7 @@ public class ProjectileController : MonoBehaviour
             }
         }
 
-        if(!isPiercing /*|| collision.gameObject.CompareTag("Ground")*/)
+        if(!isDontDestroy /*|| collision.gameObject.CompareTag("Ground")*/)
         gameObject.SetActive(false);
     }
 

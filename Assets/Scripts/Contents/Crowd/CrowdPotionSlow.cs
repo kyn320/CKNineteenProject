@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrowdBlood : CrowdBehaviour
+public class CrowdPotionSlow : CrowdBehaviour
 {
     /// <summary>
     /// 일정 시간마다 체력의 %비율이 지속적으로 감소됩니다.
@@ -11,7 +11,21 @@ public class CrowdBlood : CrowdBehaviour
 
     [SerializeField]
     private float activeCalcTime = .0f;
+    [SerializeField]
     private float activeStandardTime = .0f;
+    [SerializeField]
+    protected StatusCalculator statusCalculator;
+
+    public float damageResult = 1f;
+
+    
+    [SerializeField]
+    private float slowPercent = 50f;
+
+    [SerializeField]
+    private float slowSpeed = .0f;
+    private float userSpeed = 0f;
+
 
     public override void Active()
     {
@@ -19,27 +33,14 @@ public class CrowdBlood : CrowdBehaviour
 
         if (activeCalcTime <= 0)
         {
-            var damageElement = GetBuffData().GetStatusElement(StatusType.HP);
-
             string userTag = transform.parent.tag;
-            if (userTag == "Player")
+
+
+            if (userTag == "Monster")
             {
-                float damageResult = playerController.GetStatus().currentStatus.GetElement(StatusType.HP).CalculateTotalAmount()
-                    * (damageElement.GetPercent() / 100f);
-
-                playerController?.OnDamage(new DamageInfo()
-                {
-                    damage = damageResult,
-                    isCritical = false,
-                    isKnockBack = false
-                });
-            } else if(userTag == "Monster")
-            {
-                float damageResult = monsterController.GetStatus().currentStatus.GetElement(StatusType.HP).CalculateTotalAmount()
-                    * (damageElement.GetPercent() / 100f);
-
-
+                damageResult = statusCalculator.Calculate(weaponData.StatusInfoData);
                 Debug.Log($"damageResult : {damageResult}");
+
                 monsterController?.OnDamage(new DamageInfo()
                 {
                     damage = damageResult,
@@ -50,16 +51,18 @@ public class CrowdBlood : CrowdBehaviour
 
             activeCalcTime = activeStandardTime;
         }
-
     }
 
     public override void UnActive()
     {
-
+        monsterController.GetStatus().currentStatus.GetElement(StatusType.MoveSpeed).SetAmount(userSpeed);
     }
 
     protected override void ApplyCrowd()
     {
+        userSpeed = monsterController.GetStatus().currentStatus.GetElement(StatusType.MoveSpeed).GetAmount();
+        slowSpeed = (userSpeed / 100) * (100 - slowPercent);
 
+        monsterController.GetStatus().currentStatus.GetElement(StatusType.MoveSpeed).SetAmount(slowSpeed);
     }
 }

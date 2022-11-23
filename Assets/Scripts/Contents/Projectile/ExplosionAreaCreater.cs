@@ -7,6 +7,7 @@ public class ExplosionAreaCreater : MonoBehaviour
 {
     [SerializeField]
     GameObject areaEffectObject;
+    bool isEffcetInstance = false;
 
     [SerializeField]
     bool isLowSpawn = true;
@@ -20,26 +21,33 @@ public class ExplosionAreaCreater : MonoBehaviour
 
     private void Start()
     {
-        if(lifeTime == 0)
+        isEffcetInstance = false;
+        if (lifeTime == 0)
         lifeTime = GetComponent<AutoDestroyByLifetime>().lifeTime - 0.5f;
     }
 
 
     public void CreateArea()
     {
-        RaycastHit spawnRay;
-        Physics.Raycast(transform.position, Vector3.down, out spawnRay, spawnStartLayer);
-
-        GameObject area = this.gameObject;
-        if (isLowSpawn)
+        if (!isEffcetInstance)
         {
-            area = Instantiate(areaEffectObject, spawnRay.point + new Vector3(0f, 0.001f, 0f), areaEffectObject.transform.rotation);
-        }
-        else
-        {
-            area = Instantiate(areaEffectObject, transform.position + new Vector3(0f, 0.001f, 0f), areaEffectObject.transform.rotation);
-        }
+            isEffcetInstance = true;
+            RaycastHit spawnRay;
+            Physics.Raycast(transform.position + new Vector3(0,1f,0), Vector3.down, out spawnRay, 500f, spawnStartLayer);
 
-        area.GetComponent<AutoDestroyByLifetime>().lifeTime = lifeTime;
+            GameObject area = this.gameObject;
+            if (isLowSpawn)
+            {
+                area = Instantiate(areaEffectObject, spawnRay.point + new Vector3(0f, 0.001f, 0f), areaEffectObject.transform.rotation);
+            }
+            else
+            {
+                area = Instantiate(areaEffectObject, transform.position + new Vector3(0f, 0.001f, 0f), areaEffectObject.transform.rotation);
+            }
+
+            area.GetComponent<AutoDestroyByLifetime>().lifeTime = lifeTime;
+
+            Destroy(gameObject);
+        }
     }
 }
