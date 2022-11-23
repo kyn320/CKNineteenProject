@@ -19,6 +19,7 @@ public class PlayerAirState : PlayerStateBase
 
     [SerializeField]
     private VFXPrefabData vfxPrefabData;
+    bool isGroundEffect;
 
     protected override void Awake()
     {
@@ -67,13 +68,24 @@ public class PlayerAirState : PlayerStateBase
         var velocity = rigidBody.velocity;
         var isGround = controller.IsGround();
         animator.SetBool("IsGrounded", isGround);
+        Debug.Log($"isGroundEffect : {isGroundEffect}");
         if (velocity.y < 0 && isGround)
         {
+            if (isGroundEffect)
+            {
+                isGroundEffect = false;
+
+                GameObject effect = Instantiate(vfxPrefabData.GetVFXPrefab("Jump"), transform);
+                effect.transform.parent = null;
+            }
+
             if (inputVector.magnitude > 0)
                 controller.ChangeState(PlayerStateType.Move);
             else
                 controller.ChangeState(PlayerStateType.Idle);
         }
+        else
+            isGroundEffect = true;
 
         rigidBody.AddForce(Physics.gravity * gravityScale
             + viewVector * airMoveSpeedMultiplyer * moveSpeed, ForceMode.Acceleration);

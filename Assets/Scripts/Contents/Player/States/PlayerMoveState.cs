@@ -36,6 +36,12 @@ public class PlayerMoveState : PlayerStateBase
 
     private bool isAttack = false;
 
+    [SerializeField]
+    private VFXPrefabData vfxPrefabData;
+
+    [SerializeField]
+    private GameObject dustEffect;
+
     protected override void Awake()
     {
         base.Awake();
@@ -73,17 +79,21 @@ public class PlayerMoveState : PlayerStateBase
             Move();
         }
 
+
         if (!controller.IsGround())
         {
             controller.ChangeState(PlayerStateType.Air);
         }
-        else if (Mathf.Abs(inputVector.x) + Mathf.Abs(inputVector.z) < 0.1f)
+        else
         {
-            if (prevInputVector.z > 0f)
+            if (Mathf.Abs(inputVector.x) + Mathf.Abs(inputVector.z) < 0.1f)
             {
-                controller.GetRigidbody().velocity = transform.forward * moveStopSpeedMutiplyer * moveSpeed;
+                if (prevInputVector.z > 0f)
+                {
+                    controller.GetRigidbody().velocity = transform.forward * moveStopSpeedMutiplyer * moveSpeed;
+                }
+                controller.ChangeState(PlayerStateType.Idle);
             }
-            controller.ChangeState(PlayerStateType.Idle);
         }
     }
 
@@ -157,8 +167,11 @@ public class PlayerMoveState : PlayerStateBase
                 }
             }
 
+
             controller.GetRigidbody().velocity = velocity;
             controller.GetRigidbody().useGravity = !isSlope;
+
+            dustEffect.SetActive(true);
         }
     }
 
@@ -187,6 +200,7 @@ public class PlayerMoveState : PlayerStateBase
 
     public override void Exit()
     {
+        dustEffect.SetActive(false);
         isStay = false;
         controller.updateMoveSpeedEvent?.Invoke(0f);
         exitEvent?.Invoke();
