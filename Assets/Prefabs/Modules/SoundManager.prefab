@@ -46,11 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDontDestroy: 1
+  bgmMasterVolume: 0
+  sfxMasterVolume: 0
   bgmVolume: 0
   sfxPlayerDic:
     keys: []
     values: []
-  sfxPlayerPrefab: {fileID: 0}
+  sfxPlayerPrefab: {fileID: 1133932875261127371, guid: 0caafeb4b63cdb04aa411ca5522d0188,
+    type: 3}
 --- !u!82 &2223489818624362155
 AudioSource:
   m_ObjectHideFlags: 0
