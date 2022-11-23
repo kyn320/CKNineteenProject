@@ -20,7 +20,7 @@ public class CrowdPotionSlow : CrowdBehaviour
 
     
     [SerializeField]
-    private float slowPercent = 50f;
+    private float slowPercent = 60f;
 
     [SerializeField]
     private float slowSpeed = .0f;

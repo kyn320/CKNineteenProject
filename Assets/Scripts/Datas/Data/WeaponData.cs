@@ -55,5 +55,4 @@ public class WeaponData : ItemData
     [SerializeField]
     private List<GameObject> subWeaponList;
     public List<GameObject> SubWeaponList { get { return subWeaponList; } }
-
 }

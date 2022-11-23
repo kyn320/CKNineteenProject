@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3379042565793953530}
-  - component: {fileID: 272941647831863207}
+  - component: {fileID: 2540724141935260211}
   m_Layer: 0
-  m_Name: LightSwingSFXPlayer
+  m_Name: LightSwingRandomSFXPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &272941647831863207
+--- !u!114 &2540724141935260211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,6 +50,7 @@ MonoBehaviour:
   aliveSceneChange: 0
   autoPlay: 1
   isLoop: 0
-  autoDestroy: 0
+  autoDestroy: 1
   audioClipList:
   - {fileID: 8300000, guid: 89b600bd85d385741b99d97ef6092ee5, type: 3}
+  - {fileID: 8300000, guid: 226071a88b86a7f46ba43aa00190c720, type: 3}

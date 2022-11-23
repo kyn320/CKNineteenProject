@@ -27,7 +27,6 @@ public class WeaponController : MonoBehaviour
     private Func<bool> calculateCritical;
     private Func<bool, float> calculateDamage;
 
-
     public void SetOwnerObject(GameObject ownerObject)
     {
         this.ownerObject = ownerObject;
@@ -99,7 +98,7 @@ public class WeaponController : MonoBehaviour
         hitPause?.HitPause(hitPauseWaitTime, hitPauseTime);
     }
 
-    public void AutoDestroy() { 
+    public void AutoDestroy() {
         Destroy(gameObject);
     }
 
