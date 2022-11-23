@@ -149,9 +149,10 @@ Material:
     - _Keyword0: 0
     - _Mask_Offset: -0.06
     - _Metallic: 0
+    - _Noise_Lerp: 0.087
     - _Noise_Mult: 1
     - _Noise_Pow: 1
-    - _Noise_Vpanner: 0.066
+    - _Noise_Vpanner: 0.06
     - _OcclusionStrength: 1
     - _Offset: 0.257
     - _Parallax: 0.005
@@ -162,8 +163,8 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Step: 0.07941176
-    - _Step_Gap: 0.08235294
+    - _Step: 0.007
+    - _Step_Gap: 0.01
     - _Surface: 0
     - _Use_Custom: 0
     - _WorkflowMode: 1
@@ -171,6 +172,7 @@ Material:
     - _isBack: 0
     - _isFront: 0
     - _isInside: 0
+    - _isInside1: 0
     m_Colors:
     - _BackColor: {r: 1, g: 0.04245281, b: 0.04245281, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

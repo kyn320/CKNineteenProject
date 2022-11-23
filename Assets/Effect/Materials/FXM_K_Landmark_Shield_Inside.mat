@@ -12,6 +12,7 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _ISBACK_ON
+  - _ISINSIDE1_ON
   - _ISINSIDE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -151,9 +152,10 @@ Material:
     - _Keyword0: 0
     - _Mask_Offset: -0.06
     - _Metallic: 0
+    - _Noise_Lerp: 0.017
     - _Noise_Mult: 1
     - _Noise_Pow: 1
-    - _Noise_Vpanner: 0.066
+    - _Noise_Vpanner: 0.06
     - _OcclusionStrength: 1
     - _Offset: 0.257
     - _Parallax: 0.005
@@ -164,8 +166,8 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Step: 0.07941176
-    - _Step_Gap: 0.08235294
+    - _Step: 0.027
+    - _Step_Gap: 0.008
     - _Surface: 0
     - _Use_Custom: 0
     - _WorkflowMode: 1
@@ -173,6 +175,7 @@ Material:
     - _isBack: 1
     - _isFront: 0
     - _isInside: 1
+    - _isInside1: 1
     m_Colors:
     - _BackColor: {r: 1, g: 0.04245281, b: 0.04245281, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
