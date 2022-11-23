@@ -46,6 +46,8 @@ Transform:
   - {fileID: 8675533375115804003}
   - {fileID: 3301641990332568317}
   - {fileID: 6040303981161059334}
+  - {fileID: 4744845782882029864}
+  - {fileID: 5808095500170644931}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -274,10 +276,34 @@ MonoBehaviour:
   exitAnimatorTriggerList: []
   enterEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8253748782101596215}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   exitEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8253748782101596215}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2189784059141817597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,10 +365,34 @@ MonoBehaviour:
     type: 2}
   startAttackEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6953936774333762841}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   endAttackEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6953936774333762841}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   vfxPrefabData: {fileID: 0}
   sfxPrefabData: {fileID: 0}
 --- !u!114 &5919483988528196889
@@ -381,10 +431,34 @@ MonoBehaviour:
     type: 2}
   startAttackEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8197339306700198386}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   endAttackEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8197339306700198386}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   groundHitBox: {fileID: 6981455005973216111}
   vfxPrefabData: {fileID: 0}
   sfxPrefabData: {fileID: 0}
@@ -1200,6 +1274,92 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 3052156973965653270}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8015793079852410834
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1409294409395147633}
+    m_Modifications:
+    - target: {fileID: 1133932875261127371, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_Name
+      value: BigMonsterOneHandAttackSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133932875261127371, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 12c956c06c4d95f4b9fa98c34d57cbed, type: 3}
+--- !u!4 &4744845782882029864 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3379042565793953530, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+    type: 3}
+  m_PrefabInstance: {fileID: 8015793079852410834}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6953936774333762841 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1133932875261127371, guid: 12c956c06c4d95f4b9fa98c34d57cbed,
+    type: 3}
+  m_PrefabInstance: {fileID: 8015793079852410834}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9022888427941077756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1210,7 +1370,12 @@ PrefabInstance:
     - target: {fileID: 1133932875261127371, guid: 129ec493f65538349b3c81e2c857107c,
         type: 3}
       propertyPath: m_Name
-      value: BigMonsterDeathSFX 1
+      value: BigMonsterDeathSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133932875261127371, guid: 129ec493f65538349b3c81e2c857107c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3379042565793953530, guid: 129ec493f65538349b3c81e2c857107c,
         type: 3}
@@ -1274,4 +1439,96 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3379042565793953530, guid: 129ec493f65538349b3c81e2c857107c,
     type: 3}
   m_PrefabInstance: {fileID: 9022888427941077756}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8253748782101596215 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1133932875261127371, guid: 129ec493f65538349b3c81e2c857107c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9022888427941077756}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9114798949535185721
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1409294409395147633}
+    m_Modifications:
+    - target: {fileID: 1133932875261127371, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_Name
+      value: BigMonsterTwoHandAttackSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133932875261127371, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379042565793953530, guid: b81632c166830bf46a6daf2e1612cf80,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b81632c166830bf46a6daf2e1612cf80, type: 3}
+--- !u!4 &5808095500170644931 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3379042565793953530, guid: b81632c166830bf46a6daf2e1612cf80,
+    type: 3}
+  m_PrefabInstance: {fileID: 9114798949535185721}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8197339306700198386 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1133932875261127371, guid: b81632c166830bf46a6daf2e1612cf80,
+    type: 3}
+  m_PrefabInstance: {fileID: 9114798949535185721}
   m_PrefabAsset: {fileID: 0}
