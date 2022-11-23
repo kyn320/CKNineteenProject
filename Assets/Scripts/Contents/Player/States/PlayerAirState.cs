@@ -26,6 +26,8 @@ public class PlayerAirState : PlayerStateBase
 
     public override void Enter()
     {
+        animator = controller.GetAnimator();
+
         animator.SetTrigger("Airial");
         animator.SetBool("IsGrounded", false);
 
