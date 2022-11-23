@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1617213337963603880}
   - component: {fileID: 3572913335190475618}
   - component: {fileID: 3597534352972059192}
+  - component: {fileID: 1723230084128398755}
   m_Layer: 8
   m_Name: Weapon_OneHandSword
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7362555970600566325, guid: cb2c467f7045d8a4680fb7d3230d0fff, type: 3}
+  - {fileID: 2100000, guid: d6f4c459244358643bbd320d91a4a591, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,7 +112,27 @@ MonoBehaviour:
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
-  vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
+  vfxPrefabData: {fileID: 11400000, guid: 9616b0eff4ec0b847a965d3fc2251525, type: 2}
   sfxPrefabData: {fileID: 0}
   hitPauseWaitTime: 0.1
   hitPauseTime: 0.1
+--- !u!95 &1723230084128398755
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3068488256194048695}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 54af91c9b03572a4b80c899f739dad10, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

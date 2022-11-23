@@ -94,7 +94,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -333,6 +333,8 @@ MonoBehaviour:
   allowAttack: 0
   attackDistance: 20
   attackAfterTime: 0.25
+  vfxPrefabData: {fileID: 11400000, guid: 6d06a6d0518ad2149b7ac40121250c30, type: 2}
+  sfxPrefabData: {fileID: 0}
 --- !u!114 &5413399869023604584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,6 +677,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventDic:
+    keys: []
+    values: []
+  animatoinEventDic:
     keys:
     - EndHit
     values:
@@ -692,13 +697,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 5586416136825274974}
+        - m_Target: {fileID: 1786684583}
           m_TargetAssemblyTypeName: MonsterHitState, Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: EndHit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 

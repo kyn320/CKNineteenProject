@@ -26,22 +26,26 @@ public class BezierCurveEditor : OdinEditor
         EditorGUI.BeginChangeCheck();
 
         var rootPivot = Handles.PositionHandle(bezierCurve.transform.position, Quaternion.identity);
+
         var pointList = bezierCurve.GetPointList();
 
-        for (var i = 0; i < pointList.Count; ++i)
+        if (!bezierCurve.showOnlyRoot)
         {
-            var anchor = pointList[i].GetAnchor();
-            var leftHandle = pointList[i].GetLeftHandle();
-            var rightHandle = pointList[i].GetRightHandle();
-
-            changePointList.Add(new UndoPointData()
+            for (var i = 0; i < pointList.Count; ++i)
             {
-                anchor = Handles.PositionHandle(anchor.position, Quaternion.identity)
-            ,
-                leftHandle = Handles.PositionHandle(leftHandle.position, Quaternion.identity)
-            ,
-                rightHandle = Handles.PositionHandle(rightHandle.position, Quaternion.identity)
-            });
+                var anchor = pointList[i].GetAnchor();
+                var leftHandle = pointList[i].GetLeftHandle();
+                var rightHandle = pointList[i].GetRightHandle();
+
+                changePointList.Add(new UndoPointData()
+                {
+                    anchor = Handles.PositionHandle(anchor.position, Quaternion.identity)
+                ,
+                    leftHandle = Handles.PositionHandle(leftHandle.position, Quaternion.identity)
+                ,
+                    rightHandle = Handles.PositionHandle(rightHandle.position, Quaternion.identity)
+                });
+            }
         }
 
         if (EditorGUI.EndChangeCheck())
@@ -49,21 +53,24 @@ public class BezierCurveEditor : OdinEditor
             Undo.SetCurrentGroupName("Modify BezierCurve");
             int group = Undo.GetCurrentGroup();
 
-            for (var i = 0; i < pointList.Count; ++i)
+            if (!bezierCurve.showOnlyRoot)
             {
-                var anchor = pointList[i].GetAnchor();
-                var leftHandle = pointList[i].GetLeftHandle();
-                var rightHandle = pointList[i].GetRightHandle();
+                for (var i = 0; i < pointList.Count; ++i)
+                {
+                    var anchor = pointList[i].GetAnchor();
+                    var leftHandle = pointList[i].GetLeftHandle();
+                    var rightHandle = pointList[i].GetRightHandle();
 
-                Undo.RegisterCompleteObjectUndo(leftHandle.transform, "Modify BezierCurve : leftHandle");
-                Undo.RegisterCompleteObjectUndo(rightHandle.transform, "Modify BezierCurve : rightHandle");
+                    Undo.RegisterCompleteObjectUndo(leftHandle.transform, "Modify BezierCurve : leftHandle");
+                    Undo.RegisterCompleteObjectUndo(rightHandle.transform, "Modify BezierCurve : rightHandle");
 
-                Undo.RegisterCompleteObjectUndo(anchor.transform, "Modify BezierCurve : anchor");
+                    Undo.RegisterCompleteObjectUndo(anchor.transform, "Modify BezierCurve : anchor");
 
-                leftHandle.position = changePointList[i].leftHandle;
-                rightHandle.position = changePointList[i].rightHandle;
+                    leftHandle.position = changePointList[i].leftHandle;
+                    rightHandle.position = changePointList[i].rightHandle;
 
-                anchor.position = changePointList[i].anchor;
+                    anchor.position = changePointList[i].anchor;
+                }
             }
 
             Undo.RegisterCompleteObjectUndo(bezierCurve.transform, "Modify BezierCurve : rootPivot");

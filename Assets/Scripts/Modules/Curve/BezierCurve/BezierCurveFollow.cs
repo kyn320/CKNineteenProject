@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
+[ExecuteInEditMode]
 public class BezierCurveFollow : MonoBehaviour
 {
     [SerializeField]
@@ -23,10 +24,13 @@ public class BezierCurveFollow : MonoBehaviour
     public bool useLookAt;
     public bool isLoop = false;
 
+    [SerializeField]
+    private float gizmoRadius = 0.1f;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, 1f);
+        Gizmos.DrawSphere(transform.position, gizmoRadius);
     }
 
     private void Start()
@@ -34,6 +38,13 @@ public class BezierCurveFollow : MonoBehaviour
         if (bezierCurve != null)
             timePerCount = maxTime / bezierCurve.GetLineCount();
     }
+
+    //TEST
+    private void Update()
+    {
+        transform.position = bezierCurve.GetPosition(currentIndex, currentProgress);
+    }
+    //TEST
 
     private void FixedUpdate()
     {

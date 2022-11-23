@@ -28,6 +28,10 @@ public class PlayerAttackState : PlayerStateBase
 
     [ReadOnly]
     [ShowInInspector]
+    private bool isCombo = false;
+
+    [ReadOnly]
+    [ShowInInspector]
     private AttackStateType attackStateType;
 
     [ReadOnly]
@@ -118,6 +122,9 @@ public class PlayerAttackState : PlayerStateBase
 
     public bool CheckAttackPossible()
     {
+        if (isCombo)
+            return true;
+
         if (!isAttack
         && equipSlotDatas.Count > 0
         && (controller.GetState() == PlayerStateType.Idle || controller.GetState() == PlayerStateType.Move))
@@ -156,6 +163,7 @@ public class PlayerAttackState : PlayerStateBase
         this.aimPoint = aimPoint;
 
         isAttack = true;
+        isCombo = false;
 
         controller.UpdateBattleState(PlayerBattleStateType.Battle);
         attackStateType = AttackStateType.Start;
@@ -204,43 +212,58 @@ public class PlayerAttackState : PlayerStateBase
         switch (currentAttackWeaponData.HandType)
         {
             case HandType.Left:
-                weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
-                weaponObject.transform.SetParent(handBones[0]);
-                weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
-                weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
-                weaponSpawnObjectList.Add(weaponObject);
-                weaponHandBoneList.Add(handBones[0]);
-                break;
-            case HandType.Right:
-                weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
-                weaponObject.transform.SetParent(handBones[1]);
-                weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
-                weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
-                weaponSpawnObjectList.Add(weaponObject);
-                weaponHandBoneList.Add(handBones[1]);
-                break;
-            case HandType.All:
-                for (var i = 0; i < 2; ++i)
                 {
-                    if (i == 0)
-                    {
-                        weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
-                    }
-                    else
-                    {
-                        weaponObject = Instantiate(currentAttackWeaponData.SubWeaponList[i - 1]);
-                    }
-
-                    weaponObject.transform.SetParent(handBones[i]);
+                    weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
+                    weaponObject.transform.SetParent(handBones[0]);
                     weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
                     weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
                     weaponSpawnObjectList.Add(weaponObject);
-                    weaponHandBoneList.Add(handBones[i]);
+                    weaponHandBoneList.Add(handBones[0]);
+
+                    var vfxData = currentAttackWeaponData.AttackVFXDataList[currentComboIndex];
+                    var vfxObject = Instantiate(vfxData.GetVFXPrefab("Spawn"), handBones[0]);
+
+                    var weaponAnimator = weaponObject.GetComponent<Animator>();
+                    weaponAnimator.SetTrigger("Spawn");
+                }
+                break;
+            case HandType.Right:
+                {
+                    weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
+                    weaponObject.transform.SetParent(handBones[1]);
+                    weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
+                    weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
+                    weaponSpawnObjectList.Add(weaponObject);
+                    weaponHandBoneList.Add(handBones[1]);
+                    var vfxData = currentAttackWeaponData.AttackVFXDataList[currentComboIndex];
+                    var vfxObject = Instantiate(vfxData.GetVFXPrefab("Spawn"), handBones[1]);
+
+                    var weaponAnimator = weaponObject.GetComponent<Animator>();
+                    weaponAnimator.SetTrigger("Spawn");
+                }
+                break;
+            case HandType.All:
+                {
+                    for (var i = 0; i < 2; ++i)
+                    {
+                        if (i == 0)
+                        {
+                            weaponObject = Instantiate(currentAttackWeaponData.WorldObject);
+                        }
+                        else
+                        {
+                            weaponObject = Instantiate(currentAttackWeaponData.SubWeaponList[i - 1]);
+                        }
+
+                        weaponObject.transform.SetParent(handBones[i]);
+                        weaponObject.transform.localRotation = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].rotatation;
+                        weaponObject.transform.localPosition = currentAttackWeaponData.PivotOffsetDataList[currentComboIndex].position;
+                        weaponSpawnObjectList.Add(weaponObject);
+                        weaponHandBoneList.Add(handBones[i]);
+                    }
                 }
                 break;
         }
-
-        //무기 소환
 
     }
 
@@ -326,17 +349,42 @@ public class PlayerAttackState : PlayerStateBase
         }
     }
 
+    public void DissapearWeapon()
+    {
+        switch (currentAttackWeaponData.AttackType)
+        {
+            case WeaponAttackType.None:
+                break;
+            case WeaponAttackType.Melee:
+                if (weaponSpawnObjectList.Count > 0)
+                {
+                    var vfxData = currentAttackWeaponData.AttackVFXDataList[0];
+                    var vfxObject = Instantiate(vfxData.GetVFXPrefab("Dissapear"), handBones[1]);
+
+                    var weaponAnimator = weaponSpawnObjectList[0].GetComponent<Animator>();
+                    weaponAnimator.SetTrigger("Dissapear");
+                }
+                break;
+            case WeaponAttackType.Projectile:
+                break;
+        }
+    }
+
     public void AllowCombo()
     {
         //다음 콤보에 대한 입력을 받을 수 있습니다.
-        isAttack = attackStateType != AttackStateType.ComboCheck;
+        isCombo = attackStateType == AttackStateType.ComboCheck;
     }
 
     public void EndAttack()
     {
+        if (!isAttack)
+            return;
+
         attackStateType = AttackStateType.Wait;
 
         isAttack = false;
+        isCombo = false;
 
         if (!isMoveable)
             updateIsAttackEvent?.Invoke(isAttack);
@@ -346,21 +394,7 @@ public class PlayerAttackState : PlayerStateBase
         animator.speed = 1f;
 
         animator.SetInteger("AttackType", 0);
-
-        switch (currentAttackWeaponData.AttackType)
-        {
-            case WeaponAttackType.None:
-                break;
-            case WeaponAttackType.Melee:
-                if (weaponSpawnObjectList.Count > 0)
-                {
-                    Destroy(weaponSpawnObjectList[0]);
-                }
-                break;
-            case WeaponAttackType.Projectile:
-                break;
-        }
-
+        DissapearWeapon();
         weaponSpawnObjectList.Clear();
         weaponHandBoneList.Clear();
 
@@ -368,6 +402,7 @@ public class PlayerAttackState : PlayerStateBase
 
         //공격 초기화
         currentComboIndex = 0;
+        Debug.Log("Update Weapon Index");
         currentWeaponIndex = (int)Mathf.Repeat(currentWeaponIndex + 1, equipSlotDatas.Count);
         updateWeaponIndexEvent?.Invoke(currentWeaponIndex);
 
@@ -437,7 +472,7 @@ public class PlayerAttackState : PlayerStateBase
 
     public override void Exit()
     {
-        EndAttack();
+        //EndAttack();
         exitEvent?.Invoke();
     }
 
@@ -446,4 +481,10 @@ public class PlayerAttackState : PlayerStateBase
         forwardView.y = 0;
         forwardDirection = forwardView;
     }
+
+    public void MoveStep(int value, float stepSpeed)
+    {
+        controller.GetRigidbody().velocity = transform.forward * stepSpeed;
+    }
+
 }

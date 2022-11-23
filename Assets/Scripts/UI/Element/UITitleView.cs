@@ -33,6 +33,12 @@ public class UITitleView : UIBaseView
         });
     }
 
+    public void EnterCreadit() {
+        FadeController.Instance.FadeIn(() => {
+            SceneLoader.Instance.SwitchDirectScene("CreditScene");
+        });
+    }
+
     public void ExitGame()
     {
 #if UNITY_EDITOR

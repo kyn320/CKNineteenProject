@@ -53,8 +53,8 @@ public class SetupObjectByCurve : MonoBehaviour
     [SerializeField]
     private SnapAxis snapAxis;
 
-    [SerializeField]
-    private float snapOffset = 0f;
+    //[SerializeField]
+    //private float snapOffset = 0f;
 
     [SerializeField]
     private Vector3 offsetPosition;
@@ -68,6 +68,9 @@ public class SetupObjectByCurve : MonoBehaviour
     private Vector3 randomRotaionRangeByAxis;
     [SerializeField]
     private Vector3 randomScaleRange;
+
+    [SerializeField]
+    private float gizmoRadius = 0.1f;
 
     private void Update()
     {
@@ -92,18 +95,32 @@ public class SetupObjectByCurve : MonoBehaviour
             setupObjectBoundList[i].transform = setupObjectList[i].transform;
             setupObjectBoundList[i].boxCollider = setupObjectList[i].GetComponent<BoxCollider>();
 
-            if (i > 0 && useSnap)
+            if (useSnap)
             {
-                var prevBound = setupObjectBoundList[i - 1];
+                CurveNearPointData snapPointData;
+                CurveNearPointData farPointData;
                 var nextBound = setupObjectBoundList[i];
+                var diffProgress = 0f;
 
-                var snapPointData = GetSnapPointData(prevBound);
-                var farPointData = bezierCurve.GetPositionToDistance(snapPointData.progress, GetBoundDistanceByAxis(nextBound) + snapOffset);
+                if (i == 0)
+                {
+                    farPointData = bezierCurve.GetPositionToDistance(0f, GetBoundDistanceByAxis(nextBound));
+                    diffProgress = farPointData.progress;
+                }
+                else
+                {
+                    var prevBound = setupObjectBoundList[i - 1];
+
+                    snapPointData = GetSnapPointData(prevBound);
+                    farPointData = bezierCurve.GetPositionToDistance(snapPointData.progress, GetBoundDistanceByAxis(nextBound));
+
+                    //Half 값입니다. 0.5 안해도 되요.
+                    diffProgress = farPointData.progress - snapPointData.progress;
+                }
 
                 position = farPointData.position;
                 resultProgress = farPointData.progress;
-                //Half 값입니다. 0.5 안해도 되요.
-                var diffProgress = snapPointData.progress - farPointData.progress;
+
                 lookAtPosition = bezierCurve.GetPosition(farPointData.progress + diffProgress) -
                     bezierCurve.GetPosition(farPointData.progress - diffProgress);
             }
@@ -116,8 +133,7 @@ public class SetupObjectByCurve : MonoBehaviour
             }
 
             lookAtPosition.Normalize();
-
-            var lookAtRotation = Quaternion.LookRotation(lookAtPosition, Vector3.up); //Mathf.Atan2(lookAtPosition.x, lookAtPosition.z) * Mathf.Rad2Deg;
+            var lookAtRotation = Quaternion.LookRotation(lookAtPosition, Vector3.up);
 
             if (!useRotationFromHeight)
             {
@@ -129,7 +145,7 @@ public class SetupObjectByCurve : MonoBehaviour
 
             if (useProjectionRotation && projectionInfo.collider != null)
             {
-                var hitNormalRotation = Quaternion.FromToRotation(transform.up, projectionInfo.normal);
+                var hitNormalRotation = Quaternion.FromToRotation(Vector3.up, projectionInfo.normal);
                 setupObjectList[i].transform.rotation = hitNormalRotation * lookAtRotation * offsetRotation;
             }
             else
@@ -153,6 +169,23 @@ public class SetupObjectByCurve : MonoBehaviour
         }
 
         SetActiveAllObjects(true);
+    }
+
+    [Button("일괄 크기 적용")]
+    public void UpdateAllObjectScaleSetup(Vector3 scale)
+    {
+#if UNITY_EDITOR
+        UnityEditor.Undo.SetCurrentGroupName("Setup All Objects Scale");
+        var group = UnityEditor.Undo.GetCurrentGroup();
+
+        for (var i = 0; i < setupObjectList.Count; ++i)
+        {
+            UnityEditor.Undo.RecordObject(setupObjectList[i].transform, "Setup Object Scale");
+            setupObjectList[i].transform.localScale = scale;
+        }
+
+        UnityEditor.Undo.CollapseUndoOperations(group);
+#endif
     }
 
     [Button("랜덤 위치 적용")]
@@ -322,7 +355,7 @@ public class SetupObjectByCurve : MonoBehaviour
                 break;
         }
 
-        return bezierCurve.FindNearestPoint(snapPosition);
+        return bezierCurve.FindProjectionPoint(snapPosition, -bound.transform.up);
     }
 
     public float GetBoundDistanceByAxis(SetupObjectBound bound)
@@ -348,7 +381,7 @@ public class SetupObjectByCurve : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (!showObjectBounds)
+        if (!showObjectBounds || bezierCurve == null)
             return;
 
         for (var i = 0; i < setupObjectList.Count; ++i)
@@ -366,20 +399,46 @@ public class SetupObjectByCurve : MonoBehaviour
 
             for (var k = 0; k < pivots.Length; ++k)
             {
-                Gizmos.DrawWireSphere(pivots[k], 0.25f);
+                Gizmos.DrawWireSphere(pivots[k], gizmoRadius);
             }
 
             Matrix4x4 rotationMatrix = Matrix4x4.TRS(setupObject.transform.position, setupObject.transform.rotation, setupObject.transform.lossyScale);
             Gizmos.matrix = rotationMatrix;
-            Gizmos.color = new Color(0, 0, 1, 0.5f);
+            Gizmos.color = new Color(0, 0, 1, gizmoRadius);
             Gizmos.DrawCube(bound.boxCollider.center, bound.boxCollider.size);
 
 
             Gizmos.matrix = Matrix4x4.identity;
-            Gizmos.color = Color.red;
+            Gizmos.color = Color.blue;
 
+            Vector3 snapPosition = bound.Center;
+            switch (snapAxis)
+            {
+                case SnapAxis.None:
+                    break;
+                case SnapAxis.Foward:
+                    snapPosition = bound.Foward;
+                    break;
+                case SnapAxis.Back:
+                    snapPosition = bound.Back;
+                    break;
+                case SnapAxis.Right:
+                    snapPosition = bound.Right;
+                    break;
+                case SnapAxis.Left:
+                    snapPosition = bound.Left;
+                    break;
+            }
+            Gizmos.DrawSphere(snapPosition, gizmoRadius);
+
+
+            Gizmos.color = Color.yellow;
             var nearPointData = GetSnapPointData(bound);
-            Gizmos.DrawSphere(nearPointData.position, 0.25f);
+            Gizmos.DrawSphere(nearPointData.position, gizmoRadius);
+
+            //Debug.Log(snapPosition + " / " + nearPointData.position);
+            //Debug.Log(nearPointData.line + " / " + nearPointData.progress);
+
         }
 
     }

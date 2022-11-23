@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5874987464225044124}
   - component: {fileID: 8533427052333843030}
   - component: {fileID: 6984702683399118109}
+  - component: {fileID: 3877619872279268178}
   m_Layer: 8
   m_Name: Weapon_Axe
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7362555970600566325, guid: 1ec0af75d78171345859380e3377e2a8, type: 3}
+  - {fileID: 2100000, guid: a6d1b8238cbba6c4cb51e1dbb69ca48b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,6 +112,27 @@ MonoBehaviour:
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
-  vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
+  vfxPrefabData: {fileID: 11400000, guid: 9616b0eff4ec0b847a965d3fc2251525, type: 2}
+  sfxPrefabData: {fileID: 0}
   hitPauseWaitTime: 0.1
   hitPauseTime: 0.1
+--- !u!95 &3877619872279268178
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7884728454581511043}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 4a8b586a318c4df4dbb4d5636e72e260, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

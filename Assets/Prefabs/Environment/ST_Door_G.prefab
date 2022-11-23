@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 838433695679127284}
   - component: {fileID: 4327234200968302929}
   - component: {fileID: 2011310084951631259}
+  - component: {fileID: 1717478385717376850}
+  - component: {fileID: 1451228700159232650}
   m_Layer: 0
   m_Name: ST_Door_G
   m_TagString: Untagged
@@ -83,3 +85,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1717478385717376850
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65697664919684174}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.542154, y: 5.000001, z: 2.3000004}
+  m_Center: {x: 1.7289221, y: 2.4999995, z: -1.0000027}
+--- !u!65 &1451228700159232650
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65697664919684174}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5605309, y: 5.000001, z: 2.3000004}
+  m_Center: {x: -1.7197336, y: 2.4999995, z: -1.0000027}

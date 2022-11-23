@@ -26,6 +26,14 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
 
     private NavMeshAgent navAgent;
 
+    [SerializeField]
+    private VFXPrefabData vfxPrefabData;
+
+    private GameObject attackVFX;
+
+    [SerializeField]
+    private SFXPrefabData sfxPrefabData;
+
     protected override void Awake()
     {
         base.Awake();
@@ -59,6 +67,9 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         var success = navAgent.SetDestination(destination);
         currentAttackTick = 0;
         startAttackEvent?.Invoke();
+
+        attackVFX = Instantiate(vfxPrefabData.GetVFXPrefab("Attack"), transform);
+
     }
     protected override void Update()
     {
@@ -98,6 +109,10 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         {
             endAttackTriggerDataList[i].Invoke(animator);
         }
+
+        Destroy(attackVFX);
+
+        Instantiate(vfxPrefabData.GetVFXPrefab("EndAttack"), transform);
 
         endAttackEvent?.Invoke();
         await UniTask.Delay((int)(attackAfterTime * 1000));
@@ -145,8 +160,4 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         }
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-
-    }
 }

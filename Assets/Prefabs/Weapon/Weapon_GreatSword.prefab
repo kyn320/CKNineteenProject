@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5825903244604700038}
   - component: {fileID: 8592080201505407308}
   - component: {fileID: 5539042124157938818}
+  - component: {fileID: 6186745958092263341}
   m_Layer: 0
   m_Name: Weapon_GreatSword
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 962f776f636593c4b9b0bc01fea3cbb2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,7 +112,27 @@ MonoBehaviour:
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
-  vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
+  vfxPrefabData: {fileID: 11400000, guid: 9616b0eff4ec0b847a965d3fc2251525, type: 2}
   sfxPrefabData: {fileID: 11400000, guid: 5eb270fb4b84d5048b01eb1278622807, type: 2}
   hitPauseWaitTime: 0.3
   hitPauseTime: 0.1
+--- !u!95 &6186745958092263341
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7799617847009353881}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: b861b629f064df14785614df54030446, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -16,6 +16,8 @@ public class BezierCurve : MonoBehaviour
     protected int drawDetailCount = 50;
 
     [SerializeField]
+    public bool showOnlyRoot = false;
+    [SerializeField]
     private float pointRadius = 0.5f;
     [SerializeField]
     private Color rootAnchorColor = Color.white;
@@ -92,15 +94,16 @@ public class BezierCurve : MonoBehaviour
         var searchProgress = startProgress;
         var minDiff = 999f;
         var nearPointData = new CurveNearPointData();
+        var detailStep = 0.0001f;
 
         while (searchProgress < GetLineCount())
         {
-            searchProgress += 0.01f;
+            searchProgress += detailStep;
             var checkPosition = GetPosition(searchProgress);
-            var distance = (checkPosition - startPosition).magnitude;
-            var diff = checkDistance - distance;
+            var distance = (checkPosition - startPosition).sqrMagnitude;
+            var diff = checkDistance * checkDistance - distance;
 
-            if (diff < 0)
+            if(diff < 0)
                 break;
 
             if (diff < minDiff)
@@ -114,98 +117,116 @@ public class BezierCurve : MonoBehaviour
         return nearPointData;
     }
 
+    public CurveNearPointData FindProjectionPoint(Vector3 targetPosition, Vector3 downVector)
+    {
+        //가까운 점
+        var nearestPosition = Vector3.zero;
+        //가까운 거리
+        var nearDistanceSqr = float.MaxValue;
+        //근사 값 범위
+        var nearProgress = 0f;
+        //제일 가까운 Bezier Line
+        BezierLine nearLine = null;
+        //제일 가까운 Bezier Line Index
+        var resultLineIndex = 0;
+
+        //TODO :: 알고리즘 최적화 방법
+        for (var i = 0; i < lineList.Count; ++i)
+        {
+            var searchLine = lineList[i];
+            var scaneTime = 1f / (drawDetailCount * 0.5f);
+
+            for (var t = 0f; t <= 1f; t += scaneTime)
+            {
+                var searchPoint = searchLine.CalculatePoint(t);
+                var sqrDistance = (searchPoint - targetPosition).sqrMagnitude;
+                if (sqrDistance < nearDistanceSqr)
+                {
+                    resultLineIndex = i;
+                    nearLine = searchLine;
+                    nearProgress = t;
+                    nearDistanceSqr = sqrDistance;
+                    nearestPosition = searchPoint;
+                }
+            }
+        }
+
+        var minAngle = 360f;
+        var projectileProgress = 0f;
+
+        //캐싱된 곡선을 기반으로 drawDetailCount 만큼 나누어 곡선 내 모든 점을 다시 추적 후 가까운 점을 캐싱
+        for (var i = -250; i <= 250; ++i)
+        {
+            var t = nearProgress + i * 0.0001f;
+            t = Mathf.Clamp01(t);
+            var searchPoint = nearLine.CalculatePoint(t);
+
+            var projectionDirection = (searchPoint - targetPosition).normalized;
+            var angle = Vector3.Angle(projectionDirection.normalized, downVector);
+
+            if (angle < minAngle)
+            {
+                minAngle = angle;
+                projectileProgress = t;
+                nearestPosition = searchPoint;
+            }
+        }
+
+        return new CurveNearPointData { line = nearLine, progress = resultLineIndex + projectileProgress, position = nearestPosition };
+    }
+
     public CurveNearPointData FindNearestPoint(Vector3 targetPosition)
     {
         searchProgressList.Clear();
 
+        //가까운 점
         var nearestPosition = Vector3.zero;
+        //가까운 거리
         var nearDistanceSqr = float.MaxValue;
-        var progressRange = new float[2] { 0f, 0f };
-
-        BezierLine searchLine = null;
+        //근사 값 범위
+        var nearProgress = 0f;
+        //제일 가까운 Bezier Line
+        BezierLine nearLine = null;
+        //제일 가까운 Bezier Line Index
         var resultLineIndex = 0;
 
+        //TODO :: 알고리즘 최적화 방법
         for (var i = 0; i < lineList.Count; ++i)
         {
-            var line = lineList[i];
-            var searchRange = new float[2] { 0f, 0f };
-            var searchDistanceSqr = SearchLineBinarySplit(ref searchRange, line, targetPosition, 0.5f, 4, float.MaxValue);
+            var searchLine = lineList[i];
+            var scaneTime = 1f / (drawDetailCount * 0.5f);
 
-            if (nearDistanceSqr > searchDistanceSqr)
+            for (var t = 0f; t <= 1f; t += scaneTime)
             {
-                nearDistanceSqr = searchDistanceSqr;
-                progressRange = searchRange;
-                searchLine = line;
-                resultLineIndex = i;
+                var searchPoint = searchLine.CalculatePoint(t);
+                var sqrDistance = (searchPoint - targetPosition).sqrMagnitude;
+                if (sqrDistance < nearDistanceSqr)
+                {
+                    resultLineIndex = i;
+                    nearLine = searchLine;
+                    nearProgress = t;
+                    nearDistanceSqr = sqrDistance;
+                    nearestPosition = searchPoint;
+                }
             }
         }
 
-        var progressDelta = Mathf.Abs(progressRange[0] - progressRange[1]) / 10f;
-
-        var resultProgress = 0f;
-
-        for (var i = 0; i <= 10; ++i)
+        //캐싱된 곡선을 기반으로 drawDetailCount 만큼 나누어 곡선 내 모든 점을 다시 추적 후 가까운 점을 캐싱
+        for (var i = -250; i <= 250; ++i)
         {
-            var searchPosition = searchLine.CalculatePoint(progressRange[0] + progressDelta * i);
+            var t = nearProgress + i * 0.001f;
+            t = Mathf.Clamp01(t);
+            var searchPoint = nearLine.CalculatePoint(t);
 
-            var distance = (targetPosition - searchPosition).sqrMagnitude;
-
-            if (nearDistanceSqr >= distance)
+            var sqrDistance = (searchPoint - targetPosition).sqrMagnitude;
+            if (sqrDistance < nearDistanceSqr)
             {
-                nearestPosition = searchPosition;
-                nearDistanceSqr = distance;
-                resultProgress = progressRange[0] + progressDelta * i;
+                nearProgress = t;
+                nearDistanceSqr = sqrDistance;
+                nearestPosition = searchPoint;
             }
         }
-
-        return new CurveNearPointData { line = searchLine, progress = resultLineIndex + resultProgress, position = nearestPosition };
-    }
-
-    public float SearchLineBinarySplit(ref float[] progressRange, BezierLine curveLine, Vector3 targetPosition, float progress, int step, float nearDistance)
-    {
-        step = Mathf.Clamp(step, 4, 64);
-
-        var stepProgress = 1f / step;
-        var midProgress = progress;
-
-        var nearestDistanceSqr = nearDistance;
-        var nearestProgress = progress;
-
-        var shortDistanceSqr = float.MaxValue;
-        var shortProgress = 1f;
-
-        var isUpdateNearest = false;
-
-        for (var i = -1; i < 2; i += 2)
-        {
-            var searchProgress = Mathf.Clamp01(midProgress + stepProgress * i);
-
-            var searchPosition = curveLine.CalculatePoint(searchProgress);
-            var distanceSqr = (targetPosition - searchPosition).sqrMagnitude;
-
-            if (nearestDistanceSqr > distanceSqr)
-            {
-                isUpdateNearest = true;
-                nearestDistanceSqr = distanceSqr;
-                nearestProgress = searchProgress;
-            }
-
-            if (shortDistanceSqr > distanceSqr)
-            {
-                shortDistanceSqr = distanceSqr;
-                shortProgress = searchProgress;
-            }
-        }
-
-        if (isUpdateNearest)
-        {
-            return SearchLineBinarySplit(ref progressRange, curveLine, targetPosition, nearestProgress, step * 2, nearestDistanceSqr);
-        }
-
-        progressRange[0] = nearestProgress < shortProgress ? nearestProgress : shortProgress;
-        progressRange[1] = nearestProgress > shortProgress ? nearestProgress : shortProgress;
-
-        return nearestDistanceSqr;
+        return new CurveNearPointData { line = nearLine, progress = resultLineIndex + nearProgress, position = nearestPosition };
     }
 
     [Button("앵커 추가")]

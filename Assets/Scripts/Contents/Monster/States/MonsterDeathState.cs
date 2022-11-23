@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MonsterDeathState : MonsterStateBase
 {
+
     public override void Enter()
     {
         for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)

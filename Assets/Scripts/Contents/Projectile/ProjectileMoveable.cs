@@ -34,6 +34,7 @@ public class ProjectileMoveable : MonoBehaviour
     public virtual void SetStartPoint(Vector3 startPoint)
     {
         this.startPoint = startPoint;
+        transform.position = startPoint;
     }
     public virtual void SetEndPoint(Vector3 endPoint)
     {
@@ -43,6 +44,7 @@ public class ProjectileMoveable : MonoBehaviour
     public virtual void SetDirection(Vector3 moveDirection)
     {
         this.moveDirection = moveDirection;
+        transform.forward = moveDirection;
     }
 
     public virtual void SetMoveSpeed(float moveSpeed)
