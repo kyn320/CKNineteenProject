@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreTags:
+  - Player
   - Ground
   enableEvent:
     m_PersistentCalls:
@@ -148,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40fe0174663b23245a5a4ace13bcc8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: 5b25e7c90251b2043a5c09231a521a3a, type: 2}
   playerStatus: {fileID: 0}
   userTags:
   - Monster

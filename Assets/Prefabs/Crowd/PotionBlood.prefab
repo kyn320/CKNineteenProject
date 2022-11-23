@@ -47,6 +47,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   playerController: {fileID: 0}
   monsterController: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: 5b25e7c90251b2043a5c09231a521a3a, type: 2}
   buffData: {fileID: 0}
   crowdType: 0
   currentLifeTime: 10
@@ -64,3 +65,5 @@ MonoBehaviour:
       m_Calls: []
   activeCalcTime: 0
   activeStandardTime: 2
+  statusCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
+  damageResult: 1

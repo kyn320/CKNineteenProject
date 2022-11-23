@@ -13,15 +13,11 @@ public class CrowdPotion : CrowdBehaviour
     private float activeCalcTime = .0f;
     [SerializeField]
     private float activeStandardTime = .0f;
+    [SerializeField]
+    protected StatusCalculator statusCalculator;
 
     public float damageResult = 1f;
 
-
-    private void Start()
-    {
-        //임시용, 불안정하고 비효율적이기 때문에 반드시 바꿀것!
-        damageResult = GameObject.Find("Player").GetComponent<PlayerStatus>().currentStatus.GetElement(StatusType.MinAttackPower).GetAmount();
-    }
 
     public override void Active()
     {
@@ -34,10 +30,8 @@ public class CrowdPotion : CrowdBehaviour
 
             if(userTag == "Monster")
             {
-
-
+                damageResult = statusCalculator.Calculate(weaponData.StatusInfoData);
                 Debug.Log($"damageResult : {damageResult}");
-
 
                 monsterController?.OnDamage(new DamageInfo()
                 {

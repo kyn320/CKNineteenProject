@@ -11,6 +11,7 @@ public abstract class CrowdBehaviour : MonoBehaviour
     protected PlayerController playerController;
     [SerializeField]
     protected MonsterController monsterController;
+    public WeaponData weaponData;
     protected GameObject userObject;
 
     [SerializeField]
@@ -70,9 +71,11 @@ public abstract class CrowdBehaviour : MonoBehaviour
 
         crowdType = buffData.CrowdTypes[0];
         string userTag = transform.parent.tag;
-        if(userTag == "Player")
-            playerController = controller.GetComponent<PlayerController>();
-        else if(userTag == "Monster")
+
+        if (playerController == null)
+            playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+
+        if(userTag == "Monster")
             monsterController = controller.GetComponent<MonsterController>();
 
 

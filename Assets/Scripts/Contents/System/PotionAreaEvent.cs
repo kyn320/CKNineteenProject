@@ -97,6 +97,7 @@ public class PotionAreaEvent : MonoBehaviour
             int findBuffNum = -1;
             for (int i = 0; buffController.crowdBehaviourList.Count > i; i++)
             {
+                if(buffController.crowdBehaviourList[i])
                 if (buffController.crowdBehaviourList[i].name == buffdata.BuffBehaviourObject.name + "(Clone)")
                     findBuffNum = i;
             }
