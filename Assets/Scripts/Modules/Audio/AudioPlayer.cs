@@ -53,7 +53,10 @@ public abstract class AudioPlayer : MonoBehaviour
             audioSource = this.GetOrAddComponent<AudioSource>();
             audioSource.playOnAwake = false;
         }
+    }
 
+    private void Start()
+    {
         if (autoPlay)
             Play();
     }

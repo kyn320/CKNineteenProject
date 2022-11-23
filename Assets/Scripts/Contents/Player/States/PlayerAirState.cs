@@ -14,6 +14,12 @@ public class PlayerAirState : PlayerStateBase
     private Animator animator;
     private Vector3 inputVector;
 
+    [SerializeField]
+    private SFXPrefabData sfxPrefabData;
+
+    [SerializeField]
+    private VFXPrefabData vfxPrefabData;
+
     protected override void Awake()
     {
         base.Awake();
@@ -53,7 +59,7 @@ public class PlayerAirState : PlayerStateBase
     {
         var rigidBody = controller.GetRigidbody();
 
-        if(inputVector.z > 0)
+        if (inputVector.z > 0)
             inputVector.z = 0;
 
         Vector3 viewVector = transform.forward * inputVector.z; //+ transform.right * (inputVector.z < 0f ? -inputVector.x : inputVector.x);
@@ -69,7 +75,7 @@ public class PlayerAirState : PlayerStateBase
                 controller.ChangeState(PlayerStateType.Idle);
         }
 
-        rigidBody.AddForce(Physics.gravity * gravityScale 
+        rigidBody.AddForce(Physics.gravity * gravityScale
             + viewVector * airMoveSpeedMultiplyer * moveSpeed, ForceMode.Acceleration);
     }
 

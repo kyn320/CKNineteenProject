@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3827645977113965213}
+  - component: {fileID: 441552213152060453}
   m_Layer: 7
   m_Name: FootPoint
   m_TagString: Untagged
@@ -31,6 +32,28 @@ Transform:
   m_Father: {fileID: 3827645977972770106}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &441552213152060453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827645977113965212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225620ccd7964549b8d231148b86c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  audioClipKey: 
+  volume: 0.5
+  aliveSceneChange: 0
+  autoPlay: 0
+  isLoop: 0
+  autoDestroy: 0
+  audioClip: {fileID: 8300000, guid: cf558620ec2ad694cb2f4f0aed92c714, type: 3}
+  stepDistance: 1
+  prevPlayPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &3827645977174835326
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,6 +525,8 @@ MonoBehaviour:
       m_Calls: []
   gravityScale: 1.7
   airMoveSpeedMultiplyer: 1
+  sfxPrefabData: {fileID: 0}
+  vfxPrefabData: {fileID: 0}
 --- !u!114 &1294546403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,9 +1067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventDic:
-    keys: []
-    values: []
   animatoinEventDic:
     keys:
     - MoveStep
