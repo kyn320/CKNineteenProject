@@ -38,6 +38,14 @@ public class SetupObjectByGrid : MonoBehaviour
     [SerializeField]
     private Quaternion offsetRotation;
 
+    private void Update()
+    {
+        if (useAutoUpdate)
+        {
+            UpdateGrid();
+        }
+    }
+
     private void UpdateGrid()
     {
         if (setupObjectList == null)
@@ -50,11 +58,11 @@ public class SetupObjectByGrid : MonoBehaviour
         var boundSize = setupObjectBound.Size;
 
         var centerPosition = transform.position
-            - new Vector3(-boundSize.x * 0.5f
+            - transform.right * ( -boundSize.x * 0.5f
             + boundSize.x * gridSize.x * 0.5f
-            - spacingPosition.x * 1.5f + spacingPosition.x * (gridSize.x - 1 > 0 ? gridSize.x - 1 : 0)
-            , 0f
-            , -boundSize.z * 0.5f
+            - spacingPosition.x * 1.5f + spacingPosition.x * (gridSize.x - 1 > 0 ? gridSize.x - 1 : 0))
+            
+            - transform.forward * ( -boundSize.z * 0.5f
             + boundSize.z * gridSize.y * 0.5f
             - spacingPosition.z * 1.5f + spacingPosition.z * (gridSize.y - 1 > 0 ? gridSize.y - 1 : 0));
 
@@ -64,7 +72,7 @@ public class SetupObjectByGrid : MonoBehaviour
         {
             for (var x = 0; x < gridSize.x; ++x)
             {
-                Vector3 position = centerPosition + new Vector3((boundSize.x + spacingPosition.x) * x, 0, (boundSize.z + spacingPosition.z) * y);
+                Vector3 position = centerPosition + (transform.right * (boundSize.x + spacingPosition.x) * x) + (transform.forward *  (boundSize.z + spacingPosition.z) * y);
 
                 var projectionInfo = GetProjectionInfo(position);
 
@@ -84,7 +92,7 @@ public class SetupObjectByGrid : MonoBehaviour
                 }
                 else
                 {
-                    setupObjectList[index].transform.rotation = offsetRotation;
+                    setupObjectList[index].transform.rotation = transform.rotation *  offsetRotation;
                 }
 
                 ++index;
