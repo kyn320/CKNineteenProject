@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 8244655941523093533}
   - component: {fileID: 8650608578420360104}
   - component: {fileID: 1118178367916716137}
+  - component: {fileID: 8255550466857911785}
   m_Layer: 6
   m_Name: ObserverMonster
   m_TagString: Monster
@@ -276,7 +277,19 @@ MonoBehaviour:
   exitAnimatorTriggerList: []
   enterEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8255550466857911785}
+        m_TargetAssemblyTypeName: EffectEventController, Assembly-CSharp
+        m_MethodName: effectInstance
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -416,6 +429,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tintColor: {r: 1, g: 0, b: 0, a: 1}
   splashTime: 0.25
+--- !u!114 &8255550466857911785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9127546524522647198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dfc42bb52afa934ba354eb5645a2258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects:
+  - {fileID: 8966803498262969358, guid: 434cf4bd0e5dd124796c93f3fa87fbc5, type: 3}
+  instanceEffects: []
 --- !u!1001 &3207826339071467302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -564,9 +592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventDic:
-    keys: []
-    values: []
   animatoinEventDic:
     keys:
     - PlayAttack

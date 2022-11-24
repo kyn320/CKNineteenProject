@@ -13,7 +13,7 @@ public class EffectEventController : MonoBehaviour
     {
         instanceEffects = new GameObject[effects.Length];
     }
-    public void effectInstance(int effectNum)
+    public void EffectInstance(int effectNum)
     {
         Instantiate(effects[effectNum]);
     }

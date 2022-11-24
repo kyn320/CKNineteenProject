@@ -10,6 +10,8 @@ public class PotionAreaEvent : MonoBehaviour
     [SerializeField]
     PlayerStatus playerStatus;
     [SerializeField]
+    ProjectileController projectileController;
+    [SerializeField]
     string[] userTags;
     [SerializeField]
     float intervalDelayTime = 2f;
@@ -24,6 +26,15 @@ public class PotionAreaEvent : MonoBehaviour
     [SerializeField]
     BuffData buffdata;
 
+    [SerializeField]
+    private DamageInfo damageInfo;
+    [SerializeField]
+    VFXPrefabData vfxPrefabData;
+    [SerializeField]
+    SFXPrefabData sfxPrefabData;
+
+    public UnityEvent<bool> hitEvnet;
+
     float lifeTime;
 
     private void Start()
@@ -32,20 +43,57 @@ public class PotionAreaEvent : MonoBehaviour
         playerStatus = GameObject.Find("Player").GetComponent<PlayerStatus>();
     }
 
+    public void SetWeaponData(WeaponData weaponData)
+    {
+        this.weaponData = weaponData;
+    }
+
     public void UserSearch(Collider collider)
     {   
         for(int i = 0; i < userTags.Length; i++)
         if (collider.gameObject.tag == userTags[i])
         {
-            GameObject user = collider.gameObject;
-                //PlayerStatus는 player밖에 없음으로 문제가 될 수 있음 수정해 둘 것
-                playerStatus = user.GetComponent<PlayerStatus>();
+            if (collider.gameObject.CompareTag("Player"))
+                return;
 
-                if (hitEffect)
+            GameObject user = collider.gameObject;
+
+            //PlayerStatus는 player밖에 없음으로 문제가 될 수 있음 만약 문제가 된다면 수정해주세요
+            playerStatus = user.GetComponent<PlayerStatus>();
+
+            if (hitEffect)
             {
                 hitEffectObj = Instantiate(hitEffect, user.transform);
             }
-        }
+
+            var damageable = collider.gameObject.GetComponent<IDamageable>();
+
+                if (damageable != null)
+                {
+                    damageInfo.isCritical = projectileController.GetCritical();
+                    damageInfo.damage = projectileController.GetDamage();
+                    damageInfo.hitPoint = collider.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+                    damageInfo.hitNormal = (transform.position - collider.transform.position).normalized;
+
+                    var resultDamageInfo = damageable.OnDamage(damageInfo);
+
+                    if (resultDamageInfo.isHit)
+                    {
+                        if (resultDamageInfo.isCritical)
+                        {
+                            Instantiate(vfxPrefabData.GetVFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
+                            Instantiate(sfxPrefabData.GetSFXPrefab("CriticalHit"), damageInfo.hitPoint, Quaternion.identity);
+                        }
+                        else
+                        {
+                            Instantiate(vfxPrefabData.GetVFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
+                            Instantiate(sfxPrefabData.GetSFXPrefab("Hit"), damageInfo.hitPoint, Quaternion.identity);
+                        }
+
+                        hitEvnet?.Invoke(resultDamageInfo.isKill);
+                    }
+                }
+            }
     }
     public void LavaBurst(Collider collider)
     {

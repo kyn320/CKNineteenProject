@@ -95,4 +95,13 @@ public class ProjectileController : MonoBehaviour
             gameObject.SetActive(false);
     }
 
+
+    public bool GetCritical()
+    {
+        return calculateCritical();
+    }
+    public float GetDamage()
+    {
+        return calculateDamage(damageInfo.isCritical);
+    }
 }

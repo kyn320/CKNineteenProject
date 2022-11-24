@@ -161,6 +161,21 @@ MonoBehaviour:
   hitEffect: {fileID: 7804051832666484829, guid: 187c3bcb4ab48aa49af2aae29252e2fc,
     type: 3}
   buffdata: {fileID: 0}
+  damageInfo:
+    owner: {fileID: 0}
+    ownerTag: 
+    isHit: 0
+    isCritical: 0
+    isKnockBack: 0
+    isKill: 0
+    damage: 0
+    hitPoint: {x: 0, y: 0, z: 0}
+    hitNormal: {x: 0, y: 0, z: 0}
+  vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
+  sfxPrefabData: {fileID: 11400000, guid: f7edb9716a6d01d42aea021af3ce7684, type: 2}
+  hitEvnet:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &6345278206790347510
 PrefabInstance:
   m_ObjectHideFlags: 0
