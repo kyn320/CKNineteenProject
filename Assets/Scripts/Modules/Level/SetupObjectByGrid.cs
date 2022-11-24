@@ -38,6 +38,11 @@ public class SetupObjectByGrid : MonoBehaviour
     [SerializeField]
     private Quaternion offsetRotation;
 
+    [SerializeField]
+    private bool useForceScale = false;
+    [SerializeField]
+    private Vector3 forceScale = Vector3.one;
+
     private void Update()
     {
         if (useAutoUpdate)
@@ -55,14 +60,20 @@ public class SetupObjectByGrid : MonoBehaviour
         setupObjectBound.transform = setupPrefab.transform;
         setupObjectBound.boxCollider = setupPrefab.GetComponent<BoxCollider>();
 
-        var boundSize = setupObjectBound.Size;
+
+        var boundSize = Vector3.one;
+
+        if (useForceScale)
+            boundSize = Vector3.Scale(setupObjectBound.boxCollider.size, forceScale);
+        else
+            boundSize = setupObjectBound.Size;
 
         var centerPosition = transform.position
-            - transform.right * ( -boundSize.x * 0.5f
+            - transform.right * (-boundSize.x * 0.5f
             + boundSize.x * gridSize.x * 0.5f
             - spacingPosition.x * 1.5f + spacingPosition.x * (gridSize.x - 1 > 0 ? gridSize.x - 1 : 0))
-            
-            - transform.forward * ( -boundSize.z * 0.5f
+
+            - transform.forward * (-boundSize.z * 0.5f
             + boundSize.z * gridSize.y * 0.5f
             - spacingPosition.z * 1.5f + spacingPosition.z * (gridSize.y - 1 > 0 ? gridSize.y - 1 : 0));
 
@@ -72,7 +83,7 @@ public class SetupObjectByGrid : MonoBehaviour
         {
             for (var x = 0; x < gridSize.x; ++x)
             {
-                Vector3 position = centerPosition + (transform.right * (boundSize.x + spacingPosition.x) * x) + (transform.forward *  (boundSize.z + spacingPosition.z) * y);
+                Vector3 position = centerPosition + (transform.right * (boundSize.x + spacingPosition.x) * x) + (transform.forward * (boundSize.z + spacingPosition.z) * y);
 
                 var projectionInfo = GetProjectionInfo(position);
 
@@ -92,8 +103,13 @@ public class SetupObjectByGrid : MonoBehaviour
                 }
                 else
                 {
-                    setupObjectList[index].transform.rotation = transform.rotation *  offsetRotation;
+                    setupObjectList[index].transform.rotation = transform.rotation * offsetRotation;
                 }
+
+                if (useForceScale)
+                    setupObjectList[index].transform.localScale = forceScale;
+                else
+                    setupObjectList[index].transform.localScale = setupPrefab.transform.localScale;
 
                 ++index;
             }
