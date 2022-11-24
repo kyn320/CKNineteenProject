@@ -54,8 +54,6 @@ public class PotionAreaEvent : MonoBehaviour
         for(int i = 0; i < userTags.Length; i++)
         if (collider.gameObject.tag == userTags[i])
         {
-            if (collider.gameObject.CompareTag("Player"))
-                return;
 
             GameObject user = collider.gameObject;
 
@@ -66,6 +64,10 @@ public class PotionAreaEvent : MonoBehaviour
             {
                 hitEffectObj = Instantiate(hitEffect, user.transform);
             }
+
+
+            if (collider.gameObject.CompareTag("Player"))
+                return;
 
             var damageable = collider.gameObject.GetComponent<IDamageable>();
 
@@ -133,10 +135,8 @@ public class PotionAreaEvent : MonoBehaviour
     public void Healing(Collider collider)
     {
         GameObject user = collider.gameObject;
-        if (user.CompareTag("Player"))
-        {
-            //healPoint는 임시 변수 값 지정해 줄 것
-            float healPoint = 1f;
+
+            float healPoint = 1f/*weaponData.StatusInfoData.GetElement(StatusType.MinAttackPower).GetAmount()*/;
             intervalDelayTimer += Time.deltaTime;
             lifeTime -= Time.deltaTime;
             if (lifeTime <= 0)
@@ -149,7 +149,7 @@ public class PotionAreaEvent : MonoBehaviour
                 playerStatus.AddHP(playerStatus.currentStatus.GetElement(StatusType.MinAttackPower).GetAmount(), true);
                 user.GetComponent<PlayerStatus>().AddHP(healPoint, true);
             }
-        }
+        
     }
 
     public void deBuff(Collider collider)

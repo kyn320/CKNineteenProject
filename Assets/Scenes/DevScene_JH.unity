@@ -5042,7 +5042,7 @@ PrefabInstance:
     - target: {fileID: 7970744291956046177, guid: 0e8fcbe29b888db42b4c6e8e459451db,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 991
+      value: 3039
       objectReference: {fileID: 0}
     - target: {fileID: 7970744291956046179, guid: 0e8fcbe29b888db42b4c6e8e459451db,
         type: 3}
@@ -5054,6 +5054,11 @@ PrefabInstance:
       propertyPath: m_Cameras.Array.data[0]
       value: 
       objectReference: {fileID: 112096377}
+    - target: {fileID: 7970744291956046205, guid: 0e8fcbe29b888db42b4c6e8e459451db,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e8fcbe29b888db42b4c6e8e459451db, type: 3}
 --- !u!114 &123838324 stripped
