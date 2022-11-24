@@ -82,9 +82,10 @@ MonoBehaviour:
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
-  isPiercing: 0
+  isDontDestroy: 0
   isMove: 0
   vfxPrefabData: {fileID: 11400000, guid: fcf5f76ae5db76f4eb94fa79d11b51c1, type: 2}
+  sfxPrefabData: {fileID: 11400000, guid: dd5e8726add59ea499596b0fbdf18223, type: 2}
 --- !u!114 &5224238082234137421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +105,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveSpeed: 0
   moveTime: 0
+  offsetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!65 &917363654387616549
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -187,32 +189,32 @@ PrefabInstance:
     - target: {fileID: 5327795873384994574, guid: e79f053262f506f419c3e9881b6337bd,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6418257
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 5327795873384994574, guid: e79f053262f506f419c3e9881b6337bd,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.03515324
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5327795873384994574, guid: e79f053262f506f419c3e9881b6337bd,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.76489794
+      value: -0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 5327795873384994574, guid: e79f053262f506f419c3e9881b6337bd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.041894
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5327795873384994574, guid: e79f053262f506f419c3e9881b6337bd,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 6.27
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5327795873384994574, guid: e79f053262f506f419c3e9881b6337bd,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 100
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 5327795873384994574, guid: e79f053262f506f419c3e9881b6337bd,
         type: 3}
