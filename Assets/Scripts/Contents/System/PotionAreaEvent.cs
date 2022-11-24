@@ -41,6 +41,7 @@ public class PotionAreaEvent : MonoBehaviour
     {
         lifeTime = GetComponent<AutoDestroyByLifetime>().lifeTime - 0.5f;
         playerStatus = GameObject.Find("Player").GetComponent<PlayerStatus>();
+
     }
 
     public void SetWeaponData(WeaponData weaponData)
@@ -70,8 +71,6 @@ public class PotionAreaEvent : MonoBehaviour
 
                 if (damageable != null)
                 {
-                    damageInfo.isCritical = projectileController.GetCritical();
-                    damageInfo.damage = projectileController.GetDamage();
                     damageInfo.hitPoint = collider.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
                     damageInfo.hitNormal = (transform.position - collider.transform.position).normalized;
 
@@ -188,5 +187,10 @@ public class PotionAreaEvent : MonoBehaviour
                 Destroy(hitEffectObj);
             }
         }
+    }
+    public void SetCalculate(ProjectileController controller)
+    {
+        damageInfo.isCritical = controller.GetCritical();
+        damageInfo.damage = controller.GetDamage();
     }
 }

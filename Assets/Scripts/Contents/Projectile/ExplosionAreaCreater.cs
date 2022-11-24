@@ -46,6 +46,7 @@ public class ExplosionAreaCreater : MonoBehaviour
             }
 
             area.GetComponent<AutoDestroyByLifetime>().lifeTime = lifeTime;
+            area.GetComponent<PotionAreaEvent>().SetCalculate(GetComponent<ProjectileController>());
 
             Destroy(gameObject);
         }
