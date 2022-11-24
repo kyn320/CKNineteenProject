@@ -18,14 +18,8 @@ public class Singleton<T> : MonoBehaviour where T : Component
         {
             if (instance == null)
             {
-
-                instance = FindObjectOfType<T>();
-                if (instance == null)
-                {
-                    Debug.LogError("씬 내에 " + typeof(T).ToString() + " 이(가) 존재하지 않습니다.");
-                    Debug.Break();
-                }
-
+                Debug.LogWarning($"씬 내에 {typeof(T).ToString()} 이(가) 존재하지 않습니다. \n 싱글톤 초기화 전에 Instance를 접근하는지 확인 해주세요.");
+                return null;
             }
 
             return instance;
