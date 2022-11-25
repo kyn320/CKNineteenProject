@@ -28,6 +28,8 @@ public class ProjectileMoveable : MonoBehaviour
     protected float moveTime;
 
     [SerializeField]
+    protected bool useTranformForward = false;
+    [SerializeField]
     protected Quaternion offsetRotation;
 
     protected void Awake()
@@ -47,7 +49,13 @@ public class ProjectileMoveable : MonoBehaviour
     public virtual void SetDirection(Vector3 moveDirection)
     {
         this.moveDirection = moveDirection;
-        transform.forward = offsetRotation * moveDirection;
+
+        if (useTranformForward)
+        {
+            transform.forward = moveDirection;
+        }
+
+        transform.localRotation *= offsetRotation;
     }
 
     public virtual void SetMoveSpeed(float moveSpeed)
@@ -60,7 +68,8 @@ public class ProjectileMoveable : MonoBehaviour
         this.maxDistance = maxDistance;
     }
 
-    public virtual void Shot() {
+    public virtual void Shot()
+    {
         rigid = GetComponent<Rigidbody>();
     }
 

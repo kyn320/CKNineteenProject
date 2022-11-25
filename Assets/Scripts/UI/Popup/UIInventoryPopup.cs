@@ -17,7 +17,7 @@ public class UIInventoryPopup : UIBasePopup
         bezierCurveUGUI.SetRootCanvas(UIController.Instance.rootCanvas);
     }
 
-    private void Start()
+    protected override void Start()
     {
         inventoryListView.UpdateSlots();
     }
