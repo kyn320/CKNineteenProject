@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8478554950774751832}
   - component: {fileID: 4757555319322709501}
   - component: {fileID: 7341654723966073143}
+  - component: {fileID: -1832315390966132811}
   m_Layer: 0
   m_Name: ST_Floor_B
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-1832315390966132811
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142923394927253730}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.998101, y: 0.083990574, z: 4.9625664}
+  m_Center: {x: -0.00000047683716, y: 0.040478215, z: 0.00000023841858}
