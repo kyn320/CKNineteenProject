@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3381478414080623516}
   - component: {fileID: 651223120467572566}
   - component: {fileID: 3989736139635698811}
+  - component: {fileID: 5240037565569363128}
   m_Layer: 0
   m_Name: ST_Wall_A_03
   m_TagString: Untagged
@@ -95,5 +96,18 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.9999657, y: 10, z: 5.000004}
-  m_Center: {x: 0.29999554, y: 5, z: 0.29999816}
+  m_Size: {x: 4.9999657, y: 10, z: 2.218638}
+  m_Center: {x: 0.29999542, y: 5, z: -1.0906847}
+--- !u!65 &5240037565569363128
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299683811928446595}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1871183, y: 10, z: 5.000004}
+  m_Center: {x: -1.1064283, y: 5, z: 0.29999828}
