@@ -46,7 +46,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - FogDensity: 0.7
+    - FogDensity: 0.2
     - FogNoise: 0
     - FogSpeed: 0.01
     - _AddPrecomputedVelocity: 0
@@ -112,7 +112,7 @@ Material:
     m_Colors:
     - FogColor: {r: 0, g: 1, b: 0.5725491, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
-    - _Emission: {r: 0, g: 0, b: 0, a: 0}
+    - _Emission: {r: 0, g: 2, b: 0.57254887, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FogColor: {r: 0.84298223, g: 2.828427, b: 1.5972295, a: 1}
   m_BuildTextureStacks: []
