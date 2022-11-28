@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class MonsterSpawner : SingleSpawner
 {
-    public void SetSpawnTime(float time)
-    {
-        maxSpawnTime *= time;
-    }
+
 }

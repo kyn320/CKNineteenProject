@@ -10,8 +10,7 @@ public class SingleSpawner : MonoBehaviour
 
     public bool useRandomSpawn = true;
     public bool useAutoSpawnByTime = true;
-    public float minSpawnTime;
-    public float maxSpawnTime;
+    public AmountRangeFloat spawnTimeRange;
 
     protected float currentSpawnTime;
 
@@ -19,7 +18,7 @@ public class SingleSpawner : MonoBehaviour
     {
         if (useAutoSpawnByTime)
         {
-            currentSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
+            currentSpawnTime = spawnTimeRange.GetRandomAmount();
         }
     }
 
@@ -31,7 +30,7 @@ public class SingleSpawner : MonoBehaviour
 
             if (currentSpawnTime <= 0)
             {
-                currentSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
+                currentSpawnTime = spawnTimeRange.GetRandomAmount();
                 Spawn();
             }
         }
@@ -57,12 +56,14 @@ public class SingleSpawner : MonoBehaviour
 
     public virtual GameObject GetObject()
     {
-        return ObjectPoolManager.Instance.Get(spawnPrefab);
+        return Instantiate(spawnPrefab);
+        //return ObjectPoolManager.Instance.Get(spawnPrefab);
     }
 
     public virtual GameObject GetObject(Vector3 position, Quaternion rotation)
     {
-        return ObjectPoolManager.Instance.Get(spawnPrefab, position, rotation);
+        return Instantiate(spawnPrefab, position, rotation);
+        //return ObjectPoolManager.Instance.Get(spawnPrefab, position, rotation);
     }
 
     public virtual Vector3 GetRandomSpawnPoint()
