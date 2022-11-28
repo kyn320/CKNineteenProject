@@ -41,13 +41,15 @@ public class SingleSpawner : MonoBehaviour
         var spawnObjectList = new List<GameObject>();
         if (useRandomSpawn)
         {
-            spawnObjectList.Add(GetObject(GetRandomSpawnPoint(), Quaternion.identity));
+            var spawnPoint = GetRandomSpawnPoint();
+            spawnObjectList.Add(GetObject(spawnPoint.position, spawnPoint.rotation));
         }
         else
         {
             for (var i = 0; i < spawnPointList.Count; ++i)
             {
-                spawnObjectList.Add(GetObject(spawnPointList[i].position, Quaternion.identity));
+                var spawnPoint = spawnPointList[i];
+                spawnObjectList.Add(GetObject(spawnPoint.position, spawnPoint.rotation));
             }
         }
 
@@ -66,14 +68,14 @@ public class SingleSpawner : MonoBehaviour
         //return ObjectPoolManager.Instance.Get(spawnPrefab, position, rotation);
     }
 
-    public virtual Vector3 GetRandomSpawnPoint()
+    public virtual Transform GetRandomSpawnPoint()
     {
-        return spawnPointList[Random.Range(0, spawnPointList.Count)].position;
+        return spawnPointList[Random.Range(0, spawnPointList.Count)];
     }
 
-    public virtual Vector3 GetSpawnPoint(int index)
+    public virtual Transform GetSpawnPoint(int index)
     {
-        return spawnPointList[index].position;
+        return spawnPointList[index];
     }
 
     private void OnDrawGizmos()
