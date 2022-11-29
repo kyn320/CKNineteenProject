@@ -191,6 +191,6 @@ public class PotionAreaEvent : MonoBehaviour
     public void SetCalculate(ProjectileController controller)
     {
         damageInfo.isCritical = controller.GetCritical();
-        damageInfo.damage = controller.GetDamage();
+        damageInfo.damage = controller.CalculateDamageAmount(damageInfo.isCritical);
     }
 }

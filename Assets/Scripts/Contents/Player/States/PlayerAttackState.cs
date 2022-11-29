@@ -61,7 +61,6 @@ public class PlayerAttackState : PlayerStateBase
     [ShowInInspector]
     private List<Transform> weaponHandBoneList = new List<Transform>();
 
-
     private Vector3 weaponSpawnPoint;
     [ReadOnly]
     [ShowInInspector]
@@ -344,6 +343,7 @@ public class PlayerAttackState : PlayerStateBase
                     var vfxObject = Instantiate(vfxData.GetVFXPrefab("Shot"), transform);
 
                     var projectileController = weaponObject.GetComponent<ProjectileController>();
+                    projectileController.SetStatus(controller.GetStatus().currentStatus);
                     projectileController.SetOwnerObject(this.gameObject);
                     projectileController.hitEvnet.AddListener(SuccessHit);
 
@@ -351,7 +351,7 @@ public class PlayerAttackState : PlayerStateBase
                     isCritical = CalculateCritical();
                     damageAmount = CalculateDamageAmount(isCritical);
 
-                    projectileController.SetCalculator(CalculateCritical, CalculateDamageAmount);
+                    projectileController.SetCalculator(damageCalculator, criticalDamageCalculator);
                     projectileController.Shot(handBone.position
                         , aimPoint
                         , projectileDirection.normalized

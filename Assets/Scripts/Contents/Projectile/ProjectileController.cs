@@ -29,18 +29,25 @@ public class ProjectileController : MonoBehaviour
     [SerializeField]
     protected SFXPrefabData sfxPrefabData;
 
-    private Func<bool> calculateCritical;
-    private Func<bool, float> calculateDamage;
+    private StatusInfo status;
+    protected StatusCalculator damageCalculator;
+    protected StatusCalculator criticalDamageCalculator;
+
+    public void SetStatus(StatusInfo calculateStatus)
+    {
+        status.Copy(calculateStatus);
+    }
+
     public void SetOwnerObject(GameObject ownerObject)
     {
         damageInfo.owner = ownerObject;
         damageInfo.ownerTag = ownerObject.tag;
     }
 
-    public void SetCalculator(Func<bool> calculateCritical, Func<bool, float> calculateDamage)
+    public void SetCalculator(StatusCalculator damageCalculator, StatusCalculator criticalDamageCalculator)
     {
-        this.calculateCritical = calculateCritical;
-        this.calculateDamage = calculateDamage;
+        this.damageCalculator = damageCalculator;
+        this.criticalDamageCalculator = criticalDamageCalculator;
     }
 
     public void Shot(Vector3 startPoint, Vector3 endPoint, Vector3 moveDirection, float moveSpeed, float maxDistance)
@@ -72,8 +79,8 @@ public class ProjectileController : MonoBehaviour
 
         if (damageable != null)
         {
-            damageInfo.isCritical = calculateCritical();
-            damageInfo.damage = calculateDamage(damageInfo.isCritical);
+            damageInfo.isCritical = GetCritical();
+            damageInfo.damage = CalculateDamageAmount(damageInfo.isCritical);
             damageInfo.hitPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
             damageInfo.hitNormal = (transform.position - other.transform.position).normalized;
 
@@ -100,13 +107,21 @@ public class ProjectileController : MonoBehaviour
             gameObject.SetActive(false);
     }
 
-
     public bool GetCritical()
     {
-        return calculateCritical();
+        var tryPercent = UnityEngine.Random.Range(0f, 100f);
+        return tryPercent <= status.GetElement(StatusType.CriticalPercent).CalculateTotalAmount();
     }
-    public float GetDamage()
+
+    public float CalculateDamageAmount(bool isCritical)
     {
-        return calculateDamage(damageInfo.isCritical);
+        if (isCritical)
+        {
+            return criticalDamageCalculator.Calculate(status);
+        }
+        else
+        {
+            return damageCalculator.Calculate(status);
+        }
     }
 }

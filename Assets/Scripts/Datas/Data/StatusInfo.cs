@@ -12,6 +12,18 @@ public class StatusInfo
     [SerializeField]
     protected SerializableDictionary<StatusType, StatusElement> statusDic = new SerializableDictionary<StatusType, StatusElement>();
 
+    public void Copy(StatusInfo status)
+    {
+        statusDic.Clear();
+        var copyDic = status.statusDic;
+        var keyList = copyDic.Keys.ToList();
+
+        for (var i = 0; i < keyList.Count; ++i)
+        {
+            statusDic.Add(keyList[i], new StatusElement(copyDic[keyList[i]]));
+        }
+    }
+
     public void Copy(Dictionary<StatusType, StatusElement> copyDic)
     {
         statusDic.Clear();

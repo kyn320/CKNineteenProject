@@ -58,7 +58,6 @@ public class UnitStatus : SerializedMonoBehaviour
         return tryPercent <= currentStatus.GetElement(StatusType.CriticalPercent).CalculateTotalAmount();
     }
 
-
     [Button("µ¥¹ÌÁö")]
     public virtual DamageInfo OnDamage(DamageInfo damageInfo)
     {
