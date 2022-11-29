@@ -1004,6 +1004,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isInteractable: 1
 --- !u!1 &5365070689616431790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,6 +2467,11 @@ PrefabInstance:
     - target: {fileID: 7785128264576003664, guid: 6a3325d174258d24c903eeb2b4206091,
         type: 3}
       propertyPath: isLoop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7785128264576003664, guid: 6a3325d174258d24c903eeb2b4206091,
+        type: 3}
+      propertyPath: autoPlay
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
