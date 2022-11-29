@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1442392890374124687}
   - component: {fileID: 1442392890374124674}
   - component: {fileID: 1442392890374124673}
+  - component: {fileID: 7991030844005449622}
   - component: {fileID: 2189784059141817597}
   - component: {fileID: 5919483988528196888}
   - component: {fileID: 5919483988528196889}
@@ -303,6 +304,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  deathMaterial: {fileID: 2100000, guid: 3986b53a6ae44e7458c8a64421346318, type: 2}
+  skinnedMeshRenderers: []
+  lifeTime: 1
+--- !u!65 &7991030844005449622
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784834343265454539}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 3.8111498, z: 1.5753937}
+  m_Center: {x: 0, y: 1.4055749, z: 0.28769684}
 --- !u!114 &2189784059141817597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +410,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  currentCoolTime: 0
   coolTime: 0.5
   vfxPrefabData: {fileID: 11400000, guid: 7f1f29d26fc4cc349b3e5414e749cc0f, type: 2}
   sfxPrefabData: {fileID: 0}
@@ -437,6 +455,7 @@ MonoBehaviour:
   endAttackEvent:
     m_PersistentCalls:
       m_Calls: []
+  currentCoolTime: 0
   coolTime: 1
   groundHitBox: {fileID: 6981455005973216111}
   vfxPrefabData: {fileID: 11400000, guid: 7f1f29d26fc4cc349b3e5414e749cc0f, type: 2}

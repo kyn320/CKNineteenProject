@@ -66,6 +66,9 @@ public class WeaponController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
             return;
+        if (other.GetComponent<MonsterController>() == null)
+            return;
+
 
         var damageable = other.gameObject.GetComponent<IDamageable>();
 

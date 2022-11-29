@@ -30,7 +30,6 @@ public class StatusCalculator : ScriptableObject
         {
             var statusType = (StatusType)Enum.Parse(typeof(StatusType), statusTypeList[i]);
            
-            Debug.Log(statusType);
             if(!infoData.StausDic.ContainsKey(statusType))
                 continue;
 
@@ -48,8 +47,6 @@ public class StatusCalculator : ScriptableObject
 
             calculateFormula = Regex.Replace(calculateFormula, formulaRandomPattern, $"{UnityEngine.Random.Range(value1, value2)}");
         }
-
-        Debug.Log(calculateFormula);
 
         var result = dt.Compute(calculateFormula, "").ToString();
 
@@ -69,7 +66,6 @@ public class StatusCalculator : ScriptableObject
         {
             var statusType = (StatusType)Enum.Parse(typeof(StatusType), statusTypeList[i]);
 
-            Debug.Log(statusType);
             if (!info.ContainsElement(statusType))
                 continue;
 
@@ -87,8 +83,6 @@ public class StatusCalculator : ScriptableObject
 
             calculateFormula = Regex.Replace(calculateFormula, formulaRandomPattern, $"{UnityEngine.Random.Range(value1, value2)}");
         }
-
-        Debug.Log(calculateFormula);
 
         var result = dt.Compute(calculateFormula, "").ToString();
 
