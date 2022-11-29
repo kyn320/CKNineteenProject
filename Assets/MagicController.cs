@@ -30,6 +30,15 @@ public class MagicController : MonoBehaviour
     [SerializeField]
     SFXPrefabData sfxPrefabData;
 
+    [SerializeField]
+    private GameObject user;
+
+    [SerializeField]
+    int findBuffNum;
+
+    [SerializeField]
+    BuffController buffController;
+
     public UnityEvent<bool> hitEvnet;
 
 
@@ -93,29 +102,28 @@ public class MagicController : MonoBehaviour
 
     public void deBuff(Collider collider)
     {
-        GameObject user = collider.gameObject;
+        user = collider.gameObject;
         if (collider.gameObject.transform.root)
             user = collider.gameObject.transform.root.gameObject;
 
-        Debug.Log($"user : {user.name}");
-
         if (user.CompareTag("Monster"))
         {
-            BuffController buffController = user.GetComponent<BuffController>();
-            int findBuffNum = -1;
+            buffController = user.GetComponent<BuffController>();
+            findBuffNum = -1;
             for (int i = 0; buffController.crowdBehaviourList.Count > i; i++)
             {
-                if (buffController.crowdBehaviourList[i] && buffdata != null)
+                if (buffController.crowdBehaviourList[i])
                     if (buffController.crowdBehaviourList[i].name == buffdata.BuffBehaviourObject.name + "(Clone)")
                         findBuffNum = i;
             }
 
             if (findBuffNum != -1)
                 buffController.crowdBehaviourList[findBuffNum].ResetCooltime();
-            else if(buffdata != null)
+            else
+            {
+                Debug.Log("AddCrwod");
                 buffController.AddCrwod(buffdata);
-
-
+            }
         }
     }
 
