@@ -6,7 +6,7 @@ public class DamageController : MonoBehaviour
 {
     [SerializeField]
     private StatusInfoData currentStatus;
-    
+
     private UnitStatus target;
 
     private bool isActive = false;
@@ -17,7 +17,7 @@ public class DamageController : MonoBehaviour
         return unit.GetComponent<UnitStatus>() != null ? true : false;
     }
 
-    public void SetDamageToUnit(GameObject unit)
+    public void SetDamageToUnit(GameObject unit, Vector3 hitPoint, Vector3 hitNormal)
     {
         if (!CheckHasUnitStatus(unit))
             return;
@@ -31,13 +31,15 @@ public class DamageController : MonoBehaviour
         target?.OnDamage(new DamageInfo()
         {
             damage = damageResult,
+            hitPoint = hitPoint,
+            hitNormal = hitNormal,
             isKnockBack = isOnKnockback
         });
     }
 
-    private void ObjectEnter(GameObject unit)
+    private void ObjectEnter(GameObject unit, Vector3 hitPoint, Vector3 hitNormal)
     {
-        SetDamageToUnit(unit);
+        SetDamageToUnit(unit, hitPoint, hitNormal);
     }
 
     private void ObjectExit(GameObject unit)
@@ -51,10 +53,12 @@ public class DamageController : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if(isActive && target != null)
+        if (isActive && target != null)
             return;
 
-        ObjectEnter(collision.gameObject);
+        var contact = collision.contacts[0];
+
+        ObjectEnter(collision.gameObject, contact.point, contact.normal);
     }
 
     public void OnCollisionExit(Collision collision)
@@ -70,7 +74,7 @@ public class DamageController : MonoBehaviour
         if (isActive && target != null)
             return;
 
-        ObjectEnter(other.gameObject);
+        ObjectEnter(other.gameObject, transform.position, (transform.position - other.transform.position).normalized);
     }
 
     public void OnTriggerExit(Collider other)
