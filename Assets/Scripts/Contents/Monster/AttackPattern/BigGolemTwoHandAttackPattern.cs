@@ -53,7 +53,7 @@ public class BigGolemTwoHandAttackPattern : MonsterAttackPattern
     {
         if (isCoolDown)
         {
-            currentCoolTime = Time.deltaTime;
+            currentCoolTime -= Time.deltaTime;
             if (currentCoolTime <= 0)
             {
                 isCoolDown = false;
@@ -116,7 +116,10 @@ public class BigGolemTwoHandAttackPattern : MonsterAttackPattern
             return;
 
         isAttacked = false;
-        isCoolDown = true;
+
+        if(!isCoolDown)
+            isCoolDown = true;
+
         currentCoolTime = coolTime;
 
         animator = controller.GetAnimator();
