@@ -48,10 +48,10 @@ MonoBehaviour:
   playerController: {fileID: 0}
   monsterController: {fileID: 0}
   weaponData: {fileID: 11400000, guid: acade2c8d02d1b74eb483f42cf3f297b, type: 2}
-  buffData: {fileID: 0}
-  crowdType: 0
-  currentLifeTime: 0
-  prefabsEffect: {fileID: 844213834060843025, guid: e4dcc74ebba89ce44aae120e5d03f557,
+  buffData: {fileID: 11400000, guid: f96c8055c68016043a4db0baaec2546b, type: 2}
+  crowdType: 4
+  currentLifeTime: 10
+  prefabsEffect: {fileID: 919166267325950983, guid: 3b17587bfdd30dc43ba6823243f96ecf,
     type: 3}
   effectPos: {x: 0, y: 0, z: 0}
   enterEvent:

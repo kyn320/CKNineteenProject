@@ -21,6 +21,7 @@ public class BuffController : MonoBehaviour
     }
     public void AddBuff(BuffData buffData)
     {
+        Debug.Log($"buffData.name : {buffData.name}");
         var buffObject = Instantiate(buffData.BuffBehaviourObject, transform);
 
         var buffBehaviour = buffObject.GetComponent<BuffBehaviour>();
