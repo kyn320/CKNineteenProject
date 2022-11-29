@@ -70,7 +70,7 @@ public class ObserverProjectileAttackPattern : MonsterAttackPattern
 
         var status = controller.GetStatus();
 
-        projectileController.SetCalculator(CalculateCritical, CalculateDamageAmount);
+        projectileController.SetCalculator(damageCalculator, criticalDamageCalculator);
 
         projectileController.Shot(shotPoint.position
             , target.position
@@ -109,6 +109,7 @@ public class ObserverProjectileAttackPattern : MonsterAttackPattern
         endAttackEvent?.Invoke();
         controller.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
     }
+
     private bool CalculateCritical()
     {
         return controller.GetStatus().GetCriticalSuccess();
