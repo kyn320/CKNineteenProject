@@ -27,6 +27,15 @@ public class FieldOfView : MonoBehaviour
 
     private Collider[] enterColliders;
 
+    public void SetRadius(float viewRadius) {
+        this.viewRadius = viewRadius;
+    }
+    public void SetAngle(float viewAngle)
+    {
+        this.viewAngle = viewAngle;
+    }
+
+
     private void Update()
     {
         if (useUpdate)
