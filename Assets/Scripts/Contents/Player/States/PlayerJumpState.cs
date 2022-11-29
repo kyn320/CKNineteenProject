@@ -31,6 +31,7 @@ public class PlayerJumpState : PlayerStateBase
         var jumpPower = status.currentStatus.GetElement(StatusType.JumpPower).CalculateTotalAmount();
         var velocity = controller.GetRigidbody().velocity;
         velocity.y = jumpPower;
+
         controller.GetRigidbody().velocity = velocity;
         controller.ChangeState(PlayerStateType.Air);
     }
