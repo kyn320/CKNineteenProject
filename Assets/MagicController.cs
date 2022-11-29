@@ -105,14 +105,14 @@ public class MagicController : MonoBehaviour
             int findBuffNum = -1;
             for (int i = 0; buffController.crowdBehaviourList.Count > i; i++)
             {
-                if (buffController.crowdBehaviourList[i])
+                if (buffController.crowdBehaviourList[i] && buffdata != null)
                     if (buffController.crowdBehaviourList[i].name == buffdata.BuffBehaviourObject.name + "(Clone)")
                         findBuffNum = i;
             }
 
             if (findBuffNum != -1)
                 buffController.crowdBehaviourList[findBuffNum].ResetCooltime();
-            else
+            else if(buffdata != null)
                 buffController.AddCrwod(buffdata);
 
 

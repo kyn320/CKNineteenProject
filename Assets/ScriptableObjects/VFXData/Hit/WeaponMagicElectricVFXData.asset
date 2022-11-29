@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a37fee47aad1694ebb64d74d41a1e5f, type: 3}
+  m_Name: WeaponMagicElectricVFXData
+  m_EditorClassIdentifier: 
+  vfxDic:
+    keys:
+    - Hit
+    - CriticalHit
+    values:
+    - {fileID: 5780952407366556550, guid: 832bd41c6a19cc2418cf9099f4990cca, type: 3}
+    - {fileID: 4102567739792714421, guid: 321102469808a1748ad9c627c6458a0a, type: 3}

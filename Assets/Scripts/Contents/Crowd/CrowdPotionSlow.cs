@@ -10,9 +10,9 @@ public class CrowdPotionSlow : CrowdBehaviour
     /// 
 
     [SerializeField]
-    private float activeCalcTime = .0f;
+    private float activeCalcTime = 0;
     [SerializeField]
-    private float activeStandardTime = .0f;
+    private float activeStandardTime = 1;
     [SerializeField]
     protected StatusCalculator statusCalculator;
 

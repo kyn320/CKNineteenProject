@@ -11,7 +11,15 @@ public class CrowdStun : CrowdBehaviour
 
     public override void UnActive()
     {
-        playerController.GetInputController().enabled = true;
+        string userTag = transform.parent.tag;
+        if (userTag == "Player")
+        {
+            playerController.GetInputController().enabled = true;
+        }
+        else if (userTag == "Monster")
+        {
+
+        }
     }
 
     protected override void ApplyCrowd()
