@@ -8,8 +8,13 @@ public class ItemGiver : MonoBehaviour
     [SerializeField]
     private ItemData itemData;
 
-    public void SetItemData(ItemData itemData) { 
+    [SerializeField]
+    private UIBaseImage itemIcon;
+
+    public void SetItemData(ItemData itemData)
+    {
         this.itemData = itemData;
+        itemIcon.SetImage(itemData.Icon);
     }
 
     private void OnTriggerEnter(Collider other)

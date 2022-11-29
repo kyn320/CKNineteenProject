@@ -1004,6 +1004,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isInteractable: 1
 --- !u!1 &5365070689616431790
 GameObject:
   m_ObjectHideFlags: 0
@@ -1632,7 +1633,7 @@ MonoBehaviour:
     values: []
   uiLandmarkView: {fileID: 0}
   shieldRadius: 10
-  alertRadius: 50
+  alertRadius: 70
 --- !u!114 &8099621406637484991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1797,6 +1798,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: ItemSpawner, Assembly-CSharp
         m_MethodName: RandomSpawnItem
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 4759526875713890368}
+        m_TargetAssemblyTypeName: AnimatorTrigger, Assembly-CSharp
+        m_MethodName: PlayAnimation
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2466,6 +2479,11 @@ PrefabInstance:
     - target: {fileID: 7785128264576003664, guid: 6a3325d174258d24c903eeb2b4206091,
         type: 3}
       propertyPath: isLoop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7785128264576003664, guid: 6a3325d174258d24c903eeb2b4206091,
+        type: 3}
+      propertyPath: autoPlay
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -146,7 +146,7 @@ public class ObserverMeleeAttackPattern : MonsterAttackPattern
         controller.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Ground"))
             return;
