@@ -150,7 +150,7 @@ public class PlayerMoveState : PlayerStateBase
                 Vector3 stairPosition = transform.position;
                 stairPosition.y = rayhit.point.y;
 
-                transform.position = Vector3.Lerp(transform.position, stairPosition, Time.deltaTime / 0.1f);
+                transform.position = stairPosition;
             }
 
             if (!isAttack)

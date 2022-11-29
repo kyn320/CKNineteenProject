@@ -139,6 +139,51 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.0000196, y: 0.4530005, z: 0.60443366}
   m_Center: {x: 0, y: 0.22650018, z: -0.000009804964}
+--- !u!1 &5992472185352508280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4833050974300061754}
+  - component: {fileID: 2264330132265251765}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4833050974300061754
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992472185352508280}
+  m_LocalRotation: {x: 0.22495107, y: -0, z: -0, w: 0.9743701}
+  m_LocalPosition: {x: -1.0700004, y: 0.77, z: 0.19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8853979377617206745}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 26, y: 0, z: 0}
+--- !u!65 &2264330132265251765
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992472185352508280}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7, y: 0.5, z: 4.3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8853979376085198420
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +334,6 @@ GameObject:
   - component: {fileID: 8853979377621973538}
   - component: {fileID: 8853979376508318905}
   - component: {fileID: 8853979376508318906}
-  - component: {fileID: 8853979376508318907}
   m_Layer: 0
   m_Name: ST_Stairs_Step_A (3)
   m_TagString: Untagged
@@ -362,19 +406,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8853979376508318907
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853979376508318908}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.551063, y: 0.16835187, z: 0.39949375}
-  m_Center: {x: -0.0000011920929, y: 0.000000007450581, z: -0.0000009760261}
 --- !u!1 &8853979376564433629
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +417,6 @@ GameObject:
   - component: {fileID: 8853979377658589380}
   - component: {fileID: 8853979376564433626}
   - component: {fileID: 8853979376564433627}
-  - component: {fileID: 8853979376564433628}
   m_Layer: 0
   m_Name: ST_Stairs_Step_A
   m_TagString: Untagged
@@ -459,19 +489,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8853979376564433628
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853979376564433629}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.551063, y: 0.16835187, z: 0.39949375}
-  m_Center: {x: -0.0000011920929, y: 0.000000007450581, z: -0.0000009760261}
 --- !u!1 &8853979376759440888
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +500,6 @@ GameObject:
   - component: {fileID: 8853979376475148588}
   - component: {fileID: 8853979376759440885}
   - component: {fileID: 8853979376759440886}
-  - component: {fileID: 8853979376759440887}
   m_Layer: 0
   m_Name: ST_Stairs_Step_A (7)
   m_TagString: Untagged
@@ -556,19 +572,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8853979376759440887
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853979376759440888}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.551063, y: 0.16835187, z: 0.39949375}
-  m_Center: {x: -0.0000011920929, y: 0.000000007450581, z: -0.0000009760261}
 --- !u!1 &8853979377098044024
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +583,6 @@ GameObject:
   - component: {fileID: 8853979377032525612}
   - component: {fileID: 8853979377032525609}
   - component: {fileID: 8853979377032525610}
-  - component: {fileID: 8853979377032525611}
   m_Layer: 0
   m_Name: ST_Stairs_Step_A (11)
   m_TagString: Untagged
@@ -653,19 +655,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8853979377032525611
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853979377098044024}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.551063, y: 0.16835187, z: 0.39949375}
-  m_Center: {x: -0.0000011920929, y: 0.000000007450581, z: -0.0000009760261}
 --- !u!1 &8853979377344284888
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,7 +666,6 @@ GameObject:
   - component: {fileID: 8853979376914956517}
   - component: {fileID: 8853979376914956514}
   - component: {fileID: 8853979376914956515}
-  - component: {fileID: 8853979376914956516}
   m_Layer: 0
   m_Name: ST_Stairs_Step_A (1)
   m_TagString: Untagged
@@ -750,19 +738,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8853979376914956516
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853979377344284888}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.551063, y: 0.16835187, z: 0.39949375}
-  m_Center: {x: -0.0000011920929, y: 0.000000007450581, z: -0.0000009760261}
 --- !u!1 &8853979377616832005
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +749,6 @@ GameObject:
   - component: {fileID: 8853979377582771964}
   - component: {fileID: 8853979377582771961}
   - component: {fileID: 8853979377582771962}
-  - component: {fileID: 8853979377582771963}
   m_Layer: 0
   m_Name: ST_Stairs_Step_A (6)
   m_TagString: Untagged
@@ -847,19 +821,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8853979377582771963
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853979377616832005}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.551063, y: 0.16835187, z: 0.39949375}
-  m_Center: {x: -0.0000011920929, y: 0.000000007450581, z: -0.0000009760261}
 --- !u!1 &8853979377617206746
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +862,7 @@ Transform:
   - {fileID: 8853979375996710110}
   - {fileID: 8853979377032525612}
   - {fileID: 3177983722159642907}
+  - {fileID: 4833050974300061754}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -915,7 +877,6 @@ GameObject:
   - component: {fileID: 8853979377172546327}
   - component: {fileID: 8853979377867212939}
   - component: {fileID: 8853979377867212940}
-  - component: {fileID: 8853979377867212941}
   m_Layer: 0
   m_Name: ST_Stairs_Step_A (8)
   m_TagString: Untagged
@@ -988,19 +949,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8853979377867212941
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853979377867212942}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.551063, y: 0.16835187, z: 0.39949375}
-  m_Center: {x: -0.0000011920929, y: 0.000000007450581, z: -0.0000009760261}
 --- !u!1 &8853979377895012446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,7 +960,6 @@ GameObject:
   - component: {fileID: 8853979376180440513}
   - component: {fileID: 8853979376180440126}
   - component: {fileID: 8853979376180440127}
-  - component: {fileID: 8853979376180440512}
   m_Layer: 0
   m_Name: ST_Stairs_Step_A (2)
   m_TagString: Untagged
@@ -1085,19 +1032,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8853979376180440512
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853979377895012446}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.551063, y: 0.16835187, z: 0.39949375}
-  m_Center: {x: -0.0000011920929, y: 0.000000007450581, z: -0.0000009760261}
 --- !u!1 &8853979377974840277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,7 +1043,6 @@ GameObject:
   - component: {fileID: 8853979375996710110}
   - component: {fileID: 8853979375996710107}
   - component: {fileID: 8853979375996710108}
-  - component: {fileID: 8853979375996710109}
   m_Layer: 0
   m_Name: ST_Stairs_Step_A (10)
   m_TagString: Untagged
@@ -1182,19 +1115,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8853979375996710109
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853979377974840277}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.551063, y: 0.16835187, z: 0.39949375}
-  m_Center: {x: -0.0000011920929, y: 0.000000007450581, z: -0.0000009760261}
 --- !u!1 &8853979377998547275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1126,6 @@ GameObject:
   - component: {fileID: 8853979377620636226}
   - component: {fileID: 8853979377998547272}
   - component: {fileID: 8853979377998547273}
-  - component: {fileID: 8853979377998547274}
   m_Layer: 0
   m_Name: ST_Stairs_Step_A (4)
   m_TagString: Untagged
@@ -1279,19 +1198,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8853979377998547274
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853979377998547275}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.551063, y: 0.16835187, z: 0.39949375}
-  m_Center: {x: -0.0000011920929, y: 0.000000007450581, z: -0.0000009760261}
 --- !u!1 &8853979378036907570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,7 +1209,6 @@ GameObject:
   - component: {fileID: 8853979377962621946}
   - component: {fileID: 8853979377962621943}
   - component: {fileID: 8853979377962621944}
-  - component: {fileID: 8853979377962621945}
   m_Layer: 0
   m_Name: ST_Stairs_Step_A (5)
   m_TagString: Untagged
@@ -1376,16 +1281,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8853979377962621945
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853979378036907570}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.551063, y: 0.16835187, z: 0.39949375}
-  m_Center: {x: -0.0000011920929, y: 0.000000007450581, z: -0.0000009760261}
