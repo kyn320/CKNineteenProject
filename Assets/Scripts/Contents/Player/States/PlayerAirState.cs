@@ -69,6 +69,8 @@ public class PlayerAirState : PlayerStateBase
         var isGround = controller.IsGround();
         animator.SetBool("IsGrounded", isGround);
         Debug.Log($"isGroundEffect : {isGroundEffect}");
+
+
         if (velocity.y < 0 && isGround)
         {
             if (isGroundEffect)
@@ -87,8 +89,26 @@ public class PlayerAirState : PlayerStateBase
         else
             isGroundEffect = true;
 
+        if (rigidBody.velocity.z > moveSpeed || rigidBody.velocity.z < -moveSpeed)
+        {
+            if(rigidBody.velocity.z > 0)
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y, moveSpeed);
+            else
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y, -moveSpeed);
+        }
+
+        if (rigidBody.velocity.x > moveSpeed || rigidBody.velocity.x < -moveSpeed)
+        {
+            if (rigidBody.velocity.x > 0)
+                rigidBody.velocity = new Vector3(moveSpeed, rigidBody.velocity.y, rigidBody.velocity.z);
+            else
+                rigidBody.velocity = new Vector3(-moveSpeed, rigidBody.velocity.y, rigidBody.velocity.z);
+
+        }
+
         rigidBody.AddForce(Physics.gravity * gravityScale
             + viewVector * airMoveSpeedMultiplyer * moveSpeed, ForceMode.Acceleration);
+
     }
 
     public void UpdateMoveInput(Vector3 inputVector)
