@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6074566716994436091}
-  - component: {fileID: 876372212752530631}
+  - component: {fileID: 5985747292178892919}
   m_Layer: 0
-  m_Name: PotionPoison
+  m_Name: MagicSlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &876372212752530631
+--- !u!114 &5985747292178892919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,11 +47,11 @@ MonoBehaviour:
   controller: {fileID: 0}
   playerController: {fileID: 0}
   monsterController: {fileID: 0}
-  weaponData: {fileID: 11400000, guid: c61d9ed2748f04146921a54a67a25330, type: 2}
+  weaponData: {fileID: 11400000, guid: acade2c8d02d1b74eb483f42cf3f297b, type: 2}
   buffData: {fileID: 0}
   crowdType: 0
   currentLifeTime: 0
-  prefabsEffect: {fileID: 4524271646583615628, guid: 341651d6c931932468d07afed30345fb,
+  prefabsEffect: {fileID: 844213834060843025, guid: e4dcc74ebba89ce44aae120e5d03f557,
     type: 3}
   effectPos: {x: 0, y: 0, z: 0}
   enterEvent:

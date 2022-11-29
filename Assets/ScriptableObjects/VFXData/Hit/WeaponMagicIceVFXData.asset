@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a37fee47aad1694ebb64d74d41a1e5f, type: 3}
+  m_Name: WeaponMagicIceVFXData
+  m_EditorClassIdentifier: 
+  vfxDic:
+    keys:
+    - Hit
+    - CriticalHit
+    values:
+    - {fileID: 844213834060843025, guid: e4dcc74ebba89ce44aae120e5d03f557, type: 3}
+    - {fileID: 7034032528820457781, guid: 6dc6bad949de0f04e8ed96e6e8beff5d, type: 3}

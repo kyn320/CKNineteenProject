@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6074566716994436091}
-  - component: {fileID: 876372212752530631}
+  - component: {fileID: 8852148520345405616}
   m_Layer: 0
-  m_Name: PotionPoison
+  m_Name: PotionStun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &876372212752530631
+--- !u!114 &8852148520345405616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,19 +41,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3037854578484070646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0c90e874ca6794b91a3c89dd6591cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 67230673f64519848af05f7ca411b640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   playerController: {fileID: 0}
   monsterController: {fileID: 0}
-  weaponData: {fileID: 11400000, guid: c61d9ed2748f04146921a54a67a25330, type: 2}
+  weaponData: {fileID: 11400000, guid: bb51eedf40829b34fba139ba024c3a87, type: 2}
   buffData: {fileID: 0}
-  crowdType: 0
-  currentLifeTime: 0
-  prefabsEffect: {fileID: 4524271646583615628, guid: 341651d6c931932468d07afed30345fb,
+  crowdType: 1
+  currentLifeTime: 5
+  prefabsEffect: {fileID: 1944352227106260212, guid: 376134db0da1f2e4c8d7c8be004a358f,
     type: 3}
-  effectPos: {x: 0, y: 0, z: 0}
+  effectPos: {x: 0, y: 1.4, z: 0}
   enterEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -63,9 +63,3 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  activeCalcTime: 0
-  activeStandardTime: 1
-  statusCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
-  damageResult: 1
-  slowPercent: 60
-  slowSpeed: 0

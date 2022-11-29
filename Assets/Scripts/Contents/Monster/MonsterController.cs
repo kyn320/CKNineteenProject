@@ -45,6 +45,7 @@ public class MonsterController : MonoBehaviour, IDamageable, IHitPauseable
         this.target = target;
     }
 
+
     public Transform GetTarget()
     {
         return target;
