@@ -245,8 +245,11 @@ public class PlayerAttackState : PlayerStateBase
                         var vfxObject = Instantiate(vfxData.GetVFXPrefab("Spawn"), handBones[1]);
                     }
 
-                    var weaponAnimator = weaponObject.GetComponent<Animator>();
-                    weaponAnimator?.SetTrigger("Spawn");
+                    if (weaponObject.GetComponent<Animator>() != null)
+                    {
+                        var weaponAnimator = weaponObject.GetComponent<Animator>();
+                        weaponAnimator?.SetTrigger("Spawn");
+                    }
                 }
                 break;
             case HandType.All:

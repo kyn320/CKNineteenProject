@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a37fee47aad1694ebb64d74d41a1e5f, type: 3}
+  m_Name: WeaponMagicCurseVFXData
+  m_EditorClassIdentifier: 
+  vfxDic:
+    keys:
+    - Hit
+    - CriticalHit
+    values:
+    - {fileID: 8185024392912332393, guid: 1165bca26cac294459f51734f6285929, type: 3}
+    - {fileID: 4844837505024672945, guid: 96d321e0fb1f53142b85e13226cdf04f, type: 3}
