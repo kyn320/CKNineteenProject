@@ -105,8 +105,10 @@ public class PotionAreaEvent : MonoBehaviour
     public void LavaBurst(Collider collider)
     {
         GameObject user = collider.gameObject;
-        Debug.Log(user.GetComponent<Rigidbody>().velocity);
-        user.GetComponent<Rigidbody>().velocity = (Vector3.up * 10f);
+        if(user.transform.root.gameObject != null)
+        user = user.transform.root.gameObject;
+        //Debug.Log(user.GetComponent<Rigidbody>().velocity);
+        //user.GetComponent<Rigidbody>().velocity = (Vector3.up * 10f);
         //Debug.Log(user.GetComponent<Rigidbody>().velocity);
 
         float damageResult = weaponData.StatusInfoData.GetElement(StatusType.MaxAttackPower).GetAmount();
