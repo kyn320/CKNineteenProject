@@ -362,7 +362,6 @@ public class PlayerAttackState : PlayerStateBase
         }
 
         //무기 능력치 효과 해제
-        controller.GetStatus().currentStatus.SubStatusInfo(currentAttackWeaponData.StatusInfoData);
 
         if (currentComboIndex < currentAttackWeaponData.ComboCount - 1)
         {
@@ -407,6 +406,7 @@ public class PlayerAttackState : PlayerStateBase
         if (!isAttack)
             return;
 
+        controller.GetStatus().currentStatus.SubStatusInfo(currentAttackWeaponData.StatusInfoData);
         attackStateType = AttackStateType.Wait;
 
         isAttack = false;
