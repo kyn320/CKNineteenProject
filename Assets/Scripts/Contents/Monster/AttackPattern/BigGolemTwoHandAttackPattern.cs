@@ -116,6 +116,8 @@ public class BigGolemTwoHandAttackPattern : MonsterAttackPattern
             return;
 
         isAttacked = false;
+        isCoolDown = true;
+        currentCoolTime = coolTime;
 
         animator = controller.GetAnimator();
         for (var i = 0; i < endAttackTriggerDataList.Count; ++i)

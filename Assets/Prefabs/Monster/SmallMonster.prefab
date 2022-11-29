@@ -355,6 +355,7 @@ MonoBehaviour:
     valueInt: 0
     valueFloat: 0
     valueBool: 0
+  isCoolDown: 0
   isAttacked: 0
   damageCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
   criticalDamageCalculator: {fileID: 11400000, guid: abf026fdca9ff9646b383fc39cfc0800,
@@ -365,8 +366,9 @@ MonoBehaviour:
   endAttackEvent:
     m_PersistentCalls:
       m_Calls: []
+  coolTime: 1
   currentAttackTick: 0
-  attackTickTime: 0.1
+  attackTickTime: 0.5
   attackAllowTime: 0.1
   allowAttack: 0
   attackDistance: 20

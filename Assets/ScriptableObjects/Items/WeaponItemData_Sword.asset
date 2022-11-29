@@ -39,11 +39,11 @@ MonoBehaviour:
         percent: 0
       - type: 4
         name: MinAttackPower
-        amount: 0
+        amount: 15
         percent: 0
       - type: 5
         name: MaxAttackPower
-        amount: 0
+        amount: 20
         percent: 0
       - type: 6
         name: Defence
@@ -63,11 +63,11 @@ MonoBehaviour:
         percent: 0
       - type: 10
         name: CriticalPercent
-        amount: 0
+        amount: 30
         percent: 0
       - type: 11
         name: CriticalAttackPower
-        amount: 0
+        amount: 200
         percent: 0
       - type: 12
         name: MoveSpeed
@@ -259,6 +259,7 @@ MonoBehaviour:
   attackVFXDataList:
   - {fileID: 11400000, guid: 903bebdbd9139fa47aba6e74a62c74ec, type: 2}
   - {fileID: 11400000, guid: e2afb5271a631c14ca02278081403e53, type: 2}
+  attackSFXDataList: []
   hitBoxDataList:
   - {fileID: 11400000, guid: 3b61edb6ac864614d94edf84d0514927, type: 2}
   - {fileID: 11400000, guid: 3b61edb6ac864614d94edf84d0514927, type: 2}
@@ -268,7 +269,3 @@ MonoBehaviour:
   - position: {x: -0.09, y: 0.04, z: 0.001}
     rotatation: {x: -0.704416, y: -0.061628513, z: -0.061628513, w: 0.704416}
   subWeaponList: []
-  spawnEffect: {fileID: 5452784466812260937, guid: e9ebdc636c9bbc54aa72d8e3a38206d5,
-    type: 3}
-  dissapearEffect: {fileID: 4065380034455942582, guid: 6c1fa529776fe9a42a1f6281326a0f04,
-    type: 3}

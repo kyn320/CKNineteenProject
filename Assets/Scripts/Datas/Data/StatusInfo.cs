@@ -23,15 +23,18 @@ public class StatusInfo
         }
     }
 
-    public bool ContainsElement(StatusType statusType) { 
+    public bool ContainsElement(StatusType statusType)
+    {
         return statusDic.ContainsKey(statusType);
     }
 
-    public StatusElement GetElement(StatusType statusType) {
+    public StatusElement GetElement(StatusType statusType)
+    {
         return statusDic[statusType];
     }
 
-    public void AddStatusInfo(StatusInfo statusInfo) {
+    public void AddStatusInfo(StatusInfo statusInfo)
+    {
         foreach (StatusType statusType in statusDic.Keys)
         {
             if (statusType == StatusType.None || !statusInfo.ContainsElement(statusType))
@@ -40,9 +43,12 @@ public class StatusInfo
             var targetElement = GetElement(statusType);
             var addElement = statusInfo.GetElement(statusType);
 
+            Debug.Log(addElement.type + " / " + addElement.GetAmount());
 
             targetElement.AddAmount(addElement.GetAmount());
             targetElement.AddPercent(addElement.GetPercent());
+
+            Debug.Log(targetElement.type + " / " + targetElement.GetAmount());
         }
     }
 
@@ -62,7 +68,8 @@ public class StatusInfo
         }
     }
 
-    public void Clear() {
+    public void Clear()
+    {
         statusDic.Clear();
 
         IEnumerable<StatusType> StatusTypeList =

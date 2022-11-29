@@ -300,6 +300,8 @@ public class PlayerAttackState : PlayerStateBase
         //정령이 자유 이동하도록 변경
         spiritMoveController.isMoveable = true;
 
+        var statusinfo = currentAttackWeaponData.StatusInfoData;
+
         //무기 능력치 적용
         controller.GetStatus().currentStatus.AddStatusInfo(currentAttackWeaponData.StatusInfoData);
 
@@ -342,6 +344,7 @@ public class PlayerAttackState : PlayerStateBase
                     var vfxObject = Instantiate(vfxData.GetVFXPrefab("Shot"), transform);
 
                     var projectileController = weaponObject.GetComponent<ProjectileController>();
+                    projectileController.SetOwnerObject(this.gameObject);
                     projectileController.hitEvnet.AddListener(SuccessHit);
 
                     //피해량을 계산합니다.
@@ -359,7 +362,6 @@ public class PlayerAttackState : PlayerStateBase
         }
 
         //무기 능력치 효과 해제
-        controller.GetStatus().currentStatus.SubStatusInfo(currentAttackWeaponData.StatusInfoData);
 
         if (currentComboIndex < currentAttackWeaponData.ComboCount - 1)
         {
@@ -404,6 +406,7 @@ public class PlayerAttackState : PlayerStateBase
         if (!isAttack)
             return;
 
+        controller.GetStatus().currentStatus.SubStatusInfo(currentAttackWeaponData.StatusInfoData);
         attackStateType = AttackStateType.Wait;
 
         isAttack = false;

@@ -31,6 +31,11 @@ public class ProjectileController : MonoBehaviour
 
     private Func<bool> calculateCritical;
     private Func<bool, float> calculateDamage;
+    public void SetOwnerObject(GameObject ownerObject)
+    {
+        damageInfo.owner = ownerObject;
+        damageInfo.ownerTag = ownerObject.tag;
+    }
 
     public void SetCalculator(Func<bool> calculateCritical, Func<bool, float> calculateDamage)
     {

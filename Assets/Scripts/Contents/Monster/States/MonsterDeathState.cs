@@ -12,8 +12,8 @@ public class MonsterDeathState : MonsterStateBase
         {
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
         }
-
-        Invoke("Delete", 5f);
+        Delete();
+        //Invoke("Delete", 5f);
     }
 
     void Delete()

@@ -38,7 +38,8 @@ public class StatusElement
         this.percent = copyElement.percent;
     }
 
-    public virtual float CalculateTotalAmount() { 
+    public virtual float CalculateTotalAmount()
+    {
         return amount + (amount * percent / 100f);
     }
 
@@ -68,7 +69,8 @@ public class StatusElement
         updateAmountAction?.Invoke(this.amount);
     }
 
-    public void AddAmount(float amount) {
+    public void AddAmount(float amount)
+    {
         this.amount += amount;
         this.amount = Mathf.Max(0, this.amount);
         updateAmountAction?.Invoke(this.amount);
@@ -94,9 +96,17 @@ public class StatusElement
         updateAmountAction?.Invoke(this.amount);
     }
 
-    public float GetAmount() { 
+    public float GetAmount()
+    {
         return amount;
     }
+
+    public void SetClampAmount(float min, float max)
+    {
+        this.amount = Mathf.Max(this.amount, min);
+        this.amount = Mathf.Min(this.amount, max);
+    }
+
 
     public void SetPercent(float percent)
     {
