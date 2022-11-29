@@ -11,7 +11,6 @@ public class UIProfilePanel : MonoBehaviour
 
     public void UpdateHP(float current, float max)
     {
-        //hpAmountText.UpdateAmount(current, max);
         hpGauge.UpdateGauge(current, max);
     }
 }

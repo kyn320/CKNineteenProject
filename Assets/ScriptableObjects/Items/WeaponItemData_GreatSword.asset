@@ -39,11 +39,11 @@ MonoBehaviour:
         percent: 0
       - type: 4
         name: MinAttackPower
-        amount: 0
+        amount: 30
         percent: 0
       - type: 5
         name: MaxAttackPower
-        amount: 0
+        amount: 40
         percent: 0
       - type: 6
         name: Defence
@@ -63,11 +63,11 @@ MonoBehaviour:
         percent: 0
       - type: 10
         name: CriticalPercent
-        amount: 0
+        amount: 30
         percent: 0
       - type: 11
         name: CriticalAttackPower
-        amount: 0
+        amount: 200
         percent: 0
       - type: 12
         name: MoveSpeed
@@ -258,6 +258,7 @@ MonoBehaviour:
   comboCount: 0
   attackVFXDataList:
   - {fileID: 11400000, guid: 2b1d714a92886434e9fc658b64471e5a, type: 2}
+  attackSFXDataList: []
   hitBoxDataList:
   - {fileID: 11400000, guid: 2482a56390449154694930aae57e87ee, type: 2}
   pivotOffsetList:

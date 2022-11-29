@@ -129,7 +129,8 @@ public class ObserverMeleeAttackPattern : MonsterAttackPattern
 
         isAttacked = false;
         isUpdate = false;
-
+        isCoolDown = true;
+        currentCoolTime = coolTime;
         Destroy(attackVFX);
 
         navAgent.isStopped = true;

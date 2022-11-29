@@ -75,7 +75,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1784834343265454539}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.1
+  m_Radius: 1.7
   m_Speed: 3.5
   m_Acceleration: 4
   avoidancePriority: 50
@@ -358,6 +358,7 @@ MonoBehaviour:
     valueInt: 0
     valueFloat: 0
     valueBool: 0
+  isCoolDown: 0
   isAttacked: 0
   damageCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
   criticalDamageCalculator: {fileID: 11400000, guid: abf026fdca9ff9646b383fc39cfc0800,
@@ -392,6 +393,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  coolTime: 0.5
   vfxPrefabData: {fileID: 11400000, guid: 7f1f29d26fc4cc349b3e5414e749cc0f, type: 2}
   sfxPrefabData: {fileID: 0}
 --- !u!114 &5919483988528196889
@@ -424,6 +426,7 @@ MonoBehaviour:
     valueInt: 0
     valueFloat: 0
     valueBool: 0
+  isCoolDown: 0
   isAttacked: 0
   damageCalculator: {fileID: 11400000, guid: cd9f6cd860830824fbb00d906bf99963, type: 2}
   criticalDamageCalculator: {fileID: 11400000, guid: abf026fdca9ff9646b383fc39cfc0800,
@@ -434,6 +437,7 @@ MonoBehaviour:
   endAttackEvent:
     m_PersistentCalls:
       m_Calls: []
+  coolTime: 1
   groundHitBox: {fileID: 6981455005973216111}
   vfxPrefabData: {fileID: 11400000, guid: 7f1f29d26fc4cc349b3e5414e749cc0f, type: 2}
   sfxPrefabData: {fileID: 0}

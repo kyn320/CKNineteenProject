@@ -30,6 +30,8 @@ public class WeaponController : MonoBehaviour
     public void SetOwnerObject(GameObject ownerObject)
     {
         this.ownerObject = ownerObject;
+        damageInfo.owner = ownerObject;
+        damageInfo.ownerTag = ownerObject.tag;
     }
 
     public void SetCalculator(Func<bool> calculateCritical, Func<bool, float> calculateDamage)

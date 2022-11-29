@@ -36,8 +36,8 @@ public class MonsterController : MonoBehaviour, IDamageable, IHitPauseable
 
     private void Start()
     {
-        WorldController.Instance.AddMonster(this);
         ChangeState(MonsterStateType.MONSTERSTATE_IDLE);
+        WorldController.Instance.AddMonster(this);
     }
 
     public void SetTarget(Transform target)
@@ -53,14 +53,6 @@ public class MonsterController : MonoBehaviour, IDamageable, IHitPauseable
     public void AddState(MonsterStateType stateType, MonsterStateBase state)
     {
         statesDic.Add(stateType, state);
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            ChangeState(MonsterStateType.MONSTERSTATE_DEATH);
-        }
     }
 
     public void ChangeState(MonsterStateType state)
@@ -123,6 +115,11 @@ public class MonsterController : MonoBehaviour, IDamageable, IHitPauseable
             {
                 ChangeState(MonsterStateType.MONSTERSTATE_HIT);
             }
+        }
+
+        if (damageInfo.ownerTag == "Player")
+        {
+            SetTarget(damageInfo.owner.transform);
         }
 
         damageEvent?.Invoke(damageInfo);

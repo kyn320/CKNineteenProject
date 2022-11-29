@@ -96,7 +96,11 @@ public class BigGolemOneHandAttackPattern : MonsterAttackPattern
 
         isAttacked = false;
 
+        isCoolDown = true;
+        currentCoolTime = coolTime;
+
         animator = controller.GetAnimator();
+
         for (var i = 0; i < endAttackTriggerDataList.Count; ++i)
         {
             endAttackTriggerDataList[i].Invoke(animator);
