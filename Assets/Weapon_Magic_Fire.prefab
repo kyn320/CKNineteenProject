@@ -247,6 +247,9 @@ MonoBehaviour:
     hitNormal: {x: 0, y: 0, z: 0}
   vfxPrefabData: {fileID: 11400000, guid: 9ef2307283a24914484d89c1527747db, type: 2}
   sfxPrefabData: {fileID: 11400000, guid: 21ce3476be9cfd64a99cad23f392084a, type: 2}
+  user: {fileID: 0}
+  findBuffNum: 0
+  buffController: {fileID: 0}
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
@@ -270,6 +273,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2992252713625549933}
     m_Modifications:
+    - target: {fileID: 4816076598178620902, guid: 12cf28684ddada64aaac7675679c3421,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816076598178620902, guid: 12cf28684ddada64aaac7675679c3421,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816076598178620902, guid: 12cf28684ddada64aaac7675679c3421,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816076599050037538, guid: 12cf28684ddada64aaac7675679c3421,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816076599050037538, guid: 12cf28684ddada64aaac7675679c3421,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816076599050037538, guid: 12cf28684ddada64aaac7675679c3421,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4816076599055218771, guid: 12cf28684ddada64aaac7675679c3421,
         type: 3}
       propertyPath: m_RootOrder
