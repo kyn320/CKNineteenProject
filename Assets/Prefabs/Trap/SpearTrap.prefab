@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 866992602127598374}
   - component: {fileID: 866992602127598375}
   - component: {fileID: 866992602127598372}
-  - component: {fileID: 866992602127598370}
   m_Layer: 0
   m_Name: SpearTrap
   m_TagString: Untagged
@@ -162,20 +161,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &866992602127598370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866992602127598382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6a3f80227767d545a89c3d028c0e449, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentStatus: {fileID: 11400000, guid: 175274f721b9bff42961a8eaf9fe0572, type: 2}
-  isOnKnockback: 0
 --- !u!1 &866992602944729999
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +173,7 @@ GameObject:
   - component: {fileID: 866992602944729992}
   - component: {fileID: 866992602944729993}
   - component: {fileID: 866992602944729998}
+  - component: {fileID: 528556948665211989}
   m_Layer: 0
   m_Name: Spear
   m_TagString: Untagged
@@ -273,3 +259,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 0.7, z: 0.7}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &528556948665211989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866992602944729999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a3f80227767d545a89c3d028c0e449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStatus: {fileID: 11400000, guid: 175274f721b9bff42961a8eaf9fe0572, type: 2}
+  isOnKnockback: 0
