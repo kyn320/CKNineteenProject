@@ -252,7 +252,7 @@ MonoBehaviour:
   animator: {fileID: 7959492675666158685}
   slopeLimit: 45
   footPointTransform: {fileID: 3827645977113965213}
-  groundCheckRadius: 0.3
+  groundCheckRadius: 0.2
   groundMask:
     serializedVersion: 2
     m_Bits: 4097
@@ -308,6 +308,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   isDeath: 0
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls: []
   isAttack: 0
 --- !u!114 &4134729834005925682
 MonoBehaviour:
