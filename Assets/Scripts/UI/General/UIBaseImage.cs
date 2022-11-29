@@ -21,12 +21,15 @@ public class UIBaseImage : MonoBehaviour
         AutoCaching();
     }
 
-    public void SetImage(Sprite sprite) { 
+    public void SetImage(Sprite sprite)
+    {
+        AutoCaching();
         Image.sprite = sprite;  
     }
 
     public void SetColor(Color color)
     {
+        AutoCaching();
         Image.color = color;
     }
 

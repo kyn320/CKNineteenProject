@@ -29,7 +29,7 @@ public class ItemSpawner : Spawner
 
             var itemGiver = spawnObject.GetComponent<ItemGiver>();
 
-            var randomItem = itemDataContainer.FindItem(Random.Range(0, itemDataContainer.Items.Count));
+            var randomItem = itemDataContainer.Items[Random.Range(0, itemDataContainer.Items.Count)];
             itemGiver.SetItemData(randomItem);
         }
     }
