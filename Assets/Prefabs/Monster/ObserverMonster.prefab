@@ -293,6 +293,9 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
+  deathMaterial: {fileID: 2100000, guid: 3986b53a6ae44e7458c8a64421346318, type: 2}
+  skinnedMeshRenderers: []
+  lifeTime: 1
 --- !u!114 &8244655941523093530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +337,7 @@ MonoBehaviour:
   endAttackEvent:
     m_PersistentCalls:
       m_Calls: []
+  currentCoolTime: 0
   coolTime: 0.5
   renderObject: {fileID: 678061910974884410}
   currentAttackTick: 0
@@ -386,6 +390,7 @@ MonoBehaviour:
   endAttackEvent:
     m_PersistentCalls:
       m_Calls: []
+  currentCoolTime: 0
   coolTime: 0.1
   renderObject: {fileID: 678061910974884410}
   shotPoint: {fileID: 177522553267233822}
