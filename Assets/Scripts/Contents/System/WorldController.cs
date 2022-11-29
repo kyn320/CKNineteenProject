@@ -29,7 +29,14 @@ public class WorldController : Singleton<WorldController>
 
     public void EndPlay()
     {
+        player.GetInputController().enabled = false;
         isPlay = false;
+    }
+
+    public void ClearGame()
+    {
+        EndPlay();
+        UIController.Instance.OpenPopup(new UIGameClearPopupData());
     }
 
     public void AddMonster(MonsterController monster)
