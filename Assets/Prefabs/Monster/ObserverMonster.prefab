@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 8650608578420360104}
   - component: {fileID: 1118178367916716137}
   - component: {fileID: 8255550466857911785}
+  - component: {fileID: 1145317055200096884}
   m_Layer: 6
   m_Name: ObserverMonster
   m_TagString: Monster
@@ -453,6 +454,20 @@ MonoBehaviour:
   effects:
   - {fileID: 8966803498262969358, guid: 434cf4bd0e5dd124796c93f3fa87fbc5, type: 3}
   instanceEffects: []
+--- !u!136 &1145317055200096884
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9127546524522647198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &3207826339071467302
 PrefabInstance:
   m_ObjectHideFlags: 0
