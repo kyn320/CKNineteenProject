@@ -53,6 +53,8 @@ public class MonsterChaseState : MonsterStateBase
 
         var status = controller.GetStatus();
         navAgent.speed = status.currentStatus.GetElement(StatusType.MoveSpeed).CalculateTotalAmount();
+        attackStartDistance = status.currentStatus.GetElement(StatusType.AttackDistance).CalculateTotalAmount();
+
         navAgent.stoppingDistance = stopDistance;
 
         RefreshPathTime();

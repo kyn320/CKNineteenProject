@@ -8,13 +8,22 @@ public class UIPausePopup : UIBasePopup
     {
         TPSMouseSetting.Instance.OpenUICursor();
     }
-    
-    public void OnEnterTitle() { 
+
+    public override void EndOpen()
+    {
+        base.EndOpen();
+        Time.timeScale = 0f;
+    }
+
+    public void OnEnterTitle()
+    {
+        Time.timeScale = 1f;
         SceneLoader.Instance.SwitchScene("TitleScene");
     }
 
     public override void BeginClose()
     {
+        Time.timeScale = 1f;
         TPSMouseSetting.Instance.CloseUICursor();
         base.BeginClose();
     }

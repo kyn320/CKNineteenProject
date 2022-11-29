@@ -10,12 +10,16 @@ public class MonsterIdleState : MonsterStateBase
     protected override void Awake()
     {
         base.Awake();
-        fieldOfView = GetComponent<FieldOfView>();  
+        fieldOfView = GetComponent<FieldOfView>();
     }
 
     public override void Enter()
     {
-        for(var i = 0 ; i < enterAnimatorTriggerList.Count; ++i) { 
+        fieldOfView.SetRadius(controller.GetStatus().currentStatus.GetElement(StatusType.SightDistance).CalculateTotalAmount());
+        fieldOfView.SetAngle(controller.GetStatus().currentStatus.GetElement(StatusType.SightDegree).CalculateTotalAmount());
+
+        for (var i = 0; i < enterAnimatorTriggerList.Count; ++i)
+        {
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
         }
 
@@ -40,7 +44,8 @@ public class MonsterIdleState : MonsterStateBase
 
     public void EnterSight(List<Collider> enterSightList)
     {
-        if(enterSightList.Count > 0) { 
+        if (enterSightList.Count > 0)
+        {
             controller.SetTarget(enterSightList[0].transform);
             controller.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
         }
