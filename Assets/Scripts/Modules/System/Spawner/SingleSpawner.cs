@@ -59,13 +59,11 @@ public class SingleSpawner : MonoBehaviour
     public virtual GameObject GetObject()
     {
         return Instantiate(spawnPrefab);
-        //return ObjectPoolManager.Instance.Get(spawnPrefab);
     }
 
     public virtual GameObject GetObject(Vector3 position, Quaternion rotation)
     {
         return Instantiate(spawnPrefab, position, rotation);
-        //return ObjectPoolManager.Instance.Get(spawnPrefab, position, rotation);
     }
 
     public virtual Transform GetRandomSpawnPoint()
@@ -80,6 +78,9 @@ public class SingleSpawner : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if(spawnPointList.Count < 1)
+            return;
+
         Gizmos.color = Color.cyan;
         for (var i = 0; i < spawnPointList.Count; ++i)
         {
