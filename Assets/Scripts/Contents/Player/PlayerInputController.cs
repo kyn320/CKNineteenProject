@@ -24,11 +24,10 @@ public class PlayerInputController : MonoBehaviour
 
     public UnityEvent<Vector2> mouseMoveEvent;
 
+    public float interactionRadius = 5f;
     public UnityEvent<GameObject> interactiveInputEvnet;
 
     public UnityEvent<Vector3> attackinputEvent;
-
-
 
     [ReadOnly]
     [ShowInInspector]
@@ -84,23 +83,24 @@ public class PlayerInputController : MonoBehaviour
         Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out aimRayCastHit);
         Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * MaxAimDistance, Color.blue);
 
-            if (aimRayCastHit.point == Vector3.zero)
-                aimWorldPoint = mainCamera.transform.position + mainCamera.transform.forward * MaxAimDistance;
-            else
-                aimWorldPoint = aimRayCastHit.point;
-        
+        if (aimRayCastHit.point == Vector3.zero)
+            aimWorldPoint = mainCamera.transform.position + mainCamera.transform.forward * MaxAimDistance;
+        else
+            aimWorldPoint = aimRayCastHit.point;
+
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (aimRayCastHit.collider != null)
+            var collisions = Physics.OverlapSphere(transform.position, interactionRadius);
+
+            foreach (var coll in collisions)
             {
-                var interactive = aimRayCastHit.collider.gameObject.GetComponent<IInteractable>();
+                var interactive = coll.gameObject.GetComponent<IInteractable>();
                 if (interactive != null)
                 {
                     //Success Interactive
                     interactive.Interactive();
-                    Debug.Log(aimRayCastHit.collider.gameObject.name);
-                    interactiveInputEvnet?.Invoke(aimRayCastHit.collider.gameObject);
+                    interactiveInputEvnet?.Invoke(coll.gameObject);
                 }
             }
         }
@@ -108,7 +108,7 @@ public class PlayerInputController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //TODO :: 여기서 공격이랑 연결해서 쓰기
-            if (lockOnPoint == new Vector3(0,0,0))
+            if (lockOnPoint == new Vector3(0, 0, 0))
             {
                 attackinputEvent?.Invoke(aimWorldPoint);
                 Debug.Log($"aimWorldPoint : {aimWorldPoint}");
@@ -119,8 +119,6 @@ public class PlayerInputController : MonoBehaviour
                 Debug.Log($"lockOnPoint : {lockOnPoint}");
             }
         }
-
-
 
         //록온
         lockOnColliders = Physics.OverlapSphere(transform.position, lockOnFindLength, lockOnFindLayer);
