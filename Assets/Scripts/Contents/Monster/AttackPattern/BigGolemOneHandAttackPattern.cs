@@ -43,7 +43,7 @@ public class BigGolemOneHandAttackPattern : MonsterAttackPattern
     {
         if (isCoolDown)
         {
-            currentCoolTime = Time.deltaTime;
+            currentCoolTime -= Time.deltaTime;
             if (currentCoolTime <= 0)
             {
                 isCoolDown = false;
