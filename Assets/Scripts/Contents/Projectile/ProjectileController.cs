@@ -29,7 +29,7 @@ public class ProjectileController : MonoBehaviour
     [SerializeField]
     protected SFXPrefabData sfxPrefabData;
 
-    private StatusInfo status = new StatusInfo();
+    private StatusInfo status;
     protected StatusCalculator damageCalculator;
     protected StatusCalculator criticalDamageCalculator;
 
