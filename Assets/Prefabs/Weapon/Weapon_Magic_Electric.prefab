@@ -68,7 +68,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2780143, y: 0.36037093, z: 0.10760703}
+  m_Size: {x: 1, y: 1, z: 0.10760703}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-8429248348402309269
 MonoBehaviour:
@@ -247,6 +247,9 @@ MonoBehaviour:
     hitNormal: {x: 0, y: 0, z: 0}
   vfxPrefabData: {fileID: 11400000, guid: 2fe2d8156a95d4748a5ba6da368a265b, type: 2}
   sfxPrefabData: {fileID: 11400000, guid: 21ce3476be9cfd64a99cad23f392084a, type: 2}
+  user: {fileID: 0}
+  findBuffNum: 0
+  buffController: {fileID: 0}
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []
