@@ -818,7 +818,6 @@ GameObject:
   - component: {fileID: 4122622861079446185}
   - component: {fileID: 1538893088313350858}
   - component: {fileID: 4098195054451717467}
-  - component: {fileID: 989554376}
   m_Layer: 8
   m_Name: Tower
   m_TagString: Untagged
@@ -881,20 +880,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &989554376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4701723113268627571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cad7916b3e6de844ea312a726fd648ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  status: {fileID: 8099621406637484990}
-  allowDamageTags: []
 --- !u!1 &6259261044269896306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,7 +1340,8 @@ MonoBehaviour:
     statusDic:
       keys: 
       values: []
-  uiDamageText: {fileID: 0}
+  uiDamageText: {fileID: 6111895687571895212, guid: 0969cd1fc4497444b95cf3554289e310,
+    type: 3}
   isDeath: 0
   updateHpEvent:
     m_PersistentCalls:
@@ -1415,7 +1401,7 @@ MonoBehaviour:
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
-  interactionTargetObject: {fileID: 0}
+  interactionTargetObject: {fileID: 4122622861079446185}
   interactionUIPrefab: {fileID: 8745965414145160001, guid: 78e460e767ebf07428ac526490b42888,
     type: 3}
   offset: {x: 0, y: 0, z: 0}
@@ -2111,7 +2097,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e1f1899acd928f549b0959a14bff3033,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e1f1899acd928f549b0959a14bff3033,
         type: 3}
