@@ -94,8 +94,7 @@ public class MonsterController : MonoBehaviour, IDamageable, IHitPauseable
 
     public void Death()
     {
-        //TODO :: »ç¸Á Ã³¸®
-        gameObject.SetActive(false);
+        ChangeState(MonsterStateType.MONSTERSTATE_DEATH);
     }
 
     public virtual DamageInfo OnDamage(DamageInfo damageInfo)
