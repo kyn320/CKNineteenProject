@@ -94,6 +94,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  triggerStayEvent:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 1108443819129327635}
         m_TargetAssemblyTypeName: PotionAreaEvent, Assembly-CSharp
         m_MethodName: LavaBurst
@@ -106,9 +109,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  triggerStayEvent:
-    m_PersistentCalls:
-      m_Calls: []
   triggerExitEvent:
     m_PersistentCalls:
       m_Calls:
@@ -151,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: c61d9ed2748f04146921a54a67a25330, type: 2}
   playerStatus: {fileID: 0}
+  projectileController: {fileID: 0}
   userTags:
   - Monster
   intervalDelayTime: 1
@@ -172,6 +173,8 @@ MonoBehaviour:
     hitNormal: {x: 0, y: 0, z: 0}
   vfxPrefabData: {fileID: 11400000, guid: eb29063c343772242aa5e390b29d6d43, type: 2}
   sfxPrefabData: {fileID: 11400000, guid: f7edb9716a6d01d42aea021af3ce7684, type: 2}
+  lavaDelayTime: 1
+  lavaDelayTimer: 0
   hitEvnet:
     m_PersistentCalls:
       m_Calls: []

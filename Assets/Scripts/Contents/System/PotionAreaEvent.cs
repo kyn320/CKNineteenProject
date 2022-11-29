@@ -15,7 +15,7 @@ public class PotionAreaEvent : MonoBehaviour
     string[] userTags;
     [SerializeField]
     float intervalDelayTime = 2f;
-    float intervalDelayTimer;
+    float intervalDelayTimer = 2f;
 
     public UnityEvent<GameObject> IntervalEvents;
 
@@ -33,6 +33,12 @@ public class PotionAreaEvent : MonoBehaviour
     [SerializeField]
     SFXPrefabData sfxPrefabData;
 
+
+    [SerializeField]
+    private float lavaDelayTime = 1f;
+    [SerializeField]
+    private float lavaDelayTimer = 0f;
+
     public UnityEvent<bool> hitEvnet;
 
     float lifeTime;
@@ -41,7 +47,7 @@ public class PotionAreaEvent : MonoBehaviour
     {
         lifeTime = GetComponent<AutoDestroyByLifetime>().lifeTime - 0.5f;
         playerStatus = GameObject.Find("Player").GetComponent<PlayerStatus>();
-
+        lavaDelayTimer = lavaDelayTime;
     }
 
     public void SetWeaponData(WeaponData weaponData)
@@ -101,16 +107,28 @@ public class PotionAreaEvent : MonoBehaviour
         GameObject user = collider.gameObject;
         Debug.Log(user.GetComponent<Rigidbody>().velocity);
         user.GetComponent<Rigidbody>().velocity = (Vector3.up * 10f);
-        Debug.Log(user.GetComponent<Rigidbody>().velocity);
+        //Debug.Log(user.GetComponent<Rigidbody>().velocity);
 
         float damageResult = weaponData.StatusInfoData.GetElement(StatusType.MaxAttackPower).GetAmount();
 
-        user.GetComponent<MonsterController>()?.OnDamage(new DamageInfo()
+
+        lavaDelayTimer += Time.deltaTime;
+
+        if (lavaDelayTime < lavaDelayTimer)
         {
-            damage = damageResult,
-            isCritical = false,
-            isKnockBack = false
-        });
+            lavaDelayTimer = 0f;
+
+            user.GetComponent<MonsterController>()?.OnDamage(new DamageInfo()
+            {
+                hitPoint = user.transform.position,
+                damage = damageResult,
+                isCritical = false,
+                isKnockBack = false
+            }
+         );
+        }
+
+        
     }
 
     public void IntervalEvent(Collider collider)

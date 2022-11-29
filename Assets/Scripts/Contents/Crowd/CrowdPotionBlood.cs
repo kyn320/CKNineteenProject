@@ -35,6 +35,7 @@ public class CrowdPotionBlood : CrowdBehaviour
 
                 monsterController?.OnDamage(new DamageInfo()
                 {
+                    hitPoint = monsterController.transform.position,
                     damage = damageResult,
                     isCritical = false,
                     isKnockBack = false
