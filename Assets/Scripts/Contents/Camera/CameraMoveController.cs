@@ -100,13 +100,13 @@ public class CameraMoveController : Singleton<CameraMoveController>
 
         if (hit.collider != null)
         {
-            Debug.Log("CameraWallGuarder true");
+            //Debug.Log("CameraWallGuarder true");
             mainCamera.transform.position = hit.point;
             return true;
         }
         else
         {
-            Debug.Log("CameraWallGuarder false");
+            //Debug.Log("CameraWallGuarder false");
             return false;
         }
     }
@@ -144,7 +144,7 @@ public class CameraMoveController : Singleton<CameraMoveController>
         if (!CameraWallGuarder(0))
         {
             mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, targetPosition, Time.deltaTime * dampingSpeed);
-            Debug.Log("UpdateCameraPosition");
+            //Debug.Log("UpdateCameraPosition");
         }
     }
 
