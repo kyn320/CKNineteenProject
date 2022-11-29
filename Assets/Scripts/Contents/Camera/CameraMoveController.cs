@@ -17,6 +17,9 @@ public class CameraMoveController : Singleton<CameraMoveController>
     [SerializeField]
     private GameObject directionObject;
 
+    [SerializeField]
+    private LayerMask dontPiercing;
+
     public Vector3[] cameraVector;
 
     public bool isZoom;
@@ -83,7 +86,7 @@ public class CameraMoveController : Singleton<CameraMoveController>
 
     }
 
-    private void CameraWallGuarder(float rayDistance)
+    private bool CameraWallGuarder(float rayDistance)
     {
         //RayCast를 사용해서 만약 카메라가 오브젝트를 뚫었다면 카메라를 오브젝트 바깥으로 가저옴
 
@@ -92,12 +95,19 @@ public class CameraMoveController : Singleton<CameraMoveController>
 
         Vector3 rayVector = mainCamera.transform.position - transform.position;
         RaycastHit hit;
-        Physics.Raycast(transform.position, rayVector, out hit, rayDistance);
+        Physics.Raycast(transform.position, rayVector, out hit, rayDistance, dontPiercing);
         Debug.DrawRay(transform.position, rayVector, Color.red);
 
-        if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground"))
+        if (hit.collider != null)
         {
+            Debug.Log("CameraWallGuarder true");
             mainCamera.transform.position = hit.point;
+            return true;
+        }
+        else
+        {
+            Debug.Log("CameraWallGuarder false");
+            return false;
         }
     }
 
@@ -130,7 +140,12 @@ public class CameraMoveController : Singleton<CameraMoveController>
         {
             targetPosition = cameraVector[0];
         }
-        mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, targetPosition, Time.deltaTime * dampingSpeed);
+        //mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, targetPosition, Time.deltaTime * dampingSpeed);
+        if (!CameraWallGuarder(0))
+        {
+            mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, targetPosition, Time.deltaTime * dampingSpeed);
+            Debug.Log("UpdateCameraPosition");
+        }
     }
 
     public void SetBackMoveCamera(bool isBack)
