@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MonsterDeathState : MonsterStateBase
 {
+    [SerializeField]
+    private float deathDelay = .0f;
     public override void Enter()
     {
         enterEvent?.Invoke();
@@ -12,8 +14,8 @@ public class MonsterDeathState : MonsterStateBase
         {
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
         }
-        Delete();
-        //Invoke("Delete", 5f);
+
+        Invoke("Delete", deathDelay);
     }
 
     void Delete()
