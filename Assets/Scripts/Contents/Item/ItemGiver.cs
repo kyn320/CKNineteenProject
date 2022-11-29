@@ -14,7 +14,7 @@ public class ItemGiver : MonoBehaviour
     public void SetItemData(ItemData itemData)
     {
         this.itemData = itemData;
-        itemIcon.SetImage(itemData.Icon);
+       itemIcon.SetImage(itemData.Icon);
     }
 
     private void OnTriggerEnter(Collider other)

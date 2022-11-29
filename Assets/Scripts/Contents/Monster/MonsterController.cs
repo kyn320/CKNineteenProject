@@ -94,6 +94,7 @@ public class MonsterController : MonoBehaviour, IDamageable, IHitPauseable
 
     public void Death()
     {
+        WorldController.Instance.RemoveMonster(this);
         ChangeState(MonsterStateType.MONSTERSTATE_DEATH);
     }
 
@@ -103,7 +104,7 @@ public class MonsterController : MonoBehaviour, IDamageable, IHitPauseable
         var resultDamageInfo = status.OnDamage(damageInfo);
         if (resultDamageInfo.isKill)
         {
-            ChangeState(MonsterStateType.MONSTERSTATE_DEATH);
+            Death();
         }
         else
         {

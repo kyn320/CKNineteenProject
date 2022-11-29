@@ -10,6 +10,15 @@ public class ItemSpawner : Spawner
     [SerializeField]
     private List<int> spawnItemList;
 
+    [SerializeField]
+    private bool autoRespawn = false;
+
+    protected override void Start()
+    {
+        if (autoRespawn)
+            RandomSpawnItem();
+    }
+
     public void SetSpawnItemList(List<int> spawnItemList)
     {
         this.spawnItemList = spawnItemList;
@@ -20,7 +29,8 @@ public class ItemSpawner : Spawner
         SpawnItem(spawnItemList);
     }
 
-    public void RandomSpawnItem() {
+    public void RandomSpawnItem()
+    {
         for (var i = 0; i < spawnPointList.Count; ++i)
         {
             var spawnPoint = spawnPointList[i];
