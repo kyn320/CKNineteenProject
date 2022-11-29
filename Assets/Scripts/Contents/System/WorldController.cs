@@ -12,10 +12,12 @@ public class WorldController : Singleton<WorldController>
 
     [SerializeField]
     private List<MonsterController> monsters;
+    public int RemainMonsterCount { get { return monsters.Count; } }
 
     [ShowInInspector]
     [ReadOnly]
     private LandmarkController currentActiveLandmark;
+    public LandmarkController ActiveLandmark { get { return currentActiveLandmark; } }
 
     public bool isPlay = false;
     public UnityEvent endGameEvent;
