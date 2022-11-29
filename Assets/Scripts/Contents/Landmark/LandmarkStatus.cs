@@ -40,6 +40,9 @@ namespace Landmark
             else
                 hpElement.AddAmount(amount);
 
+            if(hpElement.GetAmount() >= maxHPElement.GetAmount())
+                hpElement.SetAmount(maxHPElement.GetAmount());
+
             updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
         }
 
