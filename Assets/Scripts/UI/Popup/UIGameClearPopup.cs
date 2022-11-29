@@ -18,7 +18,7 @@ public class UIGameClearPopup : UIBasePopup
 
     public void AutoEnterTitle()
     {
-        SceneLoader.Instance.SwitchScene("CreditScene");
+        SceneLoader.Instance.SwitchDirectScene("CreditScene");
     }
 
 

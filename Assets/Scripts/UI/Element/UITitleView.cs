@@ -14,6 +14,14 @@ public class UITitleView : UIBaseView
 
     }
 
+    protected override void Start()
+    {
+        base.Start();
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void Update()
     {
         if (isEnterTitle)
