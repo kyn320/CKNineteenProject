@@ -175,6 +175,15 @@ MonoBehaviour:
       m_Calls: []
   collisionEnterEvent:
     m_PersistentCalls:
+      m_Calls: []
+  collisionStayEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerEnterEvent:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -8473696380066206174}
         m_TargetAssemblyTypeName: ProjectileController, Assembly-CSharp
@@ -188,15 +197,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  collisionStayEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  collisionExitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerEnterEvent:
-    m_PersistentCalls:
-      m_Calls: []
   triggerStayEvent:
     m_PersistentCalls:
       m_Calls: []
