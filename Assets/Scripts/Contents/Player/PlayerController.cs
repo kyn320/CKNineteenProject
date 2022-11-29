@@ -61,6 +61,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
 
     [SerializeField]
     private bool isDeath = false;
+
+    public UnityEvent deathEvent;
+
     [SerializeField]
     private bool isAttack = false;
 
@@ -163,9 +166,10 @@ public class PlayerController : MonoBehaviour, IDamageable, IHitPauseable
 
         var resultDamageInfo = status.OnDamage(damageInfo);
         damageEvent?.Invoke(resultDamageInfo);
-        if (isDeath)
+        if (resultDamageInfo.isKill)
         {
             ChangeState(PlayerStateType.Death);
+            deathEvent?.Invoke();
         }
         else if (damageInfo.isCritical && damageInfo.isKnockBack)
         {

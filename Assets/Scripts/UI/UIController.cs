@@ -112,7 +112,6 @@ public class UIController : Singleton<UIController>
 
     public UIBasePopup OpenPopup(UIBasePopup popup, UIPopupData popupData)
     {
-
         popupList.Add(popup);
 
         if (popup.useBackground)

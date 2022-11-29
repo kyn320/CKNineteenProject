@@ -12,9 +12,27 @@ public class MenuOpener : MonoBehaviour
     [ReadOnly]
     private PlayerBattleStateType battleStateType;
 
+    private void Start()
+    {
+        WorldController.Instance.endGameEvent.AddListener(CloseAllPopup);
+    }
+
     public void UpdateBattleType(PlayerBattleStateType battleStateType)
     {
         this.battleStateType = battleStateType;
+    }
+
+    public void CloseAllPopup()
+    {
+        if (pausePopupData != null)
+        {
+            UIController.Instance.ClosePopup(pausePopupData);
+        }
+
+        if (inventoryPopupData != null)
+        {
+            UIController.Instance.ClosePopup(inventoryPopupData);
+        }
     }
 
     public void Update()

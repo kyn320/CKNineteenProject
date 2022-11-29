@@ -176,17 +176,15 @@ public class PlayerInputController : MonoBehaviour
             realLockOnAngleLimit = lockOnAngleLimit / lockOnAngleDiffusion;
         }
 
+        //플레이어 입력값
+        inputVector.x = Input.GetAxisRaw("Horizontal");
+        inputVector.z = Input.GetAxisRaw("Vertical");
+        moveInputEvent?.Invoke(inputVector);
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //Jump Input
             jumpInputEvent?.Invoke();
-        }
-        else
-        {
-            //플레이어 입력값
-            inputVector.x = Input.GetAxisRaw("Horizontal");
-            inputVector.z = Input.GetAxisRaw("Vertical");
-            moveInputEvent?.Invoke(inputVector);
         }
     }
 }
