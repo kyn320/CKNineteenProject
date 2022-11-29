@@ -54,7 +54,7 @@ MonoBehaviour:
   audioClipList:
   - {fileID: 8300000, guid: 7bf37528ec4c039478b48db4b8d46344, type: 3}
   - {fileID: 8300000, guid: 1a294aea9c636db4bbf3d26d3a2d738d, type: 3}
-  stepDistance: 1
+  stepDistance: 1.8
   prevPlayPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &3827645977174835326
 GameObject:
@@ -252,10 +252,10 @@ MonoBehaviour:
   animator: {fileID: 7959492675666158685}
   slopeLimit: 45
   footPointTransform: {fileID: 3827645977113965213}
-  groundCheckRadius: 0.2
+  groundCheckRadius: 0.3
   groundMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4097
   slopeRayOffset: 0.5
   slopeRayDistance: 1
   stairCheckTransform: {fileID: 3350630234940442445}
@@ -393,6 +393,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionRadius: 5
   interactiveInputEvnet:
     m_PersistentCalls:
       m_Calls: []
@@ -484,7 +485,8 @@ MonoBehaviour:
   allowMove: 1
   cameraMoveController: {fileID: 0}
   vfxPrefabData: {fileID: 11400000, guid: 9bcb52f378e5a284f9f0baa14cd92bf8, type: 2}
-  dustEffect: {fileID: 901340532816732199}
+  dustEffect: {fileID: 4151390648000443254, guid: 40d27f91c2abbe443a21aaeefb89e1c7,
+    type: 3}
 --- !u!114 &1294546402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,12 +901,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40d27f91c2abbe443a21aaeefb89e1c7, type: 3}
---- !u!1 &901340532816732199 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4151390648000443254, guid: 40d27f91c2abbe443a21aaeefb89e1c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 3827645978220041041}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &901340532816732634 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4151390648000443019, guid: 40d27f91c2abbe443a21aaeefb89e1c7,
