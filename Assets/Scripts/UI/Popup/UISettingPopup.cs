@@ -15,12 +15,18 @@ public class UISettingPopup : UIBasePopup
     [SerializeField]
     private UIBaseText mouseSensitivityText;
 
+    [SerializeField]
+    private UISettingPopupData popupData;
+
     public override void Init(UIData uiData)
     {
-        bgmSlider.value = SoundManager.Instance.BGMMasterVolume;
-        sfxSlider.value = SoundManager.Instance.SFXMasterVolume;
+        popupData = uiData as UISettingPopupData;
 
-        mouseSensitivitysSlider.value = GlobalSetting.Instance.mouseSensitivity;
+        bgmSlider.SetValueWithoutNotify(SoundManager.Instance.BGMMasterVolume);
+        sfxSlider.SetValueWithoutNotify(SoundManager.Instance.SFXMasterVolume);
+
+        mouseSensitivitysSlider.SetValueWithoutNotify(GlobalSetting.Instance.mouseSensitivity);
+
         mouseSensitivityText.SetText(GlobalSetting.Instance.mouseSensitivity.ToString());
     }
 
@@ -48,8 +54,15 @@ public class UISettingPopup : UIBasePopup
 
     public override void BeginClose()
     {
+        Time.timeScale = 1f;
         SaveLoadSystem.Instance.Save();
         base.BeginClose();
+    }
+
+    public override void EndClose()
+    {
+        base.EndClose();
+        popupData.endCloseEvent?.Invoke();
     }
 
 

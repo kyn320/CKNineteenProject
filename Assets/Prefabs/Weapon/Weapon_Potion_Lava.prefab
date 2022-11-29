@@ -275,6 +275,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveSpeed: 0
   moveTime: 1
+  useTranformForward: 0
   offsetRotation: {x: 0, y: 0, z: 0, w: 0}
   height: 5
 --- !u!96 &6561158675252490482
@@ -394,7 +395,7 @@ MonoBehaviour:
   lowSpawnDistance: 0
   spawnStartLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4097
 --- !u!114 &-2151394774465714199
 MonoBehaviour:
   m_ObjectHideFlags: 0

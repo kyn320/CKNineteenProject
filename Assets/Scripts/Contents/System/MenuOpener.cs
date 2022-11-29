@@ -37,6 +37,9 @@ public class MenuOpener : MonoBehaviour
 
     public void Update()
     {
+        if(UIController.Instance.popupList.Find(item=>item.viewName == "Setting"))
+            return;
+
         if (Input.GetKeyDown(KeyCode.Escape) && inventoryPopupData == null)
         {
             if (pausePopupData != null)

@@ -100,11 +100,17 @@ public abstract class AudioPlayer : MonoBehaviour
 
     public void ChangeVolume(float changeVolume)
     {
+        if (audioSource == null)
+            return;
+
         audioSource.volume = changeVolume * SoundManager.Instance.SFXMasterVolume;
     }
 
     public void ChangeMasterVolume(float changeMasterVolume)
     {
+        if(audioSource == null)
+            return;
+
         audioSource.volume = volume * changeMasterVolume;
     }
 

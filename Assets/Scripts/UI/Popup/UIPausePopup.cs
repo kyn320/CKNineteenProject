@@ -15,6 +15,18 @@ public class UIPausePopup : UIBasePopup
         Time.timeScale = 0f;
     }
 
+    public void OnSetting()
+    {
+        Time.timeScale = 1f;
+        UIController.Instance.OpenPopup(new UISettingPopupData()
+        {
+            endCloseEvent = () =>
+            {
+                Time.timeScale = 0f;
+            }
+        });
+    }
+
     public void OnEnterTitle()
     {
         Time.timeScale = 1f;
