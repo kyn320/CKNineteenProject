@@ -50,26 +50,26 @@ public class PotionAreaEvent : MonoBehaviour
     }
 
     public void UserSearch(Collider collider)
-    {   
-        for(int i = 0; i < userTags.Length; i++)
-        if (collider.gameObject.tag == userTags[i])
-        {
-
-            GameObject user = collider.gameObject;
-
-            //PlayerStatus는 player밖에 없음으로 문제가 될 수 있음 만약 문제가 된다면 수정해주세요
-            playerStatus = user.GetComponent<PlayerStatus>();
-
-            if (hitEffect)
+    {
+        for (int i = 0; i < userTags.Length; i++)
+            if (collider.gameObject.tag == userTags[i])
             {
-                hitEffectObj = Instantiate(hitEffect, user.transform);
-            }
+
+                GameObject user = collider.gameObject;
+
+                //PlayerStatus는 player밖에 없음으로 문제가 될 수 있음 만약 문제가 된다면 수정해주세요
+                playerStatus = user.GetComponent<PlayerStatus>();
+
+                if (hitEffect)
+                {
+                    hitEffectObj = Instantiate(hitEffect, user.transform);
+                }
 
 
-            if (collider.gameObject.CompareTag("Player"))
-                return;
+                if (collider.gameObject.CompareTag("Player"))
+                    return;
 
-            var damageable = collider.gameObject.GetComponent<IDamageable>();
+                var damageable = collider.gameObject.GetComponent<IDamageable>();
 
                 if (damageable != null)
                 {
@@ -136,20 +136,20 @@ public class PotionAreaEvent : MonoBehaviour
     {
         GameObject user = collider.gameObject;
 
-            float healPoint = 1f/*weaponData.StatusInfoData.GetElement(StatusType.MinAttackPower).GetAmount()*/;
-            intervalDelayTimer += Time.deltaTime;
-            lifeTime -= Time.deltaTime;
-            if (lifeTime <= 0)
-                Destroy(hitEffectObj);
+        float healPoint = 1f/*weaponData.StatusInfoData.GetElement(StatusType.MinAttackPower).GetAmount()*/;
+        intervalDelayTimer += Time.deltaTime;
+        lifeTime -= Time.deltaTime;
+        if (lifeTime <= 0)
+            Destroy(hitEffectObj);
 
 
-            if (intervalDelayTimer > intervalDelayTime)
-            {
-                intervalDelayTimer = 0;
-                playerStatus.AddHP(playerStatus.currentStatus.GetElement(StatusType.MinAttackPower).GetAmount(), true);
-                user.GetComponent<PlayerStatus>().AddHP(healPoint, true);
-            }
-        
+        if (intervalDelayTimer > intervalDelayTime)
+        {
+            intervalDelayTimer = 0;
+            playerStatus.AddHP(playerStatus.currentStatus.GetElement(StatusType.MinAttackPower).GetAmount(), true);
+            user.GetComponent<PlayerStatus>()?.AddHP(healPoint, true);
+        }
+
     }
 
     public void deBuff(Collider collider)
@@ -166,9 +166,9 @@ public class PotionAreaEvent : MonoBehaviour
             int findBuffNum = -1;
             for (int i = 0; buffController.crowdBehaviourList.Count > i; i++)
             {
-                if(buffController.crowdBehaviourList[i])
-                if (buffController.crowdBehaviourList[i].name == buffdata.BuffBehaviourObject.name + "(Clone)")
-                    findBuffNum = i;
+                if (buffController.crowdBehaviourList[i])
+                    if (buffController.crowdBehaviourList[i].name == buffdata.BuffBehaviourObject.name + "(Clone)")
+                        findBuffNum = i;
             }
 
             if (findBuffNum != -1)

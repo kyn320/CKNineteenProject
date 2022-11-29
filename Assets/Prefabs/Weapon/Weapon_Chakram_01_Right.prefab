@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 62051326557771369}
   - component: {fileID: 6843325645673205883}
   - component: {fileID: 4904664783250206120}
+  - component: {fileID: 1239062316440373301}
   m_Layer: 8
   m_Name: Weapon_Chakram_01_Right
   m_TagString: Untagged
@@ -69,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7362555970600566325, guid: ef7f2fe422aec544dadad2a16f64442a, type: 3}
+  - {fileID: 2100000, guid: e5fe7394279179a43bf99a102b94e109, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -261,6 +262,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   moveSpeed: 0
   moveTime: 0
+  useTranformForward: 0
   offsetRotation: {x: 0.49999997, y: 0.49999997, z: -0.49999997, w: 0.49999997}
   cycleType: 2
   cycleTime: 0
@@ -368,3 +370,23 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!95 &1239062316440373301
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938176264512456523}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: f961c407e678a5645b20a936093dbb4a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
