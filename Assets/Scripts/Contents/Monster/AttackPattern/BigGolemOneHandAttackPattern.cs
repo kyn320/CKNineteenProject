@@ -41,7 +41,15 @@ public class BigGolemOneHandAttackPattern : MonsterAttackPattern
 
     protected override void Update()
     {
-        return;
+        if (isCoolDown)
+        {
+            currentCoolTime = Time.deltaTime;
+            if (currentCoolTime <= 0)
+            {
+                isCoolDown = false;
+                currentCoolTime = coolTime;
+            }
+        }
     }
 
     public void HitAttack(Collision collision)

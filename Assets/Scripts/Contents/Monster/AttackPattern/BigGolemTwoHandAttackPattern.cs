@@ -51,7 +51,15 @@ public class BigGolemTwoHandAttackPattern : MonsterAttackPattern
 
     protected override void Update()
     {
-        return;
+        if (isCoolDown)
+        {
+            currentCoolTime = Time.deltaTime;
+            if (currentCoolTime <= 0)
+            {
+                isCoolDown = false;
+                currentCoolTime = coolTime;
+            }
+        }
     }
 
     public async void SpawnGroundHitBox()

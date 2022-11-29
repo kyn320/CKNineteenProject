@@ -18,6 +18,9 @@ public abstract class MonsterAttackPattern : MonoBehaviour
     protected List<AnimatorTriggerData> endAttackTriggerDataList;
 
     [SerializeField]
+    protected bool isCoolDown = false;
+    public bool IsCoolDown { get { return isCoolDown; } }
+    [SerializeField]
     protected bool isAttacked = false;
 
     [SerializeField]
@@ -27,6 +30,9 @@ public abstract class MonsterAttackPattern : MonoBehaviour
 
     public UnityEvent startAttackEvent;
     public UnityEvent endAttackEvent;
+
+    protected float currentCoolTime;
+    public float coolTime;
 
     protected virtual void Awake()
     {

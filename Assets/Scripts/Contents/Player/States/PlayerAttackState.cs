@@ -228,7 +228,7 @@ public class PlayerAttackState : PlayerStateBase
                     }
 
                     var weaponAnimator = weaponObject.GetComponent<Animator>();
-                    weaponAnimator.SetTrigger("Spawn");
+                    weaponAnimator?.SetTrigger("Spawn");
                 }
                 break;
             case HandType.Right:

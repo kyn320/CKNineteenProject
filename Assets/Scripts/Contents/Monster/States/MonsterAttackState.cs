@@ -39,10 +39,15 @@ public class MonsterAttackState : MonsterStateBase
 
     public override void Enter()
     {
+        //공격 가능한 패턴이 있는지 체크 하고 없으면 돌려보내요.
+        if (!CheckStartAttackPattern()) { 
+            controller.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
+            return;
+        }
+
         var target = controller.GetTarget();
 
-        var patternGroup = GetRandomPatternGroup();
-        var pattern = patternGroup.AttackPattern;
+        var pattern = GetRandomPattern();
 
         pattern.StartAttack(target);
 
@@ -59,7 +64,22 @@ public class MonsterAttackState : MonsterStateBase
         return;
     }
 
-    private MonsterAttackPatternRangeGroup GetRandomPatternGroup()
+    public bool CheckStartAttackPattern()
+    {
+        for (var i = 0; i < patternGroupList.Count; ++i)
+        {
+            var patternGroup = patternGroupList[i];
+
+            if (!patternGroup.AttackPattern.IsCoolDown)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private MonsterAttackPattern GetRandomPattern()
     {
         var rand = Random.Range(0f, 100f);
 
@@ -67,11 +87,13 @@ public class MonsterAttackState : MonsterStateBase
 
         for (var i = 0; i < patternGroupList.Count; ++i)
         {
-            var checkPercent = patternGroupList[i].Percent;
+            var patternGroup = patternGroupList[i];
 
-            if (rand < currentPercent + checkPercent)
+            var checkPercent = patternGroup.Percent;
+
+            if (rand < currentPercent + checkPercent && !patternGroup.AttackPattern.IsCoolDown)
             {
-                return patternGroupList[i];
+                return patternGroup.AttackPattern;
             }
             else
             {

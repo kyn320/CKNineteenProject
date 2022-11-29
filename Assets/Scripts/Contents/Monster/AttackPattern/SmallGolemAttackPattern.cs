@@ -73,6 +73,16 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
     }
     protected override void Update()
     {
+        if (isCoolDown)
+        {
+            currentCoolTime = Time.deltaTime;
+            if (currentCoolTime <= 0)
+            {
+                isCoolDown = false;
+                currentCoolTime = coolTime;
+            }
+        }
+
         if (!isAttacked)
             return;
 
