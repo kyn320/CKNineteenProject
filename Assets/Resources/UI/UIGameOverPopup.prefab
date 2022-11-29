@@ -87,6 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1584800189699927520}
   - component: {fileID: 1584800189699927523}
+  - component: {fileID: 1450410844338569564}
+  - component: {fileID: 1364585294220228219}
   m_Layer: 5
   m_Name: UIGameOverPopup
   m_TagString: Untagged
@@ -124,6 +126,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584800189699927521}
   m_CullTransparentMesh: 1
+--- !u!225 &1450410844338569564
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584800189699927521}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1364585294220228219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584800189699927521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4922f40f83b4ea45a4267f45d4dc0d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewName: GameOver
+  openAnimationList: []
+  closeAnimationList: []
+  openEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  closeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  useBackground: 1
+  viewTime: 3
 --- !u!1 &1584800189730366423
 GameObject:
   m_ObjectHideFlags: 0

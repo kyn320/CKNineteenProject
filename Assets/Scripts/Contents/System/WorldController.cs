@@ -17,6 +17,19 @@ public class WorldController : Singleton<WorldController>
     [ReadOnly]
     private LandmarkController currentActiveLandmark;
 
+    public bool isPlay = false;
+    public UnityEvent endGameEvent;
+
+    private void Start()
+    {
+        player.deathEvent.AddListener(EndPlay);
+    }
+
+    public void EndPlay()
+    {
+        isPlay = false;
+    }
+
     public void AddMonster(MonsterController monster)
     {
         monsters.Add(monster);
