@@ -103,7 +103,6 @@ public class PlayerAirState : PlayerStateBase
                 rigidBody.velocity = new Vector3(moveSpeed, rigidBody.velocity.y, rigidBody.velocity.z);
             else
                 rigidBody.velocity = new Vector3(-moveSpeed, rigidBody.velocity.y, rigidBody.velocity.z);
-
         }
 
         rigidBody.AddForce(Physics.gravity * gravityScale

@@ -69,6 +69,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.12364425
+        functionName: Emit
+        data: MoveStep
+        objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
+          type: 3}
+        floatParameter: -4
+        intParameter: 0
+        messageOptions: 0
       - time: 0.15782617
         functionName: Emit
         data: SpawnWeapon
@@ -85,20 +93,12 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.59940684
+      - time: 0.42889994
         functionName: Emit
         data: EndAttack
         objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
           type: 3}
         floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.12364425
-        functionName: Emit
-        data: MoveStep
-        objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
-          type: 3}
-        floatParameter: -4
         intParameter: 0
         messageOptions: 0
       transformMask:

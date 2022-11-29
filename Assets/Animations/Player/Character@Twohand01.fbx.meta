@@ -77,6 +77,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.009501187
+        functionName: Emit
+        data: MoveStep
+        objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
+          type: 3}
+        floatParameter: 3
+        intParameter: 0
+        messageOptions: 0
       - time: 0.1847857
         functionName: Emit
         data: CreateAttackVFX
@@ -101,20 +109,12 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.9898095
+      - time: 0.810086
         functionName: Emit
         data: EndAttack
         objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
           type: 3}
         floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.009501187
-        functionName: Emit
-        data: MoveStep
-        objectReferenceParameter: {fileID: 11500000, guid: 3f6bd8d60e1cc7b46a9c4d4970d4e108,
-          type: 3}
-        floatParameter: 3
         intParameter: 0
         messageOptions: 0
       transformMask:

@@ -29,7 +29,7 @@ public class ProjectileController : MonoBehaviour
     [SerializeField]
     protected SFXPrefabData sfxPrefabData;
 
-    private StatusInfo status;
+    private StatusInfo status = new StatusInfo();
     protected StatusCalculator damageCalculator;
     protected StatusCalculator criticalDamageCalculator;
 
@@ -72,7 +72,7 @@ public class ProjectileController : MonoBehaviour
 
     public void Hit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("LandmarkShield"))
             return;
 
         var damageable = other.gameObject.GetComponent<IDamageable>();
