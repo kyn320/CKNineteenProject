@@ -5,7 +5,24 @@ using UnityEngine;
 public class MonsterDeathState : MonsterStateBase
 {
     [SerializeField]
-    private float deathDelay = .0f;
+    Material deathMaterial;
+
+    [SerializeField]
+    SkinnedMeshRenderer[] skinnedMeshRenderers;
+
+    [SerializeField]
+    private MaterialPropertyBlock materialProperty;
+
+    [SerializeField]
+    private float lifeTime;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        materialProperty = new MaterialPropertyBlock();
+    }
+
     public override void Enter()
     {
         enterEvent?.Invoke();
@@ -15,12 +32,12 @@ public class MonsterDeathState : MonsterStateBase
             enterAnimatorTriggerList[i].Invoke(controller.GetAnimator());
         }
 
-        Invoke("Delete", deathDelay);
-    }
+        foreach (var meshRenderer in skinnedMeshRenderers)
+        {
+            meshRenderer.material = deathMaterial;
+        }
 
-    void Delete()
-    {
-        Destroy(gameObject);
+        StartCoroutine(CoDissolveAnimation());
     }
 
     public override void Exit()
@@ -32,4 +49,32 @@ public class MonsterDeathState : MonsterStateBase
     {
         return;
     }
+
+    protected void UpdateDissolve(float t)
+    {
+        materialProperty.SetFloat("_Diss_Offset", t);
+
+        foreach (var render in skinnedMeshRenderers)
+        {
+            render.SetPropertyBlock(materialProperty);
+        }
+    }
+
+    IEnumerator CoDissolveAnimation()
+    {
+        var currentTime = 0f;
+        var lerpTime = currentTime / lifeTime;
+
+        while (lerpTime <= 1f)
+        {
+            currentTime += Time.deltaTime;
+            lerpTime = currentTime / lifeTime;
+
+            UpdateDissolve(1 - lerpTime);
+            yield return null;
+        }
+
+        Destroy(this.gameObject);
+    }
+
 }
