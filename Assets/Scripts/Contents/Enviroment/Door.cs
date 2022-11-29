@@ -15,7 +15,11 @@ public class Door : MonoBehaviour
     }
 
     [SerializeField]
-    protected State state;
+    protected State initState;
+
+    [SerializeField]
+    [ReadOnly]
+    protected State state = State.Close;
 
     [SerializeField]
     private ObjectTweenAnimator openAnimator;
@@ -26,6 +30,22 @@ public class Door : MonoBehaviour
     private ObjectTweenAnimator closeAnimator;
     public UnityEvent<Door> beginCloseEvent;
     public UnityEvent<Door> endCloseEvent;
+
+    protected virtual void Start()
+    {
+        if (initState != state)
+        {
+            switch (initState)
+            {
+                case State.Open:
+                    Open();
+                    break;
+                case State.Close:
+                    Close();
+                    break;
+            }
+        }
+    }
 
     [Button("Open")]
     public virtual void Open()

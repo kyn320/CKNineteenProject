@@ -29,11 +29,12 @@ public class MainDoor : Door
     [SerializeField]
     protected LayerMask layerMask;
 
-    private void Start()
+    protected override void Start()
     {
         //TODO :: 미리 상호작용 가이드UI 생성하기
         interactionUIObject = UIController.Instance.CreateWorldUI(interactionUIPrefab);
         interactionUIObject.GetComponent<UITargetFollower>().SetTarget(interactionTargetObject);
+        base.Start();
     }
 
     public virtual void Update()

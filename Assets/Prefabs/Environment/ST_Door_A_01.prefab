@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4eaf61eae44ae4cb6c4f117073c254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initState: 2
   state: 2
   openAnimator: {fileID: 0}
   beginOpenEvent:
@@ -187,6 +188,12 @@ MonoBehaviour:
   endCloseEvent:
     m_PersistentCalls:
       m_Calls: []
+  openAnimators:
+  - {fileID: 3971549604464448826}
+  - {fileID: 5062697989614478644}
+  closeAnimators:
+  - {fileID: 2400220865115057536}
+  - {fileID: 8673495389285858749}
   interactionTargetObject: {fileID: 2056430217694221171}
   interactionUIPrefab: {fileID: 8745965414145160001, guid: 78e460e767ebf07428ac526490b42888,
     type: 3}
@@ -195,12 +202,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
-  openAnimators:
-  - {fileID: 3971549604464448826}
-  - {fileID: 5062697989614478644}
-  closeAnimators:
-  - {fileID: 2400220865115057536}
-  - {fileID: 8673495389285858749}
 --- !u!1001 &1627766811897028505
 PrefabInstance:
   m_ObjectHideFlags: 0
