@@ -23,6 +23,8 @@ public class PlayerStatus : UnitStatus
         else
             hpElement.SetAmount(amount);
 
+        hpElement.SetClampAmount(0, maxHPElement.CalculateTotalAmount());
+
         updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
     }
 
@@ -37,6 +39,8 @@ public class PlayerStatus : UnitStatus
         }
         else
             hpElement.AddAmount(amount);
+
+        hpElement.SetClampAmount(0, maxHPElement.CalculateTotalAmount());
 
         updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
     }

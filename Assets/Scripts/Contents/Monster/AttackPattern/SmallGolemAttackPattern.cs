@@ -111,6 +111,8 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
             return;
 
         isAttacked = false;
+        isCoolDown = true;
+        currentCoolTime = coolTime;
 
         navAgent.isStopped = true;
 
@@ -162,7 +164,6 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
                     hitPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position),
                     hitNormal = (transform.position - other.transform.position).normalized,
                 });
-
             }
             //else {
             //    EndAttack();

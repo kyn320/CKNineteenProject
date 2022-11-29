@@ -13,6 +13,8 @@ public class PlayerDeathState : PlayerStateBase
         }
         isStay = true;
         enterEvent?.Invoke();
+
+        UIController.Instance.OpenPopup(new UIGameOverPopupData());
     }
 
     public override void Update()

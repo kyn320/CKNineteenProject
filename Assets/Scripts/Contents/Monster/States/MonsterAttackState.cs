@@ -39,15 +39,15 @@ public class MonsterAttackState : MonsterStateBase
 
     public override void Enter()
     {
-        //공격 가능한 패턴이 있는지 체크 하고 없으면 돌려보내요.
-        if (!CheckStartAttackPattern()) { 
-            controller.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
-            return;
-        }
-
         var target = controller.GetTarget();
 
         var pattern = GetRandomPattern();
+
+        if (pattern == null)
+        {
+            controller.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
+            return;
+        }
 
         pattern.StartAttack(target);
 
