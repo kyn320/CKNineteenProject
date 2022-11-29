@@ -34,8 +34,8 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public virtual GameObject Spawn() { 
-       return ObjectPoolManager.Instance.Get(spawnPrefab.name);
+    public virtual GameObject Spawn() {
+        return Instantiate(spawnPrefab);
     }
 
     public virtual Vector3 GetSpawnPoint() { 
