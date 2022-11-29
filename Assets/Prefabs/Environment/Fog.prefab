@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3815660084593885015}
   - component: {fileID: 6443650608174044778}
   - component: {fileID: 4516994652846495078}
+  - component: {fileID: 511075476008465407}
   m_Layer: 12
   m_Name: Fog
   m_TagString: Untagged
@@ -147,10 +148,19 @@ MonoBehaviour:
       m_Calls: []
   triggerEnterEvent:
     m_PersistentCalls:
-      m_Calls: []
-  triggerStayEvent:
-    m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 511075476008465407}
+        m_TargetAssemblyTypeName: DamageController, Assembly-CSharp
+        m_MethodName: OnTriggerEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 6443650608174044778}
         m_TargetAssemblyTypeName: SpawnZone, Assembly-CSharp
         m_MethodName: Spawn
@@ -163,9 +173,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  triggerStayEvent:
+    m_PersistentCalls:
+      m_Calls: []
   triggerExitEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &511075476008465407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6141749027790187631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a3f80227767d545a89c3d028c0e449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStatus: {fileID: 11400000, guid: 08003fd0ae2850643820c5c1f164fd6a, type: 2}
+  isOnKnockback: 0
 --- !u!1 &7202647811369938300
 GameObject:
   m_ObjectHideFlags: 0
