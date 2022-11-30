@@ -6,6 +6,13 @@ namespace Landmark
 {
     public class LandmarkStatus : UnitStatus
     {
+        public bool isSuper = false;
+
+        public void SetSuper(bool isSuper)
+        {
+            this.isSuper = isSuper;
+        }
+
         public void ForceUpdateHPEvent()
         {
             var hpElement = currentStatus.GetElement(StatusType.HP);
@@ -40,7 +47,7 @@ namespace Landmark
             else
                 hpElement.AddAmount(amount);
 
-            if(hpElement.GetAmount() >= maxHPElement.GetAmount())
+            if (hpElement.GetAmount() >= maxHPElement.GetAmount())
                 hpElement.SetAmount(maxHPElement.GetAmount());
 
             updateHpEvent?.Invoke(hpElement.CalculateTotalAmount(), maxHPElement.CalculateTotalAmount());
@@ -51,5 +58,18 @@ namespace Landmark
             var autoRecoverElement = currentStatus.GetElement(StatusType.RecoverHP);
             AddHP(autoRecoverElement.GetPercent(), true);
         }
+
+        public override DamageInfo OnDamage(DamageInfo damageInfo)
+        {
+            if (isSuper)
+            {
+                damageInfo.isHit = false;
+                damageInfo.isKill = false;
+                return damageInfo;
+            }
+
+            return base.OnDamage(damageInfo);
+        }
+
     }
 }

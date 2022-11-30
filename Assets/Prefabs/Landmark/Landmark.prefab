@@ -1614,6 +1614,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isSuper: 0
 --- !u!114 &8099621406637484931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1823,6 +1824,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AnimatorTrigger, Assembly-CSharp
         m_MethodName: PlayAnimation
         m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8099621406637484990}
+        m_TargetAssemblyTypeName: Landmark.LandmarkStatus, Assembly-CSharp
+        m_MethodName: SetSuper
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2871,6 +2884,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204662950342713658, guid: ae9054ab378c6724691f4b99d2b38185,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7330171292275383091, guid: ae9054ab378c6724691f4b99d2b38185,
         type: 3}

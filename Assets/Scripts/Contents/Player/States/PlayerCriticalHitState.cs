@@ -31,6 +31,7 @@ public class PlayerCriticalHitState : PlayerStateBase
         {
             var knockBackDirection = transform.forward * knockBackVector.z + transform.up * knockBackVector.y;
             controller.GetRigidbody().velocity = Vector3.zero;
+            controller.GetRigidbody().useGravity = true;
             controller.GetRigidbody().AddForce(knockBackDirection, ForceMode.Impulse);
         }
 

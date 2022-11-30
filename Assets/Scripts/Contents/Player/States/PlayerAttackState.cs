@@ -501,7 +501,7 @@ public class PlayerAttackState : PlayerStateBase
 
     public override void Exit()
     {
-        //EndAttack();
+        ForceStopAttack();
         exitEvent?.Invoke();
     }
 

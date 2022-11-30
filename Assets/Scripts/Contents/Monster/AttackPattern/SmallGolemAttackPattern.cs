@@ -131,16 +131,18 @@ public class SmallGolemAttackPattern : MonsterAttackPattern
         controller.ChangeState(MonsterStateType.MONSTERSTATE_CHASE);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Ground"))
             return;
 
-        if (isAttacked)
+        if (isAttacked && allowAttack)
         {
             if (!other.gameObject.CompareTag("Monster"))
             {
                 Debug.Log("SmallGolemAttack :: " + other.gameObject + " / " + other.gameObject.tag);
+
+                allowAttack = false;
 
                 var damageable = other.gameObject.GetComponent<IDamageable>();
 

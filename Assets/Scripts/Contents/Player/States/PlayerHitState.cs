@@ -26,6 +26,7 @@ public class PlayerHitState : PlayerStateBase
         }
 
         isStay = true;
+        controller.GetRigidbody().useGravity = true;
 
         //if (onKnockback)
         {
